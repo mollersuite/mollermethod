@@ -10,7 +10,7 @@ local function play (id)
 	sound.Volume = 1
 	game:GetService('SoundService'):PlayLocalSound(sound)
 end
-play(asset('https://method.9701.ml/startup.mp3'))
+play(asset('https://mthd.ml/startup.mp3'))
 game:GetService('UserInputService').InputBegan:Connect(function (i)
 	if i.KeyCode == Enum.KeyCode.Delete and i:IsModifierKeyDown(Enum.ModifierKey.Shift) then
 		print('pressed')
