@@ -7,14 +7,13 @@ end
 local function play (id)
 	local sound = Instance.new('Sound')
 	sound.SoundId = id
-	sound.Volume = 10
+	sound.Volume = 1
 	game:GetService('SoundService'):PlayLocalSound(sound)
 end
 play(asset('https://method.9701.ml/startup.mp3'))
 game:GetService('UserInputService').InputBegan:Connect(function (i)
-	print(i.KeyCode)
-	if i.KeyCode == Enum.KeyCode.Delete and i:IsModifierKeyDown(Enum.ModifierKey.Meta) then
+	if i.KeyCode == Enum.KeyCode.Delete and i:IsModifierKeyDown(Enum.ModifierKey.Shift) then
 		print('pressed')
 	end
 end)
-print('Press Win+Delete to toggle mollermethod')
+print('Press Shift+Delete to toggle mollermethod')
