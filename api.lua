@@ -47,6 +47,7 @@ API.parent(notifGUI)
 --[[
     ? How the fuck is this supposed to look?
     Maybe like Windows 11?
+    To compare - https://molly.i-like.dog/​‌‌​​​​‌​‌​​‌‌‌‌​‌‌​​​‌‌​‌‌​‌‌‌​​‌‌‌​‌‌​​​‌‌‌​​​​​‌‌​​‌​​‌​​‌​‌‌
 ]]
 function API.notify(options)
     local text = options.Text
