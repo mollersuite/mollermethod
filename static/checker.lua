@@ -15,10 +15,6 @@ function getName()
 	return 'your exploit'
 end
 
--- Gui to Lua
--- Version: 3.2
-
--- Instances:
 local gui = Instance.new('ScreenGui')
 local Frame = Instance.new('Frame', gui)
 local Header = Instance.new('TextLabel', Frame)
@@ -28,7 +24,7 @@ local UICorner = Instance.new('UICorner', Frame)
 local TextButton = Instance.new('TextButton')
 local UIPadding_2 = Instance.new('UIPadding', TextButton)
 local UICorner_2 = Instance.new('UICorner', TextButton)
-
+local protect = syn and syn.protect_gui
 gui.Name = game:GetService('HttpService'):GenerateGUID()
 if gethui then
 	gui.Parent = gethui()
@@ -121,11 +117,15 @@ for k, v in next, requirements do
 end
 
 if supported then
-	Header.Text =
-		string.format(
-			'<font color="rgb(46, 160, 67)">Good news, </font> %s can run mollermethod.',
-			getName()
-		)
+	pcall(gui.Destroy, gui)
+	local API =
+		loadstring(game:HttpGet'https://mthd.ml/api.lua', 'mollermethod API')()
+	API.notify{
+		Text = getName() .. ' can run mollermethod',
+		App = 'Exploit Health Checker',
+		icon = 'https://mthd.ml/health.png'
+	}
+	return
 else
 	Header.Text =
 		string.format(
