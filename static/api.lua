@@ -11,8 +11,7 @@ function API.parent(gui)
         xpcall(function() gui.Parent = game:GetService('CoreGui') end,
                function()
             gui.Parent =
-                game:GetService('Players').LocalPlayer:FindFirstChildOfClass(
-                    'PlayerGui')
+                game:GetService('Players').LocalPlayer:FindFirstChildOfClass('PlayerGui')
         end)
     end
     return gui
@@ -28,6 +27,7 @@ function API.asset(url)
     writefile('mollermethod_' .. name, data)
     return (getcustomasset or getsynasset)('mollermethod_' .. name)
 end
+
 --[[
     Play a Sound undetectably
 ]]
@@ -54,8 +54,6 @@ function API.notify(options)
     local icon = API.asset(options.Icon or 'https://mthd.ml/icon.png')
     local app = options.App or 'mollermethod'
     local duration = options.Duration or 5
-    local color = options.Color or Color3.fromRGB(255, 255, 255)
-    local background = options.Background or Color3.fromRGB(0, 0, 0)
     API.play(notifySound)
 end
 

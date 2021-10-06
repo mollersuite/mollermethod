@@ -105,4 +105,8 @@ end)
 
 print('Press Shift+Delete to toggle mollermethod')
 
+local queue = (synapse or fluxus or lib or {}).queue_on_teleport or queue_on_teleport
+if queue then
+    queue(string.format("loadstring(game:HttpGet 'https://mthd.ml')(game:GetService('HttpService'):JSONDecode(%q)", game:GetService('HttpService'):JSONEncode(config)))
+end
 return API

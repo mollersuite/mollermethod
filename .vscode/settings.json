@@ -1,7 +1,6 @@
 {
-  "robloxLsp.diagnostics.disable": [
-    "undefined-global"
-  ],
+  "robloxLsp.diagnostics.disable": ["undefined-global"],
+  "rpc.buttonEnabled": false,
   "better-comments.tags": [
     {
       "tag": "hack",

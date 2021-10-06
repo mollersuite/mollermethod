@@ -1,0 +1,42 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "mollermethod welcome tour",
+  "steps": [
+    {
+      "file": "static/index.lua",
+      "description": "Welcome to mollermethod. Let me show you around.",
+      "line": 2,
+      "selection": {
+        "start": {
+          "line": 2,
+          "character": 1
+        },
+        "end": {
+          "line": 51,
+          "character": 142
+        }
+      }
+    },
+    {
+      "file": "static/api.lua",
+      "description": "Our utils are here. This is the _G.mollermethod in this snippet:\n```lua\n_G.mollermethod = loadstring(game:HttpGet 'https://mthd.ml') {\n\n}\n_G.mollermethod.notify {\n  Text = 'balls'\n}\n```",
+      "line": 1
+    },
+    {
+      "file": "static/api.lua",
+      "description": "Here's the notif code if you wanna add that for me",
+      "line": 52
+    },
+    {
+      "file": "static/primer.lua",
+      "description": "Here's the color scheme I should be using",
+      "line": 17
+    },
+    {
+      "file": "static/index.lua",
+      "description": "The `{}` in `loadstring(game:HttpGet 'https://mthd.ml') {}`",
+      "line": 91
+    }
+  ],
+  "ref": "2dac7b57cd536f019628262db6358dc9d56d6151"
+}
