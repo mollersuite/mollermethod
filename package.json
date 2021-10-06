@@ -1,0 +1,8 @@
+{
+  "name": "mollermethod",
+  "main": "static/init.lua",
+  "devDependencies": {
+    "prettier": "^2.4.1",
+    "@prettier/plugin-lua": "github:prettier/plugin-lua"
+  }
+}

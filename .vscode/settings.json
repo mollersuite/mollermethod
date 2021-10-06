@@ -1,6 +1,12 @@
 {
   "robloxLsp.diagnostics.disable": ["undefined-global"],
   "rpc.buttonEnabled": false,
+  "[lua]": {
+    "editor.insertSpaces": false,
+    "editor.tabSize": 4,
+    "editor.autoIndent": "advanced",
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "better-comments.tags": [
     {
       "tag": "hack",
