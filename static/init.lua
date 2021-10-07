@@ -85,8 +85,8 @@ rxTccccculTT}}}LLi]xxxxvvvv\\\\\\\\\\|)r*^<~=!::,_--.'```      ,vvv*~~*rr>~^vvv:
 ]]
 
 -- IMPORTS
-local API = loadstring(game:HttpGet 'https://mthd.ml/api.lua',
-                          'mollermethod API')()
+local API =
+	loadstring(game:HttpGet'https://mthd.ml/api.lua', 'mollermethod API')()
 -- CONSTANTS
 local CONFIG = ...
 
@@ -99,14 +99,23 @@ API.parent(gui)
 API.play(API.asset('https://mthd.ml/startup.mp3'))
 
 game:GetService('UserInputService').InputBegan:Connect(function(i)
-    if i.KeyCode == Enum.KeyCode.Delete and
-        i:IsModifierKeyDown(Enum.ModifierKey.Shift) then print('pressed') end
+	if i.KeyCode == Enum.KeyCode.Delete and i:IsModifierKeyDown(
+		Enum.ModifierKey.Shift
+	) then
+		print('pressed')
+	end
 end)
 
 print('Press Shift+Delete to toggle mollermethod')
 
-local queue = (synapse or fluxus or lib or {}).queue_on_teleport or queue_on_teleport
+local queue =
+	(syn or fluxus or lib or {}).queue_on_teleport or queue_on_teleport
 if queue then
-    queue(string.format("loadstring(game:HttpGet 'https://mthd.ml')(game:GetService('HttpService'):JSONDecode(%q)", game:GetService('HttpService'):JSONEncode(config)))
+	queue(
+		string.format(
+			"loadstring(game:HttpGet 'https://mthd.ml')(game:GetService('HttpService'):JSONDecode(%q)",
+			game:GetService('HttpService'):JSONEncode(config)
+		)
+	)
 end
 return API
