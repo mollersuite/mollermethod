@@ -20,6 +20,9 @@ end
     ? Should we let users specify a custom prefix? Should whitelabeling change the prefix?
 ]]
 function API.asset(url)
+	if url:match('^rbxasset.://') then
+		return url
+	end
 	local name = url:match('([^/]+)$')
 	local data = game:HttpGet(url)
 	writefile('mollermethod_' .. name, data)
