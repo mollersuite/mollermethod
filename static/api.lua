@@ -25,8 +25,13 @@ function API.asset(url)
 	end
 	local name = url:match('([^/]+)$')
 	local data = game:HttpGet(url)
-	writefile('mollermethod_' .. name, data)
-	return (getcustomasset or getsynasset)('mollermethod_' .. name)
+	if getexecutorname and getexecutorname() == 'ScriptWare' then
+		writefile('mollermethod_' .. name, data, true)
+		return 'rbxasset://mollermethod_' .. name
+	else
+		writefile('mollermethod_' .. name, data)
+		return (getcustomasset or getsynasset)('mollermethod_' .. name)
+	end
 end
 
 --[[
@@ -38,7 +43,6 @@ function API.play(id, vol)
 	sound.Volume = vol or 5
 	game:GetService('SoundService'):PlayLocalSound(sound)
 end
-
 
 local notifySound = API.asset('https://mthd.ml/sounds/notif.mp3')
 

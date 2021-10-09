@@ -97,13 +97,12 @@ local assets = {
 	open = API.asset(root .. '/sounds/open.mp3'),
 	close = API.asset(root .. '/sounds/close.mp3')
 }
-
+local colors = { bg = Color3.fromRGB(47, 79, 79) }
 -- INSTANCES
 local gui = Instance.new('ScreenGui')
 gui.ResetOnSpawn = false
 gui.DisplayOrder = (2 ^ 31) - 1
 API.parent(gui)
-
 -- GUI
 function create(className, defaultParent)
 	return function(propertyList)
@@ -140,7 +139,7 @@ function create(className, defaultParent)
 end
 local Frame = create'Frame'
 local taskbar = Frame{
-	Position = UDim2.fromOffset(0, loaded and 0 or 100),
+	Position = UDim2.fromScale(0, 0),
 	Enum.AutomaticSize.X,
 	Size = UDim2.new(1, 0, 0, 200),
 	BackgroundColor3 = colors.bg,
@@ -164,36 +163,36 @@ Frame{
 	Size = UDim2.new(0.5, 0, 0, 100),
 	Parent = gui,
 	BackgroundTransparency = 1,
-	taskbar
+	function(frame)
+		taskbar.Parent = frame
+	end
 }
 
 function open()
 	API.play(assets.open)
-	wrapper.MouseEnter:Connect(function()
-		game:GetService('TweenService'):Create(
-			taskbar,
-			TweenInfo.new(0.3, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out),
-			{ Position = UDim2.fromOffset(0, 0) }
-		):Play()
-		local i = 0
-		for _, v in ipairs(taskbar:GetChildren()) do
-			if v:IsA('GuiObject') then
-				game:GetService('TweenService'):Create(
-					v.btn,
-					TweenInfo.new(
-						0.3,
-						Enum.EasingStyle.Cubic,
-						Enum.EasingDirection.Out,
-						0,
-						false,
-						0.3 + (i * 0.1)
-					),
-					{ Position = UDim2.fromOffset(0, 0) }
-				):Play()
-				i = i + 1
-			end
+	game:GetService('TweenService'):Create(
+		taskbar,
+		TweenInfo.new(0.3, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out),
+		{ Position = UDim2.fromOffset(0, 0) }
+	):Play()
+	local i = 0
+	for _, v in ipairs(taskbar:GetChildren()) do
+		if v:IsA('GuiObject') then
+			game:GetService('TweenService'):Create(
+				v.btn,
+				TweenInfo.new(
+					0.3,
+					Enum.EasingStyle.Cubic,
+					Enum.EasingDirection.Out,
+					0,
+					false,
+					0.3 + (i * 0.1)
+				),
+				{ Position = UDim2.fromOffset(0, 0) }
+			):Play()
+			i = i + 1
 		end
-	end)
+	end
 end
 function close()
 	API.play(assets.close)
@@ -290,8 +289,8 @@ function btn(name, texture, clicked)
 	end)
 end
 
-btn('Scripts', 'rbxassetid://5970247019', function()
-
+btn('Scripts', API.asset(root .. '/icons/code.png'), function()
+	print('clicked')
 end)
 
 local is_open = true
