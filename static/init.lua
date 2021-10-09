@@ -1,5 +1,5 @@
---[[
-									   `-:~rv}yspN08B##@@@@#BQEHcr-         .*V5$B#@@@@@##BQ$65mwTxr>:-`
+local CONFIG = ...
+--[[									   `-:~rv}yspN08B##@@@@#BQEHcr-         .*V5$B#@@@@@##BQ$65mwTxr>:-`
 						   -:<)YyKb&Q#@@@@@@@@@@@@@@@@@@@@@########QV-   'uQ@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#B$N3w}v^:-`
 			   `,~)Ly3NgB@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@###########w }@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#86Hk}|<:.
 		  }RQ#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@############B@@@@@@@@@@@@@@@@@@@@@@@#BQg&DDD$gQB#@@@@@@@@@@@@@@@@@@@@@#QDy`
@@ -48,48 +48,8 @@ uccccyzXhsmKa33PPPPPPPP33KKmshXzkyyVcccccccccccccuuTT*^****rrrr)r<~|0$$$$$$Y~<r)
 }cccccccccccccccccccccccccccuulTT}}}LLixxxxxvvvv\\\\\vvvvvvv|rrvvv^~xd$$$EV~<vvvrr)vvvvvvv\\\\\\vvvxxxxxiiLY}}}TTluccccccccccccccccccccccccccc}
 rxTccccculTT}}}LLi]xxxxvvvv\\\\\\\\\\|)r*^<~=!::,_--.'```      ,vvv*~~*rr>~^vvv:       ```'.-_,::!=~>^*rr)\\\\\\\\\\\vvvxxxx]iLL}}}TTluuccccTi*
 `>\\vv\\\\\\\\\\|)r*^>~=!::,_--.```                             '*vvv)r*rrvvvr-                             ```'--_,":!=~>^*rr)\\\\\\\\\\vv\\^`
-  `-_,,_--.```                                                    `:<rvvv)^:'                                                    ```'--_,,_-`
+  `-_,,_--.```                                                    `:<rvvv)^:'                                                    ```'--_,,_]]
 
-														mollermethod, by mollersuite
-
-					LOADER
-
-					-- Without API
-					loadstring(game:HttpGet 'https://mthd.ml') {
-						-- config will be here soon™️
-					}
-					-- With API
-					_G.mollermethod = loadstring(game:HttpGet 'https://mthd.ml') {
-						-- config will be here soon™️
-					}
-					_G.mollermethod.notify {
-						-- Defaults
-						Text = 'Press Shift+Delete to open mollermethod',
-						App = 'mollermethod',
-						Icon = 'https://mthd.ml/icon.png'
-					}
-					-- Testing locally
-					loadstring(game:HttpGet 'http://localhost:3000/static/init.lua') {
-						root = 'http://localhost:3000/static'
-					}
-
-					API
-
-					API.notify({
-						App = string?,
-						Text = string,
-						Icon = string?
-					}) -> Frame
-					-- Parent a GUI
-					API.parent(gui: ScreenGui) -> ScreenGui
-					-- URL in, Roblox ID out. (Useful for notify and play)
-					API.asset(url: string) -> Content
-					-- Play a sound, without triggering any anti-cheat
-					API.play(id: Content, volume: number?) -> void
-]]
-
--- CONSTANTS
-local CONFIG = ...
 local root = CONFIG.root or 'https://mthd.ml'
 local API = loadstring(game:HttpGet(root .. '/api.lua'), 'mollermethod API')()
 local assets = {
@@ -97,7 +57,10 @@ local assets = {
 	open = API.asset(root .. '/sounds/open.mp3'),
 	close = API.asset(root .. '/sounds/close.mp3')
 }
-local colors = { bg = Color3.fromRGB(47, 79, 79) }
+local colors = {
+	bg = Color3.fromRGB(47, 79, 79),
+	scriptsframe_bg = Color3.fromRGB(35, 61, 61)
+}
 -- INSTANCES
 local gui = Instance.new('ScreenGui')
 gui.ResetOnSpawn = false
@@ -289,8 +252,19 @@ function btn(name, texture, clicked)
 	end)
 end
 
+local Scripts = Frame{
+	Name = game:GetService('HttpService'):GenerateGUID(),
+	Position = UDim2.fromScale(0, 0.5),
+	Size = UDim2.fromScale(0.5, 0.5),
+	AnchorPoint = Vector2.new(0, 0.5),
+	BorderSizePixel = 0,
+	BackgroundColor3 = colors.scriptsframe_bg,
+	Visible = false,
+	Parent = gui
+}
+
 btn('Scripts', API.asset(root .. '/icons/code.png'), function()
-	print('clicked')
+	Scripts.Visible = not Scripts.Visible
 end)
 
 local is_open = true

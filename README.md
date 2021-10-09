@@ -34,6 +34,7 @@ loadstring(game:HttpGet 'http://localhost:3000/static/init.lua') {
 
 ## API
 
+```lua
 API.notify({
   App = string?,
   Text = string,
@@ -45,3 +46,4 @@ API.parent(gui: ScreenGui) -> ScreenGui
 API.asset(url: string) -> Content
 -- Play a sound, without triggering any anti-cheat
 API.play(id: Content, volume: number?) -> void
+```
