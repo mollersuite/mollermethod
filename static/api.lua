@@ -35,11 +35,13 @@ end
 function API.play(id, vol)
 	local sound = Instance.new('Sound')
 	sound.SoundId = id
-	sound.Volume = vol or 1
+	sound.Volume = vol or 5
 	game:GetService('SoundService'):PlayLocalSound(sound)
 end
 
-local notifySound = API.asset('https://mthd.ml/notif.mp3')
+
+local notifySound = API.asset('https://mthd.ml/sounds/notif.mp3')
+
 local notifGUI = Instance.new('ScreenGui')
 notifGUI.ResetOnSpawn = false
 notifGUI.DisplayOrder = (2 ^ 31) - 1

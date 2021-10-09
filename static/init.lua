@@ -1,9 +1,9 @@
 --[[
-                                       `-:~rv}yspN08B##@@@@#BQEHcr-         .*V5$B#@@@@@##BQ$65mwTxr>:-`
-                           -:<)YyKb&Q#@@@@@@@@@@@@@@@@@@@@@########QV-   'uQ@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#B$N3w}v^:-`
-               `,~)Ly3NgB@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@###########w }@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#86Hk}|<:.
-          }RQ#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@############B@@@@@@@@@@@@@@@@@@@@@@@#BQg&DDD$gQB#@@@@@@@@@@@@@@@@@@@@@#QDy`
-    `:<*v5B@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@############@@@@@@@@@@@@@@@@@@@Q63ylTTTTTTTTTTTTlcf6B@@@@@@@@@@@@@@@@@@@@#dx*^!'
+									   `-:~rv}yspN08B##@@@@#BQEHcr-         .*V5$B#@@@@@##BQ$65mwTxr>:-`
+						   -:<)YyKb&Q#@@@@@@@@@@@@@@@@@@@@@########QV-   'uQ@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#B$N3w}v^:-`
+			   `,~)Ly3NgB@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@###########w }@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#86Hk}|<:.
+		  }RQ#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@############B@@@@@@@@@@@@@@@@@@@@@@@#BQg&DDD$gQB#@@@@@@@@@@@@@@@@@@@@@#QDy`
+	`:<*v5B@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@############@@@@@@@@@@@@@@@@@@@Q63ylTTTTTTTTTTTTlcf6B@@@@@@@@@@@@@@@@@@@@#dx*^!'
    <uccP&$B@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@############@@@@@@@@@@@@@@@#&fuTlTTTTTTTTTTTTTTTTTTlTy&@@@@@@@@@@@@@@@@@@#$$5Vccr
   -ccVN$$$B@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@############@@@@@@@@@@@@@#quTTTTTTTTTllTTTllTlTTTTTTTTlk#@@@@@@@@@@@@@@@@#$$$Rycc:
   ,ccy$$$$#@@@@@@@@@@@@@@@@@@@@@@@@@@###@@#BQQBB#@@@@@@@@@#############@@@@@@@@@@@@guTTTTTTTTlyGEQB#####Q9zTTTTTTTly#@@@@@@@@@@@@@@@#$$$$occ=
@@ -68,27 +68,35 @@ rxTccccculTT}}}LLi]xxxxvvvv\\\\\\\\\\|)r*^<~=!::,_--.'```      ,vvv*~~*rr>~^vvv:
 						App = 'mollermethod',
 						Icon = 'https://mthd.ml/icon.png'
 					}
+					-- Testing locally
+					loadstring(game:HttpGet 'http://localhost:3000/static/init.lua') {
+						root = 'http://localhost:3000/static'
+					}
 
-                    API
+					API
 
-                    API.notify({
-                        App = string?,
-                        Text = string,
-                        Icon = string?
-                    }) -> Frame
-                    -- Parent a GUI
-                    API.parent(gui: ScreenGui) -> ScreenGui
-                    -- URL in, Roblox ID out. (Useful for notify and play)
-                    API.asset(url: string) -> Content
-                    -- Play a sound, without triggering any anti-cheat
-                    API.play(id: Content, volume: number?) -> void
+					API.notify({
+						App = string?,
+						Text = string,
+						Icon = string?
+					}) -> Frame
+					-- Parent a GUI
+					API.parent(gui: ScreenGui) -> ScreenGui
+					-- URL in, Roblox ID out. (Useful for notify and play)
+					API.asset(url: string) -> Content
+					-- Play a sound, without triggering any anti-cheat
+					API.play(id: Content, volume: number?) -> void
 ]]
 
--- IMPORTS
-local API =
-	loadstring(game:HttpGet'https://mthd.ml/api.lua', 'mollermethod API')()
 -- CONSTANTS
 local CONFIG = ...
+local root = CONFIG.root or 'https://mthd.ml'
+local API = loadstring(game:HttpGet(root .. '/api.lua'), 'mollermethod API')()
+local assets = {
+	startup = API.asset(root .. '/sounds/startup/10x_intro.mp3'),
+	open = API.asset(root .. '/sounds/open.mp3'),
+	close = API.asset(root .. '/sounds/close.mp3')
+}
 
 -- INSTANCES
 local gui = Instance.new('ScreenGui')
@@ -96,26 +104,27 @@ gui.ResetOnSpawn = false
 gui.DisplayOrder = (2 ^ 31) - 1
 API.parent(gui)
 
-API.play(API.asset('https://mthd.ml/startup.mp3'))
+function open()
+	API.play(assets.open)
+end
+function close()
+	API.play(assets.close)
+end
 
+local is_open = true
 game:GetService('UserInputService').InputBegan:Connect(function(i)
-	if i.KeyCode == Enum.KeyCode.Delete and i:IsModifierKeyDown(
-		Enum.ModifierKey.Shift
-	) then
-		print('pressed')
+	if i.KeyCode == Enum.KeyCode.Delete then
+		is_open = not is_open
+		if is_open then
+			open()
+		else
+			close()
+		end
 	end
 end)
 
-print('Press Shift+Delete to toggle mollermethod')
+print('Press Delete to toggle mollermethod')
 
-local queue =
-	(syn or fluxus or lib or {}).queue_on_teleport or queue_on_teleport
-if queue then
-	queue(
-		string.format(
-			"loadstring(game:HttpGet 'https://mthd.ml')(game:GetService('HttpService'):JSONDecode(%q)",
-			game:GetService('HttpService'):JSONEncode(config)
-		)
-	)
-end
+API.play(assets.startup)
+
 return API
