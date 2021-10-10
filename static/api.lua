@@ -1,6 +1,10 @@
 local API = {}
 local protect = syn and syn.protect_gui
 
+--[[
+	Parent a GUI
+	We do this because it prevents the GUI from easily being detected by game anticheat
+]]
 function API.parent(gui)
 	gui.Name = game:GetService('HttpService'):GenerateGUID()
 	if gethui then
@@ -17,6 +21,10 @@ end
 
 --[[
     From a URL, return a Content string
+	We do this because the alternative is to upload audios to Roblox, which
+	1. Costs Robux
+	2. Could get you banned from Roblox since this is a exploit hub
+	3. CoreGuis seemingly dont work with rbxassetid://
     ? Should we let users specify a custom prefix? Should whitelabeling change the prefix?
 ]]
 function API.asset(url)
@@ -35,7 +43,7 @@ function API.asset(url)
 end
 
 --[[
-    Play a Sound undetectably
+    Play a Sound undetectably, also to prevent it from being detected by game anticheat
 ]]
 function API.play(id, vol)
 	local sound = Instance.new('Sound')
@@ -52,9 +60,8 @@ notifGUI.DisplayOrder = (2 ^ 31) - 1
 API.parent(notifGUI)
 
 --[[
-    ? How the fuck is this supposed to look?
-    Maybe like Windows 11?
-    To compare - https://molly.i-like.dog/​‌‌​​​​‌​‌​​‌‌‌‌​‌‌​​​‌‌​‌‌​‌‌‌​​‌‌‌​‌‌​​​‌‌‌​​​​​‌‌​​‌​​‌​​‌​‌‌
+    The mollermethod notif.
+
 ]]
 function API.notify(options)
 	local text = options.Text
@@ -148,70 +155,5 @@ function API.notify(options)
 	end)
 	API.play(notifySound)
 end
---[[
-	Scripts API
-]]
 
-API.Scripts = {}
-API.Cmds = {}
-function API.Command(Name, Function)
-	if not API.Scripts[Name] then
-		API.Scripts[Name] = Function
-		table.insert(API.Cmds, Name)
-	end
-end
-function API.Run(Name, Arguments)
-	API.Scripts[Name](Arguments)
-end
-
-local Players = game:GetService('Players')
-local StarterGui = game:GetService('StarterGui')
-local prefix = '-/'
-local fpdh = workspace.FallenPartsDestroyHeight
--- what do i press to fix jack?
-API.Command('refresh', function(frame)
-	local rp = Players.LocalPlayer.Character.HumanoidRootPart
-	local cframe = rp.CFrame
-	task.delay(0.1, function()
-		pcall(function()
-			workspace.FallenPartsDestroyHeight = -1e9
-		end)
-		rp.CFrame = CFrame.new(0, -(1e9 - 2), 0)
-		task.spawn(function()
-			Players.LocalPlayer.CharacterAdded:Wait()
-			task.wait(0.07)
-			pcall(function()
-				workspace.FallenPartsDestroyHeight = fpdh
-			end)
-			local rp = Players.LocalPlayer.Character.HumanoidRootPart
-			rp.CFrame = cframe
-		end)
-	end)
-end)
-API.Command('void', function(frame)
-	for i, v in pairs(Players:GetPlayers()) do
-		local thr = Instance.new('BodyThrust')
-		thr.Parent = Players.LocalPlayer.Character
-		thr.Force = Vector3.new(1200, 0, 1200)
-		thr.Location = v.Character.HumanoidRootPart.CFrame
-		task.wait(1)
-		thr:Destroy()
-	end
-end)
-API.Command('help', function(frame)
-	table.foreach(API.Cmds, function(msg)
-		StarterGui:SetCore('ChatMakeSystemMessage', {
-			Text = msg,
-			Font = Enum.Font.SourceSansBold,
-			Color = Color3.fromRGB(155, 155, 155),
-			FontSize = Enum.FontSize.Size18
-		})
-	end)
-end)
-Players.LocalPlayer.Chatted:Connect(function(cmd)
-	if cmd:match('^-/') then
-		local msg = cmd:sub(prefix:len() + 1)
-		API.Run(msg, {})
-	end
-end)
 return API
