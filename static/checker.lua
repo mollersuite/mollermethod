@@ -123,7 +123,7 @@ if supported then
 	API.notify{
 		Text = getName() .. ' can run mollermethod',
 		App = 'Exploit Health Checker',
-		icon = 'https://mthd.ml/health.png'
+		Icon = 'https://mthd.ml/health.png'
 	}
 	return
 else
