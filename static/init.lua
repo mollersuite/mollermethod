@@ -51,7 +51,8 @@ rxTccccculTT}}}LLi]xxxxvvvv\\\\\\\\\\|)r*^<~=!::,_--.'```      ,vvv*~~*rr>~^vvv:
   `-_,,_--.```                                                    `:<rvvv)^:'                                                    ```'--_,,_]]
 
 local root = CONFIG.root or 'https://mthd.ml'
-local API = loadstring(game:HttpGet(root .. '/api.lua'), 'mollermethod API')()
+local API =
+	loadstring(game:HttpGet(root .. '/modules/api.lua'), 'mollermethod API')()
 local assets = {
 	startup = API.asset(root .. '/sounds/startup/10x_intro.mp3'),
 	open = API.asset(root .. '/sounds/open.mp3'),
@@ -253,7 +254,6 @@ function btn(name, texture, clicked)
 end
 
 local Scripts = Frame{
-	Name = game:GetService('HttpService'):GenerateGUID(),
 	Position = UDim2.fromScale(0, 0.5),
 	Size = UDim2.fromScale(0.5, 0.5),
 	AnchorPoint = Vector2.new(0, 0.5),
@@ -280,5 +280,24 @@ game:GetService('UserInputService').InputBegan:Connect(function(i)
 end)
 
 API.play(assets.startup)
+
+local lib = loadstring(game:HttpGet(root .. '/modules/lib.lua'), 'mollerlib')()
+local scripts = { {
+	game = { 537413528 },
+	url = 'build a boat'
+}, {
+	game = { 6803641495 },
+	url = 'test'
+} }
+for _, v in pairs(scripts) do
+	if table.find(v.game, game.PlaceId) then
+		lib(
+			loadstring(game:HttpGet(root .. '/scripts/' .. v.url .. '.lua'), v.url)(),
+			gui,
+			btn,
+			root
+		)
+	end
+end
 
 return API
