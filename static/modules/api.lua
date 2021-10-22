@@ -32,7 +32,7 @@ function API.asset(url)
 		return url
 	end
 	local name = url:match('([^/]+)$')
-	local data = game:HttpGet(url)
+	local data = game:HttpGetAsync(url)
 	if getexecutorname and getexecutorname() == 'ScriptWare' then
 		writefile('mollermethod_' .. name, data, true)
 		return 'rbxasset://mollermethod_' .. name

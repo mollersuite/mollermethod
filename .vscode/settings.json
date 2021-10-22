@@ -1,4 +1,5 @@
 {
+	"robloxLsp.misc.serviceAutoImport": true,
 	"robloxLsp.diagnostics.disable": ["undefined-global"],
 	"rpc.buttonEnabled": false,
 	"editor.insertSpaces": false,

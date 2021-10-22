@@ -11,9 +11,7 @@ local types = { Button = function(parent, name, change, i)
 	btn.AutomaticSize = Enum.AutomaticSize.X
 	btn.MouseButton1Click:Connect(change)
 end }
-return function(lib_return, gui, btn, root)
-	local API =
-		loadstring(game:HttpGet(root .. '/modules/api.lua'), 'mollermethod API')()
+return function(lib_return, gui, btn, root, API)
 	local frame = Instance.new('Frame', gui)
 	frame.BackgroundColor3 = Color3.fromRGB(34, 68, 45)
 	frame.AnchorPoint = Vector2.new(0.5, 0.5)

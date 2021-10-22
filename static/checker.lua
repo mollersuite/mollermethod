@@ -119,7 +119,10 @@ end
 if supported then
 	pcall(gui.Destroy, gui)
 	local API =
-		loadstring(game:HttpGet'https://mthd.ml/modules/api.lua', 'mollermethod API')()
+		loadstring(
+			game:HttpGetAsync'https://mthd.ml/modules/api.lua',
+			'mollermethod API'
+		)()
 	API.notify{
 		Text = getName() .. ' can run mollermethod',
 		App = 'Exploit Health Checker',
