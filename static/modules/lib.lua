@@ -11,7 +11,12 @@ local types = { Button = function(parent, name, change, i)
 	btn.AutomaticSize = Enum.AutomaticSize.X
 	btn.MouseButton1Click:Connect(change)
 end }
-return function(lib_return, gui, btn, root, API)
+return function(options)
+	local lib_return = options.Script
+	local gui = options.Parent
+	local btn = options.btn
+	local API = options.API
+	local root = options.ROOT or 'https://mthd.ml'
 	local frame = Instance.new('Frame', gui)
 	frame.BackgroundColor3 = Color3.fromRGB(34, 68, 45)
 	frame.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -19,8 +24,7 @@ return function(lib_return, gui, btn, root, API)
 	frame.Position = UDim2.fromScale(0.5, 0.5)
 	frame.Visible = false
 	Instance.new('UICorner', frame).CornerRadius = UDim.new(0, 10)
-	local list = Instance.new('UIListLayout', frame)
-	list.SortOrder = Enum.SortOrder.LayoutOrder
+	Instance.new('UIListLayout', frame).SortOrder = Enum.SortOrder.LayoutOrder
 	btn('Game', API.asset(root .. '/icons/game.png'), function()
 		frame.Visible = not frame.Visible
 	end)

@@ -295,16 +295,16 @@ local scripts = { {
 } }
 for _, v in pairs(scripts) do
 	if table.find(v.game, game.PlaceId) then
-		lib(
-			loadstring(
+		lib({
+			Script = loadstring(
 				game:HttpGetAsync(root .. '/scripts/' .. v.url .. '.lua'),
 				v.url
-			)(),
-			gui,
-			btn,
-			root,
-			API
-		)
+			)(API),
+			Parent = gui,
+			btn = btn,
+			ROOT = root,
+			API = API
+		})
 	end
 end
 
