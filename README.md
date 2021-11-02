@@ -1,4 +1,4 @@
-# mollermethod
+<div style="text-align: center"><img src="https://mthd.ml/icon.png" alt="mollermethod" width="500"><h1>mollermethod</h1></div>
 
 ## Usage
 
@@ -27,8 +27,8 @@ _G.mollermethod.notify {
 ### Testing locally
 
 ```lua
-loadstring(game:HttpGet 'http://localhost:3000/static/init.lua') {
-  root = 'http://localhost:3000/static'
+loadstring(game:HttpGet'http://localhost:3000/static/init.lua'){
+	root = 'http://localhost:3000/static'
 }
 ```
 
