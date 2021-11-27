@@ -1,0 +1,4 @@
+node_modules/
+model.rbxmx
+out
+include*.js

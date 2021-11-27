@@ -3,7 +3,8 @@
 	"robloxLsp.diagnostics.disable": ["undefined-global"],
 	"rpc.buttonEnabled": false,
 	"editor.insertSpaces": false,
-	"editor.tabSize": 2,
+	"editor.tabSize": 4,
+	"editor.detectIndentation": false,
 	"editor.autoIndent": "advanced",
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"better-comments.tags": [
