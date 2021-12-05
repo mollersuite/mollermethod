@@ -7,6 +7,9 @@
 	"editor.detectIndentation": false,
 	"editor.autoIndent": "advanced",
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"files.associations": {
+		"*.html": "lua"
+	},
 	"better-comments.tags": [
 		{
 			"tag": "hack",
