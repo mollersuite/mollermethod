@@ -1,8 +1,36 @@
 {
-  "name": "mollermethod",
-  "main": "static/init.lua",
-  "devDependencies": {
-    "prettier": "^2.4.1",
-    "@prettier/plugin-lua": "github:prettier/plugin-lua"
-  }
+	"name": "mollermethod",
+	"main": "static/init.lua",
+	"devDependencies": {
+		"prettier": "^2.4.1",
+		"@prettier/plugin-lua": "github:prettier/plugin-lua"
+	},
+	"prettier": {
+		"arrowParens": "always",
+		"bracketSpacing": true,
+		"embeddedLanguageFormatting": "auto",
+		"endOfLine": "lf",
+		"htmlWhitespaceSensitivity": "css",
+		"insertPragma": false,
+		"jsxBracketSameLine": true,
+		"jsxSingleQuote": false,
+		"printWidth": 80,
+		"proseWrap": "preserve",
+		"quoteProps": "as-needed",
+		"requirePragma": false,
+		"semi": false,
+		"singleQuote": true,
+		"tabWidth": 2,
+		"trailingComma": "none",
+		"useTabs": true,
+		"vueIndentScriptAndStyle": false,
+		"overrides": [
+			{
+				"files": "*.html",
+				"options": {
+					"parser": "lua"
+				}
+			}
+		]
+	}
 }
