@@ -1,6 +1,6 @@
 {
-	"name": "mollermethod",
-	"main": "static/init.lua",
+	"name": "m2",
+	"description": "a beagle's gui",
 	"devDependencies": {
 		"prettier": "^2.4.1",
 		"@prettier/plugin-lua": "github:prettier/plugin-lua"
