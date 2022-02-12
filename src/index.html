@@ -51,11 +51,6 @@
 	<td>ScriptBlox (officially partnered)</td>
 </tr>
 <tr>
-	<td>UI Library</td>
-	<td>None, use plugins instead</td>
-	<td>ShlexLib, prints to console on launch LOL</td>
-</tr>
-<tr>
 	<td>Supported join codes</td>
 	<td>RoPro, RoGold, IY, Sirius</td>
 	<td>Sirius (premium only)</td>
@@ -78,7 +73,7 @@
 
 local CONFIG = ... or { Debug = true } -- in prod it's gonna only be ran with varargs
 
-local API = CONFIG.API or loadstring(game:HttpGetAsync('https://mthd.ml/api'))'mollermethod API'
+local API = CONFIG.API or loadstring(game:HttpGetAsync('https://mthd.ml/api'), 'mollermethod API')()
 
 local ContentProvider = game:GetService('ContentProvider')
 local Tween = game:GetService('TweenService')
@@ -165,7 +160,7 @@ local tags = {}
 
 local plugins = {}
 
-Players.PlayerAdded:Connect(function(player)
+Players.PlayerAdded:Connect(function (player)
 	tags[player.UserId] = setmetatable(
 		{},
 		{ __newindex = function(tbl, index, name)
