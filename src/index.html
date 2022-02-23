@@ -71,11 +71,12 @@
 
 -- TODO: Adopt LuaQuack's code style
 
-local CONFIG = ... or { Debug = true } -- in prod it's gonna only be ran with varargs
-
+local CONFIG = ... or {
+	Debug = true,
+	API = API
+} -- in prod it's gonna only be ran with varargs
 local API = CONFIG.API or loadstring(game:HttpGetAsync('https://mthd.ml/api'), 'mollermethod API')()
 
-local ContentProvider = game:GetService('ContentProvider')
 local Tween = game:GetService('TweenService')
 local Players = game:GetService('Players')
 local GuiService = game:GetService('GuiService')
@@ -89,7 +90,7 @@ GUI.ResetOnSpawn = false
 GUI.DisplayOrder = (2 ^ 31) - 1
 API.parent(GUI)
 
--- photos of a dead dog
+-- rip molly
 local ids = {
 	'rbxassetid://7037264869', -- the infamous images/zzz
 	'rbxassetid://7037156897', -- moller circular
@@ -160,7 +161,7 @@ local tags = {}
 
 local plugins = {}
 
-Players.PlayerAdded:Connect(function (player)
+Players.PlayerAdded:Connect(function(player)
 	tags[player.UserId] = setmetatable(
 		{},
 		{ __newindex = function(tbl, index, name)
@@ -177,12 +178,19 @@ Players.PlayerAdded:Connect(function (player)
 	end
 end)
 
+local startups = {
+	alarm3 = 'rbxassetid://6366788549',
+	speaker = 'rbxassetid://8370988437',
+	x10 = 'rbxassetid://8192419115'
+}
+
 function preload(finish)
 	local time = os.clock()
-
-	-- loading code here...
-	ContentProvider:PreloadAsync({ 'rbxassetid://8192419115', 'rbxassetid://8370988437' })
-
+	game:GetService('ContentProvider'):PreloadAsync({
+		startups.alarm3,
+		startups.speaker,
+		startups.x10
+	})
 	remote = serverside() -- takes 1 second if the game isnt an sb, instant otherwise
 	for _, url in pairs({ 'https://mthd.ml/plugins/tags.lua' }) do
 		local successful = pcall(function()
@@ -235,6 +243,8 @@ function preload(finish)
 		TweenInfo.new(.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, true),
 		{ Size = UDim2.new(1, -10, 1, -10) }
 	):Play()
+	API.play(startups.x10)
+
 	if (finished - time) < 1 then
 		task.wait(1 - (finished - time))
 	end
@@ -243,6 +253,7 @@ function preload(finish)
 end
 
 local quotes = {
+	'"RETIRER VOTRE ANTIVIRUS" - 404coddy404, 2022, trying to cookie grab me',
 	'"https://tenor.com/view/همم-gif-21570043" - Bongo, 2022, after I told him Molly was put down', -- the most fucked up quote of them all
 	'"wait no dont said no furry porn" - Bongo, 2022 (right before Amourousity sent furry porn)',
 	'"i am going to FARD" - Amourousity, 2022',
@@ -266,14 +277,36 @@ function intro()
 
 	task.defer(preload, function()
 		loading = false
-		API.play('rbxassetid://8370988437') --8192419115')
-		task.wait(1)
 
 		API.notify{
-			Text = '<b>Pause</b> to open mollermethod.\n<i>' .. quotes[math.random(#quotes)] .. '</i>',
-			App = 'mollermethod'
+			Text = '<b>Pause</b> to open trendsetter.\n<i>' .. quotes[math.random(#quotes)] .. '</i>',
+			App = 'trendsetter',
+			Icon = 'rbxassetid://7027680965',
 		}
 	end)
+
+	local text = Instance.new('TextLabel', GUI)
+	text.TextTransparency = 1
+	text.BackgroundTransparency = 1
+	Instance.new('UICorner', text).CornerRadius = UDim.new(0, 10)
+	text.BackgroundColor3 = Color3.new(1, 1, 1)
+	text.TextColor3 = Color3.new(0, 0, 0)
+	text.Size = UDim2.new(0, 200, 0, 20)
+	text.Position = UDim2.new(0.5, 0, 0.5, 0)
+	text.Font = Enum.Font.Gotham
+	text.ZIndex = 120
+	text.AnchorPoint = Vector2.new(0.5, 0.5)
+	text.Text = 'trendsetter is loading...'
+	text.TextSize = 14
+	text.TextWrapped = true
+	game:GetService('TweenService'):Create(
+		text,
+		TweenInfo.new(.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, true),
+		{
+			TextTransparency = 0,
+			BackgroundTransparency = 0
+		}
+	):Play()
 
 	while loading do
 		local particle = Instance.new('ImageLabel', GUI)
@@ -296,6 +329,15 @@ function intro()
 		Debris:AddItem(particle, 1.5)
 		task.wait(1 / 60)
 	end
+	game:GetService('Debris'):AddItem(text, .5)
+	game:GetService('TweenService'):Create(
+		text,
+		TweenInfo.new(.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, true),
+		{
+			TextTransparency = 1,
+			BackgroundTransparency = 1
+		}
+	):Play()
 end
 
 -- task.spawn(intro)
