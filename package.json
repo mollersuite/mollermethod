@@ -11,7 +11,7 @@
 		"roblox-ts": "^1.3.1"
 	},
 	"scripts": {
-		"build": "rbxtsc --type model && rojo build default.project.json -o src/mollermethod.rbxm",
+		"build": "rbxtsc --type model && rojo build default.project.json -o static/mollermethod.rbxm",
 		"deploy": "bash deploy.sh",
 		"watch": "rojo build --watch default.project.json -o %~%/code/overlay/workspace/mollermethod.rbxm"
 	},

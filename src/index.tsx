@@ -2,7 +2,7 @@ import { Debris, TweenService } from '@rbxts/services'
 import { play } from 'util'
 import Roact from '@rbxts/roact'
 import Notification from 'components/Notification'
-import Trendsetter from 'components/Trendsetter'
+import Trendsetter from 'components'
 
 const quotes = [
 	'"RETIRER VOTRE ANTIVIRUS" - 404coddy404, 2022, trying to cookie grab me',
@@ -55,5 +55,9 @@ export = function (options: { Debug?: true; GUI: ScreenGui }) {
 		GUI,
 		'Notification'
 	)
-	Roact.mount(<Trendsetter />, GUI, 'Menu')
+
+	const tree = Roact.mount(<Trendsetter Kill={() => {
+		Roact.unmount(tree)
+	}}/>, GUI, 'Menu')
+	
 }

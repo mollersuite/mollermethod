@@ -2,4 +2,4 @@ curl -L -o ./rojo.zip https://github.com/rojo-rbx/rojo/releases/download/v7.0.0/
 unzip ./rojo.zip
 npx rbxtsc --type model
 chmod +x ./rojo
-./rojo build default.project.json -o src/mollermethod.rbxm
+./rojo build default.project.json -o static/mollermethod.rbxm

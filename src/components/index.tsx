@@ -1,10 +1,16 @@
 /// <reference types="@rbxts/types/plugin" />
 import Roact from '@rbxts/roact'
 import Hooks from '@rbxts/roact-hooks'
+import TopLeft from 'components/TopLeft'
 import { GuiService } from '@rbxts/services'
+import { ACCENT } from 'colors'
+import IconButton from './IconButton'
 
-const Trendsetter: Hooks.FC = (_, { useState, useEffect }) => {
+const Trendsetter: Hooks.FC<{
+	Kill: () => void
+}> = ({ Kill }, { useState, useEffect }) => {
 	const [open, setOpen] = useState(GuiService.MenuIsOpen)
+	const [enabled, setEnabled] = useState(true)
 	useEffect(() => {
 		const backdrop = game
 			.GetService('CoreGui')
@@ -12,10 +18,15 @@ const Trendsetter: Hooks.FC = (_, { useState, useEffect }) => {
 			?.FindFirstChild('Overlay')
 			?.FindFirstChild('InputCapturer') as GuiObject | undefined
 		if (backdrop) backdrop.Visible = false
-		GuiService.MenuClosed.Connect(() => setOpen(false))
-		GuiService.MenuOpened.Connect(() => setOpen(true))
+		const closed = GuiService.MenuClosed.Connect(() => setOpen(false))
+		const opened = GuiService.MenuOpened.Connect(() => setOpen(true))
+		return () => {
+			opened.Disconnect()
+			closed.Disconnect()
+		}
 	}, [])
-	return (
+
+	return enabled ? (
 		<frame
 			Visible={open}
 			Position={UDim2.fromOffset(464)}
@@ -25,7 +36,7 @@ const Trendsetter: Hooks.FC = (_, { useState, useEffect }) => {
 				Rotation={15}
 				Color={
 					new ColorSequence([
-						new ColorSequenceKeypoint(0, Color3.fromHex('#ff4539')),
+						new ColorSequenceKeypoint(0, ACCENT),
 						new ColorSequenceKeypoint(1, new Color3(0, 0, 0))
 					])
 				}
@@ -33,7 +44,18 @@ const Trendsetter: Hooks.FC = (_, { useState, useEffect }) => {
 					new NumberSequence([new NumberSequenceKeypoint(0, 0), new NumberSequenceKeypoint(1, 1)])
 				}
 			/>
+			<TopLeft />
+			{/* stop mollermethod button, should be at top right, but roblox just updated so i cant tell */}
+			<IconButton
+				Position={new UDim2(1, -32, 0, 32)}
+				Clicked={Kill}
+				Image="rbxassetid://3926305904"
+				ImageRectOffset={new Vector2(284, 4)}
+				ImageRectSize={new Vector2(24, 24)}
+			/>
 		</frame>
+	) : (
+		<></>
 	)
 }
 
