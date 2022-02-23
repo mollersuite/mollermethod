@@ -1,43 +1,49 @@
 :root {
-	background: #111;
 	color: white;
-	max-width: 1200px;
-	margin: 0 auto;
-	background-image: url(mollermethod.png);
-	background-position: bottom right;
+	background: linear-gradient(69deg, #ff4539, transparent);
 	color-scheme: dark;
-	background-repeat: no-repeat;
-}
-small {
-	text-align: center;
-	width: 100%;
-	display: block;
+	display: grid;
+	place-content: center;
 }
 h1 {
 	font-family: 'Segoe UI Variable Display', 'Segoe UI Variable', 'Segoe UI', sans-serif;
 }
 body {
+	border-radius: 1rem;
+	background: rgba(0, 0, 0, 0.5);
+	height: max-content;
 	font-size: 0;
 	font-family: sans-serif;
 }
 main {
+	text-align: center;
 	font-size: initial;
+	padding: 1em;
 }
 pre {
+	text-align: left;
 	color: lightblue;
-	max-width: max-content;
 	padding: 0.5em;
 	border-radius: 0.5em;
 	margin: 0;
 	border: solid 1px darkslategray;
 	background: linear-gradient(to bottom, darkslategray, black);
 }
-.done {
-	color: greenyellow;
-}
-.fail {
-	color: #ff4539;
-}
-details {
-	display: inline;
+
+@media (max-width: 340px) {
+	:root {
+		display: block;
+	}
+	body {
+		padding: 0;
+		margin: 0;
+		border-radius: 0;
+		background: none;
+	}
+	pre {
+		padding: 0;
+	}
+	main {
+		padding: 0;
+	}
 }
