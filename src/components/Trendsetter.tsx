@@ -3,7 +3,7 @@ import Roact from '@rbxts/roact'
 import Hooks from '@rbxts/roact-hooks'
 import { GuiService } from '@rbxts/services'
 
-const Menu: Hooks.FC = (_, { useState, useEffect }) => {
+const Trendsetter: Hooks.FC = (_, { useState, useEffect }) => {
 	const [open, setOpen] = useState(GuiService.MenuIsOpen)
 	useEffect(() => {
 		const backdrop = game
@@ -33,9 +33,23 @@ const Menu: Hooks.FC = (_, { useState, useEffect }) => {
 					new NumberSequence([new NumberSequenceKeypoint(0, 0), new NumberSequenceKeypoint(1, 1)])
 				}
 			/>
-			
 		</frame>
 	)
 }
 
-export = new Hooks(Roact)(Menu)
+/**
+ * # trendsetter
+ *
+ * mollermethod's UI.
+ *
+ * named trendsetter because it will suffer from shlex syndrome upon release
+ *
+ * it has notable ui elements:
+ * - it appears on the pause menu
+ * - a gradient bg
+ * - top left corner has wigdets like localplayer buttons, playerlist, changelog
+ * - middle has a grid of scripts 2 items wide, that loads from Luau.ml & ScriptBlox, with infinite scroll
+ * - or a masonry grid if possible
+ * - right has settings and shit idk
+ **/
+export = new Hooks(Roact)(Trendsetter)

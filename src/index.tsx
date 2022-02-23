@@ -1,8 +1,8 @@
 import { Debris, TweenService } from '@rbxts/services'
-import { asset, play } from 'util'
+import { play } from 'util'
 import Roact from '@rbxts/roact'
 import Notification from 'components/Notification'
-import Menu from 'components/Menu'
+import Trendsetter from 'components/Trendsetter'
 
 const quotes = [
 	'"RETIRER VOTRE ANTIVIRUS" - 404coddy404, 2022, trying to cookie grab me',
@@ -55,5 +55,5 @@ export = function (options: { Debug?: true; GUI: ScreenGui }) {
 		GUI,
 		'Notification'
 	)
-	Roact.mount(<Menu />, GUI, 'Menu')
+	Roact.mount(<Trendsetter />, GUI, 'Menu')
 }
