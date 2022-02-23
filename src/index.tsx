@@ -30,7 +30,7 @@ const startups = {
 	x10: 'rbxassetid://8192419115'
 }
 const random = (arr: string[]): string => arr[math.random(arr.size()) - 1]
-export = function (options: { Debug?: true; GUI: ScreenGui }) {
+export = function (options: { Debug?: true; GUI: ScreenGui, Sound?: string }) {
 	const GUI = options.GUI
 	$print((() => {
 		const git = $git()
@@ -52,7 +52,7 @@ export = function (options: { Debug?: true; GUI: ScreenGui }) {
 			Size: new UDim2(1, -10, 1, -10)
 		}
 	).Play()
-	play(startups.x10)
+	play(options.Sound || startups.x10)
 	Roact.mount(
 		<Notification Text={`<b>Pause</b> to open mollermethod.\n<i>${random(quotes)}</i>`} />,
 		GUI,
