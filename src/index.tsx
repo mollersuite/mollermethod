@@ -1,6 +1,8 @@
 import { Debris, TweenService } from '@rbxts/services'
-import { play } from 'util'
-
+import { asset, play } from 'util'
+import Roact from '@rbxts/roact'
+import Notification from 'components/Notification'
+import Menu from 'components/Menu'
 
 const quotes = [
 	'"RETIRER VOTRE ANTIVIRUS" - 404coddy404, 2022, trying to cookie grab me',
@@ -27,7 +29,7 @@ const startups = {
 	speaker: 'rbxassetid://8370988437',
 	x10: 'rbxassetid://8192419115'
 }
-
+const random = (arr: string[]): string => arr[math.random(arr.size()) - 1]
 export = function (options: { Debug?: true; GUI: ScreenGui }) {
 	const GUI = options.GUI
 
@@ -48,4 +50,10 @@ export = function (options: { Debug?: true; GUI: ScreenGui }) {
 		}
 	).Play()
 	play(startups.x10)
+	Roact.mount(
+		<Notification Text={`<b>Pause</b> to open mollermethod.\n<i>${random(quotes)}</i>`} />,
+		GUI,
+		'Notification'
+	)
+	Roact.mount(<Menu />, GUI, 'Menu')
 }

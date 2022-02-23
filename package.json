@@ -12,7 +12,8 @@
 	},
 	"scripts": {
 		"build": "rbxtsc --type model && rojo build default.project.json -o src/mollermethod.rbxmx",
-		"deploy": "bash deploy.sh"
+		"deploy": "bash deploy.sh",
+		"watch": "rojo build --watch default.project.json -o %~%/code/overlay/workspace/mollermethod.rbxmx"
 	},
 	"prettier": {
 		"arrowParens": "always",
@@ -44,6 +45,7 @@
 	},
 	"dependencies": {
 		"@rbxts/roact": "^1.4.0-ts.2",
+		"@rbxts/roact-hooks": "^0.3.0-ts.2",
 		"@rbxts/services": "^1.2.0"
 	}
 }
