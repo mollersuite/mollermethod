@@ -2,7 +2,8 @@
 
 ## trendsetter
 
-trendsetter is mollermethod's ui, to be exact what you see when you pause. See src/components/trendsetter.tsx
+trendsetter is mollermethod's ui, to be exact what you see when you pause. It's what we've been hiding from Shlex for 7 months.
+It is a Roact component.
 
 ## Bracket
 
@@ -13,6 +14,8 @@ May or may not have a standalone version.
 ## Mollybdos
 
 mollermethod's player list. It lets you do actions on players and see info about them. Works well with [mollerpotence.](#mollerpotence)
+
+It'll probably be a Roact component.
 
 ## mollerpotence
 

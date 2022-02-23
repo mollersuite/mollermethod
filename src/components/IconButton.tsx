@@ -8,7 +8,9 @@ import { BLACK } from 'colors'
 export = ({
 	Clicked = () => {},
 	Position,
-	...rest
+	ImageRectOffset,
+	ImageRectSize,
+	Image,
 }: Partial<InstanceProperties<ImageLabel>> & {
 	Clicked?: () => void
 	Position?: UDim2
@@ -24,7 +26,9 @@ export = ({
 			}}>
 			<uilistlayout HorizontalAlignment="Center" VerticalAlignment="Center" />
 			<imagelabel
-				{...rest}
+				ImageRectOffset={ImageRectOffset}
+				ImageRectSize={ImageRectSize}
+				Image={Image}
 				Size={UDim2.fromOffset(16, 16)}
 				BackgroundTransparency={1}
 				BorderSizePixel={0}
