@@ -1,0 +1,49 @@
+:root {
+	color: white;
+	background: linear-gradient(69deg, #ff4539, transparent);
+	color-scheme: dark;
+	display: grid;
+	place-content: center;
+}
+h1 {
+	font-family: 'Segoe UI Variable Display', 'Segoe UI Variable', 'Segoe UI', sans-serif;
+}
+body {
+	border-radius: 1rem;
+	background: rgba(0, 0, 0, 0.5);
+	height: max-content;
+	font-size: 0;
+	font-family: sans-serif;
+}
+main {
+	text-align: center;
+	font-size: initial;
+	padding: 1em;
+}
+pre {
+	text-align: left;
+	color: lightblue;
+	padding: 0.5em;
+	border-radius: 0.5em;
+	margin: 0;
+	border: solid 1px darkslategray;
+	background: linear-gradient(to bottom, darkslategray, black);
+}
+
+@media (max-width: 340px) {
+	:root {
+		display: block;
+	}
+	body {
+		padding: 0;
+		margin: 0;
+		border-radius: 0;
+		background: none;
+	}
+	pre {
+		padding: 0;
+	}
+	main {
+		padding: 0;
+	}
+}

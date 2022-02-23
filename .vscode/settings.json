@@ -1,7 +1,6 @@
 {
 	"robloxLsp.misc.serviceAutoImport": true,
 	"robloxLsp.diagnostics.disable": ["undefined-global"],
-	"rpc.buttonEnabled": false,
 	"editor.insertSpaces": false,
 	"editor.tabSize": 4,
 	"editor.detectIndentation": false,
@@ -9,34 +8,5 @@
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"files.associations": {
 		"*.html": "lua"
-	},
-	"better-comments.tags": [
-		{
-			"tag": "hack",
-			"color": "#FF2D00",
-			"strikethrough": false,
-			"underline": false,
-			"backgroundColor": "transparent",
-			"bold": false,
-			"italic": false
-		},
-		{
-			"tag": "?",
-			"color": "#3498DB",
-			"strikethrough": false,
-			"underline": false,
-			"backgroundColor": "transparent",
-			"bold": false,
-			"italic": false
-		},
-		{
-			"tag": "todo",
-			"color": "#FF8C00",
-			"strikethrough": false,
-			"underline": false,
-			"backgroundColor": "transparent",
-			"bold": false,
-			"italic": false
-		}
-	]
+	}
 }
