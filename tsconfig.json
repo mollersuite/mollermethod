@@ -20,6 +20,12 @@
 			{
 				"transform": "tsc-progress",
 				"title": "roblox-ts"
+			},
+			{
+				"transform": "rbxts-transform-debug",
+				"environmentRequires": {
+					"CF_PAGES": null
+				}
 			}
 		],
 		// configurable

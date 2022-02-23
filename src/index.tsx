@@ -3,7 +3,7 @@ import { play } from 'util'
 import Roact from '@rbxts/roact'
 import Notification from 'components/Notification'
 import Trendsetter from 'components'
-
+import {  $git, $print } from 'rbxts-transform-debug'
 const quotes = [
 	'"RETIRER VOTRE ANTIVIRUS" - 404coddy404, 2022, trying to cookie grab me',
 	'"https://tenor.com/view/همم-gif-21570043" - Bongo, 2022, after I told him Molly was put down', // the most fucked up quote of them all
@@ -32,7 +32,10 @@ const startups = {
 const random = (arr: string[]): string => arr[math.random(arr.size()) - 1]
 export = function (options: { Debug?: true; GUI: ScreenGui }) {
 	const GUI = options.GUI
-
+	$print((() => {
+		const git = $git()
+		return `mollermethod (${git.Branch}) commit ${git.Commit}`
+	})())
 	const border = new Instance('Frame', GUI)
 	Debris.AddItem(border, 1)
 	border.Size = UDim2.fromScale(1, 1)
@@ -56,8 +59,13 @@ export = function (options: { Debug?: true; GUI: ScreenGui }) {
 		'Notification'
 	)
 
-	const tree = Roact.mount(<Trendsetter Kill={() => {
-		Roact.unmount(tree)
-	}}/>, GUI, 'Menu')
-	
+	const tree = Roact.mount(
+		<Trendsetter
+			Kill={() => {
+				Roact.unmount(tree)
+			}}
+		/>,
+		GUI,
+		'Menu'
+	)
 }
