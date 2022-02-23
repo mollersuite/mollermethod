@@ -45,9 +45,9 @@ const Trendsetter: Hooks.FC<{
 				}
 			/>
 			<TopLeft />
-			{/* stop mollermethod button, should be at top right, but roblox just updated so i cant tell */}
+			{/* close */}
 			<IconButton
-				Position={new UDim2(1, -32, 0, 32)}
+				Position={new UDim2(1, -32, 0, 0)}
 				Clicked={Kill}
 				Image="rbxassetid://3926305904"
 				ImageRectOffset={new Vector2(284, 4)}

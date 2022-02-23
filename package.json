@@ -8,7 +8,8 @@
 		"@rbxts/exploit-types": "github:richie0866/exploit-types",
 		"@rbxts/types": "^1.0.571",
 		"prettier": "^2.4.1",
-		"roblox-ts": "^1.3.1"
+		"roblox-ts": "^1.3.1",
+		"tsc-progress": "^1.0.4"
 	},
 	"scripts": {
 		"build": "rbxtsc --type model && rojo build default.project.json -o static/mollermethod.rbxm",

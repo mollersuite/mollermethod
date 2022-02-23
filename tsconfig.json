@@ -16,6 +16,12 @@
 		"target": "ESNext",
 		"typeRoots": ["node_modules/@rbxts"],
 
+		"plugins": [
+			{
+				"transform": "tsc-progress",
+				"title": "roblox-ts"
+			}
+		],
 		// configurable
 		"rootDir": "src",
 		"outDir": "out",
