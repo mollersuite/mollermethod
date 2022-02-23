@@ -40,6 +40,21 @@
 </main><template hidden id=source>--]]
 
 local CONFIG = ... or { Debug = true }
+local Tween = game:GetService('TweenService')
+local Debris = game:GetService('Debris')
+
+local ids = {
+	'rbxassetid://7037264869', -- the infamous images/zzz
+	'rbxassetid://7037156897', -- moller circular
+	'rbxassetid://7043731194', -- molly mug
+	'rbxassetid://7037269561', -- devil dog (will kill you if you do not repost)
+	'rbxassetid://7037272153', -- mollerOS logo
+	'rbxassetid://7037339934', -- molge
+	'rbxassetid://7037356929', -- idk what this is but its funny
+	'rbxassetid://7044042331', -- mollersuite/moller hub logo before it got turned monocolor
+	'rbxassetid://7044088926', -- seconds before "bragle" was taken
+	'rbxassetid://7046289590' -- she wants your food
+}
 
 local GUI = Instance.new('ScreenGui')
 CONFIG.GUI = GUI
@@ -114,7 +129,7 @@ task.spawn(function()
 end)
 
 if not CONFIG.Debug then
-	writefile('mthd.rbxmx', game:HttpGetAsync('https://mthd.ml/mollermethod.rbxmx'))
+	writefile('mollermethod.rbxmx', game:HttpGetAsync('https://mthd.ml/mollermethod.rbxmx'))
 end
 
 local rbxmSuite =
@@ -123,7 +138,7 @@ local rbxmSuite =
 			'https://github.com/richie0866/rbxm-suite/releases/download/v2.0.2/rbxm-suite.lua'
 		)
 	)()
-local project = rbxmSuite.launch('mthd.rbxmx', {
+local project = rbxmSuite.launch('mollermethod.rbxmx', {
 	debug = CONFIG.Debug,
 	verbose = CONFIG.Debug
 })

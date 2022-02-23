@@ -1,18 +1,6 @@
 import { Debris, TweenService } from '@rbxts/services'
 import { play } from 'util'
 
-const photos = [
-	'rbxassetid://7037264869', // the infamous images/zzz
-	'rbxassetid://7037156897', // moller circular
-	'rbxassetid://7043731194', // molly mug
-	'rbxassetid://7037269561', // devil dog (will kill you if you do not repost)
-	'rbxassetid://7037272153', // mollerOS logo
-	'rbxassetid://7037339934', // molge
-	'rbxassetid://7037356929', // idk what this is but its funny
-	'rbxassetid://7044042331', // mollersuite/moller hub logo before it got turned monocolor
-	'rbxassetid://7044088926', // seconds before "bragle" was taken
-	'rbxassetid://7046289590' // she wants your food
-]
 
 const quotes = [
 	'"RETIRER VOTRE ANTIVIRUS" - 404coddy404, 2022, trying to cookie grab me',
