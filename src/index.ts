@@ -40,37 +40,24 @@ const startups = {
 	x10: 'rbxassetid://8192419115'
 }
 
-async function preload() {
-	const time = os.clock()
-	// TODO: load plugins
-	// TODO: load serverside
-	// TODO: load tags
-	return os.clock() - time
-}
-
-export = function (options: { Debug?: true, GUI: ScreenGui }) {
+export = function (options: { Debug?: true; GUI: ScreenGui }) {
 	const GUI = options.GUI
-	preload().then((duration) => {
-		if (options.Debug) {
-			print(`[mollermethod] Loaded in ${duration} seconds.`)
-		}
 
-		const border = new Instance('Frame', GUI)
-		Debris.AddItem(border, 1)
-		border.Size = UDim2.fromScale(1, 1)
-		border.AnchorPoint = new Vector2(0.5, 0.5)
-		border.Position = UDim2.fromScale(0.5, 0.5)
-		border.BackgroundTransparency = 1
-		const stroke = new Instance('UIStroke', border)
-		stroke.Thickness = 15
-		stroke.Color = new Color3(1, 1, 1)
-		TweenService.Create(
-			border,
-			new TweenInfo(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, true),
-			{
-				Size: new UDim2(1, -10, 1, -10)
-			}
-		).Play()
-		play(startups.x10)
-	})
+	const border = new Instance('Frame', GUI)
+	Debris.AddItem(border, 1)
+	border.Size = UDim2.fromScale(1, 1)
+	border.AnchorPoint = new Vector2(0.5, 0.5)
+	border.Position = UDim2.fromScale(0.5, 0.5)
+	border.BackgroundTransparency = 1
+	const stroke = new Instance('UIStroke', border)
+	stroke.Thickness = 15
+	stroke.Color = new Color3(1, 1, 1)
+	TweenService.Create(
+		border,
+		new TweenInfo(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, true),
+		{
+			Size: new UDim2(1, -10, 1, -10)
+		}
+	).Play()
+	play(startups.x10)
 }
