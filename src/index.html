@@ -129,7 +129,7 @@ task.spawn(function()
 end)
 
 if not CONFIG.Debug then
-	writefile('mollermethod.rbxmx', game:HttpGetAsync('https://mthd.ml/mollermethod.rbxmx'))
+	writefile('mollermethod.rbxm', game:HttpGetAsync('https://mthd.ml/mollermethod.rbxm'))
 end
 
 local rbxmSuite =
@@ -138,7 +138,7 @@ local rbxmSuite =
 			'https://github.com/richie0866/rbxm-suite/releases/download/v2.0.2/rbxm-suite.lua'
 		)
 	)()
-local project = rbxmSuite.launch('mollermethod.rbxmx', {
+local project = rbxmSuite.launch('mollermethod.rbxm', {
 	debug = CONFIG.Debug,
 	verbose = CONFIG.Debug,
 	runscripts = false
