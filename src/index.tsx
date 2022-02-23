@@ -34,7 +34,7 @@ export = function (options: { Debug?: true; GUI: ScreenGui }) {
 	const GUI = options.GUI
 	$print((() => {
 		const git = $git()
-		return `mollermethod (${git.Branch}) commit ${git.Commit}`
+		return `mollermethod v${PKG_VERSION} (${git.Branch}) commit ${git.Commit}`
 	})())
 	const border = new Instance('Frame', GUI)
 	Debris.AddItem(border, 1)
