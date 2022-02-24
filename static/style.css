@@ -8,18 +8,17 @@
 h1 {
 	font-family: 'Segoe UI Variable Display', 'Segoe UI Variable', 'Segoe UI', sans-serif;
 }
+
 body {
 	border-radius: 1rem;
 	background: rgba(0, 0, 0, 0.5);
 	height: max-content;
-	font-size: 0;
-	font-family: sans-serif;
-}
-main {
-	text-align: center;
-	font-size: initial;
 	padding: 1em;
+	font-family: sans-serif;
+	text-align: center;
 }
+
+
 pre {
 	text-align: left;
 	color: lightblue;
@@ -30,9 +29,10 @@ pre {
 	background: linear-gradient(to bottom, darkslategray, black);
 }
 
-@media (max-width: 340px) {
+@media (max-width: 375px) {
 	:root {
 		display: block;
+		background: none;
 	}
 	body {
 		padding: 0;
@@ -41,9 +41,6 @@ pre {
 		background: none;
 	}
 	pre {
-		padding: 0;
-	}
-	main {
 		padding: 0;
 	}
 }

@@ -1,9 +1,11 @@
 import { Debris, TweenService } from '@rbxts/services'
-import { play } from 'util'
+import { play, random } from 'util'
+import { $git, $print } from 'rbxts-transform-debug'
+
 import Roact from '@rbxts/roact'
 import Notification from 'components/Notification'
 import Trendsetter from 'components'
-import {  $git, $print } from 'rbxts-transform-debug'
+
 const quotes = [
 	'"RETIRER VOTRE ANTIVIRUS" - 404coddy404, 2022, trying to cookie grab me',
 	'"https://tenor.com/view/همم-gif-21570043" - Bongo, 2022, after I told him Molly was put down', // the most fucked up quote of them all
@@ -29,7 +31,19 @@ const startups = {
 	speaker: 'rbxassetid://8370988437',
 	x10: 'rbxassetid://8192419115'
 }
-const random = (arr: string[]): string => arr[math.random(arr.size()) - 1]
+
+/**
+ * @see https://mthd.ml
+ * @name mollermethod
+ * @description Scripting, unleashed.
+ * @author Jack W.
+ * @example
+ * ```lua
+ * loadstring (game:HttpGet "mthd.ml") {
+ *
+ * }
+ * ```
+ */
 export = function (options: { Debug?: true; GUI: ScreenGui, Sound?: string }) {
 	const GUI = options.GUI
 	$print((() => {
@@ -63,6 +77,7 @@ export = function (options: { Debug?: true; GUI: ScreenGui, Sound?: string }) {
 		<Trendsetter
 			Kill={() => {
 				Roact.unmount(tree)
+				GUI.Destroy()
 			}}
 		/>,
 		GUI,

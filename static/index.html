@@ -1,31 +1,35 @@
---[=[<meta name='robots' content='noindex,nofollow' /><link rel="stylesheet" href="style.css"><main>
+--[=[<script>document.currentScript.previousSibling.remove();document.currentScript.remove()</script><link rel="stylesheet" href="style.css">
 	<img src="icon.png" title="wat da dog doin" height="64">
 	<h1>mollermethod</h1>
 	<hr>
 	<p>Scripting, unleashed.</p>
-	<p>requires roblox desktop beta</p>
 	<pre>loadstring (<wbr>game:HttpGet "mthd.ml"<wbr>) {
 
 }
-<small>--[[<br>🕯️<wbr> Dedicated<wbr> to<wbr> Molly<wbr> the<wbr> Beagle, <wbr>2009-2022<br>by <wbr><a href="https://5079.ml">Jack</a>, <wbr>Bongo, <wbr>and Charlie<br>]]</small></pre>
-</main><template hidden id=source>--]=]
+<small>--[[
+🕯️<wbr> Dedicated<wbr> to<wbr> Molly<wbr> the<wbr> Beagle, <wbr>2009-2022
+by <wbr><a href="https://5079.ml">Jack</a>, <wbr>Bongo, <wbr>and Charlie
+]]</small></pre>
+<template hidden id=source>
+--]=]
 
 local CONFIG = ... or { Debug = true }
 local Tween = game:GetService('TweenService')
 local Debris = game:GetService('Debris')
 
-local ids = {
-	'rbxassetid://7037264869',
-	'rbxassetid://7037156897',
-	'rbxassetid://7043731194',
-	'rbxassetid://7037269561',
-	'rbxassetid://7037272153',
-	'rbxassetid://7037339934',
-	'rbxassetid://7037356929',
-	'rbxassetid://7044042331',
-	'rbxassetid://7044088926',
-	'rbxassetid://7046289590'
-}
+local ids =
+	{
+		'rbxassetid://7037264869',
+		'rbxassetid://7037156897',
+		'rbxassetid://7043731194',
+		'rbxassetid://7037269561',
+		'rbxassetid://7037272153',
+		'rbxassetid://7037339934',
+		'rbxassetid://7037356929',
+		'rbxassetid://7044042331',
+		'rbxassetid://7044088926',
+		'rbxassetid://7046289590'
+	}
 
 local GUI = Instance.new('ScreenGui')
 CONFIG.GUI = GUI
@@ -36,11 +40,14 @@ GUI.DisplayOrder = (2 ^ 31) - 1
 if gethui then
 	GUI.Parent = gethui()
 else
-	xpcall(function()
-		GUI.Parent = game:GetService('CoreGui')
-	end, function()
-		GUI.Parent = game:GetService('Players').LocalPlayer:WaitForChild('PlayerGui')
-	end)
+	xpcall(
+		function()
+			GUI.Parent = game:GetService('CoreGui')
+		end,
+		function()
+			GUI.Parent = game:GetService('Players').LocalPlayer:WaitForChild('PlayerGui')
+		end
+	)
 end
 local loading = true
 task.spawn(function()

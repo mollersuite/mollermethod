@@ -23,6 +23,7 @@ const Trendsetter: Hooks.FC<{
 		return () => {
 			opened.Disconnect()
 			closed.Disconnect()
+			if (backdrop) backdrop.Visible = true
 		}
 	}, [])
 
