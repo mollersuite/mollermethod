@@ -54,6 +54,8 @@ export = new Hooks(Roact)(({}, { useState, useEffect }) => {
 				{players.map((player) => (
 					<textbutton
 						Size={new UDim2(1, 0, 0, 25)}
+						TextWrapped
+						AutomaticSize="Y"
 						Text={player.Name}
 						BorderSizePixel={0}
 						Font="Gotham"
