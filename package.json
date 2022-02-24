@@ -48,7 +48,6 @@
 	"dependencies": {
 		"@rbxts/roact": "^1.4.0-ts.2",
 		"@rbxts/roact-hooked": "^1.2.3",
-		"@rbxts/roact-hooks": "^0.3.0-ts.2",
 		"@rbxts/services": "^1.2.0"
 	}
 }
