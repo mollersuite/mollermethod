@@ -1,4 +1,5 @@
 import type { Command } from "Bracket"
+import { play } from 'util'
 
 const commands: Record<string, Command> = {}
 
@@ -27,7 +28,7 @@ export = async (cmd: string) => {
 		if (name) {
 			commands[name].execute(args)
 		} else {
-			warn("Unknown command: " + command)
+			play("rbxassetid://8458408918") // hardware fail sound
 		}
 	}
 }

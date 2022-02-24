@@ -2,6 +2,7 @@ import Roact from "@rbxts/roact"
 import { pure, useEffect, useState } from "@rbxts/roact-hooked"
 import { UserInputService } from "@rbxts/services"
 import { ACCENT, BLACK, WHITE } from "colors"
+import { play } from "util"
 import execute from "./run"
 
 /**
@@ -29,6 +30,8 @@ export interface Command {
 export default pure(() => {
 	const [shown, setShown] = useState(false)
 	const box = Roact.createRef<TextBox>()
+
+	// handles toggle key
 	useEffect(() => {
 		const input_began = UserInputService.InputBegan.Connect((input, text) => {
 			if (text) return
@@ -42,6 +45,7 @@ export default pure(() => {
 
 	// autofocus
 	useEffect(() => {
+		play(shown ? "rbxassetid://8458409341" : "rbxassetid://8926096648") // windows 11 hardware connect and disconnect
 		box.getValue()?.CaptureFocus()
 	}, [shown])
 
