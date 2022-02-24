@@ -11,6 +11,7 @@ export = pure(
 		Props: Partial<InstanceProperties<ImageLabel>> & {
 			Clicked?: () => void
 			Position?: UDim2
+			CornerRadius?: UDim
 		}
 	) => (
 		<textbutton
@@ -31,7 +32,7 @@ export = pure(
 				BorderSizePixel={0}
 				ScaleType="Fit"
 			/>
-			<uicorner CornerRadius={new UDim(0, 4)} />
+			<uicorner CornerRadius={Props.CornerRadius ?? new UDim(0, 4)} />
 		</textbutton>
 	)
 )

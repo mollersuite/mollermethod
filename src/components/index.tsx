@@ -49,7 +49,8 @@ const Trendsetter = ({ Kill }: { Kill: () => void }) => {
 			{/* <Center /> */}
 			{/* close */}
 			<IconButton
-				Position={new UDim2(1, -32, 0, 0)}
+				CornerRadius={new UDim(1)}
+				Position={UDim2.fromOffset(320, 42)}
 				Clicked={Kill}
 				Image="rbxassetid://3926305904"
 				ImageRectOffset={new Vector2(284, 4)}

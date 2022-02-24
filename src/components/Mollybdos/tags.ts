@@ -55,7 +55,7 @@ export type Tags = {
 	score: number
 }[]
 
-export default async function tags_from(Player: Player): Promise<Tags> {
+export default async function tags_of(Player: Player): Promise<Tags> {
 	const Tags: Record<string, number> = {}
 
 	await Promise.all([
@@ -82,7 +82,6 @@ export default async function tags_from(Player: Player): Promise<Tags> {
 					6069109016, // MKII Hashtags
 					6069116135, // MKII Spade
 					6069121093 // MKII Paws
-					// do i include shattered dragon? (that would make me a furry)
 				]
 			}
 		}),
