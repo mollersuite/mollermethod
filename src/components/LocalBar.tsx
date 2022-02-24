@@ -6,9 +6,24 @@ import { BLACK } from "colors"
 import IconButton from "./IconButton"
 const Player = Players.LocalPlayer
 
-/**
- * localplayer buttons
- **/
+/*
+/------------------\  |version|
+|██████████████████|
+\------------------/  ❎
+/------------------------------\
+|         |                    |
+|         |--------------------|
+|         |                    |
+|         |                    |
+|         |                    |
+|         |                    |
+|         |                    |
+|         |                    |
+|         |                    |
+\------------------------------/
+that part of trendsetter
+*/
+
 export = pure(() => (
 	<frame
 		Position={UDim2.fromOffset(10, 10)}

@@ -1,8 +1,22 @@
-// the list of players
 import Roact from "@rbxts/roact"
 import { Dispatch, pure, useEffect, useState } from "@rbxts/roact-hooked"
-import { Players } from '@rbxts/services'
-import { ACCENT, GRAY, WHITE } from 'colors'
+import { Players } from "@rbxts/services"
+import { ACCENT, GRAY, WHITE } from "colors"
+
+/*
+/------------------------------\
+|█████████|					   |
+|█████████|--------------------|
+|█████████|					   |
+|█████████|					   |
+|█████████|					   |
+|█████████|					   |
+|█████████|					   |
+|█████████|					   |
+|█████████|					   |
+\------------------------------/
+that part of mollybdos
+*/
 
 export = pure(
 	({
@@ -35,7 +49,7 @@ export = pure(
 				AutomaticCanvasSize="Y"
 				ScrollBarThickness={5}
 				CanvasSize={UDim2.fromScale(0, 1)}>
-				<uilistlayout />
+				<uilistlayout SortOrder="Name" />
 				{players.map((player) => (
 					<textbutton
 						Size={new UDim2(1, 0, 0, 25)}

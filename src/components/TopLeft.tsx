@@ -3,7 +3,7 @@ import Roact from "@rbxts/roact"
 import { pure } from "@rbxts/roact-hooked"
 import { ACCENT, WHITE } from "colors"
 import LocalBar from "./LocalBar"
-import Mollybdos from "./Mollybdos"
+import Mollybdos from "Mollybdos"
 /**
  * the top left corner has a couple widgets, like the playerlist, changelog, and localplayer buttons
  **/

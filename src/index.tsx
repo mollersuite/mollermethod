@@ -5,6 +5,7 @@ import { $git, $print } from "rbxts-transform-debug"
 import Roact from "@rbxts/roact"
 import Notification from "components/Notification"
 import Trendsetter from "components"
+import Bracket from "Bracket"
 
 const quotes = [
 	'"RETIRER VOTRE ANTIVIRUS" - 404coddy404, 2022, trying to cookie grab me',
@@ -53,10 +54,12 @@ export = function (options: { Debug?: true; GUI: ScreenGui; Sound?: string }) {
 		"Notification"
 	)
 
+	const bracket_tree = Roact.mount(<Bracket />, GUI, "Bracket")
 	const tree = Roact.mount(
 		<Trendsetter
 			Kill={() => {
 				Roact.unmount(tree)
+				Roact.unmount(bracket_tree)
 				GUI.Destroy()
 			}}
 		/>,

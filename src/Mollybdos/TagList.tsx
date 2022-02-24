@@ -3,6 +3,20 @@ import { pure } from "@rbxts/roact-hooked"
 import { ACCENT, WHITE } from "colors"
 import { Tags as TagType } from "./tags"
 
+/*
+/------------------------------\
+|         |					   |
+|         |████████████████████|
+|         |					   |
+|         |					   |
+|         |					   |
+|         |					   |
+|         |					   |
+|         |					   |
+|         |					   |
+\------------------------------/
+that part of mollybdos
+*/
 export = pure(({ tags }: { tags: TagType }) => {
 	if (tags.size() === 0) return <></>
 	return (

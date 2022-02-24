@@ -1,0 +1,3 @@
+interface DataModel {
+	Shutdown(): void
+}
