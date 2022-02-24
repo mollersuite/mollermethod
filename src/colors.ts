@@ -1,5 +1,5 @@
-export const ACCENT = Color3.fromHex('#ff4539')
-export const BLACK = Color3.fromHex('#1c1c1c')
+export const ACCENT = Color3.fromHex("#ff4539")
+export const BLACK = Color3.fromHex("#1c1c1c")
 export const WHITE = Color3.fromRGB(240, 246, 252)
 
 export const GRAY = [

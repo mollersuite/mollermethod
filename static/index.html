@@ -15,26 +15,26 @@ by <wbr><a href="https://5079.ml">Jack</a>, <wbr>Bongo, <wbr>and Charlie
 --]=]
 
 local CONFIG = ... or { Debug = true }
-local Tween = game:GetService('TweenService')
-local Debris = game:GetService('Debris')
+local Tween = game:GetService("TweenService")
+local Debris = game:GetService("Debris")
 
 local ids =
 	{
-		'rbxassetid://7037264869',
-		'rbxassetid://7037156897',
-		'rbxassetid://7043731194',
-		'rbxassetid://7037269561',
-		'rbxassetid://7037272153',
-		'rbxassetid://7037339934',
-		'rbxassetid://7037356929',
-		'rbxassetid://7044042331',
-		'rbxassetid://7044088926',
-		'rbxassetid://7046289590'
+		"rbxassetid://7037264869",
+		"rbxassetid://7037156897",
+		"rbxassetid://7043731194",
+		"rbxassetid://7037269561",
+		"rbxassetid://7037272153",
+		"rbxassetid://7037339934",
+		"rbxassetid://7037356929",
+		"rbxassetid://7044042331",
+		"rbxassetid://7044088926",
+		"rbxassetid://7046289590"
 	}
 
-local GUI = Instance.new('ScreenGui')
+local GUI = Instance.new("ScreenGui")
 CONFIG.GUI = GUI
-GUI.Name = game:GetService('HttpService'):GenerateGUID()
+GUI.Name = game:GetService("HttpService"):GenerateGUID()
 GUI.IgnoreGuiInset = true
 GUI.ResetOnSpawn = false
 GUI.DisplayOrder = (2 ^ 31) - 1
@@ -43,19 +43,19 @@ if gethui then
 else
 	xpcall(
 		function()
-			GUI.Parent = game:GetService('CoreGui')
+			GUI.Parent = game:GetService("CoreGui")
 		end,
 		function()
-			GUI.Parent = game:GetService('Players').LocalPlayer:WaitForChild('PlayerGui')
+			GUI.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
 		end
 	)
 end
 local loading = true
 task.spawn(function()
-	local text = Instance.new('TextLabel', GUI)
+	local text = Instance.new("TextLabel", GUI)
 	text.TextTransparency = 1
 	text.BackgroundTransparency = 1
-	Instance.new('UICorner', text).CornerRadius = UDim.new(0, 10)
+	Instance.new("UICorner", text).CornerRadius = UDim.new(0, 10)
 	text.BackgroundColor3 = Color3.new(1, 1, 1)
 	text.TextColor3 = Color3.new(0, 0, 0)
 	text.Size = UDim2.new(0, 200, 0, 20)
@@ -63,10 +63,10 @@ task.spawn(function()
 	text.Font = Enum.Font.Gotham
 	text.ZIndex = 120
 	text.AnchorPoint = Vector2.new(0.5, 0.5)
-	text.Text = 'mollermethod is loading...'
+	text.Text = "mollermethod is loading..."
 	text.TextSize = 14
 	text.TextWrapped = true
-	game:GetService('TweenService'):Create(
+	game:GetService("TweenService"):Create(
 		text,
 		TweenInfo.new(.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, true),
 		{
@@ -76,7 +76,7 @@ task.spawn(function()
 	):Play()
 
 	while loading do
-		local particle = Instance.new('ImageLabel', GUI)
+		local particle = Instance.new("ImageLabel", GUI)
 		particle.ImageTransparency = 1
 		particle.Size = UDim2.new(0, 150, 0, 150)
 		particle.Image = ids[math.random(#ids)]
@@ -96,8 +96,8 @@ task.spawn(function()
 		Debris:AddItem(particle, 1.5)
 		task.wait(1 / 60)
 	end
-	game:GetService('Debris'):AddItem(text, .5)
-	game:GetService('TweenService'):Create(
+	game:GetService("Debris"):AddItem(text, .5)
+	game:GetService("TweenService"):Create(
 		text,
 		TweenInfo.new(.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, true),
 		{
@@ -109,16 +109,16 @@ end)
 xpcall(
 	function()
 		if not CONFIG.Debug then
-			writefile('mollermethod.rbxm', game:HttpGetAsync('https://mthd.ml/mollermethod.rbxm'))
+			writefile("mollermethod.rbxm", game:HttpGetAsync("https://mthd.ml/mollermethod.rbxm"))
 		end
 
 		local rbxmSuite =
 			loadstring(
 				game:HttpGetAsync(
-					'https://github.com/richie0866/rbxm-suite/releases/download/v2.0.2/rbxm-suite.lua'
+					"https://github.com/richie0866/rbxm-suite/releases/download/v2.0.2/rbxm-suite.lua"
 				)
 			)()
-		local project = rbxmSuite.launch('mollermethod.rbxm', {
+		local project = rbxmSuite.launch("mollermethod.rbxm", {
 			debug = CONFIG.Debug,
 			verbose = CONFIG.Debug,
 			runscripts = false
@@ -127,17 +127,16 @@ xpcall(
 		loading = false
 	end,
 	function()
-		local text = Instance.new('TextButton', GUI)
-		Instance.new('UICorner', text).CornerRadius = UDim.new(0, 10)
+		local text = Instance.new("TextButton", GUI)
+		Instance.new("UICorner", text).CornerRadius = UDim.new(0, 10)
 		text.BackgroundColor3 = Color3.new(1, 0, 0)
 		text.TextColor3 = Color3.new(1, 1, 1)
-		text.Size = UDim2.new(0, 200, 0, 20)
-		text.AutomaticSize = Enum.AutomaticSize.X
+		text.Size = UDim2.new(0, 250, 0, 20)
 		text.Position = UDim2.new(0.5, 0, 0.5, 0)
-		text.Font = Enum.Font.Gotham
+		text.Font = Enum.Font.GothamBlack
 		text.ZIndex = 120
 		text.AnchorPoint = Vector2.new(0.5, 0.5)
-		text.Text = 'mollermethod was unable to load'
+		text.Text = "mollermethod was unable to load"
 		text.TextSize = 14
 		text.TextWrapped = true
 		text.Activated:Connect(function()

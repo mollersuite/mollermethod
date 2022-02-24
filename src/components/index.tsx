@@ -1,10 +1,10 @@
 /// <reference types="@rbxts/types/plugin" />
-import Roact from '@rbxts/roact'
-import Hooks from '@rbxts/roact-hooks'
-import TopLeft from 'components/TopLeft'
-import { GuiService } from '@rbxts/services'
-import { ACCENT } from 'colors'
-import IconButton from './IconButton'
+import Roact from "@rbxts/roact"
+import Hooks from "@rbxts/roact-hooks"
+import TopLeft from "components/TopLeft"
+import { GuiService } from "@rbxts/services"
+import { ACCENT } from "colors"
+import IconButton from "./IconButton"
 
 const Trendsetter: Hooks.FC<{
 	Kill: () => void
@@ -12,10 +12,10 @@ const Trendsetter: Hooks.FC<{
 	const [open, setOpen] = useState(GuiService.MenuIsOpen)
 	useEffect(() => {
 		const backdrop = game
-			.GetService('CoreGui')
-			?.FindFirstChild('InGameMenu')
-			?.FindFirstChild('Overlay')
-			?.FindFirstChild('InputCapturer') as GuiObject | undefined
+			.GetService("CoreGui")
+			?.FindFirstChild("InGameMenu")
+			?.FindFirstChild("Overlay")
+			?.FindFirstChild("InputCapturer") as GuiObject | undefined
 		if (backdrop) backdrop.Visible = false
 		const closed = GuiService.MenuClosed.Connect(() => setOpen(false))
 		const opened = GuiService.MenuOpened.Connect(() => setOpen(true))
@@ -31,7 +31,8 @@ const Trendsetter: Hooks.FC<{
 			Visible={open}
 			Position={UDim2.fromOffset(464)}
 			Size={new UDim2(1, -464, 1, 0)}
-			BorderSizePixel={0}>
+			BorderSizePixel={0}
+		>
 			<uigradient
 				Rotation={15}
 				Color={

@@ -6,7 +6,7 @@
 	place-content: center;
 }
 h1 {
-	font-family: 'Segoe UI Variable Display', 'Segoe UI Variable', 'Segoe UI', sans-serif;
+	font-family: "Segoe UI Variable Display", "Segoe UI Variable", "Segoe UI", sans-serif;
 }
 
 body {
@@ -17,7 +17,6 @@ body {
 	font-family: sans-serif;
 	text-align: center;
 }
-
 
 pre {
 	text-align: left;

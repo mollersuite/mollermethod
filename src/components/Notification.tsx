@@ -1,8 +1,8 @@
-import Roact from '@rbxts/roact'
-import Hooks from '@rbxts/roact-hooks'
-import { Debris, TweenService } from '@rbxts/services'
-import { BLACK, WHITE } from 'colors'
-import { play } from 'util'
+import Roact from "@rbxts/roact"
+import Hooks from "@rbxts/roact-hooks"
+import { Debris, TweenService } from "@rbxts/services"
+import { BLACK, WHITE } from "colors"
+import { play } from "util"
 
 const Notification: Hooks.FC<{
 	Text: string
@@ -10,13 +10,13 @@ const Notification: Hooks.FC<{
 	Duration?: number
 	App?: string
 }> = (
-	{ Duration = 5, Text, Icon = 'rbxassetid://7554747376', App = 'mollermethod' },
+	{ Duration = 5, Text, Icon = "rbxassetid://7554747376", App = "mollermethod" },
 	{ useEffect }
 ) => {
 	const ref = Roact.createRef<Frame>()
 
 	useEffect(() => {
-		play('rbxassetid://8183296024')
+		play("rbxassetid://8183296024")
 		Debris.AddItem(ref.getValue()!, Duration + 0.6)
 		const tween = TweenService.Create(
 			ref.getValue()!,
@@ -39,11 +39,12 @@ const Notification: Hooks.FC<{
 			AnchorPoint={new Vector2(1, 1)}
 			BackgroundColor3={BLACK}
 			Position={new UDim2(1, -15, 3, -15)}
-			Size={UDim2.fromOffset(362, 100)}>
+			Size={UDim2.fromOffset(362, 100)}
+		>
 			<uicorner CornerRadius={new UDim(0, 12)} />
 			<uistroke
 				ApplyStrokeMode="Contextual"
-				Color={Color3.fromHex('#2A2E2E')}
+				Color={Color3.fromHex("#2A2E2E")}
 				LineJoinMode="Round"
 				Thickness={5}
 				Transparency={0}

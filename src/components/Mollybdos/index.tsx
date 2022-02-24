@@ -1,8 +1,8 @@
 /// <reference types="@rbxts/types/plugin" />
-import Roact from '@rbxts/roact'
-import Hooks from '@rbxts/roact-hooks'
-import { Players } from '@rbxts/services'
-import { WHITE, BLACK, GRAY } from 'colors'
+import Roact from "@rbxts/roact"
+import Hooks from "@rbxts/roact-hooks"
+import { Players } from "@rbxts/services"
+import { WHITE, BLACK, GRAY } from "colors"
 
 /**
  * the playerlist
@@ -38,7 +38,8 @@ export = new Hooks(Roact)(({}, { useState, useEffect }) => {
 			Position={UDim2.fromOffset(10, 84)}
 			Size={UDim2.fromOffset(300, 300)}
 			BackgroundColor3={BLACK}
-			BorderSizePixel={0}>
+			BorderSizePixel={0}
+		>
 			<uicorner CornerRadius={new UDim(0, 16)} />
 			<uilistlayout FillDirection="Horizontal" />
 			{/* the list itself */}
@@ -49,7 +50,8 @@ export = new Hooks(Roact)(({}, { useState, useEffect }) => {
 				ClipsDescendants
 				AutomaticCanvasSize="Y"
 				ScrollBarThickness={5}
-				CanvasSize={UDim2.fromScale(0, 1)}>
+				CanvasSize={UDim2.fromScale(0, 1)}
+			>
 				<uilistlayout />
 				{players.map((player) => (
 					<textbutton
@@ -77,7 +79,8 @@ export = new Hooks(Roact)(({}, { useState, useEffect }) => {
 				ClipsDescendants
 				ScrollBarThickness={5}
 				AutomaticCanvasSize="Y"
-				CanvasSize={UDim2.fromScale(0, 1)}>
+				CanvasSize={UDim2.fromScale(0, 1)}
+			>
 				{selected ? (
 					<>
 						<uipadding PaddingTop={new UDim(0, 5)} />

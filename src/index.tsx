@@ -1,10 +1,10 @@
-import { Debris, TweenService } from '@rbxts/services'
-import { play, random } from 'util'
-import { $git, $print } from 'rbxts-transform-debug'
+import { Debris, TweenService } from "@rbxts/services"
+import { play, random } from "util"
+import { $git, $print } from "rbxts-transform-debug"
 
-import Roact from '@rbxts/roact'
-import Notification from 'components/Notification'
-import Trendsetter from 'components'
+import Roact from "@rbxts/roact"
+import Notification from "components/Notification"
+import Trendsetter from "components"
 
 const quotes = [
 	'"RETIRER VOTRE ANTIVIRUS" - 404coddy404, 2022, trying to cookie grab me',
@@ -26,9 +26,9 @@ const quotes = [
 ]
 
 const startups = {
-	alarm3: 'rbxassetid://6366788549',
-	speaker: 'rbxassetid://8370988437',
-	x10: 'rbxassetid://8192419115'
+	alarm3: "rbxassetid://6366788549",
+	speaker: "rbxassetid://8370988437",
+	x10: "rbxassetid://8192419115"
 }
 
 /**
@@ -50,7 +50,7 @@ export = function (options: { Debug?: true; GUI: ScreenGui; Sound?: string }) {
 	Roact.mount(
 		<Notification Text={`<b>Pause</b> to open mollermethod.\n<i>${random(quotes)}</i>`} />,
 		GUI,
-		'Notification'
+		"Notification"
 	)
 
 	const tree = Roact.mount(
@@ -61,16 +61,16 @@ export = function (options: { Debug?: true; GUI: ScreenGui; Sound?: string }) {
 			}}
 		/>,
 		GUI,
-		'Menu'
+		"Menu"
 	)
 
-	const border = new Instance('Frame', GUI)
+	const border = new Instance("Frame", GUI)
 	Debris.AddItem(border, 1)
 	border.Size = UDim2.fromScale(1, 1)
 	border.AnchorPoint = new Vector2(0.5, 0.5)
 	border.Position = UDim2.fromScale(0.5, 0.5)
 	border.BackgroundTransparency = 1
-	const stroke = new Instance('UIStroke', border)
+	const stroke = new Instance("UIStroke", border)
 	stroke.Thickness = 15
 	stroke.Color = new Color3(1, 1, 1)
 	TweenService.Create(

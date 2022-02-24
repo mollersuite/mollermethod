@@ -1,6 +1,6 @@
 /// <reference types="@rbxts/types/plugin" />
-import Roact from '@rbxts/roact'
-import { BLACK } from 'colors'
+import Roact from "@rbxts/roact"
+import { BLACK } from "colors"
 
 /**
  * as close to IconButton from fluent-svelte as possible
@@ -10,7 +10,7 @@ export = ({
 	Position,
 	ImageRectOffset,
 	ImageRectSize,
-	Image,
+	Image
 }: Partial<InstanceProperties<ImageLabel>> & {
 	Clicked?: () => void
 	Position?: UDim2
@@ -23,7 +23,8 @@ export = ({
 			Position={Position}
 			Event={{
 				Activated: Clicked
-			}}>
+			}}
+		>
 			<uilistlayout HorizontalAlignment="Center" VerticalAlignment="Center" />
 			<imagelabel
 				ImageRectOffset={ImageRectOffset}
