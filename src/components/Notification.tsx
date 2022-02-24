@@ -1,18 +1,20 @@
 import Roact from "@rbxts/roact"
-import Hooks from "@rbxts/roact-hooks"
+import { pure, useEffect } from "@rbxts/roact-hooked"
 import { Debris, TweenService } from "@rbxts/services"
 import { BLACK, WHITE } from "colors"
 import { play } from "util"
 
-const Notification: Hooks.FC<{
+const Notification = ({
+	Duration = 5,
+	Text,
+	Icon = "rbxassetid://7554747376",
+	App = "mollermethod"
+}: {
 	Text: string
 	Icon?: string
 	Duration?: number
 	App?: string
-}> = (
-	{ Duration = 5, Text, Icon = "rbxassetid://7554747376", App = "mollermethod" },
-	{ useEffect }
-) => {
+}) => {
 	const ref = Roact.createRef<Frame>()
 
 	useEffect(() => {
@@ -39,8 +41,7 @@ const Notification: Hooks.FC<{
 			AnchorPoint={new Vector2(1, 1)}
 			BackgroundColor3={BLACK}
 			Position={new UDim2(1, -15, 3, -15)}
-			Size={UDim2.fromOffset(362, 100)}
-		>
+			Size={UDim2.fromOffset(362, 100)}>
 			<uicorner CornerRadius={new UDim(0, 12)} />
 			<uistroke
 				ApplyStrokeMode="Contextual"
@@ -89,4 +90,4 @@ const Notification: Hooks.FC<{
 	)
 }
 
-export = new Hooks(Roact)(Notification)
+export = pure(Notification)

@@ -126,7 +126,7 @@ xpcall(
 		rbxmSuite.require(project)(CONFIG)
 		loading = false
 	end,
-	function()
+	function(err)
 		local text = Instance.new("TextButton", GUI)
 		Instance.new("UICorner", text).CornerRadius = UDim.new(0, 10)
 		text.BackgroundColor3 = Color3.new(1, 0, 0)
@@ -143,6 +143,7 @@ xpcall(
 			GUI:Destroy()
 		end)
 		loading = false
+		error(err)
 	end
 )
 --</template>
