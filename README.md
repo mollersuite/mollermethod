@@ -15,7 +15,7 @@ May or may not have a standalone version.
 
 mollermethod's player list. It lets you do actions on players and see info about them. Works well with [mollerpotence.](#mollerpotence)
 
-It'll probably be a Roact component.
+It is a Roact component.
 
 ## mollerpotence
 

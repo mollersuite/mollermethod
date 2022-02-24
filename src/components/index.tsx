@@ -10,7 +10,6 @@ const Trendsetter: Hooks.FC<{
 	Kill: () => void
 }> = ({ Kill }, { useState, useEffect }) => {
 	const [open, setOpen] = useState(GuiService.MenuIsOpen)
-	const [enabled, setEnabled] = useState(true)
 	useEffect(() => {
 		const backdrop = game
 			.GetService('CoreGui')
@@ -27,7 +26,7 @@ const Trendsetter: Hooks.FC<{
 		}
 	}, [])
 
-	return enabled ? (
+	return (
 		<frame
 			Visible={open}
 			Position={UDim2.fromOffset(464)}
@@ -45,7 +44,10 @@ const Trendsetter: Hooks.FC<{
 					new NumberSequence([new NumberSequenceKeypoint(0, 0), new NumberSequenceKeypoint(1, 1)])
 				}
 			/>
+			{/* in-house features */}
 			<TopLeft />
+			{/* cloud scripts */}
+			{/* <Center /> */}
 			{/* close */}
 			<IconButton
 				Position={new UDim2(1, -32, 0, 0)}
@@ -55,8 +57,6 @@ const Trendsetter: Hooks.FC<{
 				ImageRectSize={new Vector2(24, 24)}
 			/>
 		</frame>
-	) : (
-		<></>
 	)
 }
 

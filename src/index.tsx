@@ -44,28 +44,9 @@ const startups = {
  * }
  * ```
  */
-export = function (options: { Debug?: true; GUI: ScreenGui, Sound?: string }) {
+export = function (options: { Debug?: true; GUI: ScreenGui; Sound?: string }) {
 	const GUI = options.GUI
-	$print((() => {
-		const git = $git()
-		return `mollermethod v${PKG_VERSION} (${git.Branch}) commit ${git.Commit}`
-	})())
-	const border = new Instance('Frame', GUI)
-	Debris.AddItem(border, 1)
-	border.Size = UDim2.fromScale(1, 1)
-	border.AnchorPoint = new Vector2(0.5, 0.5)
-	border.Position = UDim2.fromScale(0.5, 0.5)
-	border.BackgroundTransparency = 1
-	const stroke = new Instance('UIStroke', border)
-	stroke.Thickness = 15
-	stroke.Color = new Color3(1, 1, 1)
-	TweenService.Create(
-		border,
-		new TweenInfo(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, true),
-		{
-			Size: new UDim2(1, -10, 1, -10)
-		}
-	).Play()
+	$print(`mollermethod v${PKG_VERSION} (${$git().Branch}) commit ${$git().Commit}`)
 	play(options.Sound || startups.x10)
 	Roact.mount(
 		<Notification Text={`<b>Pause</b> to open mollermethod.\n<i>${random(quotes)}</i>`} />,
@@ -83,4 +64,21 @@ export = function (options: { Debug?: true; GUI: ScreenGui, Sound?: string }) {
 		GUI,
 		'Menu'
 	)
+
+	const border = new Instance('Frame', GUI)
+	Debris.AddItem(border, 1)
+	border.Size = UDim2.fromScale(1, 1)
+	border.AnchorPoint = new Vector2(0.5, 0.5)
+	border.Position = UDim2.fromScale(0.5, 0.5)
+	border.BackgroundTransparency = 1
+	const stroke = new Instance('UIStroke', border)
+	stroke.Thickness = 15
+	stroke.Color = new Color3(1, 1, 1)
+	TweenService.Create(
+		border,
+		new TweenInfo(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, true),
+		{
+			Size: new UDim2(1, -10, 1, -10)
+		}
+	).Play()
 }
