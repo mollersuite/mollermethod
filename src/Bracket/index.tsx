@@ -1,6 +1,6 @@
 import Roact from "@rbxts/roact"
 import { pure, useEffect, useState } from "@rbxts/roact-hooked"
-import { UserInputService } from "@rbxts/services"
+import { TweenService, UserInputService } from "@rbxts/services"
 import { ACCENT, BLACK, WHITE } from "colors"
 import { play } from "util"
 import execute from "./run"
@@ -24,13 +24,13 @@ import execute from "./run"
 export interface Command {
 	description: string
 	aliases?: string[]
-	execute: (args: string[]) => void
+	execute: (args: string[]) => void | Promise<void>
 }
 
 export default pure(() => {
 	const [shown, setShown] = useState(false)
 	const box = Roact.createRef<TextBox>()
-
+	const gradient = Roact.createRef<UIGradient>()
 	// handles toggle key
 	useEffect(() => {
 		const input_began = UserInputService.InputBegan.Connect((input, text) => {
@@ -45,7 +45,7 @@ export default pure(() => {
 
 	// autofocus
 	useEffect(() => {
-		play(shown ? "rbxassetid://8458409341" : "rbxassetid://8926096648") // windows 11 hardware connect and disconnect
+		if (shown) play("rbxassetid://8458409341") // windows 11 hardware connect
 		box.getValue()?.CaptureFocus()
 	}, [shown])
 
@@ -61,6 +61,8 @@ export default pure(() => {
 			TextSize={14}
 			Font="RobotoMono"
 			TextXAlignment="Left"
+			AutomaticSize="Y"
+			TextWrapped
 			TextYAlignment="Center"
 			TextColor3={WHITE}
 			BackgroundColor3={BLACK}
@@ -71,16 +73,42 @@ export default pure(() => {
 					} else execute(rbx.Text)
 					setShown(false)
 				}
+			}}
+			Change={{
+				Text: (rbx) => {
+					TweenService.Create(
+						gradient.getValue()!,
+						new TweenInfo(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut),
+						{
+							Rotation: (utf8.len(rbx.Text)[0] || 0) * 5
+						}
+					).Play()
+				}
 			}}>
 			<uicorner CornerRadius={new UDim(0, 16)} />
-			<uipadding PaddingLeft={new UDim(0, 8)} PaddingRight={new UDim(0, 8)} />
+			<uipadding
+				PaddingLeft={new UDim(0, 8)}
+				PaddingRight={new UDim(0, 8)}
+				PaddingBottom={new UDim(0, 8)}
+				PaddingTop={new UDim(0, 8)}
+			/>
 			<uistroke
-				Thickness={1}
-				Color={ACCENT}
+				Thickness={5}
+				Color={new Color3(1, 1, 1)}
 				ApplyStrokeMode="Border"
 				Transparency={0}
-				LineJoinMode="Round"
-			/>
+				LineJoinMode="Round">
+				<uigradient
+					Ref={gradient}
+					Rotation={(utf8.len(box.getValue()?.Text || "")[0] || 0) * 5}
+					Color={
+						new ColorSequence([
+							new ColorSequenceKeypoint(0, ACCENT),
+							new ColorSequenceKeypoint(1, BLACK)
+						])
+					}
+				/>
+			</uistroke>
 		</textbox>
 	)
 })

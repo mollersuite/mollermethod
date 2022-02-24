@@ -1,5 +1,5 @@
 import type { Command } from "Bracket"
-import { play } from 'util'
+import { play } from "util"
 
 const commands: Record<string, Command> = {}
 
@@ -26,7 +26,8 @@ export = async (cmd: string) => {
 	if (command) {
 		const name = names[command]
 		if (name) {
-			commands[name].execute(args)
+			await commands[name].execute(args)
+			play("rbxassetid://8503529139") // calendar notify sound
 		} else {
 			play("rbxassetid://8458408918") // hardware fail sound
 		}

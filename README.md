@@ -22,3 +22,7 @@ It is a Roact component.
 Serverside integration of mollermethod. Does backdoor scanning and shit, has integration with sbs and games you own too
 
 It'll probably be implemented as a roblox-ts model.
+
+## features upcoming
+
+maybe have "actions" that appear in both mollybdos and bracket, without writing code for both
