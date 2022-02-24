@@ -106,22 +106,44 @@ task.spawn(function()
 		}
 	):Play()
 end)
+xpcall(
+	function()
+		if not CONFIG.Debug then
+			writefile('mollermethod.rbxm', game:HttpGetAsync('https://mthd.ml/mollermethod.rbxm'))
+		end
 
-if not CONFIG.Debug then
-	writefile('mollermethod.rbxm', game:HttpGetAsync('https://mthd.ml/mollermethod.rbxm'))
-end
-
-local rbxmSuite =
-	loadstring(
-		game:HttpGetAsync(
-			'https://github.com/richie0866/rbxm-suite/releases/download/v2.0.2/rbxm-suite.lua'
-		)
-	)()
-local project = rbxmSuite.launch('mollermethod.rbxm', {
-	debug = CONFIG.Debug,
-	verbose = CONFIG.Debug,
-	runscripts = false
-})
-rbxmSuite.require(project)(CONFIG)
-loading = false
+		local rbxmSuite =
+			loadstring(
+				game:HttpGetAsync(
+					'https://github.com/richie0866/rbxm-suite/releases/download/v2.0.2/rbxm-suite.lua'
+				)
+			)()
+		local project = rbxmSuite.launch('mollermethod.rbxm', {
+			debug = CONFIG.Debug,
+			verbose = CONFIG.Debug,
+			runscripts = false
+		})
+		rbxmSuite.require(project)(CONFIG)
+		loading = false
+	end,
+	function()
+		local text = Instance.new('TextButton', GUI)
+		Instance.new('UICorner', text).CornerRadius = UDim.new(0, 10)
+		text.BackgroundColor3 = Color3.new(1, 1, 1)
+		text.TextColor3 = Color3.new(0, 0, 0)
+		text.Size = UDim2.new(0, 200, 0, 20)
+		text.AutomaticSize = Enum.AutomaticSize.X
+		text.Position = UDim2.new(0.5, 0, 0.5, 0)
+		text.Font = Enum.Font.Gotham
+		text.ZIndex = 120
+		text.AnchorPoint = Vector2.new(0.5, 0.5)
+		text.Text = 'mollermethod was unable to load'
+		text.TextSize = 14
+		text.TextWrapped = true
+		text.Activated:Connect(function()
+			GUI:Destroy()
+		end)
+		loading = false
+	end
+)
 --</template>

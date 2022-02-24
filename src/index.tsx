@@ -15,7 +15,6 @@ const quotes = [
 	'"I like snake venom is because of its UI/UX effects [...] I dont have anywehre [sic] near the skill to recreate it" - Sp3ct3r3, 2022',
 	'"i forgot how to sleep" - Mr. Hase, 2022',
 	'"bruh im having so much trouble with ca-tay ui" - Bongo, 2022',
-	'":(" - Mr. Hase, 2021',
 	'"I know how to bypass https encryption" - tact, 2022',
 	'"trollsmile [not] winning" - Amourousity, 2021',
 	'"[I want you to make a] grab knife script but its a meme knife for mobile and pc" - k9#7062, 2021',

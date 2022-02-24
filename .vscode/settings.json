@@ -1,6 +1,5 @@
 {
 	"robloxLsp.misc.serviceAutoImport": true,
-	"robloxLsp.diagnostics.disable": ["undefined-global"],
 	"editor.insertSpaces": false,
 	"editor.tabSize": 4,
 	"editor.detectIndentation": false,
