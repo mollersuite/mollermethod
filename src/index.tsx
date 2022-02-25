@@ -1,4 +1,4 @@
-import { Debris, TweenService } from "@rbxts/services"
+import { Debris, TweenService, UserInputService } from "@rbxts/services"
 import { play, random } from "util"
 import { $git, $print } from "rbxts-transform-debug"
 
@@ -52,7 +52,9 @@ export = function (options: { Debug?: true; GUI: ScreenGui; Sound?: string }) {
 		<Notification
 			Text={`<b>Pause</b> to open mollermethod.\n<i>${random(quotes)}</i>${
 				IY_LOADED
-					? "\n<b>Did you know that mollermethod has its own IY alternative? Press [ to open it.</b>"
+					? `\n<b>Did you know that mollermethod has its own IY alternative? Press ${UserInputService.GetStringForKeyCode(
+							Enum.KeyCode.LeftBracket
+					  )} to open it.</b>`
 					: ""
 			}`}
 		/>,
@@ -60,7 +62,7 @@ export = function (options: { Debug?: true; GUI: ScreenGui; Sound?: string }) {
 		"Notification"
 	)
 
-	const bracket_tree = Roact.mount(<Bracket />, GUI, "Bracket")
+	const bracket_tree = Roact.mount(<Bracket button={ Enum.KeyCode.LeftBracket}/>, GUI, "Bracket")
 	const tree = Roact.mount(
 		<Trendsetter
 			Kill={() => {

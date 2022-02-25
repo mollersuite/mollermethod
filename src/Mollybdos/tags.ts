@@ -135,7 +135,12 @@ export default async function tags_of(Player: Player): Promise<Tags> {
 					1150725, // A̶P̶T̶-̶2̶2̶8̶3̶-̶3̶ Jack Hase's group
 					8636927, // SunRaysEffect's group
 				],
-				Furry: [5245050, 2684849, 5833102, 13802474],
+				Furry: [
+					5245050, // Furry Project
+					2684849, // Furry Fandom
+					5833102, // CodeProtogens
+					13802474, // Furry Den
+				],
 			},
 		}),
 	])

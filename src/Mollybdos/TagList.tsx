@@ -17,7 +17,7 @@ import { Tags as TagType } from "./tags"
 \------------------------------/
 */
 export = pure(({ tags }: { tags: TagType }) => {
-	if (tags.isEmpty()) return <></>
+	if (tags.filter((tag) => tag.score !== 0).isEmpty()) return <></>
 	return (
 		<scrollingframe
 			AutomaticCanvasSize="X"

@@ -21,14 +21,14 @@ import execute from "./run"
  * ╚════╝
  * ```
  */
-export default pure(() => {
+export default pure(({ button }: { button: Enum.KeyCode }) => {
 	const [shown, setShown] = useState(false)
 	const box = Roact.createRef<TextBox>()
 	const gradient = Roact.createRef<UIGradient>()
 	// handles toggle key
 	useEffect(() => {
 		const input_began = UserInputService.InputBegan.Connect((input, text) => {
-			if (input.KeyCode === Enum.KeyCode.LeftBracket && !text) setShown(!shown) // TODO: make this configurable
+			if (input.KeyCode === button && !text) setShown(!shown) // TODO: make this configurable
 		})
 		return () => input_began.Disconnect()
 	}, [])
@@ -60,11 +60,12 @@ export default pure(() => {
 			PlaceholderText="try [cmds"
 			BackgroundColor3={BLACK}
 			Event={{
-				FocusLost: (rbx) => {
-					if (rbx.Text.sub(1, 1) === "[") {
+				FocusLost: (rbx, enter) => {
+					setShown(false)
+					if (!enter) return
+					if (rbx.Text.sub(1, 1) === UserInputService.GetStringForKeyCode(button)) {
 						execute(rbx.Text.sub(2))
 					} else execute(rbx.Text)
-					setShown(false)
 				},
 			}}
 			Change={{
@@ -77,8 +78,7 @@ export default pure(() => {
 						}
 					).Play()
 				},
-			}}
-		>
+			}}>
 			<uicorner CornerRadius={new UDim(0, 16)} />
 			<uipadding
 				PaddingLeft={new UDim(0, 8)}
@@ -91,8 +91,7 @@ export default pure(() => {
 				Color={new Color3(1, 1, 1)}
 				ApplyStrokeMode="Border"
 				Transparency={0}
-				LineJoinMode="Round"
-			>
+				LineJoinMode="Round">
 				<uigradient
 					Ref={gradient}
 					Rotation={(utf8.len(box.getValue()?.Text || "")[0] || 0) * 5}

@@ -1,6 +1,7 @@
 import Roact from "@rbxts/roact"
 import { pure, useEffect, useState } from "@rbxts/roact-hooked"
 import { GRAY, WHITE } from "colors"
+import Actions from "./Actions"
 import TagList from "./TagList"
 import tags_of, { Tags } from "./tags"
 
@@ -52,8 +53,7 @@ export = pure(({ selected }: { selected: Player | void }) => {
 			ClipsDescendants
 			ScrollBarThickness={5}
 			AutomaticCanvasSize="Y"
-			CanvasSize={UDim2.fromScale(0, 1)}
-		>
+			CanvasSize={UDim2.fromScale(0, 1)}>
 			<uipadding PaddingTop={new UDim(0, 5)} />
 			<uilistlayout />
 			<textlabel
@@ -81,6 +81,7 @@ export = pure(({ selected }: { selected: Player | void }) => {
 				<></>
 			)}
 			<TagList tags={tags} />
+			<Actions player={selected} />
 		</scrollingframe>
 	)
 })

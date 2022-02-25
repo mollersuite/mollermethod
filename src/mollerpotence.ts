@@ -1,4 +1,4 @@
 import { LogService } from "@rbxts/services"
 
 // LogService.ExecuteScript(script)
-export {}
+export const enabled = false
