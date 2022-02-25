@@ -26,12 +26,6 @@ const quotes = [
 	`"I'ma hack u y'all" - cash_youtwin, 2020`,
 ]
 
-const startups = {
-	alarm3: "rbxassetid://6366788549",
-	speaker: "rbxassetid://8370988437",
-	x10: "rbxassetid://8192419115",
-}
-
 /**
  * @see https://mthd.ml
  * @name mollermethod
@@ -47,7 +41,7 @@ const startups = {
 export = function (options: { Debug?: true; GUI: ScreenGui; Sound?: string }) {
 	const GUI = options.GUI
 	$print(`mollermethod v${PKG_VERSION} (${$git().Branch}) commit ${$git().Commit}`)
-	play(options.Sound || startups.x10)
+	play(options.Sound ?? "rbxassetid://8192419115")
 	Roact.mount(
 		<Notification
 			Text={`<b>Pause</b> to open mollermethod.\n<i>${random(quotes)}</i>${
