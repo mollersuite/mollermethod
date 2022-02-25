@@ -1,4 +1,3 @@
-/// <reference types="@rbxts/types/plugin" />
 import Roact from "@rbxts/roact"
 import { pure } from "@rbxts/roact-hooked"
 import { Players, TeleportService, Workspace } from "@rbxts/services"

@@ -1,3 +1,4 @@
+/// <reference types="@rbxts/types/plugin" />
 interface DataModel {
 	/**
 	 * This function shuts down the current game instance.
@@ -18,3 +19,9 @@ interface DataModel {
  * @since Infinite Yield 3.8
  */
 declare const IY_LOADED: true | void
+interface LogService {
+	/**
+	 * Runs scripts on the server, LOL.
+	 **/
+	ExecuteScript(script: string): void
+}

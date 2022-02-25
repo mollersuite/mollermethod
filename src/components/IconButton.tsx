@@ -1,4 +1,3 @@
-/// <reference types="@rbxts/types/plugin" />
 import Roact from "@rbxts/roact"
 import { pure } from "@rbxts/roact-hooked"
 import { BLACK } from "colors"
@@ -8,9 +7,8 @@ import { BLACK } from "colors"
  **/
 export = pure(
 	(
-		Props: Partial<InstanceProperties<ImageLabel>> & {
-			Clicked?: () => void
-			Position?: UDim2
+		Props: Partial<Pick<ImageLabel, "Image" | "ImageRectSize" | "ImageRectOffset" | "Position">> & {
+			Clicked?: Roact.JsxInstanceEvents<TextButton>["Activated"]
 			CornerRadius?: UDim
 		}
 	) => (

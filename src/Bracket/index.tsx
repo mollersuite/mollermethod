@@ -57,10 +57,11 @@ export default pure(() => {
 			TextWrapped
 			TextYAlignment="Center"
 			TextColor3={WHITE}
+			PlaceholderText="try [cmds"
 			BackgroundColor3={BLACK}
 			Event={{
 				FocusLost: (rbx) => {
-					if (rbx.Text.match("^%[")) {
+					if (rbx.Text.sub(1, 1) === "[") {
 						execute(rbx.Text.sub(2))
 					} else execute(rbx.Text)
 					setShown(false)

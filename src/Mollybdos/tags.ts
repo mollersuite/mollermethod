@@ -89,7 +89,7 @@ export default async function tags_of(Player: Player): Promise<Tags> {
 			Tags,
 			Groups: {
 				"SB Player": [10350051, 6778737, 3256759, 11339696],
-				Furry: [5245050, 2684849, 5833102]
+				Furry: [5245050, 2684849, 5833102, 13802474]
 			}
 		})
 	])

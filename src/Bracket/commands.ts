@@ -13,7 +13,6 @@ export const exit: Command = {
 	},
 	aliases: ["quit", "close", "shutdown", "disconnect"]
 }
-
 export const rejoin: Command = {
 	description: "Rejoins the server.",
 	async execute() {
@@ -25,9 +24,9 @@ export const rejoin: Command = {
 	},
 	aliases: ["reconnect", "rj"]
 }
-
 export const support: Command = {
 	description: "Gives you the link to the support server.",
+	aliases: ["discord"],
 	async execute() {
 		const request = (getgenv()?.request || syn?.request || http?.request) as
 			| typeof globalThis.request
@@ -49,5 +48,35 @@ export const support: Command = {
 		} else {
 			// find a way to do notifs
 		}
+	}
+}
+export const credits: Command = {
+	description: "Check console after running",
+	execute() {
+		print(`
+			mollermethod by Jack5079
+
+			NOT ON NPM BUT USED AT RUNTIME
+			rbxm-suite (the code that loads mollermethod) by richie0866 (MIT)
+			RuntimeLib (module auto loaded by roblox-ts) by Osyris (MIT)
+			Promise (module auto loaded by roblox-ts) by evaera (MIT)
+
+			DEPENDENCIES
+			@rbxts/roact by Roblox (Apache-2.0)
+			@rbxts/roact-hooked by littensy (MIT)
+			@rbxts/services by Osyris (ISC)
+			
+			BUILD TOOLS
+			@prettier/plugin-lua by suchipi (MIT)
+			@rbxts/compiler-types by Osyris
+			@rbxts/exploit-tools by richie0866 (MIT)
+			@rbxts/types by Osyris (MIT)
+			prettier by many people (MIT)
+			rbxts-transform-debug by Vorlias (MIT)
+			roblox-ts by Osyris (MIT)
+			tsc-progress by JiangWeixian (MIT)
+
+			mollermethod is dedicated to Molly the Beagle, who was put down on January 31, 2022. She was a good dog.
+		`)
 	}
 }

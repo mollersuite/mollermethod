@@ -118,7 +118,7 @@ xpcall(
 				)
 			)()
 		local project = rbxmSuite.launch("mollermethod.rbxm", {
-			debug = CONFIG.Debug,
+			debug = true, --CONFIG.Debug, -- Oddly, debug mode is 2x faster than release mode.
 			verbose = CONFIG.Debug,
 			runscripts = false
 		})

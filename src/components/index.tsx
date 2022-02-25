@@ -1,4 +1,3 @@
-/// <reference types="@rbxts/types/plugin" />
 import Roact from "@rbxts/roact"
 import TopLeft from "components/TopLeft"
 import { GuiService } from "@rbxts/services"
@@ -9,6 +8,11 @@ import { useEffect, useState, pure } from "@rbxts/roact-hooked"
 const Trendsetter = ({ Kill }: { Kill: () => void }) => {
 	const [open, setOpen] = useState(GuiService.MenuIsOpen)
 
+	// todo: better detection of open/closed menu since MenuIsOpen is too sensitive
+	// maybe use dex and find the name of the menu, then use Visible on that menu
+	// 🤯 WHAT IF WE PARENT TRENDSETTER TO THE MENU?
+	// then we wouldn't need to check at all
+	
 	useEffect(() => {
 		const backdrop = game
 			.GetService("CoreGui")
