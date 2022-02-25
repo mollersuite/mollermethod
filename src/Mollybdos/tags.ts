@@ -13,7 +13,7 @@ async function appearance_tags(
 ) {
 	const appearance = Players.GetCharacterAppearanceInfoAsync(Player.UserId)
 	for (const [key, ids] of pairs(Assets)) {
-		Tags[key] += appearance.assets.filter((asset) => ids.includes(asset.id)).size()
+		Tags[key] += appearance.assets.filter(asset => ids.includes(asset.id)).size()
 	}
 }
 
@@ -28,7 +28,7 @@ async function behavior_tags(
 	}
 ) {
 	const groups = GroupService.GetGroupsAsync(Player.UserId)
-	const groups_by_id = groups.map((group) => group.Id)
+	const groups_by_id = groups.map(group => group.Id)
 
 	if (
 		// creator based on user
@@ -39,14 +39,14 @@ async function behavior_tags(
 	} else if (
 		// creator based on group
 		game.CreatorType === Enum.CreatorType.Group &&
-		groups.find((group) => group.Id === game.CreatorId)?.Rank === 255
+		groups.find(group => group.Id === game.CreatorId)?.Rank === 255
 	) {
 		Tags.Creator = 1
 	}
 
 	// group tags
 	for (const [key, targets] of pairs(Groups)) {
-		Tags[key] += targets.filter((group) => groups_by_id.includes(group)).size()
+		Tags[key] += targets.filter(group => groups_by_id.includes(group)).size()
 	}
 }
 

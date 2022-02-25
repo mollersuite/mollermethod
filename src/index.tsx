@@ -62,7 +62,7 @@ export = function (options: { Debug?: true; GUI: ScreenGui; Sound?: string }) {
 		"Notification"
 	)
 
-	const bracket_tree = Roact.mount(<Bracket button={ Enum.KeyCode.LeftBracket}/>, GUI, "Bracket")
+	const bracket_tree = Roact.mount(<Bracket button={Enum.KeyCode.LeftBracket} />, GUI, "Bracket")
 	const tree = Roact.mount(
 		<Trendsetter
 			Kill={() => {

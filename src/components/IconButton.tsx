@@ -19,8 +19,7 @@ export = pure(
 			Position={Props.Position}
 			Event={{
 				Activated: Props.Clicked,
-			}}
-		>
+			}}>
 			<uilistlayout HorizontalAlignment="Center" VerticalAlignment="Center" />
 			<imagelabel
 				ImageRectOffset={Props.ImageRectOffset}

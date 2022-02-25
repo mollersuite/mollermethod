@@ -17,7 +17,7 @@ export interface Action {
 export const to: Action = {
 	description: "Teleport to a player",
 	aliases: ["tp", "teleport", "goto", "tpto"],
-	execute: (victim) => {
+	execute: victim => {
 		const victim_pivot = victim.Character?.GetPivot()
 		if (victim_pivot) LocalPlayer.Character?.PivotTo(victim_pivot)
 	},
@@ -27,7 +27,7 @@ export const bring: Action = {
 	description: "Teleport a player to you",
 	aliases: ["tpb", "teleportback", "tpback"],
 	enabled: () => can_use_mollerpotence, // mollerpotence doesn't exist yet
-	execute: async (victim) => {
+	execute: async victim => {
 		// see above
 	},
 }
@@ -42,7 +42,7 @@ export const fling: Action = {
 			return (head?.IsA("BasePart") && head?.CanCollide) ?? false
 		}
 	},
-	execute: async (victim) => {
+	execute: async victim => {
 		if (can_use_mollerpotence) {
 			// Adapted from https://github.com/Sceleratis/Adonis/blob/7782a751c42b7731f38ac723af29ed75ce2e4842/MainModule/Server/Commands/Moderators.lua#L5395
 			// THIS HAS TO BE RAN ON THE SERVER SIDE
@@ -88,7 +88,7 @@ export const kick: Action = {
 	description: "Kick a player",
 	aliases: ["k"],
 	enabled: () => can_use_mollerpotence, // mollerpotence doesn't exist yet
-	execute: async (victim) => {
+	execute: async victim => {
 		// requires mollerpotence
 	},
 }

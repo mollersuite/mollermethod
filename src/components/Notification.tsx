@@ -41,8 +41,7 @@ const Notification = ({
 			AnchorPoint={new Vector2(1, 1)}
 			BackgroundColor3={BLACK}
 			Position={new UDim2(1, -15, 3, -15)}
-			Size={UDim2.fromOffset(362, 100)}
-		>
+			Size={UDim2.fromOffset(362, 100)}>
 			<uicorner CornerRadius={new UDim(0, 12)} />
 			<uistroke
 				ApplyStrokeMode="Contextual"

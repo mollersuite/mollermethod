@@ -17,7 +17,7 @@ import { Tags as TagType } from "./tags"
 \------------------------------/
 */
 export = pure(({ tags }: { tags: TagType }) => {
-	if (tags.filter((tag) => tag.score !== 0).isEmpty()) return <></>
+	if (tags.filter(tag => tag.score !== 0).isEmpty()) return <></>
 	return (
 		<scrollingframe
 			AutomaticCanvasSize="X"
@@ -34,8 +34,8 @@ export = pure(({ tags }: { tags: TagType }) => {
 				Padding={new UDim(0, 5)}
 			/>
 			{tags
-				.filter((tag) => tag.score !== 0)
-				.map((tag) => (
+				.filter(tag => tag.score !== 0)
+				.map(tag => (
 					<textlabel
 						LayoutOrder={-tag.score}
 						Text={`${tag.name}${tag.score > 1 ? ` (${tag.score})` : ""}`}

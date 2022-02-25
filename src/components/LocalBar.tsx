@@ -27,8 +27,7 @@ export = pure(() => (
 		Position={UDim2.fromOffset(10, 10)}
 		Size={UDim2.fromOffset(300, 64)}
 		BackgroundColor3={BLACK}
-		BorderSizePixel={0}
-	>
+		BorderSizePixel={0}>
 		<uicorner CornerRadius={new UDim(0, 16)} />
 		<uilistlayout FillDirection="Horizontal" VerticalAlignment="Center" />
 		<uipadding

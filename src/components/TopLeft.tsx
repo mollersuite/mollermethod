@@ -18,8 +18,7 @@ export = pure(() => (
 			Font="Gotham"
 			TextColor3={WHITE}
 			Text={`v${PKG_VERSION}`}
-			BorderSizePixel={0}
-		>
+			BorderSizePixel={0}>
 			<uicorner CornerRadius={new UDim(0, 16)} />
 			<uipadding PaddingLeft={new UDim(0, 16)} PaddingRight={new UDim(0, 16)} />
 		</textlabel>

@@ -28,8 +28,7 @@ const Trendsetter = ({ Kill }: { Kill: () => void }) => {
 			Visible={open}
 			Position={UDim2.fromOffset(464)}
 			Size={new UDim2(1, -464, 1, 0)}
-			BorderSizePixel={0}
-		>
+			BorderSizePixel={0}>
 			<uigradient
 				Rotation={15}
 				Color={

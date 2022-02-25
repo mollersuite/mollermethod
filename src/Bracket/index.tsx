@@ -69,7 +69,7 @@ export default pure(({ button }: { button: Enum.KeyCode }) => {
 				},
 			}}
 			Change={{
-				Text: (rbx) => {
+				Text: rbx => {
 					TweenService.Create(
 						gradient.getValue()!,
 						new TweenInfo(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut),

@@ -29,11 +29,11 @@ export = pure(
 		// handling players leaving and joining
 		const [players, setPlayers] = useState<Player[]>(Players.GetPlayers())
 		useEffect(() => {
-			const adding = Players.PlayerAdded.Connect((player) => {
+			const adding = Players.PlayerAdded.Connect(player => {
 				setPlayers([...players, player])
 			})
-			const removing = Players.PlayerRemoving.Connect((player) => {
-				setPlayers(players.filter((p) => p !== player))
+			const removing = Players.PlayerRemoving.Connect(player => {
+				setPlayers(players.filter(p => p !== player))
 			})
 			return () => {
 				adding?.Disconnect()
@@ -48,10 +48,9 @@ export = pure(
 				ClipsDescendants
 				AutomaticCanvasSize="Y"
 				ScrollBarThickness={5}
-				CanvasSize={UDim2.fromScale(0, 1)}
-			>
+				CanvasSize={UDim2.fromScale(0, 1)}>
 				<uilistlayout SortOrder="Name" />
-				{players.map((player) => (
+				{players.map(player => (
 					<textbutton
 						Size={new UDim2(1, 0, 0, 25)}
 						TextWrapped

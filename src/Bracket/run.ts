@@ -7,7 +7,7 @@ const LocalPlayer = Players.LocalPlayer
 const names: Record<string, keyof typeof commands | void> = {}
 for (const [name, command] of pairs(commands)) {
 	names[name] = name
-	command?.aliases?.forEach((alias) => {
+	command?.aliases?.forEach(alias => {
 		names[alias] = name
 	})
 }
@@ -15,7 +15,7 @@ for (const [name, command] of pairs(commands)) {
 const action_names: Record<string, keyof typeof actions | void> = {}
 for (const [name, action] of pairs(actions)) {
 	action_names[name] = name
-	action?.aliases?.forEach((alias) => {
+	action?.aliases?.forEach(alias => {
 		action_names[alias] = name
 	})
 }
@@ -28,13 +28,13 @@ const get_players_no_comma = (selector = "N/A") => {
 	if (selector === "me") return [LocalPlayer]
 	if (selector === "friends")
 		return LocalPlayer.GetFriendsOnline()
-			.map((friend) => friend.VisitorId)
-			.mapFiltered((friend_id) => Players.GetPlayerByUserId(friend_id))
-	if (selector === "others") return Players.GetPlayers().filter((plr) => plr !== LocalPlayer)
-	return Players.GetPlayers().filter((plr) => !!plr.Name.lower().match("^" + selector.lower())[0])
+			.map(friend => friend.VisitorId)
+			.mapFiltered(friend_id => Players.GetPlayerByUserId(friend_id))
+	if (selector === "others") return Players.GetPlayers().filter(plr => plr !== LocalPlayer)
+	return Players.GetPlayers().filter(plr => !!plr.Name.lower().match("^" + selector.lower())[0])
 }
 const get_players = (selector = "N/A") =>
-	flatten(selector.split(",").map((str) => get_players_no_comma(str)))
+	flatten(selector.split(",").map(str => get_players_no_comma(str)))
 
 // Easiest command parser I've ever written
 export = async (cmd: string) => {
@@ -52,15 +52,14 @@ export = async (cmd: string) => {
 				play("rbxassetid://8458408918") // fail since its not enabled
 			} else {
 				Promise.all(
-					get_players(args.join(" ")).map(
-						(plr) => action.execute(plr) || Promise.resolve()
-					)
-				).then(() => {
-					play("rbxassetid://8503529139") // succeed because it ran on everyone
-				}).catch(() => {
-					play("rbxassetid://8458408918") // fail since one of them threw an error
-				})
-				
+					get_players(args.join(" ")).map(plr => action.execute(plr) || Promise.resolve())
+				)
+					.then(() => {
+						play("rbxassetid://8503529139") // succeed because it ran on everyone
+					})
+					.catch(() => {
+						play("rbxassetid://8458408918") // fail since one of them threw an error
+					})
 			}
 		} else {
 			play("rbxassetid://8458408918") // fail since no command was found
