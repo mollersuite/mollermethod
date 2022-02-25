@@ -1,8 +1,8 @@
 import { HttpService, TeleportService, Players } from "@rbxts/services"
 const Player = Players.LocalPlayer
 interface Command {
-	description: string
-	aliases?: string[]
+	readonly description: string
+	readonly aliases?: readonly string[]
 	execute(this: void, args: string[]): unknown
 }
 

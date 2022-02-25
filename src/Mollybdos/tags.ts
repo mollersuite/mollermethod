@@ -50,9 +50,9 @@ async function behavior_tags(
 	}
 }
 
-export type Tags = {
-	name: string
-	score: number
+export type Tags = readonly {
+	readonly name: string
+	readonly score: number
 }[]
 
 export default async function tags_of(Player: Player): Promise<Tags> {

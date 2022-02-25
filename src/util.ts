@@ -35,4 +35,4 @@ export function play(id: string, volume = 5) {
  * @param arr An array
  * @returns A random element from the array
  */
-export const random = <T>(arr: T[]): T => arr[math.random(arr.size()) - 1]
+export const random = <T>(arr: readonly T[]): T => arr[math.random(arr.size()) - 1]

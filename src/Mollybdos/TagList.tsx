@@ -18,7 +18,7 @@ import { Tags as TagType } from "./tags"
 that part of mollybdos
 */
 export = pure(({ tags }: { tags: TagType }) => {
-	if (tags.size() === 0) return <></>
+	if (tags.isEmpty()) return <></>
 	return (
 		<scrollingframe
 			AutomaticCanvasSize="X"
