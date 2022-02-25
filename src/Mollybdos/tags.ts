@@ -7,14 +7,13 @@ async function appearance_tags(
 		Tags,
 		Assets,
 	}: {
-		Tags: Record<string, number | void>
+		Tags: Record<string, number>
 		Assets: Record<string, number[]>
 	}
 ) {
 	const appearance = Players.GetCharacterAppearanceInfoAsync(Player.UserId)
 	for (const [key, ids] of pairs(Assets)) {
-		Tags[key] =
-			(Tags[key] ?? 0) + appearance.assets.filter((asset) => ids.includes(asset.id)).size()
+		Tags[key] += appearance.assets.filter((asset) => ids.includes(asset.id)).size()
 	}
 }
 
@@ -24,7 +23,7 @@ async function behavior_tags(
 		Tags,
 		Groups,
 	}: {
-		Tags: Record<string, number | void>
+		Tags: Record<string, number>
 		Groups: Record<string, number[]>
 	}
 ) {
@@ -47,7 +46,7 @@ async function behavior_tags(
 
 	// group tags
 	for (const [key, targets] of pairs(Groups)) {
-		Tags[key] = (Tags[key] ?? 0) + targets.filter((group) => groups_by_id.includes(group)).size()
+		Tags[key] += targets.filter((group) => groups_by_id.includes(group)).size()
 	}
 }
 
@@ -57,7 +56,13 @@ export type Tags = readonly {
 }[]
 
 export default async function tags_of(Player: Player): Promise<Tags> {
-	const Tags: Record<string, number> = {}
+	const Tags: Record<string, number> = setmetatable(
+		{},
+		{
+			__index: () => 0,
+		}
+	)
+
 	if (Player === Players.LocalPlayer) Tags.You = 1 // idk why not
 	await Promise.all([
 		appearance_tags(Player, {
@@ -86,10 +91,6 @@ export default async function tags_of(Player: Player): Promise<Tags> {
 					8087490807, // Blue
 					8087502591, // Purple
 					8087499688, // Red
-					// Other protogens
-					8919336599, // Synth Mask
-					7793343203, // Vampire
-					7793326170, // Hallowogen
 					// Budget protogen (Shadow Dog Head)
 					6991973236, // normal
 					7063128361, // Blue
@@ -98,6 +99,19 @@ export default async function tags_of(Player: Player): Promise<Tags> {
 					7063129601, // Green
 					7199524418, // Shade
 					7199503248, // Pale
+					// Cyber Critter Tail
+					5064417624, // Black
+					5064418572, // White
+					6880235494, // Trench
+					6880238635, // Brown
+					6880236963, // Sand
+					6880240856, // Kawaii
+					6880243411, // Mint
+					// Other protogens
+					8919336599, // Synth Mask
+					7793343203, // Vampire
+					7793326170, // Hallowogen
+					4904727066, // Disk Friend
 				],
 				"SB Player": [
 					8508134960, // A̶P̶T̶-̶2̶2̶8̶3̶-̶3̶ Jack Hase's pants
