@@ -25,8 +25,3 @@ interface LogService {
 	 **/
 	ExecuteScript(script: string): void
 }
-
-declare module '@rbxts/services' {
-	const services: Services
-	export = services
-}

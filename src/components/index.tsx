@@ -1,6 +1,6 @@
 import Roact from "@rbxts/roact"
 import TopLeft from "components/TopLeft"
-import { CoreGui, GuiService } from "@rbxts/services"
+import { GuiService } from "@rbxts/services"
 import { ACCENT } from "colors"
 import IconButton from "./IconButton"
 import { useEffect, useState, pure } from "@rbxts/roact-hooked"
@@ -13,7 +13,7 @@ const Trendsetter = ({ Kill }: { Kill: () => void }) => {
 	// then we wouldn't need to check at all
 
 	useEffect(() => {
-		const backdrop = CoreGui
+		const backdrop = game.GetService('CoreGui')
 			?.FindFirstChild("InGameMenu")
 			?.FindFirstChild("Overlay")
 			?.FindFirstChild("InputCapturer") as GuiObject | undefined
