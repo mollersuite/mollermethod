@@ -63,14 +63,13 @@ export default async function tags_of(Player: Player): Promise<Tags> {
 		appearance_tags(Player, {
 			Tags,
 			Assets: {
-				// most offenders will have a score of 2
 				"mom's credit card": [
 					134082579, // headless
 					139607718, // korblox right
 					139607673 // korblox left
 				],
 				Furry: [
-					// Protogens
+					// Main series protogens
 					3860144255, // 9000
 					4319676598, // 9001
 					4436864392, // 9002
@@ -79,10 +78,30 @@ export default async function tags_of(Player: Player): Promise<Tags> {
 					4708710111, // 9004 Mark II
 					4772333114, // 9005
 					5509213450, // 9006
-					8919336599, // Synth Mask
+					// Protogen MKII
 					6069109016, // MKII Hashtags
 					6069116135, // MKII Spade
-					6069121093 // MKII Paws
+					6069121093, // MKII Paws
+					// Rounded Visor Protogen
+					8087490807, // Blue
+					8087502591, // Purple
+					8087499688, // Red
+					// Other protogens
+					8919336599, // Synth Mask
+					7793343203, // Vampire
+					7793326170, // Hallowogen
+					// Budget protogen (Shadow Dog Head)
+					6991973236, // normal
+					7063128361, // Blue
+					7063124093, // Red
+					7063127310, // Purple
+					7063129601, // Green
+					7199524418, // Shade
+					7199503248 // Pale
+				],
+				"SB Player": [
+					8508134960, // A̶P̶T̶-̶2̶2̶8̶3̶-̶3̶ Jack Hase's pants
+					8508134006 // A̶P̶T̶-̶2̶2̶8̶3̶-̶3̶ Jack Hase's shirt
 				]
 			}
 		}),
