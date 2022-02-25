@@ -2,7 +2,7 @@ import Roact from "@rbxts/roact"
 import { useEffect, useState, pure } from "@rbxts/roact-hooked"
 import { BLACK } from "colors"
 import Details from "./Details"
-import PlayerList from "./Players"
+import PlayerList from "./PlayerList"
 
 export = pure(() => {
 	const [selected, setSelected] = useState<Player | void>(undefined)
