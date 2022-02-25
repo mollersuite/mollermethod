@@ -63,7 +63,6 @@ export default async function tags_of(Player: Player): Promise<Tags> {
 		}
 	)
 
-	if (Player === Players.LocalPlayer) Tags.You = 1 // idk why not
 	await Promise.all([
 		appearance_tags(Player, {
 			Tags,
@@ -123,7 +122,19 @@ export default async function tags_of(Player: Player): Promise<Tags> {
 		behavior_tags(Player, {
 			Tags,
 			Groups: {
-				"SB Player": [10350051, 6778737, 3256759, 11339696],
+				"SB Player": [
+					// script builders themselves
+					10350051, // require script runner
+					6778737, // Empty Baseplate
+					3256759, // Void Script Builder
+					11339696, // Lua Assembling
+					13634542, // Script Showcase
+					7002501, // Script Test Map
+					3155066, // Dark Eccentric
+					// whitelist groups
+					1150725, // A̶P̶T̶-̶2̶2̶8̶3̶-̶3̶ Jack Hase's group
+					8636927, // SunRaysEffect's group
+				],
 				Furry: [5245050, 2684849, 5833102, 13802474],
 			},
 		}),

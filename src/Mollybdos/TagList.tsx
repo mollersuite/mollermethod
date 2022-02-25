@@ -5,15 +5,15 @@ import { Tags as TagType } from "./tags"
 
 /*
 /------------------------------\
-|LuaQuack |	  SunRaysEffect    |
-|SunRay...|	   aka moller	   |
+|LuaQuack |   SunRaysEffect    |
+|SunRay...|    aka moller      |
 |         |<Furry> <SB Player> | <- that part of mollybdos
 |         |                    |
-|         |	                   |
-|         |	                   |
-|         |					   |
-|         |					   |
-|         |					   |
+|         |                    |
+|         |                    |
+|         |                    |
+|         |                    |
+|         |                    |
 \------------------------------/
 */
 export = pure(({ tags }: { tags: TagType }) => {
@@ -24,7 +24,7 @@ export = pure(({ tags }: { tags: TagType }) => {
 			BackgroundTransparency={1}
 			Size={new UDim2(1, 0, 0, 30)}
 			CanvasSize={UDim2.fromScale(0, 0)}
-			ScrollBarThickness={5}
+			ScrollBarThickness={1}
 			BorderSizePixel={0}>
 			<uipadding PaddingLeft={new UDim(0, 5)} PaddingRight={new UDim(0, 5)} />
 			<uilistlayout
@@ -41,13 +41,13 @@ export = pure(({ tags }: { tags: TagType }) => {
 						Text={`${tag.name}${tag.score > 1 ? ` (${tag.score})` : ""}`}
 						Font="Gotham"
 						TextSize={11}
-						Size={new UDim2(0, 0, 0, 25)}
+						Size={new UDim2(0, 0, 0, 22)}
 						AutomaticSize="X"
 						BorderSizePixel={0}
 						TextColor3={WHITE}
 						BackgroundColor3={ACCENT}>
-						<uipadding PaddingLeft={new UDim(0, 5)} PaddingRight={new UDim(0, 5)} />
-						<uicorner CornerRadius={new UDim(0, 10)} />
+						<uicorner CornerRadius={new UDim(0, 16)} />
+						<uipadding PaddingLeft={new UDim(0, 16)} PaddingRight={new UDim(0, 16)} />
 					</textlabel>
 				))}
 		</scrollingframe>

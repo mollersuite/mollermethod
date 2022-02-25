@@ -4,9 +4,6 @@ import { BLACK } from "colors"
 import Details from "./Details"
 import PlayerList from "./Players"
 
-/**
- * the playerlist of mollermethod
- **/
 export = pure(() => {
 	const [selected, setSelected] = useState<Player | void>(undefined)
 	// handling selected player leaving
