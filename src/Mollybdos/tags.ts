@@ -100,6 +100,7 @@ export default async function tags_of(Player: Player): Promise<Tags> {
 					7199524418, // Shade
 					7199503248, // Pale
 					// Cyber Critter Tail
+					8158158248, // Cyber Critter Tail
 					5064417624, // Black
 					5064418572, // White
 					6880235494, // Trench
