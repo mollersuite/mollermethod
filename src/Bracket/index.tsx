@@ -21,12 +21,6 @@ import execute from "./run"
  * ╚════╝
  * ```
  */
-export interface Command {
-	description: string
-	aliases?: string[]
-	execute: (args: string[]) => void | Promise<void>
-}
-
 export default pure(() => {
 	const [shown, setShown] = useState(false)
 	const box = Roact.createRef<TextBox>()
@@ -34,19 +28,17 @@ export default pure(() => {
 	// handles toggle key
 	useEffect(() => {
 		const input_began = UserInputService.InputBegan.Connect((input, text) => {
-			if (text) return
-			if (input.KeyCode === Enum.KeyCode.LeftBracket) {
-				// TODO: make this configurable
-				setShown(!shown)
-			}
+			if (input.KeyCode === Enum.KeyCode.LeftBracket && !text) setShown(!shown) // TODO: make this configurable
 		})
 		return () => input_began.Disconnect()
 	}, [])
 
 	// autofocus
 	useEffect(() => {
-		if (shown) play("rbxassetid://8458409341") // windows 11 hardware connect
-		box.getValue()?.CaptureFocus()
+		if (shown) {
+			play("rbxassetid://8458409341") // windows 11 hardware connect
+			box.getValue()!.CaptureFocus()
+		}
 	}, [shown])
 
 	if (!shown) return <></>

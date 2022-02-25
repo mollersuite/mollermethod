@@ -49,7 +49,13 @@ export = function (options: { Debug?: true; GUI: ScreenGui; Sound?: string }) {
 	$print(`mollermethod v${PKG_VERSION} (${$git().Branch}) commit ${$git().Commit}`)
 	play(options.Sound || startups.x10)
 	Roact.mount(
-		<Notification Text={`<b>Pause</b> to open mollermethod.\n<i>${random(quotes)}</i>`} />,
+		<Notification
+			Text={`<b>Pause</b> to open mollermethod.\n<i>${random(quotes)}</i>${
+				IY_LOADED
+					? "\n<b>Did you know that mollermethod has its own IY alternative? Press [ to open it.</b>"
+					: ""
+			}`}
+		/>,
 		GUI,
 		"Notification"
 	)

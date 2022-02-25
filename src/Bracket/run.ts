@@ -1,17 +1,8 @@
-import type { Command } from "Bracket"
 import { play } from "util"
 
-const commands: Record<string, Command> = {}
+import * as commands from "./commands"
 
-script
-	.Parent!.FindFirstChild("commands")!
-	.GetDescendants()
-	.filter((x) => x.IsA("ModuleScript"))
-	.forEach(async (module) => {
-		commands[module.Name] = require(module as ModuleScript) as Command
-	})
-
-const names: Record<string, string> = {}
+const names: Record<string, keyof typeof commands | void> = {}
 for (const [name, command] of pairs(commands)) {
 	names[name] = name
 	command?.aliases?.forEach((alias) => {

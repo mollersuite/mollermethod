@@ -7,5 +7,6 @@
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"files.associations": {
 		"*.html": "lua"
-	}
+	},
+	"roblox-ts.editor.hideDeprecated": false
 }
