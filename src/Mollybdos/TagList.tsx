@@ -5,17 +5,16 @@ import { Tags as TagType } from "./tags"
 
 /*
 /------------------------------\
-|         |					   |
-|         |████████████████████|
-|         |					   |
-|         |					   |
-|         |					   |
-|         |					   |
+|LuaQuack |	  SunRaysEffect    |
+|SunRay...|	   aka moller	   |
+|         |<Furry> <SB Player> | <- that part of mollybdos
+|         |                    |
+|         |	                   |
+|         |	                   |
 |         |					   |
 |         |					   |
 |         |					   |
 \------------------------------/
-that part of mollybdos
 */
 export = pure(({ tags }: { tags: TagType }) => {
 	if (tags.isEmpty()) return <></>
@@ -28,21 +27,23 @@ export = pure(({ tags }: { tags: TagType }) => {
 			ScrollBarThickness={5}
 			BorderSizePixel={0}>
 			<uilistlayout FillDirection="Horizontal" SortOrder="LayoutOrder" Padding={new UDim(0, 5)} />
-			{tags.map((tag) => (
-				<textlabel
-					LayoutOrder={-tag.score}
-					Text={`${tag.name}${tag.score > 1 ? ` (${tag.score})` : ""}`}
-					Font="Gotham"
-					TextSize={11}
-					Size={new UDim2(0, 0, 0, 25)}
-					AutomaticSize="X"
-					BorderSizePixel={0}
-					TextColor3={WHITE}
-					BackgroundColor3={ACCENT}>
-					<uipadding PaddingLeft={new UDim(0, 5)} PaddingRight={new UDim(0, 5)} />
-					<uicorner CornerRadius={new UDim(0, 4)} />
-				</textlabel>
-			))}
+			{tags
+				.filter((tag) => tag.score !== 0)
+				.map((tag) => (
+					<textlabel
+						LayoutOrder={-tag.score}
+						Text={`${tag.name}${tag.score > 1 ? ` (${tag.score})` : ""}`}
+						Font="Gotham"
+						TextSize={11}
+						Size={new UDim2(0, 0, 0, 25)}
+						AutomaticSize="X"
+						BorderSizePixel={0}
+						TextColor3={WHITE}
+						BackgroundColor3={ACCENT}>
+						<uipadding PaddingLeft={new UDim(0, 5)} PaddingRight={new UDim(0, 5)} />
+						<uicorner CornerRadius={new UDim(0, 4)} />
+					</textlabel>
+				))}
 		</scrollingframe>
 	)
 })

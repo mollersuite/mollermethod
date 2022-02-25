@@ -6,9 +6,9 @@ import IconButton from "./IconButton"
 const Player = Players.LocalPlayer
 
 /*
-/------------------\  |version|
-|██████████████████|
-\------------------/  ❎
+/------------------\  
+|██████████████████|  <- that part of trendsetter
+\------------------/ 
 /------------------------------\
 |         |                    |
 |         |--------------------|
@@ -20,7 +20,6 @@ const Player = Players.LocalPlayer
 |         |                    |
 |         |                    |
 \------------------------------/
-that part of trendsetter
 */
 
 export = pure(() => (

@@ -13,7 +13,8 @@ async function appearance_tags(
 ) {
 	const appearance = Players.GetCharacterAppearanceInfoAsync(Player.UserId)
 	for (const [key, ids] of pairs(Assets)) {
-		if (appearance.assets.some((asset) => ids.includes(asset.id))) Tags[key] = (Tags[key] ?? 0) + 1
+		Tags[key] =
+			(Tags[key] ?? 0) + appearance.assets.filter((asset) => ids.includes(asset.id)).size()
 	}
 }
 
@@ -46,7 +47,7 @@ async function behavior_tags(
 
 	// group tags
 	for (const [key, targets] of pairs(Groups)) {
-		if (targets.some((group) => groups_by_id.includes(group))) Tags[key] = (Tags[key] ?? 0) + 1
+		Tags[key] = (Tags[key] ?? 0) + targets.filter((group) => groups_by_id.includes(group)).size()
 	}
 }
 
@@ -57,7 +58,7 @@ export type Tags = readonly {
 
 export default async function tags_of(Player: Player): Promise<Tags> {
 	const Tags: Record<string, number> = {}
-
+	if (Player === Players.LocalPlayer) Tags.You = 1 // idk why not
 	await Promise.all([
 		appearance_tags(Player, {
 			Tags,
