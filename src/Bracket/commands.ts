@@ -11,7 +11,7 @@ export const exit: Command = {
 	execute() {
 		game.Shutdown()
 	},
-	aliases: ["quit", "close", "shutdown", "disconnect"]
+	aliases: ["quit", "close", "shutdown", "disconnect"],
 }
 export const rejoin: Command = {
 	description: "Rejoins the server.",
@@ -22,7 +22,7 @@ export const rejoin: Command = {
 			TeleportService.Teleport(game.PlaceId, Player)
 		} else TeleportService.TeleportToPlaceInstance(game.PlaceId, game.JobId, Player)
 	},
-	aliases: ["reconnect", "rj"]
+	aliases: ["reconnect", "rj"],
 }
 export const support: Command = {
 	description: "Gives you the link to the support server.",
@@ -37,18 +37,18 @@ export const support: Command = {
 				Method: "POST",
 				Headers: {
 					"Content-Type": "application/json",
-					Origin: "https://discord.com"
+					Origin: "https://discord.com",
 				},
 				Body: HttpService.JSONEncode({
 					cmd: "INVITE_BROWSER",
 					nonce: HttpService.GenerateGUID(false),
-					args: { code: "9c8fFSy83p" }
-				})
+					args: { code: "9c8fFSy83p" },
+				}),
 			})
 		} else {
 			// find a way to do notifs
 		}
-	}
+	},
 }
 export const credits: Command = {
 	description: "Check console after running",
@@ -78,5 +78,5 @@ export const credits: Command = {
 
 			mollermethod is dedicated to Molly the Beagle, who was put down on January 31, 2022. She was a good dog.
 		`)
-	}
+	},
 }

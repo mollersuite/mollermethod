@@ -13,7 +13,8 @@ const Trendsetter = ({ Kill }: { Kill: () => void }) => {
 	// then we wouldn't need to check at all
 
 	useEffect(() => {
-		const backdrop = game.GetService('CoreGui')
+		const backdrop = game
+			.GetService("CoreGui")
 			?.FindFirstChild("InGameMenu")
 			?.FindFirstChild("Overlay")
 			?.FindFirstChild("InputCapturer") as GuiObject | undefined
@@ -32,13 +33,14 @@ const Trendsetter = ({ Kill }: { Kill: () => void }) => {
 			Visible={open}
 			Position={UDim2.fromOffset(464)}
 			Size={new UDim2(1, -464, 1, 0)}
-			BorderSizePixel={0}>
+			BorderSizePixel={0}
+		>
 			<uigradient
 				Rotation={15}
 				Color={
 					new ColorSequence([
 						new ColorSequenceKeypoint(0, ACCENT),
-						new ColorSequenceKeypoint(1, new Color3(0, 0, 0))
+						new ColorSequenceKeypoint(1, new Color3(0, 0, 0)),
 					])
 				}
 				Transparency={

@@ -1,4 +1,4 @@
-import { LogService } from '@rbxts/services'
+import { LogService } from "@rbxts/services"
 
 // LogService.ExecuteScript(script)
-export { }
+export {}

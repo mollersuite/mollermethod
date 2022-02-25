@@ -25,7 +25,8 @@ export = pure(({ tags }: { tags: TagType }) => {
 			Size={new UDim2(1, 0, 0, 25)}
 			CanvasSize={UDim2.fromScale(0, 0)}
 			ScrollBarThickness={5}
-			BorderSizePixel={0}>
+			BorderSizePixel={0}
+		>
 			<uilistlayout FillDirection="Horizontal" SortOrder="LayoutOrder" Padding={new UDim(0, 5)} />
 			{tags
 				.filter((tag) => tag.score !== 0)
@@ -39,7 +40,8 @@ export = pure(({ tags }: { tags: TagType }) => {
 						AutomaticSize="X"
 						BorderSizePixel={0}
 						TextColor3={WHITE}
-						BackgroundColor3={ACCENT}>
+						BackgroundColor3={ACCENT}
+					>
 						<uipadding PaddingLeft={new UDim(0, 5)} PaddingRight={new UDim(0, 5)} />
 						<uicorner CornerRadius={new UDim(0, 4)} />
 					</textlabel>

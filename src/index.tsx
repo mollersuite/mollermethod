@@ -23,13 +23,13 @@ const quotes = [
 	'"i fuking hat you ashole ill fuck find you [...] tis yor fault" - Vexaria, 2021',
 	'"this is why you dont give people stuff that actually works and isnt bad" - Charlie, 2021',
 	'"Well listen and listen well, me and Auxnos partnered and fixed the animations, lights, and fixed the guns." - mongrio, 2021',
-	`"I'ma hack u y'all" - cash_youtwin, 2020`
+	`"I'ma hack u y'all" - cash_youtwin, 2020`,
 ]
 
 const startups = {
 	alarm3: "rbxassetid://6366788549",
 	speaker: "rbxassetid://8370988437",
-	x10: "rbxassetid://8192419115"
+	x10: "rbxassetid://8192419115",
 }
 
 /**
@@ -86,7 +86,7 @@ export = function (options: { Debug?: true; GUI: ScreenGui; Sound?: string }) {
 		border,
 		new TweenInfo(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, true),
 		{
-			Size: new UDim2(1, -10, 1, -10)
+			Size: new UDim2(1, -10, 1, -10),
 		}
 	).Play()
 }

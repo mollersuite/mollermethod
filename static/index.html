@@ -28,7 +28,7 @@ local ids =
 		"rbxassetid://7037356929",
 		"rbxassetid://7044042331",
 		"rbxassetid://7044088926",
-		"rbxassetid://7046289590"
+		"rbxassetid://7046289590",
 	}
 
 local GUI = Instance.new("ScreenGui")
@@ -70,7 +70,7 @@ task.spawn(function()
 		TweenInfo.new(.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, true),
 		{
 			TextTransparency = 0,
-			BackgroundTransparency = 0
+			BackgroundTransparency = 0,
 		}
 	):Play()
 
@@ -89,7 +89,7 @@ task.spawn(function()
 			TweenInfo.new(1, Enum.EasingStyle.Exponential, Enum.EasingDirection.In),
 			{
 				Position = UDim2.new(),
-				Size = UDim2.new()
+				Size = UDim2.new(),
 			}
 		):Play()
 		Debris:AddItem(particle, 1.5)
@@ -101,7 +101,7 @@ task.spawn(function()
 		TweenInfo.new(.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, true),
 		{
 			TextTransparency = 1,
-			BackgroundTransparency = 1
+			BackgroundTransparency = 1,
 		}
 	):Play()
 end)
@@ -120,7 +120,7 @@ xpcall(
 		local project = rbxmSuite.launch("mollermethod.rbxm", {
 			debug = true, --CONFIG.Debug, -- Oddly, debug mode is 2x faster than release mode.
 			verbose = CONFIG.Debug,
-			runscripts = false
+			runscripts = false,
 		})
 		rbxmSuite.require(project)(CONFIG)
 		loading = false

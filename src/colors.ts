@@ -12,7 +12,7 @@ export const GRAY = [
 	Color3.fromRGB(48, 54, 61),
 	Color3.fromRGB(33, 38, 45),
 	Color3.fromRGB(22, 27, 34),
-	Color3.fromRGB(13, 17, 23)
+	Color3.fromRGB(13, 17, 23),
 ]
 export const BLUE = [
 	Color3.fromRGB(202, 232, 255),
@@ -24,7 +24,7 @@ export const BLUE = [
 	Color3.fromRGB(17, 88, 199),
 	Color3.fromRGB(13, 65, 157),
 	Color3.fromRGB(12, 45, 107),
-	Color3.fromRGB(5, 29, 77)
+	Color3.fromRGB(5, 29, 77),
 ]
 export const GREEN = [
 	Color3.fromRGB(175, 245, 180),
@@ -36,7 +36,7 @@ export const GREEN = [
 	Color3.fromRGB(25, 108, 46),
 	Color3.fromRGB(15, 83, 35),
 	Color3.fromRGB(3, 58, 22),
-	Color3.fromRGB(4, 38, 15)
+	Color3.fromRGB(4, 38, 15),
 ]
 export const YELLOW = [
 	Color3.fromRGB(248, 227, 161),
@@ -48,7 +48,7 @@ export const YELLOW = [
 	Color3.fromRGB(132, 83, 6),
 	Color3.fromRGB(105, 62, 0),
 	Color3.fromRGB(75, 41, 0),
-	Color3.fromRGB(52, 26, 0)
+	Color3.fromRGB(52, 26, 0),
 ]
 export const ORANGE = [
 	Color3.fromRGB(255, 223, 182),
@@ -60,7 +60,7 @@ export const ORANGE = [
 	Color3.fromRGB(155, 66, 21),
 	Color3.fromRGB(118, 45, 10),
 	Color3.fromRGB(90, 30, 2),
-	Color3.fromRGB(61, 19, 0)
+	Color3.fromRGB(61, 19, 0),
 ]
 export const RED = [
 	Color3.fromRGB(255, 220, 215),
@@ -72,7 +72,7 @@ export const RED = [
 	Color3.fromRGB(182, 35, 36),
 	Color3.fromRGB(142, 21, 25),
 	Color3.fromRGB(103, 6, 12),
-	Color3.fromRGB(73, 2, 2)
+	Color3.fromRGB(73, 2, 2),
 ]
 export const PURPLE = [
 	Color3.fromRGB(237, 222, 255),
@@ -84,5 +84,5 @@ export const PURPLE = [
 	Color3.fromRGB(110, 64, 201),
 	Color3.fromRGB(85, 48, 152),
 	Color3.fromRGB(60, 30, 112),
-	Color3.fromRGB(39, 16, 82)
+	Color3.fromRGB(39, 16, 82),
 ]

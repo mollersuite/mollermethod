@@ -52,7 +52,8 @@ export = pure(({ selected }: { selected: Player | void }) => {
 			ClipsDescendants
 			ScrollBarThickness={5}
 			AutomaticCanvasSize="Y"
-			CanvasSize={UDim2.fromScale(0, 1)}>
+			CanvasSize={UDim2.fromScale(0, 1)}
+		>
 			<uipadding PaddingTop={new UDim(0, 5)} />
 			<uilistlayout />
 			<textlabel

@@ -5,7 +5,7 @@ async function appearance_tags(
 	Player: Player,
 	{
 		Tags,
-		Assets
+		Assets,
 	}: {
 		Tags: Record<string, number | void>
 		Assets: Record<string, number[]>
@@ -22,7 +22,7 @@ async function behavior_tags(
 	Player: Player,
 	{
 		Tags,
-		Groups
+		Groups,
 	}: {
 		Tags: Record<string, number | void>
 		Groups: Record<string, number[]>
@@ -66,7 +66,7 @@ export default async function tags_of(Player: Player): Promise<Tags> {
 				"mom's credit card": [
 					134082579, // headless
 					139607718, // korblox right
-					139607673 // korblox left
+					139607673, // korblox left
 				],
 				Furry: [
 					// Main series protogens
@@ -97,21 +97,21 @@ export default async function tags_of(Player: Player): Promise<Tags> {
 					7063127310, // Purple
 					7063129601, // Green
 					7199524418, // Shade
-					7199503248 // Pale
+					7199503248, // Pale
 				],
 				"SB Player": [
 					8508134960, // A̶P̶T̶-̶2̶2̶8̶3̶-̶3̶ Jack Hase's pants
-					8508134006 // A̶P̶T̶-̶2̶2̶8̶3̶-̶3̶ Jack Hase's shirt
-				]
-			}
+					8508134006, // A̶P̶T̶-̶2̶2̶8̶3̶-̶3̶ Jack Hase's shirt
+				],
+			},
 		}),
 		behavior_tags(Player, {
 			Tags,
 			Groups: {
 				"SB Player": [10350051, 6778737, 3256759, 11339696],
-				Furry: [5245050, 2684849, 5833102, 13802474]
-			}
-		})
+				Furry: [5245050, 2684849, 5833102, 13802474],
+			},
+		}),
 	])
 
 	const final_array = []

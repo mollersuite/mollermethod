@@ -21,7 +21,7 @@ that part of mollybdos
 export = pure(
 	({
 		selected,
-		setSelected
+		setSelected,
 	}: {
 		selected: Player | void
 		setSelected: Dispatch<Player | void>
@@ -48,7 +48,8 @@ export = pure(
 				ClipsDescendants
 				AutomaticCanvasSize="Y"
 				ScrollBarThickness={5}
-				CanvasSize={UDim2.fromScale(0, 1)}>
+				CanvasSize={UDim2.fromScale(0, 1)}
+			>
 				<uilistlayout SortOrder="Name" />
 				{players.map((player) => (
 					<textbutton
@@ -61,7 +62,7 @@ export = pure(
 						Key={player.Name}
 						TextSize={11}
 						Event={{
-							Activated: () => setSelected(player)
+							Activated: () => setSelected(player),
 						}}
 						BackgroundColor3={player === selected ? ACCENT : GRAY[6]}
 						TextColor3={WHITE}

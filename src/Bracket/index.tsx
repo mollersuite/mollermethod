@@ -65,7 +65,7 @@ export default pure(() => {
 						execute(rbx.Text.sub(2))
 					} else execute(rbx.Text)
 					setShown(false)
-				}
+				},
 			}}
 			Change={{
 				Text: (rbx) => {
@@ -73,11 +73,12 @@ export default pure(() => {
 						gradient.getValue()!,
 						new TweenInfo(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut),
 						{
-							Rotation: (utf8.len(rbx.Text)[0] || 0) * 5
+							Rotation: (utf8.len(rbx.Text)[0] || 0) * 5,
 						}
 					).Play()
-				}
-			}}>
+				},
+			}}
+		>
 			<uicorner CornerRadius={new UDim(0, 16)} />
 			<uipadding
 				PaddingLeft={new UDim(0, 8)}
@@ -90,14 +91,15 @@ export default pure(() => {
 				Color={new Color3(1, 1, 1)}
 				ApplyStrokeMode="Border"
 				Transparency={0}
-				LineJoinMode="Round">
+				LineJoinMode="Round"
+			>
 				<uigradient
 					Ref={gradient}
 					Rotation={(utf8.len(box.getValue()?.Text || "")[0] || 0) * 5}
 					Color={
 						new ColorSequence([
 							new ColorSequenceKeypoint(0, ACCENT),
-							new ColorSequenceKeypoint(1, BLACK)
+							new ColorSequenceKeypoint(1, BLACK),
 						])
 					}
 				/>
