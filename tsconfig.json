@@ -15,12 +15,7 @@
 		"strict": true,
 		"target": "ESNext",
 		"typeRoots": ["node_modules/@rbxts"],
-
 		"plugins": [
-			{
-				"transform": "tsc-progress",
-				"title": "roblox-ts"
-			},
 			{
 				"transform": "rbxts-transform-debug",
 				"environmentRequires": {

@@ -74,7 +74,6 @@ export const credits: Command = {
 			prettier by many people (MIT)
 			rbxts-transform-debug by Vorlias (MIT)
 			roblox-ts by Osyris (MIT)
-			tsc-progress by JiangWeixian (MIT)
 
 			mollermethod is dedicated to Molly the Beagle, who was put down on January 31, 2022. She was a good dog.
 		`)
