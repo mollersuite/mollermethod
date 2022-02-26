@@ -1,5 +1,6 @@
-import { HttpService, TeleportService, Players } from "@rbxts/services"
+import { HttpService, TeleportService, Players, Workspace } from "@rbxts/services"
 const Player = Players.LocalPlayer
+
 interface Command {
 	readonly description: string
 	readonly aliases?: readonly string[]
@@ -8,9 +9,7 @@ interface Command {
 
 export const exit: Command = {
 	description: "Closes the game.",
-	execute() {
-		game.Shutdown()
-	},
+	execute: () => game.Shutdown(),
 	aliases: ["quit", "close", "shutdown", "disconnect"],
 }
 export const rejoin: Command = {
@@ -79,4 +78,19 @@ export const credits: Command = {
 			mollermethod is dedicated to Molly the Beagle, who was put down on January 31, 2022. She was a good dog.
 		`)
 	},
+}
+
+export const respawn: Command = {
+	description: "Respawns you.",
+	async execute() {
+		const char = Player.Character
+		char?.FindFirstChildOfClass("Humanoid")?.ChangeState("Dead")
+		char?.ClearAllChildren()
+		const newchar = new Instance("Model", Workspace)
+		Player.Character = newchar
+		task.wait()
+		Player.Character = char
+		newchar.Destroy()
+	},
+	aliases: ["re", "refresh"],
 }

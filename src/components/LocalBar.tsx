@@ -1,9 +1,8 @@
 import Roact from "@rbxts/roact"
 import { pure } from "@rbxts/roact-hooked"
-import { Players, TeleportService, Workspace } from "@rbxts/services"
 import { BLACK } from "colors"
 import IconButton from "./IconButton"
-const Player = Players.LocalPlayer
+import { respawn, rejoin } from "Bracket/commands"
 
 /*
 /------------------\  
@@ -41,29 +40,14 @@ export = pure(() => (
 			Image="rbxassetid://3926307971"
 			ImageRectOffset={new Vector2(404, 84)}
 			ImageRectSize={new Vector2(36, 36)}
-			Clicked={() => {
-				const char = Player.Character
-				char?.FindFirstChildOfClass("Humanoid")?.ChangeState("Dead")
-				char?.ClearAllChildren()
-				const newchar = new Instance("Model", Workspace)
-				Player.Character = newchar
-				task.wait()
-				Player.Character = char
-				newchar.Destroy()
-			}}
+			Clicked={() => respawn.execute([])}
 		/>
 		{/* rejoin */}
 		<IconButton
 			Image="rbxassetid://3926307971"
 			ImageRectOffset={new Vector2(244, 484)}
 			ImageRectSize={new Vector2(36, 36)}
-			Clicked={() => {
-				if (Players.GetPlayers().size() === 1) {
-					Player.Kick("Rejoining...")
-					task.wait() // not sure if this is needed but IY does it
-					TeleportService.Teleport(game.PlaceId, Player)
-				} else TeleportService.TeleportToPlaceInstance(game.PlaceId, game.JobId, Player)
-			}}
+			Clicked={() => rejoin.execute([])}
 		/>
 	</frame>
 ))
