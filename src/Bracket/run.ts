@@ -31,7 +31,8 @@ const get_players_no_comma = (selector = "N/A") => {
 			.map(friend => friend.VisitorId)
 			.mapFiltered(friend_id => Players.GetPlayerByUserId(friend_id))
 	if (selector === "others") return Players.GetPlayers().filter(plr => plr !== LocalPlayer)
-	return Players.GetPlayers().filter(plr => !!plr.Name.lower().match("^" + selector.lower())[0])
+	if (selector.sub(1,1) === "@") Players.GetPlayers().filter(plr => !!plr.Name.lower().match("^" + selector.sub(2).lower())[0])
+	return Players.GetPlayers().filter(plr => !!plr.DisplayName.lower().match("^" + selector.lower())[0])
 }
 const get_players = (selector = "N/A") =>
 	flatten(selector.split(",").map(str => get_players_no_comma(str)))

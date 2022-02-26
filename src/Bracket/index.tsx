@@ -1,7 +1,7 @@
 import Roact from "@rbxts/roact"
 import { pure, useEffect, useState } from "@rbxts/roact-hooked"
 import { TweenService, UserInputService } from "@rbxts/services"
-import { ACCENT, BLACK, WHITE } from "colors"
+import { ACCENT, BLACK, GRAY, WHITE } from "colors"
 import { play } from "util"
 import execute from "./run"
 
@@ -98,7 +98,9 @@ export default pure(({ button }: { button: Enum.KeyCode }) => {
 					Color={
 						new ColorSequence([
 							new ColorSequenceKeypoint(0, ACCENT),
-							new ColorSequenceKeypoint(1, BLACK),
+							new ColorSequenceKeypoint(0.499, ACCENT),
+							new ColorSequenceKeypoint(0.5, GRAY[4]),
+							new ColorSequenceKeypoint(1, GRAY[4]),
 						])
 					}
 				/>
