@@ -21,6 +21,9 @@
 				"environmentRequires": {
 					"CF_PAGES": null
 				}
+			},
+			{
+				"transform": "rbxts-transformer-services"
 			}
 		],
 		// configurable

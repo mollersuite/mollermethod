@@ -64,18 +64,17 @@ export const credits: Command = {
 			DEPENDENCIES
 			@rbxts/roact by Roblox (Apache-2.0)
 			@rbxts/roact-hooked by littensy (MIT)
-			@rbxts/services by Osyris (ISC)
 			
 			BUILD TOOLS
 			@prettier/plugin-lua by suchipi (MIT)
 			@rbxts/compiler-types by Osyris
 			@rbxts/exploit-tools by richie0866 (MIT)
 			@rbxts/types by Osyris (MIT)
+			@rbxts/services by Osyris (ISC)
 			prettier by many people (MIT)
 			rbxts-transform-debug by Vorlias (MIT)
+			rbxts-transformer-services by Fireboltofdeath (ISC)
 			roblox-ts by Osyris (MIT)
-
-			Some actions adapted from Adonis (MIT, I am a contributor)
 
 			mollermethod is dedicated to Molly the Beagle, who was put down on January 31, 2022. She was a good dog.
 		`)

@@ -28,8 +28,7 @@ const get_players_no_comma = (selector = "N/A") => {
 	if (selector === "me") return [LocalPlayer]
 	if (selector === "friends")
 		return LocalPlayer.GetFriendsOnline()
-			.map(friend => friend.VisitorId)
-			.mapFiltered(friend_id => Players.GetPlayerByUserId(friend_id))
+			.mapFiltered(friend => Players.GetPlayerByUserId(friend.VisitorId))
 	if (selector === "others") return Players.GetPlayers().filter(plr => plr !== LocalPlayer)
 	if (selector.sub(1, 1) === "@")
 		Players.GetPlayers().filter(plr => !!plr.Name.lower().match("^" + selector.sub(2).lower())[0])
@@ -37,8 +36,8 @@ const get_players_no_comma = (selector = "N/A") => {
 		plr => !!plr.DisplayName.lower().match("^" + selector.lower())[0]
 	)
 }
-const get_players = (selector = "N/A") =>
-	flatten(selector.split(",").map(str => get_players_no_comma(str)))
+const get_players = (selector?: string) =>
+	selector === undefined ? [LocalPlayer] : flatten(selector.split(",").map(str => get_players_no_comma(str)))
 
 export = async (cmd: string) => {
 	const args = cmd.split(" ")
