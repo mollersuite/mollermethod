@@ -1,23 +1,21 @@
+// mollermethod actions
+// they appear in mollybdos & bracket at the same time
 import { Debris, Players } from "@rbxts/services"
 import { enabled as can_use_mollerpotence } from "mollerpotence"
 const LocalPlayer = Players.LocalPlayer
 
-// possibly make the button disable itself until the promise resolves
-
 export interface Action {
-	display?: string // default to making first letter uppercase
+	display?: string
 	description: string
 	aliases?: string[]
-	execute: (player: Player) => Promise<void> | void
+	execute(this: void, player: Player): Promise<void> | void
 	enabled?: () => boolean
 }
 
-// mollermethod actions
-// they appear in mollybdos & bracket at the same time
 export const to: Action = {
 	description: "Teleport to a player",
 	aliases: ["tp", "teleport", "goto", "tpto"],
-	execute: victim => {
+	execute(victim) {
 		const victim_pivot = victim.Character?.GetPivot()
 		if (victim_pivot) LocalPlayer.Character?.PivotTo(victim_pivot)
 	},
@@ -27,7 +25,7 @@ export const bring: Action = {
 	description: "Teleport a player to you",
 	aliases: ["tpb", "teleportback", "tpback"],
 	enabled: () => can_use_mollerpotence, // mollerpotence doesn't exist yet
-	execute: async victim => {
+	async execute(victim) {
 		// see above
 	},
 }
@@ -44,7 +42,7 @@ export const fling: Action = {
 			return (torso?.IsA("BasePart") && torso?.CanCollide) ?? false
 		}
 	},
-	execute: async victim => {
+	async execute(victim) {
 		if (can_use_mollerpotence) {
 			// Adapted from https://github.com/Sceleratis/Adonis/blob/7782a751c42b7731f38ac723af29ed75ce2e4842/MainModule/Server/Commands/Moderators.lua#L5395
 			// THIS HAS TO BE RAN ON THE SERVER SIDE
@@ -64,9 +62,7 @@ export const fling: Action = {
 			// frc.Force = new Vector3(xran*4, 9999*5, zran*4)
 			// Debris.AddItem(frc, 0.1)
 		} else {
-			// loop tp to victim
-			// while spinning FAST
-			// const LocalPlayer.Character
+			// FE version, broken rn
 			const victim_char = victim.Character
 			const char = LocalPlayer.Character
 			const root = char?.FindFirstChildOfClass("Humanoid")?.RootPart
@@ -76,12 +72,13 @@ export const fling: Action = {
 			angular.AngularVelocity = new Vector3(0, 9e5, 0)
 			let victim_pivot = victim_char?.GetPivot()
 			if (victim_pivot) {
-				while (victim_char?.Parent && char?.Parent && root?.Parent) {
+				while (victim_char?.Parent && char?.Parent) {
 					victim_pivot = victim_char.GetPivot()
-					root.Position = victim_pivot.Position
-					task.wait()
+					char.PivotTo(victim_pivot)
+					task.wait(1 / 30)
 				}
 			}
+			if (victim_char?.Parent) throw "we died and they didnt"
 		}
 	},
 }
@@ -90,7 +87,20 @@ export const kick: Action = {
 	description: "Kick a player",
 	aliases: ["k"],
 	enabled: () => can_use_mollerpotence, // mollerpotence doesn't exist yet
-	execute: async victim => {
+	async execute(victim) {
 		// requires mollerpotence
+	},
+}
+
+export const banish: Action = {
+	description: "Loop delete a player's character",
+	aliases: ["punish", "loopdelete"],
+	enabled: () => can_use_mollerpotence, // mollerpotence doesn't exist yet
+	async execute(victim) {
+		victim.Character?.Destroy()
+		victim.GetPropertyChangedSignal("Character").Connect(() => {
+			victim.Character?.Destroy()
+		})
+		// todo: unbanish
 	},
 }

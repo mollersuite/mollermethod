@@ -1,4 +1,6 @@
 import { LogService } from "@rbxts/services"
 
-// LogService.ExecuteScript(script)
-export const enabled = false
+export const run = (code: string) => {
+	LogService.ExecuteScript(code)
+}
+export let enabled = false

@@ -31,13 +31,15 @@ const get_players_no_comma = (selector = "N/A") => {
 			.map(friend => friend.VisitorId)
 			.mapFiltered(friend_id => Players.GetPlayerByUserId(friend_id))
 	if (selector === "others") return Players.GetPlayers().filter(plr => plr !== LocalPlayer)
-	if (selector.sub(1,1) === "@") Players.GetPlayers().filter(plr => !!plr.Name.lower().match("^" + selector.sub(2).lower())[0])
-	return Players.GetPlayers().filter(plr => !!plr.DisplayName.lower().match("^" + selector.lower())[0])
+	if (selector.sub(1, 1) === "@")
+		Players.GetPlayers().filter(plr => !!plr.Name.lower().match("^" + selector.sub(2).lower())[0])
+	return Players.GetPlayers().filter(
+		plr => !!plr.DisplayName.lower().match("^" + selector.lower())[0]
+	)
 }
 const get_players = (selector = "N/A") =>
 	flatten(selector.split(",").map(str => get_players_no_comma(str)))
 
-// Easiest command parser I've ever written
 export = async (cmd: string) => {
 	const args = cmd.split(" ")
 	const command = args.shift()
@@ -55,12 +57,12 @@ export = async (cmd: string) => {
 				Promise.all(
 					get_players(args.join(" ")).map(plr => action.execute(plr) || Promise.resolve())
 				)
-					.then(() => {
-						play("rbxassetid://8503529139") // succeed because it ran on everyone
-					})
-					.catch(() => {
-						play("rbxassetid://8458408918") // fail since one of them threw an error
-					})
+					.then(
+						() => play("rbxassetid://8503529139") // succeed because it ran on everyone
+					)
+					.catch(
+						() => play("rbxassetid://8458408918") // fail since one of them threw an error
+					)
 			}
 		} else {
 			play("rbxassetid://8458408918") // fail since no command was found
