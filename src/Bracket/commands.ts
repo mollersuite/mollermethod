@@ -92,5 +92,5 @@ export const respawn: Command = {
 		Player.Character = char
 		newchar.Destroy()
 	},
-	aliases: ["re", "refresh"],
+	aliases: ["re", "refresh", "sr", "r"],
 }
