@@ -30,7 +30,7 @@ export = pure(
 		const [players, setPlayers] = useState<Player[]>(Players.GetPlayers())
 		useEffect(() => {
 			const adding = Players.PlayerAdded.Connect(player => {
-				setPlayers([...players, player])
+				setPlayers(Players.GetPlayers())
 			})
 			const removing = Players.PlayerRemoving.Connect(player => {
 				setPlayers(players.filter(p => p !== player))
@@ -52,7 +52,7 @@ export = pure(
 				<uilistlayout SortOrder="Name" />
 				{players.map(player => (
 					<textbutton
-						Size={new UDim2(1, 0, 0, 25)}
+						Size={new UDim2(1, 0, 0, 0)}
 						TextWrapped
 						AutomaticSize="Y"
 						Text={
@@ -61,15 +61,23 @@ export = pure(
 								: player.Name
 						}
 						BorderSizePixel={0}
-						Font="Gotham"
-						Key={player.Name}
+						TextXAlignment="Left"
+						TextYAlignment="Center"
+						Font={player === selected ? "GothamBold" : "Gotham"}
+						Key={player.DisplayName}
 						TextSize={11}
 						Event={{
 							Activated: () => setSelected(player),
 						}}
 						BackgroundColor3={player === selected ? ACCENT : GRAY[6]}
-						TextColor3={WHITE}
-					/>
+						TextColor3={WHITE}>
+						<uipadding
+							PaddingTop={new UDim(0, 5)}
+							PaddingBottom={new UDim(0, 5)}
+							PaddingLeft={new UDim(0, 5)}
+							PaddingRight={new UDim(0, 5)}
+						/>
+					</textbutton>
 				))}
 			</scrollingframe>
 		)

@@ -38,8 +38,10 @@ export const fling: Action = {
 		if (can_use_mollerpotence) {
 			return true
 		} else {
-			const head = LocalPlayer.Character?.FindFirstChild("Head")
-			return (head?.IsA("BasePart") && head?.CanCollide) ?? false
+			const torso =
+				LocalPlayer.Character?.FindFirstChild("UpperTorso") ??
+				LocalPlayer.Character?.FindFirstChild("Torso")
+			return (torso?.IsA("BasePart") && torso?.CanCollide) ?? false
 		}
 	},
 	execute: async victim => {
