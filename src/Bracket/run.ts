@@ -55,7 +55,7 @@ export = async (cmd: string) => {
 				play("rbxassetid://8458408918") // fail since its not enabled
 			} else {
 				Promise.all(
-					get_players(args.join(" ")).map(plr => action.execute(plr) || Promise.resolve())
+					get_players(args.join(" ")).map(plr => action.execute(plr) ?? Promise.resolve())
 				)
 					.then(
 						() => play("rbxassetid://8503529139") // succeed because it ran on everyone

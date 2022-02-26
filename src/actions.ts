@@ -1,6 +1,6 @@
 // mollermethod actions
 // they appear in mollybdos & bracket at the same time
-import { Debris, Players } from "@rbxts/services"
+import { Debris, Players, RunService } from "@rbxts/services"
 import { enabled as can_use_mollerpotence } from "mollerpotence"
 const LocalPlayer = Players.LocalPlayer
 
@@ -8,7 +8,7 @@ export interface Action {
 	display?: string
 	description: string
 	aliases?: string[]
-	execute(this: void, player: Player): Promise<void> | void
+	execute(this: void, player: Player): Promise<unknown> | unknown
 	enabled?: () => boolean
 }
 
@@ -30,6 +30,8 @@ export const bring: Action = {
 	},
 }
 
+const max_time = 10
+const target_speed = 150
 export const fling: Action = {
 	description: "Make 'em fly. Requires either CanCollide or mollerpotence",
 	enabled: () => {
@@ -62,23 +64,59 @@ export const fling: Action = {
 			// frc.Force = new Vector3(xran*4, 9999*5, zran*4)
 			// Debris.AddItem(frc, 0.1)
 		} else {
-			// FE version, broken rn
-			const victim_char = victim.Character
+			// const victim_char = victim.Character
+			// const char = LocalPlayer.Character
+			// const root = char?.FindFirstChildOfClass("Humanoid")?.RootPart
+			// const victim_root = victim_char?.FindFirstChildOfClass("Humanoid")?.RootPart
+			// const angular = new Instance("BodyAngularVelocity", root)
+			// angular.MaxTorque = Vector3.one.mul(math.huge)
+			// angular.P = math.huge
+			// angular.AngularVelocity = new Vector3(0, 9e5, 0)
+			// let victim_pivot = victim_char?.GetPivot()
+			// if (victim_pivot) {
+			// 	while (victim_root?.Parent && root?.Parent) {
+			// 		victim_pivot = victim_root.CFrame
+			// 		root.PivotTo(victim_pivot)
+			// 		task.wait(1 / 30)
+			// 	}
+			// }
+
+			// if (victim_char?.Parent) throw "we died and they didnt"
+			const target_root = victim.Character?.PrimaryPart
+			const end_time = time() + max_time
+			const our_root = LocalPlayer.Character?.PrimaryPart
 			const char = LocalPlayer.Character
-			const root = char?.FindFirstChildOfClass("Humanoid")?.RootPart
-			const angular = new Instance("BodyAngularVelocity", root)
-			angular.MaxTorque = Vector3.one.mul(math.huge)
-			angular.P = math.huge
-			angular.AngularVelocity = new Vector3(0, 9e5, 0)
-			let victim_pivot = victim_char?.GetPivot()
-			if (victim_pivot) {
-				while (victim_char?.Parent && char?.Parent) {
-					victim_pivot = victim_char.GetPivot()
-					char.PivotTo(victim_pivot)
-					task.wait(1 / 30)
+			if (target_root && our_root) {
+				while (true) {
+					LocalPlayer.Character?.GetChildren().forEach(child => {
+						if (child.IsA("BasePart")) {
+							child.CanCollide = false
+							child.Velocity = Vector3.zero
+						}
+					})
+					if (target_root.Velocity.Magnitude > target_speed) {
+						break
+					}
+					if (time() > end_time) {
+						throw "Fling failed."
+					}
+					const [delta] = RunService.RenderStepped.Wait()
+					char!.PivotTo(
+						target_root.CFrame.mul(CFrame.Angles(math.pi, math.random() * 10, 0))
+							.add(new Vector3(0, -1, 0))
+							.add(target_root.Velocity.mul(delta).mul(5))
+					)
+					our_root.Velocity = Vector3.zero
+					our_root.RotVelocity = new Vector3(0, 5000, 0)
 				}
-			}
-			if (victim_char?.Parent) throw "we died and they didnt"
+			} else throw "Could not find roots"
+			LocalPlayer.Character?.GetChildren().forEach(child => {
+				if (child.IsA("BasePart")) {
+					child.CanCollide = child !== our_root
+					child.Velocity = Vector3.zero
+					child.RotVelocity = Vector3.zero
+				}
+			})
 		}
 	},
 }
