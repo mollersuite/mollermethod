@@ -66,7 +66,7 @@ const Notification = ({
 				TextColor3={WHITE}
 				TextXAlignment="Left"
 				TextYAlignment="Top"
-				Position={new UDim2(0, 70, 0, 5)}
+				Position={UDim2.fromOffset(70, 5)}
 				Size={new UDim2(1, -70, 0, 25)}
 				AutomaticSize="Y"
 				BackgroundTransparency={1}
@@ -80,7 +80,7 @@ const Notification = ({
 				TextColor3={WHITE}
 				TextXAlignment="Left"
 				TextYAlignment="Top"
-				Position={new UDim2(0, 70, 0, 30)}
+				Position={UDim2.fromOffset(70, 30)}
 				Size={new UDim2(1, -70, 1, -30)}
 				TextWrapped
 				BackgroundTransparency={1}

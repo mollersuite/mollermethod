@@ -37,6 +37,18 @@ export function play(id: string, volume = 5) {
  */
 export const random = <T>(arr: readonly T[]): T => arr[math.random(arr.size()) - 1]
 
+/*
+	ok so
+	in Bracket
+	i'm doing like cmd.match('^' + input)
+	and like
+	BRACKET'S PREFIX IS [
+	so
+	in Lua
+	that causes an unmatched group
+	so
+	i need to escape
+*/
 export const escape_lua_pattern = (s: string) =>
 	s.gsub(".", {
 		"^": "%^",
@@ -53,6 +65,13 @@ export const escape_lua_pattern = (s: string) =>
 		"?": "%?",
 	})[0]
 
+/**
+ * Removes duplicated elements from an array based on a key fuction
+ * For example I normally can't use Set to remove duplicates if I have an object like {name: "moller", age: 23}
+ * But with this I can do obj => obj.name
+ * and boom if theres two mollers it only keeps 1
+ * got no clue which would it would keep
+ */
 export function removeDuplicatesBy<T>(keyFn: (element: T) => unknown, array: T[]): T[] {
 	const mySet = new Set()
 	return array.filter(function (x) {
