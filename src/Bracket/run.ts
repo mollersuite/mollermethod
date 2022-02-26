@@ -27,8 +27,9 @@ const get_players_no_comma = (selector = "N/A") => {
 	if (selector === "all") return Players.GetPlayers()
 	if (selector === "me") return [LocalPlayer]
 	if (selector === "friends")
-		return LocalPlayer.GetFriendsOnline()
-			.mapFiltered(friend => Players.GetPlayerByUserId(friend.VisitorId))
+		return LocalPlayer.GetFriendsOnline().mapFiltered(friend =>
+			Players.GetPlayerByUserId(friend.VisitorId)
+		)
 	if (selector === "others") return Players.GetPlayers().filter(plr => plr !== LocalPlayer)
 	if (selector.sub(1, 1) === "@")
 		Players.GetPlayers().filter(plr => !!plr.Name.lower().match("^" + selector.sub(2).lower())[0])
@@ -37,7 +38,9 @@ const get_players_no_comma = (selector = "N/A") => {
 	)
 }
 const get_players = (selector?: string) =>
-	selector === undefined ? [LocalPlayer] : flatten(selector.split(",").map(str => get_players_no_comma(str)))
+	selector === undefined
+		? [LocalPlayer]
+		: flatten(selector.split(",").map(str => get_players_no_comma(str)))
 
 export default async (cmd: string) => {
 	const args = cmd.split(" ")
@@ -47,7 +50,7 @@ export default async (cmd: string) => {
 		const action_name = action_names[command]
 		if (command_name) {
 			await commands[command_name].execute(args)
-			play("rbxassetid://8503529139") // succeed because command ran
+			play("rbxassetid://8503529139", 10) // succeed because command ran
 		} else if (action_name) {
 			const action = actions[action_name]
 			if (action.enabled && !action.enabled()) {
@@ -57,7 +60,7 @@ export default async (cmd: string) => {
 					get_players(args.join(" ")).map(plr => action.execute(plr) ?? Promise.resolve())
 				)
 					.then(
-						() => play("rbxassetid://8503529139") // succeed because it ran on everyone
+						() => play("rbxassetid://8503529139", 10) // succeed because it ran on everyone
 					)
 					.catch(
 						() => play("rbxassetid://8458408918") // fail since one of them threw an error

@@ -112,7 +112,10 @@ export default hooked(({ button }: { button: Enum.KeyCode }) => {
 				Event={{
 					FocusLost: (rbx, enter) => {
 						setShown(false)
-						if (!enter) return
+						if (!enter) {
+							play("rbxassetid://8926096648", 10) // windows 11 hardware disconnect
+							return
+						}
 						if (rbx.Text.sub(1, 1) === UserInputService.GetStringForKeyCode(button)) {
 							execute(rbx.Text.sub(2))
 						} else execute(rbx.Text)
@@ -121,7 +124,7 @@ export default hooked(({ button }: { button: Enum.KeyCode }) => {
 				Change={{
 					Text: rbx => setText(rbx.Text),
 				}}>
-				<uicorner CornerRadius={new UDim(0, 4)} />
+				<uicorner CornerRadius={new UDim(0, 8)} />
 				<uipadding
 					PaddingLeft={new UDim(0, 8)}
 					PaddingRight={new UDim(0, 8)}
@@ -230,7 +233,7 @@ export default hooked(({ button }: { button: Enum.KeyCode }) => {
 						) : (
 							[]
 						)}
-						<uicorner CornerRadius={new UDim(0, 4)} />
+						<uicorner CornerRadius={new UDim(0, 8)} />
 					</frame>
 				)
 			})}
