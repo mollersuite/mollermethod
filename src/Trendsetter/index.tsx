@@ -1,8 +1,8 @@
 import Roact from "@rbxts/roact"
-import TopLeft from "components/TopLeft"
 import { GuiService } from "@rbxts/services"
 import { ACCENT } from "colors"
 import IconButton from "./IconButton"
+import TopLeft from "./TopLeft"
 import { useEffect, useState, pure } from "@rbxts/roact-hooked"
 const Trendsetter = ({ Kill }: { Kill: () => void }) => {
 	const [open, setOpen] = useState(GuiService.MenuIsOpen)

@@ -3,8 +3,8 @@ import { play, random } from "util"
 import { $git, $print } from "rbxts-transform-debug"
 
 import Roact from "@rbxts/roact"
-import Notification from "components/Notification"
-import Trendsetter from "components"
+import Notification from "Notification"
+import Trendsetter from "Trendsetter"
 import Bracket from "Bracket"
 
 const quotes = [
