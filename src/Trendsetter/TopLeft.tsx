@@ -21,7 +21,7 @@ export = pure(() => (
 			Font="RobotoCondensed"
 			AutomaticSize="X"
 			TextColor3={WHITE}
-			Text={`v${PKG_VERSION}${Branch !== "main" ? ` (${Branch})` : ""}`}
+			Text={`v${PKG_VERSION}${!['main','HEAD'].includes(Branch) ? ` (${Branch})` : ""}`}
 			BorderSizePixel={0}>
 			<uicorner CornerRadius={new UDim(0, 16)} />
 		</textlabel>

@@ -1,6 +1,5 @@
 import { Debris, TweenService, UserInputService } from "@rbxts/services"
 import { play, random } from "util"
-import { $git, $print } from "rbxts-transform-debug"
 
 import Roact from "@rbxts/roact"
 import Notification from "Notification"
@@ -40,7 +39,6 @@ const quotes = [
  */
 export = function (options: { Debug?: true; GUI: ScreenGui; Sound?: string }) {
 	const GUI = options.GUI
-	$print(`mollermethod v${PKG_VERSION} (${$git().Branch}) commit ${$git().Commit}`)
 	play(options.Sound ?? "rbxassetid://8192419115")
 	Roact.mount(
 		<Notification
