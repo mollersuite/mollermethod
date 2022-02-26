@@ -87,7 +87,7 @@ export default hooked(({ button }: { button: Enum.KeyCode }) => {
 			ScrollBarThickness={3}
 			AutomaticCanvasSize="Y"
 			Position={UDim2.fromScale(0.5, 0)}>
-			<uipadding PaddingTop={new UDim(0, 10)} />
+			<uipadding PaddingTop={new UDim(0, 50)} />
 			<uilistlayout
 				SortOrder="Name"
 				HorizontalAlignment="Center"
@@ -97,6 +97,7 @@ export default hooked(({ button }: { button: Enum.KeyCode }) => {
 			<textbox
 				Key="!"
 				Ref={box}
+				BackgroundTransparency={0.4}
 				Size={new UDim2(1, 0, 0, 32)}
 				Text={text}
 				TextSize={14}
@@ -120,7 +121,7 @@ export default hooked(({ button }: { button: Enum.KeyCode }) => {
 				Change={{
 					Text: rbx => setText(rbx.Text),
 				}}>
-				<uicorner CornerRadius={new UDim(0, 16)} />
+				<uicorner CornerRadius={new UDim(0, 4)} />
 				<uipadding
 					PaddingLeft={new UDim(0, 8)}
 					PaddingRight={new UDim(0, 8)}
@@ -159,22 +160,21 @@ export default hooked(({ button }: { button: Enum.KeyCode }) => {
 										? text.sub(2)
 										: text
 								)
-								
 						)[0]
 				)
 			).map(cmd => {
 				return (
 					<frame
 						Key={cmd.name}
+						BackgroundTransparency={0.4}
 						BackgroundColor3={BLACK}
 						Size={new UDim2(0.7, 0, 0, 25)}
 						AutomaticSize="Y">
-						<uilistlayout HorizontalAlignment="Left" VerticalAlignment="Top" />
 						<uipadding
-							PaddingLeft={new UDim(0, 8)}
-							PaddingRight={new UDim(0, 8)}
-							PaddingTop={new UDim(0, 8)}
-							PaddingBottom={new UDim(0, 8)}
+							PaddingLeft={new UDim(0, 16)}
+							PaddingRight={new UDim(0, 16)}
+							PaddingTop={new UDim(0, 16)}
+							PaddingBottom={new UDim(0, 16)}
 						/>
 						<textlabel
 							Text={`<b>${text}</b>${cmd.name.sub(
@@ -186,34 +186,51 @@ export default hooked(({ button }: { button: Enum.KeyCode }) => {
 							TextSize={11}
 							Font="Gotham"
 							RichText
+							Size={new UDim2(1, 0, 0, 11)}
 							TextXAlignment="Left"
 							TextYAlignment="Center"
-							TextColor3={cmd.enabled() ? WHITE : GRAY[4]}
-							AutomaticSize="XY"
+							TextColor3={cmd.enabled() ? WHITE : GRAY[3]}
 							BackgroundTransparency={1}
 						/>
 						<textlabel
-							Text={cmd.display + (cmd.action ? " (Action)" : "")}
+							Text={cmd.display}
 							TextSize={14}
+							Size={new UDim2(1, 0, 0, 14)}
+							Position={UDim2.fromOffset(0, 11)}
 							Font="GothamBlack"
 							TextXAlignment="Left"
 							TextYAlignment="Center"
-							TextColor3={cmd.enabled() ? WHITE : GRAY[4]}
-							AutomaticSize="XY"
+							TextColor3={cmd.enabled() ? WHITE : GRAY[3]}
 							BackgroundTransparency={1}
 						/>
 						<textlabel
+							Position={UDim2.fromOffset(0, 25)}
 							Text={cmd.description}
 							TextSize={11}
 							Font="Gotham"
 							TextXAlignment="Left"
 							TextYAlignment="Center"
 							TextWrapped
-							TextColor3={cmd.enabled() ? WHITE : GRAY[4]}
-							AutomaticSize="XY"
+							TextColor3={cmd.enabled() ? WHITE : GRAY[3]}
+							Size={UDim2.fromScale(1, 0)}
+							AutomaticSize="Y"
 							BackgroundTransparency={1}
 						/>
-						<uicorner CornerRadius={new UDim(0, 16)} />
+						{cmd.action ? (
+							<imagelabel
+								Image="rbxassetid://3926305904"
+								ImageRectOffset={new Vector2(84, 44)}
+								ImageRectSize={new Vector2(36, 36)}
+								Size={UDim2.fromOffset(16, 16)}
+								BackgroundTransparency={1}
+								ImageColor3={cmd.enabled() ? WHITE : GRAY[3]}
+								AnchorPoint={new Vector2(1, 0.5)}
+								Position={UDim2.fromScale(1, 0.5)}
+							/>
+						) : (
+							[]
+						)}
+						<uicorner CornerRadius={new UDim(0, 4)} />
 					</frame>
 				)
 			})}
