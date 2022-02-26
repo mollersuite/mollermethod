@@ -4,7 +4,7 @@ import * as commands from "./commands"
 import * as actions from "actions"
 const LocalPlayer = Players.LocalPlayer
 
-const names: Record<string, keyof typeof commands | void> = {}
+export const names: Record<string, keyof typeof commands> = {}
 for (const [name, command] of pairs(commands)) {
 	names[name] = name
 	command?.aliases?.forEach(alias => {
@@ -12,7 +12,7 @@ for (const [name, command] of pairs(commands)) {
 	})
 }
 
-const action_names: Record<string, keyof typeof actions | void> = {}
+export const action_names: Record<string, keyof typeof actions> = {}
 for (const [name, action] of pairs(actions)) {
 	action_names[name] = name
 	action?.aliases?.forEach(alias => {
@@ -39,7 +39,7 @@ const get_players_no_comma = (selector = "N/A") => {
 const get_players = (selector?: string) =>
 	selector === undefined ? [LocalPlayer] : flatten(selector.split(",").map(str => get_players_no_comma(str)))
 
-export = async (cmd: string) => {
+export default async (cmd: string) => {
 	const args = cmd.split(" ")
 	const command = args.shift()
 	if (command) {
