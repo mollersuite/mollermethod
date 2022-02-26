@@ -1,6 +1,6 @@
 import { ACCENT, BLACK, GRAY, WHITE } from "colors"
-import { play } from "util"
-import { pure, useEffect, useState } from "@rbxts/roact-hooked"
+import { escape_lua_pattern, play, removeDuplicatesBy } from "util"
+import { hooked, useEffect, useState } from "@rbxts/roact-hooked"
 import { UserInputService } from "@rbxts/services"
 import * as actions from "actions"
 import * as commands from "./commands"
@@ -34,16 +34,6 @@ for (const [key, value] of pairs(action_names)) {
 	})
 }
 
-function removeDuplicatesBy<T>(keyFn: (element: T) => unknown, array: T[]): T[] {
-	let mySet = new Set()
-	return array.filter(function (x) {
-		let key = keyFn(x),
-			isNew = !mySet.has(key)
-		if (isNew) mySet.add(key)
-		return isNew
-	})
-}
-
 /**
  * # Bracket
  *
@@ -60,15 +50,19 @@ function removeDuplicatesBy<T>(keyFn: (element: T) => unknown, array: T[]): T[] 
  * ╚════╝
  * ```
  */
-export default pure(({ button }: { button: Enum.KeyCode }) => {
+export default hooked(({ button }: { button: Enum.KeyCode }) => {
 	const [shown, setShown] = useState(false)
 	const [text, setText] = useState("")
+
 	const box = Roact.createRef<TextBox>()
 	const gradient = Roact.createRef<UIGradient>()
 	// handles toggle key
 	useEffect(() => {
 		const input_began = UserInputService.InputBegan.Connect((input, text) => {
-			if (input.KeyCode === button && !text) setShown(!shown) // TODO: make this configurable
+			if (input.KeyCode === button && !text) {
+				// TODO: make this configurable
+				setShown(!shown)
+			}
 		})
 		return () => input_began.Disconnect()
 	}, [])
@@ -112,7 +106,7 @@ export default pure(({ button }: { button: Enum.KeyCode }) => {
 				TextWrapped
 				TextYAlignment="Center"
 				TextColor3={WHITE}
-				PlaceholderText="try [cmds"
+				PlaceholderText="Type a command..."
 				BackgroundColor3={BLACK}
 				Event={{
 					FocusLost: (rbx, enter) => {
@@ -160,9 +154,12 @@ export default pure(({ button }: { button: Enum.KeyCode }) => {
 					cmd =>
 						!!cmd.name.match(
 							"^" +
-								(text.sub(1, 1) === UserInputService.GetStringForKeyCode(button)
-									? text.sub(2)
-									: text)
+								escape_lua_pattern(
+									text.sub(1, 1) === UserInputService.GetStringForKeyCode(button)
+										? text.sub(2)
+										: text
+								)
+								
 						)[0]
 				)
 			).map(cmd => {
