@@ -57,7 +57,7 @@ export = pure(({ selected }: { selected: Player | void }) => {
 			<uipadding PaddingTop={new UDim(0, 5)} />
 			<uilistlayout />
 			<textlabel
-				Text={selected.Name}
+				Text={selected.DisplayName}
 				Font="GothamBlack"
 				TextSize={15}
 				Size={UDim2.fromScale(1, 0)}
@@ -68,7 +68,7 @@ export = pure(({ selected }: { selected: Player | void }) => {
 			/>
 			{selected.Name !== selected.DisplayName ? (
 				<textlabel
-					Text={`aka ${selected.DisplayName}`}
+					Text={`(@${selected.Name})`}
 					Font="GothamBlack"
 					TextSize={11}
 					Size={UDim2.fromScale(1, 0)}

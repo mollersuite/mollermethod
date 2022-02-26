@@ -55,7 +55,11 @@ export = pure(
 						Size={new UDim2(1, 0, 0, 25)}
 						TextWrapped
 						AutomaticSize="Y"
-						Text={player.Name}
+						Text={
+							player.DisplayName !== player.Name
+								? `${player.DisplayName}\n(@${player.Name})`
+								: player.Name
+						}
 						BorderSizePixel={0}
 						Font="Gotham"
 						Key={player.Name}
