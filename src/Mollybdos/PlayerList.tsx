@@ -29,12 +29,13 @@ export = pure(
 		// handling players leaving and joining
 		const [players, setPlayers] = useState<Player[]>(Players.GetPlayers())
 		useEffect(() => {
-			const adding = Players.PlayerAdded.Connect(player => {
-				setPlayers(Players.GetPlayers())
+			const adding = Players.ChildAdded.Connect(child => {
+				if (child.IsA("Player")) setPlayers(Players.GetPlayers())
 			})
-			const removing = Players.PlayerRemoving.Connect(player => {
-				setPlayers(players.filter(p => p !== player))
+			const removing = Players.ChildRemoved.Connect(child => {
+				if (child.IsA("Player")) setPlayers(Players.GetPlayers())
 			})
+
 			return () => {
 				adding?.Disconnect()
 				removing?.Disconnect()

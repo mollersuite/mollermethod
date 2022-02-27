@@ -69,10 +69,10 @@ export const fling: Action = {
 		} else {
 			const target_root = victim.Character?.PrimaryPart!
 			const end_time = time() + max_time
-			const our_root = LocalPlayer.Character?.PrimaryPart!
-			const char = LocalPlayer.Character
+			const char = LocalPlayer.Character!
+			const our_root = char.PrimaryPart!
 			while (true) {
-				LocalPlayer.Character?.GetChildren().forEach(child => {
+				char!.GetChildren().forEach(child => {
 					if (child.IsA("BasePart")) {
 						child.CanCollide = false
 						child.Velocity = Vector3.zero
@@ -84,18 +84,19 @@ export const fling: Action = {
 				}
 
 				if (time() > end_time) throw "Fling failed - max time exceeded"
+				if (!our_root.Parent) throw "Fling failed - root no longer exists"
 
 				const [delta] = RunService.RenderStepped.Wait()
 				char!.PivotTo(
 					target_root.CFrame.mul(CFrame.Angles(math.pi, math.random() * 10, 0))
-						.add(new Vector3(0, -3, 0))
+						.add(new Vector3(0, -1, 0))
 						.add(target_root.Velocity.mul(delta).mul(5))
 				)
 				our_root.Velocity = Vector3.zero
 				our_root.RotVelocity = new Vector3(0, 5000, 0)
 			}
 
-			LocalPlayer.Character?.GetChildren().forEach(child => {
+			char.GetChildren().forEach(child => {
 				if (child.IsA("BasePart")) {
 					child.CanCollide = child.Name !== "HumanoidRootPart"
 					child.Velocity = Vector3.zero
@@ -108,6 +109,31 @@ export const fling: Action = {
 	},
 }
 
+export const hkill: Action = {
+	description: "Kill a player. You have to first hold a tool that can damage on touch",
+	enabled: () => {
+		return !!(firetouchinterest && LocalPlayer.Character?.FindFirstChildWhichIsA("Tool"))
+	},
+	async execute(victim) {
+		const tool = LocalPlayer.Character!.FindFirstChildWhichIsA("Tool")!
+		const handle = tool.FindFirstChild("Handle")! as BasePart
+		while (tool.Parent === LocalPlayer.Character && victim.Character) {
+			const humanoid = victim.Character.FindFirstChildOfClass("Humanoid")
+			if (!humanoid) throw "No humanoid found"
+			if (humanoid.Health <= 0) return "We killed them!"
+			victim.Character.GetChildren().forEach(child => {
+				if (child.IsA("BasePart")) {
+					firetouchinterest!(handle, child, 1)
+					task.wait()
+					firetouchinterest!(handle, child, 0)
+				}
+			})
+		}
+		throw "We died"
+	},
+	aliases: ["handlekill"],
+	display: "Handlekill",
+}
 export const kick: Action = {
 	description: "Kick a player",
 	aliases: ["k"],

@@ -1,4 +1,5 @@
 import { HttpService, TeleportService, Players, Workspace } from "@rbxts/services"
+import { play } from "util"
 const Player = Players.LocalPlayer
 
 interface Command {
@@ -10,7 +11,7 @@ interface Command {
 export const exit: Command = {
 	description: "Closes the game.",
 	execute: () => game.Shutdown(),
-	aliases: ["quit", "close", "shutdown", "disconnect"],
+	aliases: ["quit", "close", "disconnect"],
 }
 export const rejoin: Command = {
 	description: "Rejoins the server.",
@@ -49,35 +50,14 @@ export const support: Command = {
 		}
 	},
 }
-export const credits: Command = {
-	description: "Check console after running",
-	execute() {
-		print(`
-			mollermethod by Jack5079
-
-			NOT ON NPM BUT USED AT RUNTIME
-			rbxm-suite (the code that loads mollermethod) by richie0866 (MIT)
-			RuntimeLib (module auto loaded by roblox-ts) by Osyris (MIT)
-			Promise (module auto loaded by roblox-ts) by evaera (MIT)
-
-			DEPENDENCIES
-			@rbxts/roact by Roblox (Apache-2.0)
-			@rbxts/roact-hooked by littensy (MIT)
-			
-			BUILD TOOLS
-			@prettier/plugin-lua by suchipi (MIT)
-			@rbxts/compiler-types by Osyris
-			@rbxts/exploit-tools by richie0866 (MIT)
-			@rbxts/types by Osyris (MIT)
-			@rbxts/services by Osyris (ISC)
-			prettier by many people (MIT)
-			rbxts-transform-debug by Vorlias (MIT)
-			rbxts-transformer-services by Fireboltofdeath (ISC)
-			roblox-ts by Osyris (MIT)
-
-			mollermethod is dedicated to Molly the Beagle, who was put down on January 31, 2022. She was a good dog.
-		`)
-	},
+export const trollsmile: Command = {
+	description: "trollsmile winning",
+	aliases: ["trollsmile"],
+	execute: () =>
+		new Promise<void>(resolve => {
+			play("rbxassetid://6345755361")
+			task.delay(1.5, resolve)
+		}),
 }
 
 export const respawn: Command = {
