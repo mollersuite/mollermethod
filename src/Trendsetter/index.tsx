@@ -1,9 +1,11 @@
 import Roact from "@rbxts/roact"
 import { GuiService } from "@rbxts/services"
-import { ACCENT } from "colors"
+import { ACCENT, WHITE } from "colors"
 import IconButton from "./IconButton"
 import TopLeft from "./TopLeft"
 import { useEffect, useState, pure } from "@rbxts/roact-hooked"
+import { play } from "util"
+
 const Trendsetter = ({ Kill }: { Kill: () => void }) => {
 	const [open, setOpen] = useState(GuiService.MenuIsOpen)
 
@@ -53,6 +55,19 @@ const Trendsetter = ({ Kill }: { Kill: () => void }) => {
 				Image="rbxassetid://3926305904"
 				ImageRectOffset={new Vector2(284, 4)}
 				ImageRectSize={new Vector2(24, 24)}
+			/>
+			{/* 🕯️ */}
+			<textbutton
+				Event={{
+					MouseButton1Click: () => play("rbxassetid://6881833667", 10),
+				}}
+				AutomaticSize="XY"
+				TextColor3={WHITE}
+				TextTransparency={0.5}
+				Text="🕯️ Dedicated to Molly the Beagle, who was put down on January 31st, 2022."
+				AnchorPoint={new Vector2(0.5, 1)}
+				Position={UDim2.fromScale(0.5, 1)}
+				BackgroundTransparency={1}
 			/>
 		</frame>
 	)
