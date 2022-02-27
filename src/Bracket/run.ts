@@ -57,17 +57,13 @@ export default async (cmd: string) => {
 				play("rbxassetid://8458408918") // fail since its not enabled
 			} else {
 				const players = get_players(args.join(" "))
-				if (players.isEmpty()) {
-					play("rbxassetid://8458408918") // fail because no players
-				} else {
-					Promise.all(players.map(plr => action.execute(plr) ?? Promise.resolve()))
-						.then(
-							() => play("rbxassetid://8503529139", 10) // succeed because it ran on everyone
-						)
-						.catch(
-							() => play("rbxassetid://8458408918") // fail since one of them threw an error
-						)
-				}
+				Promise.all(players.map(plr => action.execute(plr) ?? Promise.resolve()))
+					.then(
+						() => play("rbxassetid://8503529139", 10) // succeed because it ran on everyone
+					)
+					.catch(
+						() => play("rbxassetid://8458408918") // fail since one of them threw an error
+					)
 			}
 		} else {
 			play("rbxassetid://8458408918") // fail since no command was found

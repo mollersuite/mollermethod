@@ -71,7 +71,7 @@ export const fling: Action = {
 			const end_time = time() + max_time
 			const our_root = LocalPlayer.Character?.PrimaryPart!
 			const char = LocalPlayer.Character
-			while (our_root?.Parent) {
+			while (true) {
 				LocalPlayer.Character?.GetChildren().forEach(child => {
 					if (child.IsA("BasePart")) {
 						child.CanCollide = false
@@ -88,14 +88,12 @@ export const fling: Action = {
 				const [delta] = RunService.RenderStepped.Wait()
 				char!.PivotTo(
 					target_root.CFrame.mul(CFrame.Angles(math.pi, math.random() * 10, 0))
-						.add(new Vector3(0, -1, 0))
+						.add(new Vector3(0, -3, 0))
 						.add(target_root.Velocity.mul(delta).mul(5))
 				)
 				our_root.Velocity = Vector3.zero
 				our_root.RotVelocity = new Vector3(0, 5000, 0)
 			}
-
-			if (!our_root?.Parent) throw "Fling failed - we died"
 
 			LocalPlayer.Character?.GetChildren().forEach(child => {
 				if (child.IsA("BasePart")) {
@@ -104,6 +102,8 @@ export const fling: Action = {
 					child.RotVelocity = Vector3.zero
 				}
 			})
+
+			if (!our_root?.Parent) throw "Fling failed - we died"
 		}
 	},
 }
