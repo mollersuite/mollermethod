@@ -1,10 +1,10 @@
-import Roact from '@rbxts/roact'
-import { escape_lua_pattern, removeDuplicatesBy } from 'util'
-import { action_names, names } from './run'
-import * as actions from 'actions'
-import * as commands from './commands'
-import { UserInputService } from '@rbxts/services'
-import { BLACK, GRAY, WHITE } from 'colors'
+import Roact from "@rbxts/roact"
+import { escape_lua_pattern, removeDuplicatesBy } from "util"
+import { action_names, names } from "./run"
+import * as actions from "actions"
+import * as commands from "./commands"
+import { UserInputService } from "@rbxts/services"
+import { BLACK, GRAY, WHITE } from "colors"
 
 const cmds: {
 	name: string
@@ -32,20 +32,21 @@ for (const [key, value] of pairs(action_names)) {
 		enabled: actions[value].enabled ?? (() => true),
 	})
 }
-export = ({Text: text, KeyCode: button}: {Text: string, KeyCode: Enum.KeyCode}) => {
-	return <>
-	{removeDuplicatesBy(
+export = ({ Text: text, KeyCode: button }: { Text: string; KeyCode: Enum.KeyCode }) => {
+	return (
+		<>
+			{removeDuplicatesBy(
 				cmd => cmd.display,
 				cmds.filter(
 					cmd =>
-						!!cmd.name.match(
+						cmd.name.match(
 							"^" +
 								escape_lua_pattern(
 									text.sub(1, 1) === UserInputService.GetStringForKeyCode(button)
 										? text.sub(2)
 										: text
 								)
-						)[0]
+						)[0] !== undefined
 				)
 			).map(cmd => {
 				return (
@@ -112,12 +113,11 @@ export = ({Text: text, KeyCode: button}: {Text: string, KeyCode: Enum.KeyCode}) 
 								AnchorPoint={new Vector2(1, 0.5)}
 								Position={UDim2.fromScale(1, 0.5)}
 							/>
-						) : (
-							[]
-						)}
+						) : undefined}
 						<uicorner CornerRadius={new UDim(0, 8)} />
 					</frame>
 				)
 			})}
-	</>
+		</>
+	)
 }

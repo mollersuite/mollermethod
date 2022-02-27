@@ -44,9 +44,9 @@ const quotes = [
  * }
  * ```
  */
-export = function (options: { Debug?: true; GUI: ScreenGui; Sound?: string }) {
+export = function (options: { Debug?: true; GUI: ScreenGui}) {
 	const GUI = options.GUI
-	play(options.Sound ?? "rbxassetid://8192419115")
+	play("rbxassetid://8192419115")
 
 	/*
 	  so here we are detecting IY and giving them ads for Bracket

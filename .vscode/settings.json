@@ -10,5 +10,6 @@
 	},
 	"roblox-ts.editor.hideDeprecated": false,
 	"robloxLsp.diagnostics.globals": ["writefile", "gethui"],
-	"robloxLsp.typeChecking.mode": "Disabled"
+	"robloxLsp.typeChecking.mode": "Disabled",
+	"typescript.preferences.quoteStyle": "double"
 }

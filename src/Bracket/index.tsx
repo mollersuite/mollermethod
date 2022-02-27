@@ -22,7 +22,7 @@ import Suggestions from "./Suggestions"
  * ╚════╝
  * ```
  */
-export default hooked(({ button }: { button: Enum.KeyCode }) => {
+export = hooked(({ button }: { button: Enum.KeyCode }) => {
 	const [shown, setShown] = useState(false)
 	const [text, setText] = useState("")
 
