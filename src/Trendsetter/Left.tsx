@@ -5,6 +5,7 @@ import LocalBar from "./LocalBar"
 import Mollybdos from "Mollybdos"
 import Roact from "@rbxts/roact"
 import { play, random } from "util"
+import IconButton from "./IconButton"
 const { Branch } = $git()
 
 const tips = [
@@ -18,10 +19,17 @@ const tips = [
 /**
  * the top left corner has a couple widgets, like the playerlist, changelog, and localplayer buttons
  **/
-export = pure(() => (
+export = pure(({ Kill }: { Kill: () => void }) => (
 	<>
 		<LocalBar />
-		<Mollybdos />
+		<IconButton
+			CornerRadius={new UDim(1)}
+			Position={UDim2.fromOffset(320, 42)}
+			Clicked={Kill}
+			Image="rbxassetid://3926305904"
+			ImageRectOffset={new Vector2(284, 4)}
+			ImageRectSize={new Vector2(24, 24)}
+		/>
 		<textlabel
 			Position={UDim2.fromOffset(320, 10)}
 			Size={UDim2.fromOffset(90, 22)}
@@ -30,10 +38,11 @@ export = pure(() => (
 			Font="RobotoCondensed"
 			AutomaticSize="X"
 			TextColor3={WHITE}
-			Text={`v${PKG_VERSION}${!['main','HEAD'].includes(Branch) ? ` (${Branch})` : ""}`}
+			Text={`v${PKG_VERSION}${!["main", "HEAD"].includes(Branch) ? ` (${Branch})` : ""}`}
 			BorderSizePixel={0}>
 			<uicorner CornerRadius={new UDim(0, 16)} />
 		</textlabel>
+		<Mollybdos />
 		<textbutton
 			Position={UDim2.fromOffset(10, 84 + 300 + 10)}
 			Size={UDim2.fromOffset(400, 100)}

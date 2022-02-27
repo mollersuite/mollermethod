@@ -12,14 +12,9 @@ Press `[`.
 
 ## Mollybdos
 
-mollermethod's player list. It lets you do actions on players and see info about them. Works well
-with [mollerpotence.](#mollerpotence)
-
-It is a Roact component.
+mollermethod's player list. It lets you do actions on players and see info about them.
 
 ## mollerpotence
 
 Serverside integration of mollermethod. Does backdoor scanning and shit, has integration with sbs
 and games you own too
-
-It'll probably be implemented as a roblox-ts model.

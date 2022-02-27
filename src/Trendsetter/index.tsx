@@ -1,8 +1,7 @@
 import Roact from "@rbxts/roact"
 import { GuiService } from "@rbxts/services"
 import { ACCENT, WHITE } from "colors"
-import IconButton from "./IconButton"
-import TopLeft from "./TopLeft"
+import Left from "./Left"
 import { useEffect, useState, pure } from "@rbxts/roact-hooked"
 import { play } from "util"
 
@@ -44,18 +43,7 @@ const Trendsetter = ({ Kill }: { Kill: () => void }) => {
 				}
 			/>
 			{/* in-house features */}
-			<TopLeft />
-			{/* cloud scripts */}
-			{/* <Center /> */}
-			{/* close */}
-			<IconButton
-				CornerRadius={new UDim(1)}
-				Position={UDim2.fromOffset(320, 42)}
-				Clicked={Kill}
-				Image="rbxassetid://3926305904"
-				ImageRectOffset={new Vector2(284, 4)}
-				ImageRectSize={new Vector2(24, 24)}
-			/>
+			<Left Kill={Kill} />
 			{/* 🕯️ */}
 			<textbutton
 				Event={{
@@ -79,13 +67,5 @@ const Trendsetter = ({ Kill }: { Kill: () => void }) => {
  * mollermethod's UI.
  *
  * named trendsetter because it will suffer from shlex syndrome upon release
- *
- * it has notable ui elements:
- * - it appears on the pause menu
- * - a gradient bg
- * - top left corner has wigdets like localplayer buttons, playerlist, changelog
- * - middle has a grid of scripts 2 items wide, that loads from Luau.ml & ScriptBlox, with infinite scroll
- * - or a masonry grid if possible
- * - right has settings and shit idk
  **/
 export = pure(Trendsetter)
