@@ -16,7 +16,8 @@
 	"scripts": {
 		"build": "rbxtsc --type model && rojo build default.project.json -o static/mollermethod.rbxm",
 		"deploy": "bash deploy.sh",
-		"watch": "rojo build --watch default.project.json -o %~%/code/overlay/workspace/mollermethod.rbxm"
+		"watch": "rojo build --watch default.project.json -o %~%/code/overlay/workspace/mollermethod.rbxm",
+		"ts-watch": "rbxtsc --watch --type model"
 	},
 	"prettier": {
 		"arrowParens": "avoid",

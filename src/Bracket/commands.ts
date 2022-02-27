@@ -53,11 +53,10 @@ export const support: Command = {
 export const trollsmile: Command = {
 	description: "trollsmile winning",
 	aliases: ["trollsmile"],
-	execute: () =>
-		new Promise<void>(resolve => {
-			play("rbxassetid://6345755361")
-			task.delay(1.5, resolve)
-		}),
+	execute: () => {
+		play("rbxassetid://6345755361")
+		return Promise.delay(1.5)
+	},
 }
 
 export const respawn: Command = {
@@ -72,5 +71,5 @@ export const respawn: Command = {
 		Player.Character = char
 		newchar.Destroy()
 	},
-	aliases: ["re", "refresh", "sr", "r"],
+	aliases: ["re", "refresh"],
 }

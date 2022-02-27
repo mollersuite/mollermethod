@@ -1,0 +1,30 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "watch",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"isBackground": true,
+			"problemMatcher": [],
+			"dependsOn": ["roblox-ts"],
+			"label": "rojo watch",
+			"detail": "rojo build --watch default.project.json -o %~%/code/overlay/workspace/mollermethod.rbxm"
+		},
+		{
+			"type": "npm",
+			"label": "roblox-ts",
+			"script": "ts-watch",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"isBackground": true,
+			"problemMatcher": ["$tsc-watch"],
+			"detail": "npm lo"
+		}
+	]
+}

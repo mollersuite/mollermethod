@@ -84,7 +84,7 @@ export const fling: Action = {
 				}
 
 				if (time() > end_time) throw "Fling failed - max time exceeded"
-				if (!our_root.Parent) throw "Fling failed - root no longer exists"
+				assert(our_root.Parent, "Fling failed - our root is not attached")
 
 				const [delta] = RunService.RenderStepped.Wait()
 				char!.PivotTo(
@@ -104,7 +104,7 @@ export const fling: Action = {
 				}
 			})
 
-			if (!our_root?.Parent) throw "Fling failed - we died"
+			assert(our_root.Parent, "Fling failed - our root is not attached")
 		}
 	},
 }
@@ -115,17 +115,18 @@ export const hkill: Action = {
 		return !!(firetouchinterest && LocalPlayer.Character?.FindFirstChildWhichIsA("Tool"))
 	},
 	async execute(victim) {
+		assert(firetouchinterest)
 		const tool = LocalPlayer.Character!.FindFirstChildWhichIsA("Tool")!
 		const handle = tool.FindFirstChild("Handle")! as BasePart
 		while (tool.Parent === LocalPlayer.Character && victim.Character) {
 			const humanoid = victim.Character.FindFirstChildOfClass("Humanoid")
-			if (!humanoid) throw "No humanoid found"
+			assert(humanoid, "No humanoid found")
 			if (humanoid.Health <= 0) return "We killed them!"
 			victim.Character.GetChildren().forEach(child => {
 				if (child.IsA("BasePart")) {
-					firetouchinterest!(handle, child, 1)
+					firetouchinterest(handle, child, 1)
 					task.wait()
-					firetouchinterest!(handle, child, 0)
+					firetouchinterest(handle, child, 0)
 				}
 			})
 		}
