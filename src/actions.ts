@@ -7,14 +7,12 @@ const LocalPlayer = Players.LocalPlayer
 export interface Action {
 	display?: string
 	description: string
-	aliases?: string[]
 	execute(this: void, player: Player): Promise<unknown> | unknown
 	enabled?: () => boolean
 }
 
 export const to: Action = {
 	description: "Teleport to a player",
-	aliases: ["tp", "teleport", "goto", "tpto"],
 	execute(victim) {
 		const victim_pivot = victim.Character?.GetPivot()
 		if (victim_pivot) LocalPlayer.Character?.PivotTo(victim_pivot)
@@ -23,7 +21,6 @@ export const to: Action = {
 
 export const bring: Action = {
 	description: "Teleport a player to you",
-	aliases: ["tpb", "teleportback", "tpback"],
 	enabled: () => !!mollerpotence.remote, // mollerpotence doesn't exist yet
 	async execute(victim) {
 		mollerpotence.remote!.InvokeServer(
@@ -109,7 +106,7 @@ export const fling: Action = {
 	},
 }
 
-export const hkill: Action = {
+export const handlekill: Action = {
 	description: "Kill a player. You have to first hold a tool that can damage on touch",
 	enabled: () => {
 		return !!(firetouchinterest && LocalPlayer.Character?.FindFirstChildWhichIsA("Tool"))
@@ -132,12 +129,11 @@ export const hkill: Action = {
 		}
 		throw "We died"
 	},
-	aliases: ["handlekill"],
 	display: "Handlekill",
 }
+
 export const kick: Action = {
 	description: "Kick a player",
-	aliases: ["k"],
 	enabled: () => !!mollerpotence.remote,
 	async execute(victim) {
 		mollerpotence.remote!.InvokeServer(

@@ -4,14 +4,12 @@ const Player = Players.LocalPlayer
 
 interface Command {
 	readonly description: string
-	readonly aliases?: readonly string[]
 	execute(this: void, args: string[]): unknown
 }
 
 export const exit: Command = {
 	description: "Closes the game.",
 	execute: () => game.Shutdown(),
-	aliases: ["quit", "close", "disconnect"],
 }
 export const rejoin: Command = {
 	description: "Rejoins the server.",
@@ -22,11 +20,9 @@ export const rejoin: Command = {
 			TeleportService.Teleport(game.PlaceId, Player)
 		} else TeleportService.TeleportToPlaceInstance(game.PlaceId, game.JobId, Player)
 	},
-	aliases: ["reconnect", "rj"],
 }
 export const support: Command = {
 	description: "Gives you the link to the support server.",
-	aliases: ["discord"],
 	async execute() {
 		const request = (getgenv()?.request || syn?.request || http?.request) as
 			| typeof globalThis.request
@@ -52,7 +48,6 @@ export const support: Command = {
 }
 export const trollsmile: Command = {
 	description: "trollsmile winning",
-	aliases: ["trollsmile"],
 	execute: () => {
 		play("rbxassetid://6345755361")
 		return Promise.delay(1.5)
@@ -71,5 +66,4 @@ export const respawn: Command = {
 		Player.Character = char
 		newchar.Destroy()
 	},
-	aliases: ["re", "refresh"],
 }

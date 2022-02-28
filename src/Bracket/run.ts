@@ -4,22 +4,6 @@ import * as commands from "./commands"
 import * as actions from "actions"
 const LocalPlayer = Players.LocalPlayer
 
-export const names: Record<string, keyof typeof commands> = {}
-for (const [name, command] of pairs(commands)) {
-	names[name] = name
-	command?.aliases?.forEach(alias => {
-		names[alias] = name
-	})
-}
-
-export const action_names: Record<string, keyof typeof actions> = {}
-for (const [name, action] of pairs(actions)) {
-	action_names[name] = name
-	action?.aliases?.forEach(alias => {
-		action_names[alias] = name
-	})
-}
-
 // I hate this so much
 const flatten = <Type>(arr: readonly Type[][]): Type[] => arr.reduce((a, b) => [...a, ...b])
 
@@ -44,15 +28,14 @@ const get_players = (selector?: string) =>
 
 export default async (cmd: string) => {
 	const args = cmd.split(" ")
-	const command = args.shift()
-	if (command) {
-		const command_name = names[command]
-		const action_name = action_names[command]
-		if (command_name) {
-			await commands[command_name].execute(args)
+	const name = args.shift()
+	if (name) {
+		const cmd = commands[name as keyof typeof commands]
+		const action = actions[name as keyof typeof actions]
+		if (cmd) {
+			await cmd.execute(args)
 			play("rbxassetid://8503529139", 10) // succeed because command ran
-		} else if (action_name) {
-			const action = actions[action_name]
+		} else if (action) {
 			if (action.enabled && !action.enabled()) {
 				play("rbxassetid://8458408918") // fail since its not enabled
 			} else {
