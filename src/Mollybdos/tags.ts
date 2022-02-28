@@ -124,7 +124,6 @@ export default async function tags_of(Player: Player): Promise<Tags> {
 			Groups: {
 				"SB Player": [
 					// script builders themselves
-					10350051, // require script runner
 					6778737, // Empty Baseplate
 					3256759, // Void Script Builder
 					11339696, // Lua Assembling
@@ -133,7 +132,6 @@ export default async function tags_of(Player: Player): Promise<Tags> {
 					3155066, // Dark Eccentric
 					// whitelist groups
 					1150725, // A̶P̶T̶-̶2̶2̶8̶3̶-̶3̶ Jack Hase's group
-					8636927, // SunRaysEffect's group
 				],
 				Furry: [
 					5245050, // Furry Project
