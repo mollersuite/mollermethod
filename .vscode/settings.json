@@ -1,4 +1,5 @@
 {
+	"typescript.format.semicolons": "remove",
 	"robloxLsp.misc.serviceAutoImport": true,
 	"editor.insertSpaces": false,
 	"editor.tabSize": 4,
