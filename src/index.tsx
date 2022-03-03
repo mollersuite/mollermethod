@@ -12,6 +12,7 @@ import Trendsetter from "Trendsetter" // Trendsetter is the pause menu
 const quotes = [
 	'"I guess my favourite concept of money laundering is just money to gold bars to money" - Charlie, 2022',
 	'"i wrote a whole ass lua bytecode builder in a day" - Mlemix, 2022',
+	'"jack if you start a civil war with the uk I dont want no part in it" - Charlie, 2022',
 	'"RETIRER VOTRE ANTIVIRUS" - 404coddy404, 2022, trying to cookie grab me',
 	'"https://tenor.com/view/همم-gif-21570043" - Bongo, 2022, after I told him Molly was put down',
 	'"wait no dont said no furry porn" - Bongo, 2022 (right before Amourousity sent furry porn)',
