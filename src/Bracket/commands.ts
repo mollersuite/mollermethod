@@ -21,6 +21,7 @@ export const rejoin: Command = {
 		} else TeleportService.TeleportToPlaceInstance(game.PlaceId, game.JobId, Player)
 	},
 }
+
 export const support: Command = {
 	description: "Gives you the link to the support server.",
 	async execute() {
