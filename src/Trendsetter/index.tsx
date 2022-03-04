@@ -11,7 +11,7 @@ const Trendsetter = ({ Kill }: { Kill: () => void }) => {
 	useEffect(() => {
 		const backdrop = game
 			.GetService("CoreGui")
-			?.FindFirstChild("InGameMenu")
+			.FindFirstChild("InGameMenu")
 			?.FindFirstChild("Overlay")
 			?.FindFirstChild("InputCapturer") as GuiObject | undefined
 		if (backdrop) backdrop.Visible = false

@@ -13,37 +13,30 @@ const cmds: {
 	action: boolean
 	enabled: () => boolean
 }[] = [
-	...Object.entries(commands).map(([name, value]) => ({
+	...Object.entries(commands).map(([name, command]) => ({
 		name,
 		display: name.sub(1, 1).upper() + name.sub(2),
-		description: value.description,
+		description: command.description,
 		action: false,
 		enabled: () => true,
 	})),
-	...Object.entries(actions).map(([name, { description, enabled = () => true, display }]) => ({
+	...Object.entries(actions).map(([name, action]) => ({
 		name,
-		display: display ?? name.sub(1, 1).upper() + name.sub(2),
-		description,
-		enabled,
+		display: action.display ?? name.sub(1, 1).upper() + name.sub(2),
+		description: action.description,
+		enabled: action.enabled ?? (() => true),
 		action: true,
 	})),
 ]
 
 export = ({ Text: text, KeyCode: button }: { Text: string; KeyCode: Enum.KeyCode }) => {
+	const escaped =
+		text.sub(1, 1) === UserInputService.GetStringForKeyCode(button) ? text.sub(2) : text
+	
 	return (
 		<>
 			{cmds
-				.filter(
-					cmd =>
-						cmd.name.match(
-							"^" +
-								escape_lua_pattern(
-									text.sub(1, 1) === UserInputService.GetStringForKeyCode(button)
-										? text.sub(2)
-										: text
-								)
-						)[0] !== undefined
-				)
+				.filter(cmd => cmd.name.match("^" + escape_lua_pattern(escaped))[0] !== undefined)
 				.map(cmd => {
 					return (
 						<frame
@@ -59,12 +52,7 @@ export = ({ Text: text, KeyCode: button }: { Text: string; KeyCode: Enum.KeyCode
 								PaddingBottom={new UDim(0, 16)}
 							/>
 							<textlabel
-								Text={`<b>${text}</b>${cmd.name.sub(
-									(text.sub(1, 1) === UserInputService.GetStringForKeyCode(button)
-										? text.sub(2)
-										: text
-									).size() + 1
-								)}`}
+								Text={`<b>${text}</b>${cmd.name.sub(escaped.size() + 1)}`}
 								TextSize={11}
 								Font="Gotham"
 								RichText
