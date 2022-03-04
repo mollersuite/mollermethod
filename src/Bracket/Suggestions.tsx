@@ -4,6 +4,7 @@ import * as actions from "actions"
 import * as commands from "./commands"
 import { UserInputService } from "@rbxts/services"
 import { BLACK, GRAY, WHITE } from "colors"
+import Object from "@rbxts/object-utils"
 
 const cmds: {
 	name: string
@@ -11,26 +12,22 @@ const cmds: {
 	description: string
 	action: boolean
 	enabled: () => boolean
-}[] = []
-
-for (const [key, value] of pairs(commands)) {
-	cmds.push({
-		name: key,
-		display: `${key.sub(1, 1).upper()}${key.sub(2)}`,
+}[] = [
+	...Object.entries(commands).map(([name, value]) => ({
+		name,
+		display: name.sub(1, 1).upper() + name.sub(2),
 		description: value.description,
 		action: false,
 		enabled: () => true,
-	})
-}
-for (const [key, value] of pairs(actions)) {
-	cmds.push({
-		name: key,
-		display: value.display ?? `${key.sub(1, 1).upper()}${key.sub(2)}`,
-		description: value.description,
+	})),
+	...Object.entries(actions).map(([name, { description, enabled = () => true, display }]) => ({
+		name,
+		display: display ?? name.sub(1, 1).upper() + name.sub(2),
+		description,
+		enabled,
 		action: true,
-		enabled: value.enabled ?? (() => true),
-	})
-}
+	})),
+]
 
 export = ({ Text: text, KeyCode: button }: { Text: string; KeyCode: Enum.KeyCode }) => {
 	return (

@@ -1,4 +1,5 @@
 import Roact from "@rbxts/roact"
+import Object from "@rbxts/object-utils"
 import { pure, useEffect, useState } from "@rbxts/roact-hooked"
 import { BLACK, GRAY, WHITE, ACCENT } from "colors"
 import * as actions from "actions"
@@ -20,10 +21,7 @@ import tags_of, { Tags } from "./tags"
 that part of mollybdos
 */
 
-const actions_list: [string, actions.Action][] = []
-for (const [name, action] of pairs(actions)) {
-	actions_list.push([name, action])
-}
+const actions_list = Object.entries(actions)
 
 const TagList = pure(({ tags }: { tags: Tags }) => {
 	if (tags.filter(tag => tag.score !== 0).isEmpty()) return <></>
