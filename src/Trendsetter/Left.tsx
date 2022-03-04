@@ -3,16 +3,9 @@ import { rejoin, respawn } from "Bracket/commands"
 import { ACCENT, BLACK, WHITE } from "colors"
 import Mollybdos from "Mollybdos"
 import { $git } from "rbxts-transform-debug"
-import { play, random } from "util"
+import { QUOTES } from "strings"
+import { random } from "util"
 const { Branch } = $git()
-
-const tips = [
-	"mollermethod has a built in admin? Press [ to open.",
-	"mollermethod is written in roblox-ts?",
-	"we have a twitter? @mollersuite",
-	"you're using the 4th rewrite of mollermethod?",
-	"if you triple-click this button, it will play LuaQuack's vouch?",
-]
 
 const IconButton = (
 	Props: Partial<Pick<ImageLabel, "Image" | "ImageRectSize" | "ImageRectOffset" | "Position">> & {
@@ -100,19 +93,18 @@ export = ({ Kill }: { Kill: () => void }) => (
 			<uicorner CornerRadius={new UDim(0, 16)} />
 		</textlabel>
 		<Mollybdos />
+		
 		<textbutton
 			Position={UDim2.fromOffset(10, 84 + 300 + 10)}
 			Size={UDim2.fromOffset(400, 100)}
 			TextSize={14}
-			Font="Gotham"
+			Font="Arial"
 			BackgroundColor3={ACCENT}
 			TextColor3={WHITE}
-			Text={`Did you know...\n${random(tips)}`}
+			Text={random(QUOTES).split(" - ").join("\n- ")}
 			Event={{
-				Activated: (rbx, _, count) => {
-					if (count === 2) {
-						play("rbxassetid://6345755361")
-					} else rbx.Text = `Did you know that...\n${random(tips)}`
+				MouseButton1Click: rbx => {
+					rbx.Text = random(QUOTES).split(" - ").join("\n- ")
 				},
 			}}
 			TextWrapped
