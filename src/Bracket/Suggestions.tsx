@@ -1,5 +1,5 @@
 import Roact from "@rbxts/roact"
-import { escape_lua_pattern, removeDuplicatesBy } from "util"
+import { escape_lua_pattern } from "util"
 import * as actions from "actions"
 import * as commands from "./commands"
 import { UserInputService } from "@rbxts/services"

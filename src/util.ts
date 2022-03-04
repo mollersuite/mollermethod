@@ -65,19 +65,3 @@ export const escape_lua_pattern = (s: string) =>
 		"?": "%?",
 	})[0]
 
-/**
- * Removes duplicated elements from an array based on a key fuction
- * For example I normally can't use Set to remove duplicates if I have an object like {name: "moller", age: 23}
- * But with this I can do obj => obj.name
- * and boom if theres two mollers it only keeps 1
- * got no clue which would it would keep
- */
-export function removeDuplicatesBy<T>(keyFn: (element: T) => unknown, array: T[]): T[] {
-	const mySet = new Set()
-	return array.filter(function (x) {
-		const key = keyFn(x),
-			isNew = !mySet.has(key)
-		if (isNew) mySet.add(key)
-		return isNew
-	})
-}

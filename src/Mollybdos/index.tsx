@@ -6,6 +6,7 @@ import PlayerList from "./PlayerList"
 
 export = pure(() => {
 	const [selected, setSelected] = useState<Player | void>(undefined)
+	
 	// handling selected player leaving
 	useEffect(() => {
 		const connection = selected?.AncestryChanged.Connect(() => {
