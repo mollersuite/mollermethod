@@ -1,11 +1,9 @@
-import { $git } from "rbxts-transform-debug"
-import { ACCENT, WHITE } from "colors"
-import { pure } from "@rbxts/roact-hooked"
-import LocalBar from "./LocalBar"
-import Mollybdos from "Mollybdos"
 import Roact from "@rbxts/roact"
+import { rejoin, respawn } from "Bracket/commands"
+import { ACCENT, BLACK, WHITE } from "colors"
+import Mollybdos from "Mollybdos"
+import { $git } from "rbxts-transform-debug"
 import { play, random } from "util"
-import IconButton from "./IconButton"
 const { Branch } = $git()
 
 const tips = [
@@ -16,10 +14,69 @@ const tips = [
 	"if you triple-click this button, it will play LuaQuack's vouch?",
 ]
 
+const IconButton = (
+	Props: Partial<Pick<ImageLabel, "Image" | "ImageRectSize" | "ImageRectOffset" | "Position">> & {
+		Clicked?: Roact.JsxInstanceEvents<TextButton>["Activated"]
+		CornerRadius?: UDim
+	}
+) => (
+	<textbutton
+		Size={UDim2.fromOffset(32, 32)}
+		Text=""
+		BackgroundColor3={BLACK}
+		Position={Props.Position}
+		Event={{
+			Activated: Props.Clicked,
+		}}>
+		<uilistlayout HorizontalAlignment="Center" VerticalAlignment="Center" />
+		<imagelabel
+			ImageRectOffset={Props.ImageRectOffset}
+			ImageRectSize={Props.ImageRectSize}
+			Image={Props.Image}
+			Size={UDim2.fromOffset(16, 16)}
+			BackgroundTransparency={1}
+			BorderSizePixel={0}
+			ScaleType="Fit"
+		/>
+		<uicorner CornerRadius={Props.CornerRadius ?? new UDim(0, 4)} />
+	</textbutton>
+)
+
+const LocalBar = () => (
+	<frame
+		Position={UDim2.fromOffset(10, 10)}
+		Size={UDim2.fromOffset(300, 64)}
+		BackgroundColor3={BLACK}
+		BorderSizePixel={0}>
+		<uicorner CornerRadius={new UDim(0, 16)} />
+		<uilistlayout FillDirection="Horizontal" VerticalAlignment="Center" />
+		<uipadding
+			PaddingLeft={new UDim(0, 16)}
+			PaddingRight={new UDim(0, 16)}
+			PaddingTop={new UDim(0, 16)}
+			PaddingBottom={new UDim(0, 16)}
+		/>
+		{/* respawn */}
+		<IconButton
+			Image="rbxassetid://3926307971"
+			ImageRectOffset={new Vector2(404, 84)}
+			ImageRectSize={new Vector2(36, 36)}
+			Clicked={() => respawn.execute([])}
+		/>
+		{/* rejoin */}
+		<IconButton
+			Image="rbxassetid://3926307971"
+			ImageRectOffset={new Vector2(244, 484)}
+			ImageRectSize={new Vector2(36, 36)}
+			Clicked={() => rejoin.execute([])}
+		/>
+	</frame>
+)
+
 /**
  * the top left corner has a couple widgets, like the playerlist, changelog, and localplayer buttons
  **/
-export = pure(({ Kill }: { Kill: () => void }) => (
+export = ({ Kill }: { Kill: () => void }) => (
 	<>
 		<LocalBar />
 		<IconButton
@@ -63,4 +120,4 @@ export = pure(({ Kill }: { Kill: () => void }) => (
 			<uicorner CornerRadius={new UDim(0, 16)} />
 		</textbutton>
 	</>
-))
+)
