@@ -8,6 +8,7 @@
 		"@rbxts/exploit-types": "github:richie0866/exploit-types",
 		"@rbxts/services": "^1.2.0",
 		"@rbxts/types": "^1.0.571",
+		"patch-package": "^6.4.7",
 		"prettier": "^2.4.1",
 		"rbxts-transform-debug": "^1.0.0-ts4.5",
 		"rbxts-transformer-services": "^1.0.1",
@@ -17,7 +18,8 @@
 		"build": "rbxtsc --type model && rojo build default.project.json -o static/mollermethod.rbxm",
 		"deploy": "bash deploy.sh",
 		"watch": "rojo build --watch default.project.json -o %~%/code/overlay/workspace/mollermethod.rbxm",
-		"ts-watch": "rbxtsc --watch --type model"
+		"ts-watch": "rbxtsc --watch --type model",
+		"postinstall": "patch-package"
 	},
 	"prettier": {
 		"arrowParens": "avoid",
