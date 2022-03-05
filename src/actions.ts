@@ -35,7 +35,7 @@ const target_speed = 150
 export const fling: Action = {
 	description: "Make 'em fly. Requires either CanCollide or mollerpotence",
 	enabled: () => {
-		if (!!mollerpotence.remote) {
+		if (mollerpotence.remote) {
 			return true
 		} else {
 			const torso =
@@ -45,7 +45,7 @@ export const fling: Action = {
 		}
 	},
 	async execute(victim) {
-		if (!!mollerpotence.remote) {
+		if (mollerpotence.remote) {
 			// Adapted from https://github.com/Sceleratis/Adonis/blob/7782a751c42b7731f38ac723af29ed75ce2e4842/MainModule/Server/Commands/Moderators.lua#L5395
 			// THIS HAS TO BE RAN ON THE SERVER SIDE
 			// it's here for reference when i implement mollerpotence
