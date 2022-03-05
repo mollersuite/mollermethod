@@ -45,9 +45,6 @@ const Trendsetter = ({ Kill }: { Kill: () => void }) => {
 			{/* in-house features */}
 			<Left Kill={Kill} />
 			<textbutton
-				Event={{
-					MouseButton1Click: () => play("rbxassetid://6881833667", 10),
-				}}
 				AutomaticSize="XY"
 				TextColor3={WHITE}
 				TextTransparency={0.5}

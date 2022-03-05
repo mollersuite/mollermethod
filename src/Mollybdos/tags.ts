@@ -1,4 +1,3 @@
-// TODO: plugin integration
 import { GroupService, Players } from "@rbxts/services"
 
 async function appearance_tags(
