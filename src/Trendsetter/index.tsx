@@ -3,7 +3,6 @@ import { GuiService } from "@rbxts/services"
 import { ACCENT, WHITE } from "colors"
 import Left from "./Left"
 import { useEffect, useState, pure } from "@rbxts/roact-hooked"
-import { play } from "util"
 
 const Trendsetter = ({ Kill }: { Kill: () => void }) => {
 	const [open, setOpen] = useState(GuiService.MenuIsOpen)
