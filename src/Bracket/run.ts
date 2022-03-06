@@ -4,10 +4,8 @@ import * as commands from "./commands"
 import * as actions from "actions"
 const LocalPlayer = Players.LocalPlayer
 
-// I hate this so much
-const flatten = <Type>(arr: readonly Type[][]): Type[] => arr.reduce((a, b) => [...a, ...b])
 
-const get_players_no_comma = (selector = "N/A") => {
+const get_players = (selector = "N/A") => {
 	if (selector === "all") return Players.GetPlayers()
 	if (selector === "me") return [LocalPlayer]
 	if (selector === "friends")
@@ -21,10 +19,6 @@ const get_players_no_comma = (selector = "N/A") => {
 		plr => !!plr.DisplayName.lower().match("^" + selector.lower())[0]
 	)
 }
-const get_players = (selector?: string) =>
-	selector === undefined
-		? [LocalPlayer]
-		: flatten(selector.split(",").map(str => get_players_no_comma(str)))
 
 export default async (cmd: string) => {
 	const args = cmd.split(" ")
@@ -33,8 +27,12 @@ export default async (cmd: string) => {
 		const cmd = commands[name as keyof typeof commands]
 		const action = actions[name as keyof typeof actions]
 		if (cmd) {
-			await cmd.execute(args)
-			play("rbxassetid://8503529139", 10) // succeed because command ran
+			try {
+				await cmd.execute(args)
+				play("rbxassetid://8503529139", 10)
+			} catch {
+				play("rbxassetid://8458408918", 10)
+			}
 		} else if (action) {
 			if (action.enabled && !action.enabled()) {
 				play("rbxassetid://8458408918") // fail since its not enabled
