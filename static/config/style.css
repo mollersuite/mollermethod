@@ -19,6 +19,7 @@ main {
 	flex-direction: column;
 }
 textarea {
+	tab-size: 2;
 	resize: none;
 	border: none;
 	background: none;
