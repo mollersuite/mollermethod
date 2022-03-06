@@ -44,3 +44,6 @@ hr {
 		width: 100%;
 	}
 }
+label {
+	user-select: none;
+}
