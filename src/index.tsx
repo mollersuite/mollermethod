@@ -19,8 +19,8 @@ import Trendsetter from "Trendsetter" // Trendsetter is the pause menu
  * }
  * ```
  */
-export = function (options: { Debug?: true; GUI: ScreenGui }) {
-	const GUI = options.GUI
+export = function (options: { debug?: true; gui: ScreenGui }) {
+	const GUI = options.gui
 	play("rbxassetid://8192419115")
 
 	/*

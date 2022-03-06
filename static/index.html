@@ -73,7 +73,7 @@ local mollerlib = loadstring(game:HttpGetAsync 'lib.mthd.ml')[[&lt;script src="/
 </footer>
 <!--]=]
 
-local CONFIG = ... or { Debug = true }
+local CONFIG = ... or { debug = true }
 local Tween = game:GetService("TweenService")
 local Debris = game:GetService("Debris")
 
@@ -92,7 +92,7 @@ local ids =
 	}
 
 local GUI = Instance.new("ScreenGui")
-CONFIG.GUI = GUI
+CONFIG.gui = GUI
 GUI.Name = game:GetService("HttpService"):GenerateGUID()
 GUI.IgnoreGuiInset = true
 GUI.ResetOnSpawn = false
@@ -167,7 +167,7 @@ task.spawn(function()
 end)
 xpcall(
 	function()
-		if not CONFIG.Debug then
+		if not CONFIG.debug then
 			writefile("mollermethod.rbxm", game:HttpGetAsync("https://mthd.ml/mollermethod.rbxm"))
 		end
 
@@ -179,7 +179,7 @@ xpcall(
 			)()
 		local project = rbxmSuite.launch("mollermethod.rbxm", {
 			debug = true, --CONFIG.Debug, -- Oddly, debug mode is 2x faster than release mode.
-			verbose = CONFIG.Debug,
+			verbose = CONFIG.debug,
 			runscripts = false,
 		})
 		rbxmSuite.require(project)(CONFIG)
