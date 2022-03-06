@@ -42,7 +42,7 @@
 		"vueIndentScriptAndStyle": false,
 		"overrides": [
 			{
-				"files": "*.html",
+				"files": "static/index.html",
 				"options": {
 					"parser": "lua"
 				}

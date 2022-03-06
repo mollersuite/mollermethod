@@ -1,0 +1,28 @@
+nav {
+	display: flex;
+	gap: 1ch;
+	padding: 1em;
+	flex-direction: column;
+	grid-area: nav;
+}
+
+textarea {
+	resize: none;
+	grid-area: output;
+}
+
+html,
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	display: grid;
+	grid-template-areas: "nav output output output";
+}
+
+hr {
+	width: 100%;
+}
