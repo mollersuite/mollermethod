@@ -4,6 +4,7 @@
 		"esbenp.prettier-vscode",
 		"roblox-ts.vscode-roblox-ts",
 		"evaera.vscode-rojo",
-		"EditorConfig.EditorConfig"
+		"EditorConfig.EditorConfig",
+		"vivaxy.vscode-conventional-commits"
 	]
 }
