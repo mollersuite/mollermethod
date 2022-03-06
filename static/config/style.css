@@ -1,13 +1,22 @@
+* {
+	box-sizing: border-box;
+}
 nav {
 	display: flex;
 	gap: 1ch;
-	padding: 1em;
+	margin: 0.5em;
+	border-radius: 1em;
+	overflow-y: auto;
+	background: rgba(255, 255, 255, 0.1);
+	padding: 0.5em;
 	flex-direction: column;
 	grid-area: nav;
 }
 
 textarea {
 	resize: none;
+	border: none;
+	background: none;
 	grid-area: output;
 }
 
@@ -33,6 +42,5 @@ hr {
 	}
 	textarea {
 		width: 100%;
-		box-sizing: border-box;
 	}
 }
