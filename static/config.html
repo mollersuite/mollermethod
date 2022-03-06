@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>mollermethod config generator</title>
+		<script src="config.js" type="module"></script>
+		<meta name="color-scheme" content="dark" />
+		<style>
+			nav {
+				display: flex;
+				gap: 1ch;
+				padding: 1em;
+				flex-direction: column;
+				grid-area: nav;
+			}
+
+			textarea {
+				resize: none;
+				grid-area: output;
+			}
+
+			html,
+			body {
+				height: 100%;
+				margin: 0;
+				padding: 0;
+			}
+
+			body {
+				display: grid;
+				grid-template-areas: "nav output output output";
+			}
+
+		</style>
+	</head>
+
+	<body>
+		<noscript>
+			<p>This page requires JavaScript to be enabled.</p>
+		</noscript>
+		<nav>
+			<label>
+				Open Bracket with
+				<select id="bracket">
+
+				</select>
+			</label>
+
+			<label>
+				Debug Mode?
+				<small>Disables updating and logs to console</small>
+				<input type="checkbox" id="debug">
+			</label>
+		</nav>
+		<textarea readonly id="output"></textarea>
+	</body>
+
+</html>

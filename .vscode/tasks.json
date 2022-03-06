@@ -25,6 +25,12 @@
 			"isBackground": true,
 			"problemMatcher": ["$tsc-watch"],
 			"detail": "npm lo"
+		},
+		{
+			"type": "Live Preview",
+			"args": ["--verbose"],
+			"problemMatcher": [],
+			"label": "Live Preview: Run Server --verbose"
 		}
 	]
 }

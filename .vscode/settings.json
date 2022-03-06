@@ -7,7 +7,7 @@
 	"editor.autoIndent": "advanced",
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"files.associations": {
-		"*.html": "lua"
+		"index.html": "lua"
 	},
 	"roblox-ts.editor.hideDeprecated": false,
 	"robloxLsp.diagnostics.globals": ["writefile", "gethui"],
