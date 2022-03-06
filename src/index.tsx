@@ -19,7 +19,7 @@ import Trendsetter from "Trendsetter" // Trendsetter is the pause menu
  * }
  * ```
  */
-export = function (options: { debug?: true; gui: ScreenGui }) {
+export = function (options: { debug?: true; gui: ScreenGui; bracket_toggle?: Enum.KeyCode }) {
 	const GUI = options.gui
 	play("rbxassetid://8192419115")
 
@@ -37,7 +37,7 @@ export = function (options: { debug?: true; gui: ScreenGui }) {
 			Text={`<b>Pause</b> to open mollermethod.\n<i>${random(QUOTES)}</i>${
 				IY_LOADED
 					? `\n<b>Did you know that mollermethod has its own IY alternative? Press ${UserInputService.GetStringForKeyCode(
-							Enum.KeyCode.LeftBracket
+							options.bracket_toggle ?? Enum.KeyCode.LeftBracket
 					  )} to open it.</b>`
 					: ""
 			}`}
@@ -46,24 +46,18 @@ export = function (options: { debug?: true; gui: ScreenGui }) {
 		"Notification"
 	)
 
-	/*
-		We're assigning these trees to variables so we can unmount them
-		Why unmount them?
-		Because we need to fire the destructors in useEffect
-		which does not happen if we just destroy
-		you have to unmount for that
-	*/
-	const bracket_tree = Roact.mount(<Bracket button={Enum.KeyCode.LeftBracket} />, GUI, "Bracket")
 	const tree = Roact.mount(
-		<Trendsetter
-			Kill={() => {
-				Roact.unmount(tree)
-				Roact.unmount(bracket_tree)
-				GUI.Destroy()
-			}}
-		/>,
-		GUI,
-		"Menu"
+		<>
+			<Bracket Key="Bracket" button={options.bracket_toggle ?? Enum.KeyCode.LeftBracket} />
+			<Trendsetter
+				Key="Menu"
+				Kill={() => {
+					Roact.unmount(tree)
+					GUI.Destroy()
+				}}
+			/>
+		</>,
+		GUI
 	)
 
 	/*
