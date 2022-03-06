@@ -13,5 +13,5 @@
 	"robloxLsp.diagnostics.globals": ["writefile", "gethui"],
 	"robloxLsp.typeChecking.mode": "Disabled",
 	"typescript.preferences.quoteStyle": "double",
-	"conventionalCommits.scopes": ["command", "action", "quote"]
+	"conventionalCommits.scopes": ["command", "action", "quote", "web"]
 }

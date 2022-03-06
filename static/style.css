@@ -1,45 +1,43 @@
-:root {
-	color: white;
-	background: linear-gradient(69deg, #ff4539, transparent);
-	color-scheme: dark;
-	display: grid;
-	place-content: center;
+footer {
+	text-align: right;
 }
-h1 {
-	font-family: "Segoe UI Variable Display", "Segoe UI Variable", "Segoe UI", sans-serif;
+section:not(:last-child) {
+	min-height: 70%;
 }
-
-body {
-	border-radius: 1rem;
-	background: rgba(0, 0, 0, 0.5);
-	height: max-content;
-	padding: 1em;
-	font-family: sans-serif;
-	text-align: center;
+.giant {
+	font-size: 1.5em;
+	z-index: -50;
+	position: absolute;
+	/*         top: 40px; */
+	right: -400px;
 }
-
-pre {
-	text-align: left;
-	color: lightblue;
+p,
+blockquote {
+	max-width: 400px;
+}
+blockquote {
+	border-radius: 1em;
 	padding: 0.5em;
-	border-radius: 0.5em;
 	margin: 0;
-	border: solid 1px darkslategray;
-	background: linear-gradient(to bottom, darkslategray, black);
+	box-sizing: border-box;
+	background: canvas;
+	filter: invert(0.25);
 }
-
-@media (max-width: 375px) {
-	:root {
-		display: block;
-		background: none;
+body {
+	overflow-x: hidden;
+	padding-left: 10rem;
+}
+pre.giant {
+	right: 0;
+}
+:root {
+	font-family: "Gotham SSm", "Roboto", sans-serif;
+}
+@media (max-width: 1605px) {
+	.giant {
+		display: none;
 	}
 	body {
-		padding: 0;
-		margin: 0;
-		border-radius: 0;
-		background: none;
-	}
-	pre {
-		padding: 0;
+		padding-left: 0;
 	}
 }
