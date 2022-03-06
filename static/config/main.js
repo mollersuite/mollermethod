@@ -1,13 +1,18 @@
 import api_dump from "https://cdn.jsdelivr.net/gh/MaximumADHD/Roblox-Client-Tracker/Mini-API-Dump.json" assert { type: "json" }
 const { Enums: enums } = api_dump
 
-const { Items: keys } = enums.find(enu => enu.Name == "KeyCode")
+const { Items: keys } = enums.find(enu => enu.Name == "KeyCode") ?? {
+	Items: [],
+}
+
 
 const output = document.querySelector("textarea")
+if (!output) throw "Output must exist!"
 /**
- * @type {HTMLSelectElement}
+ * @type {HTMLSelectElement | null}
  */
 const bracket = document.querySelector("#bracket")
+if (!bracket) throw "Bracket must exist!"
 bracket.append(
 	...keys.map(key => {
 		const option = document.createElement("option")
@@ -16,20 +21,20 @@ bracket.append(
 		return option
 	})
 )
-if (bracket.value === "Unknown") bracket.value = undefined
-bracket.oninput = generate
+if (bracket.value === "Unknown") bracket.value = ""
 
 /**
- * @type {HTMLInputElement}
+ * @type {HTMLInputElement | null}
  */
 const debug = document.querySelector("#debug")
-debug.oninput = generate
+if (!debug) throw "Debug must exist!"
 /**
- * @type {HTMLInputElement}
+ * @type {HTMLInputElement | null}
  */
 const nice = document.querySelector("#nice")
-nice.oninput = generate
-function generate() {
+if (!nice) throw "Nice must exist!"
+
+const generate = () => {
 	output.value = !nice.checked
 		? `loadstring(game:HttpGet '${location.host}') {
 \tbracket_toggle = Enum.KeyCode.${bracket.value || "LeftBracket"};
@@ -41,4 +46,7 @@ function generate() {
 })`
 }
 
+nice.oninput = generate
+bracket.oninput = generate
+debug.oninput = generate
 generate()
