@@ -30,8 +30,18 @@ body {
 pre.giant {
 	right: 0;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: "Segoe UI Variable Display", "Seoge UI Variable Static Display", "Segoe UI",
+		system-ui, sans-serif;
+}
 :root {
-	font-family: "Gotham SSm", "Roboto", sans-serif;
+	font-family: "Segoe UI Variable Text", "Seoge UI Variable Static Text", "Segoe UI", system-ui,
+		sans-serif;
 }
 @media (max-width: 1605px) {
 	.giant {

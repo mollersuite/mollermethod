@@ -34,12 +34,25 @@ body {
 
 body {
 	display: grid;
+	font-family: "Segoe UI Variable Text", "Seoge UI Variable Static Text", "Segoe UI", system-ui,
+		sans-serif;
 	grid-template-areas: "nav output output output";
 }
 
 hr {
 	width: 100%;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: "Segoe UI Variable Display", "Seoge UI Variable Static Display", "Segoe UI",
+		system-ui, sans-serif;
+}
+
 @media (max-width: 1024px) {
 	body {
 		grid-template-areas: "nav" "output" "output" "output";
