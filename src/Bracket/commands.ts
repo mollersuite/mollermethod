@@ -4,7 +4,7 @@ const Player = Players.LocalPlayer
 
 interface Command {
 	readonly description: string
-	execute(this: void, args: string[]): void | Promise<void>
+	execute(this: void, args: string[]): void | Promise<unknown>
 }
 
 export const exit: Command = {
