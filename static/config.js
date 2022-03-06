@@ -9,16 +9,14 @@ const output = document.querySelector("textarea")
  */
 const bracket = document.querySelector("#bracket")
 bracket.append(
-	...keys
-		.map(key => key.Name)
-		.map(key => {
-			const option = document.createElement("option")
-			option.value = key
-			option.append(new Text(key))
-			return option
-		})
+	...keys.map(key => {
+		const option = document.createElement("option")
+		option.value = key.Name
+		option.append(new Text(key.Name))
+		return option
+	})
 )
-bracket.value = "LeftBracket"
+if (bracket.value === "Unknown") bracket.value = undefined
 bracket.oninput = generate
 
 /**
@@ -26,12 +24,21 @@ bracket.oninput = generate
  */
 const debug = document.querySelector("#debug")
 debug.oninput = generate
-
+/**
+ * @type {HTMLInputElement}
+ */
+const nice = document.querySelector("#nice")
+nice.oninput = generate
 function generate() {
-	output.value = `loadstring(game:HttpGet '${location.origin}') {
-\tbracket_toggle = Enum.KeyCode.${bracket.value}
-\tdebug = ${debug.checked}
+	output.value = !nice.checked
+		? `loadstring(game:HttpGet '${location.host}') {
+\tbracket_toggle = Enum.KeyCode.${bracket.value || "LeftBracket"};
+\tdebug = ${debug.checked};
 }`
+		: `loadstring(game:HttpGetAsync('${location.origin}'), 'mollermethod')({
+\tbracket_toggle = Enum.KeyCode.${bracket.value || "LeftBracket"};
+\tdebug = ${debug.checked};
+})`
 }
 
 generate()
