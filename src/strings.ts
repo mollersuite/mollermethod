@@ -1,4 +1,5 @@
 export const QUOTES = [
+	'"how do you unplug ethernet cables?" - Charlie, 2022',
 	'"why does it say 14 hours on mollermethod" - tact, 2022',
 	'"I guess my favourite concept of money laundering is just money to gold bars to money" - Charlie, 2022',
 	'"i wrote a whole ass lua bytecode builder in a day" - Mlemix, 2022',
