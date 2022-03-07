@@ -271,7 +271,7 @@
 	<meta name="description" content="Make a loader for mollermethod." />
 </svelte:head>
 <!-- <nav> -->
-<ComboBox items={KeyCode.map(key => ({ name: key, value: key }))} bind:value={toggle} editable>
+<ComboBox items={KeyCode.map(key => ({ name: key, value: key }))} bind:value={toggle}>
 	<span>Bracket's toggle key</span>
 </ComboBox>
 <ToggleSwitch bind:checked={debug}>
