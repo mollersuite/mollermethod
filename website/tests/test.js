@@ -4,7 +4,6 @@ test("index page has expected h1", async ({ page }) => {
 	await page.goto("/")
 	expect(await page.textContent("h1")).toBe("mollermethod")
 })
-
 test("it doesn't fucking DELETE THE BODY", async ({ page }) => {
 	await page.goto("/config")
 	await page.click("body > div > header > a")
@@ -51,12 +50,12 @@ test.describe("config generator", async () => {
 }`)
 	})
 
-	test("verbose loader", async ({ page }) => {
+	test("verbose loader", async ({ page, baseURL }) => {
 		await page.focus(".slider")
 		await page.keyboard.press("ArrowRight")
 
 		expect(await page.textContent("#output"))
-			.toBe(`loadstring(game:HttpGetAsync('http://localhost:3000'), 'mollermethod')({
+			.toBe(`loadstring(game:HttpGetAsync('${baseURL}'), 'mollermethod')({
 	bracket_toggle = Enum.KeyCode.LeftBracket;
 	debug = false;
 })`)
