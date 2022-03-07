@@ -1,72 +1,3 @@
---[=[
-<link rel="stylesheet" href="style.css">
-<meta name="color-scheme" content="dark" />
-<meta name="description" content="Your last script hub." />
-<meta name="theme-color" content="#ff4539" />
-<section>
-<img class="giant" src="icon.png" alt="mollermethod's logo"><h1>
-    Your last script hub.
-</h1>
-<pre>loadstring(game:HttpGet 'mthd.ml') {
-	<a href="config">-- make a custom loader: mthd.ml/config</a>
-}</pre>
-<br><br><mark>mollermethod is in beta; all following statements about mollermethod are aspirational.</mark>
-</section>
-<section>
-
-    <pre class="giant">
-local mollerlib = loadstring(game:HttpGetAsync 'lib.mthd.ml')[[&lt;script src="//lib.mthd.ml"&gt;{
-  "Name": "mollerfarm",
-  "Description": "fastest babft autofarm",
-  "Games": [placeidofbabfthere],
-  "Logo": "https://mthd.ml/icon.png"
-}&lt;/script&gt;}]]
-    </pre>
-<h1>
-    Can you script?
-</h1>
-<p>
-
-    mollermethod has its own UI lib &mdash; <em>mollerlib</em>, which seamlessly integrates into the script hub. It can also be used standalone, and can turn your scripts into websites.
-</p>
-<blockquote>
-    <p>That's actually not a bad idea.</p>
-    <footer>
-        — Malder</cite>
-    </footer>
-</blockquote>
-    <a href="https://lib.mthd.ml">mollerlib</a>
-    </section>
-<section>
-<h1>
-    A very unique UI.
-    </h1>
-    <p>
-        mollermethod's UI &mdash; codenamed <em>trendsetter</em>, has been reworked 4 times before release. At first it looked like the cards you might see on YouTube's home page, then it looked like DomainX, then a rework of that first cards concept, then a textbox on a pause menu, and now we're here.
-    </p>
-</section>
-<section>
-<h1>
-    Inventors of the cloud script website; inventors of the cloud script hub.
-    </h1>
-<p>
-    We revolutionized script sharing with the introduction of Luau.ml, the world's first cloud script website, in July 2021. And we're gonna do it again.
-    </p>
-    <p>
-        mollermethod has integration with ScriptBlox & Luau.ml. See every script that works with your game, and run them, without ever alt tabbing.
-    </p>
-</section>
-<section>
-<h1>
-    rip infinite yield.
-    </h1>
-<p>
-    mollermethod has a built-in admin &mdash; <em>Bracket</em>, that integrates with <em>Mollybdos</em>, mollermethod's player list. Now you can fling the server in style.
-    </p>
-</section>
-<footer>made of <a href="https://github.com/mollersuite">mollybdenum</a>: <a href="https://5079.ml">Jack</a>, Charlie, Tactical, & Bongo</footer>
-<!--]=]
-
 local CONFIG = ... or { debug = true }
 local Tween = game:GetService("TweenService")
 local Debris = game:GetService("Debris")
@@ -199,4 +130,3 @@ xpcall(
 		warn(err)
 	end
 )
--->
