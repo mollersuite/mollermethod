@@ -14,7 +14,7 @@
 	"scripts": {
 		"watch": "rojo build --watch default.project.json -o %~%/code/overlay/workspace/mollermethod.rbxm",
 		"preinstall": "npx -y only-allow pnpm",
-		"build": "rbxtsc --type model && rojo build default.project.json -o ../website/build/mollermethod.rbxm",
+		"build": "rbxtsc --type model && ../rojo build default.project.json -o ../website/build/mollermethod.rbxm",
 		"ts-watch": "rbxtsc --watch --type model"
 	},
 	"dependencies": {
