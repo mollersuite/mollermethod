@@ -260,10 +260,15 @@
 	let toggle = "LeftBracket"
 	let debug = false
 	let ugly = 0
-	$: config = `
-\tbracket_toggle = Enum.KeyCode.${toggle ?? "LeftBracket"};
-\tdebug = ${debug};
-`
+	$: config =
+		"\n" +
+		Object.entries({
+			bracket_toggle: "Enum.KeyCode." + toggle,
+			debug,
+		})
+			.map(([key, value]) => `\t${key} = ${value};`)
+			.join("\n") +
+		"\n"
 </script>
 
 <svelte:head>
