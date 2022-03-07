@@ -280,7 +280,14 @@
 </ToggleSwitch>
 <!-- svelte-ignore a11y-label-has-associated-control -->
 <label>
-	<Slider bind:value={ugly} min={0} max={100} step={50} ticks={[0, 50, 100]} suffix="% ugly" />
+	<Slider
+		bind:value={ugly}
+		min={0}
+		max={100}
+		step={50}
+		ticks={[0, 50, 100]}
+		suffix="% ugly"
+		tickPlacement="after" />
 	<span>Ugly Scale</span>
 </label>
 <!-- </nav> -->
