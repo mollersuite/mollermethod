@@ -18,3 +18,18 @@ mollermethod's player list. It lets you do actions on players and see info about
 
 Serverside integration of mollermethod. Does backdoor scanning and shit, has integration with sbs
 and games you own too
+
+## Dev environment
+
+You will need:
+
+- Node.js
+- pnpm
+- Rojo
+- Git
+
+1. `git clone https://github.com/mollersuite/mollermethod.git`
+2. `cd mollermethod`
+3. `pnpm install`
+4. `pnpm run dev -r`
+5. Profit
