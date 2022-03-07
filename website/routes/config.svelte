@@ -261,7 +261,7 @@
 	let debug = false
 	let ugly = 0
 	$: config = `
-\tbracket_toggle = Enum.KeyCode.${toggle};
+\tbracket_toggle = Enum.KeyCode.${toggle ?? "LeftBracket"};
 \tdebug = ${debug};
 `
 </script>
