@@ -7,5 +7,13 @@
 			"$lib/*": ["lib/*"]
 		}
 	},
-	"include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.svelte", "global.d.ts"]
+	"include": [
+		"lib/**/*.d.ts",
+		"lib/**/*.js",
+		"lib/**/*.svelte",
+		"routes/**/*.d.ts",
+		"routes/**/*.js",
+		"routes/**/*.svelte",
+		"global.d.ts"
+	]
 }
