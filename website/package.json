@@ -8,10 +8,15 @@
     "preview": "svelte-kit preview"
   },
   "devDependencies": {
+    "@fluentui/svg-icons": "^1.1.162",
     "@sveltejs/adapter-static": "^1.0.0-next.29",
     "@sveltejs/kit": "next",
+    "fluent-svelte": "^1.4.1",
     "prettier-plugin-svelte": "^2.6.0",
     "svelte": "^3.44.0"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@fontsource/jetbrains-mono": "^4.5.3"
+  }
 }

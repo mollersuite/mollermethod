@@ -27,14 +27,6 @@
 		"tabWidth": 2,
 		"trailingComma": "es5",
 		"useTabs": true,
-		"vueIndentScriptAndStyle": false,
-		"overrides": [
-			{
-				"files": "static/index.html",
-				"options": {
-					"parser": "lua"
-				}
-			}
-		]
+		"vueIndentScriptAndStyle": false
 	}
 }

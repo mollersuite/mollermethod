@@ -1,0 +1,59 @@
+@import 'fluent-svelte/theme.css';
+@import '@fontsource/jetbrains-mono';
+
+body {
+  overflow-x: hidden;
+  min-height: 100vh;
+  margin: 0;
+  font-family: var(--fds-font-family-text);
+  background-color: var(--fds-solid-background-base);
+  color: var(--fds-text-primary);
+  display: flex;
+  flex-direction: column;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--fds-font-family-display);
+}
+
+p {
+  line-height: 1.5;
+}
+
+a {
+  color: var(--fds-accent-default);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+pre,
+code,
+textarea {
+  font-size: 13px;
+  font-family: 'JetBrains Mono', ui-monospace, 'Input Mono', 'Cascadia Mono',
+    'Segoe UI Mono', 'Ubuntu Mono', 'Roboto Mono', 'Fira Code', Menlo, Monaco,
+    Consolas, monospace;
+  background-color: var(--fds-solid-background-secondary);
+  border-radius: 3px;
+  padding: 0.5em;
+  overflow-x: auto;
+  color: var(--fds-text-primary);
+}
+
+input,
+button {
+  font-size: inherit;
+  font-family: inherit;
+}
+
+button:focus:not(:focus-visible) {
+  outline: none;
+}
