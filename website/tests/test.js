@@ -24,8 +24,8 @@ test.describe.parallel("config generator", async () => {
 	test.beforeEach(({ page }) => page.goto("/config"))
 
 	test("custom key", async ({ page }) => {
-		await page.focus("#main > .combo-box > .text-box-container > input")
-		await page.type("#main > .combo-box > .text-box-container > input", "RightP")
+		await page.click("#main > .combo-box > button")
+		await page.click("#main > .combo-box > ul :has-text('RightParenthesis')")
 		expect(await page.textContent("#output")).toBe(`loadstring(game:HttpGet 'localhost:3000') {
 	bracket_toggle = Enum.KeyCode.RightParenthesis;
 	debug = false;
@@ -37,16 +37,6 @@ test.describe.parallel("config generator", async () => {
 		expect(await page.textContent("#output")).toBe(`loadstring(game:HttpGet 'localhost:3000') {
 	bracket_toggle = Enum.KeyCode.LeftBracket;
 	debug = true;
-}`)
-	})
-
-	test("null key", async ({ page }) => {
-		await page.focus("#main > div > div > input")
-		await page.type("#main > div > div > input", "fake")
-
-		expect(await page.textContent("#output")).toBe(`loadstring(game:HttpGet 'localhost:3000') {
-	bracket_toggle = Enum.KeyCode.LeftBracket;
-	debug = false;
 }`)
 	})
 
