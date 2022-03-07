@@ -20,7 +20,7 @@ test("you can visit the discord", async ({ page }) => {
 	//expect(await fetch("https://discord.com/api/v9/invites/" + invite)).toHaveProperty("ok", true)
 })
 
-test.describe("config generator", async () => {
+test.describe.parallel("config generator", async () => {
 	test.beforeEach(({ page }) => page.goto("/config"))
 
 	test("custom key", async ({ page }) => {
