@@ -110,6 +110,7 @@
 	@media (max-width: 659px) {
 		a,
 		button {
+			flex-grow: 1;
 			padding: 5px;
 		}
 	}
