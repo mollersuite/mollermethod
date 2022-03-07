@@ -13,6 +13,14 @@ test("it doesn't fucking DELETE THE BODY", async ({ page }) => {
 	await page.$eval("body", body => body.children[0])
 })
 
+test("you can visit the discord", async ({ page }) => {
+	await page.goto("/")
+	await page.click("body > div > header > a[title='Discord']")
+	expect(page.url()).toMatch(/https:\/\/discord\.com\/invite\/([a-zA-Z0-9\-]{2,32})/)
+	//const [, invite] = page.url().match(/https:\/\/discord\.com\/invite\/([a-zA-Z0-9\-]{2,32})/)
+	//expect(await fetch("https://discord.com/api/v9/invites/" + invite)).toHaveProperty("ok", true)
+})
+
 test.describe("config generator", async () => {
 	test.beforeEach(({ page }) => page.goto("/config"))
 
