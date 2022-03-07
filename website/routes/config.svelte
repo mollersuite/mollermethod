@@ -259,6 +259,9 @@
 	import { page } from "$app/stores"
 	let toggle = "LeftBracket"
 	let debug = false
+	/**
+	 * @type {0 | 50 | 100}
+	*/
 	let ugly = 0
 	$: config =
 		"\n" +
