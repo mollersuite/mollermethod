@@ -5,7 +5,6 @@
 	import "$lib/app.css"
 	$: path = $page.url.pathname
 
-	import Code from "@fluentui/svg-icons/icons/code_20_regular.svg?raw"
 	import Settings from "@fluentui/svg-icons/icons/clipboard_settings_20_regular.svg?raw"
 </script>
 
