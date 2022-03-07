@@ -5,10 +5,12 @@
     "dev": "svelte-kit dev",
     "build": "svelte-kit build",
     "package": "svelte-kit package",
-    "preview": "svelte-kit preview"
+    "preview": "svelte-kit preview",
+	"test": "playwright test"
   },
   "devDependencies": {
     "@fluentui/svg-icons": "^1.1.162",
+    "@playwright/test": "^1.19.2",
     "@sveltejs/adapter-static": "^1.0.0-next.29",
     "@sveltejs/kit": "next",
     "fluent-svelte": "^1.4.1",
