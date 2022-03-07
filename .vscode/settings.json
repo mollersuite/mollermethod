@@ -13,5 +13,6 @@
 	"robloxLsp.diagnostics.globals": ["writefile", "gethui"],
 	"robloxLsp.typeChecking.mode": "Disabled",
 	"typescript.preferences.quoteStyle": "double",
-	"conventionalCommits.scopes": ["bracket", "mollybdos", "trendsetter", "mollerpotence"]
+	"conventionalCommits.scopes": ["bracket", "mollybdos", "trendsetter", "mollerpotence"],
+	"npm.packageManager": "pnpm"
 }
