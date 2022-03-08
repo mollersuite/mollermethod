@@ -93,7 +93,7 @@ export = ({ Kill }: { Kill: () => void }) => (
 			<uicorner CornerRadius={new UDim(0, 16)} />
 		</textlabel>
 		<Mollybdos />
-		
+
 		<textbutton
 			Position={UDim2.fromOffset(10, 84 + 300 + 10)}
 			Size={UDim2.fromOffset(400, 100)}

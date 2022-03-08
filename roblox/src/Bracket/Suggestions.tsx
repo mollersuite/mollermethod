@@ -32,7 +32,7 @@ const cmds: {
 export = ({ Text: text, KeyCode: button }: { Text: string; KeyCode: Enum.KeyCode }) => {
 	const escaped =
 		text.sub(1, 1) === UserInputService.GetStringForKeyCode(button) ? text.sub(2) : text
-	
+
 	return (
 		<>
 			{cmds

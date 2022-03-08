@@ -2,6 +2,7 @@
 	"name": "mollermethod-roblox",
 	"description": "Scripting, unleashed.",
 	"version": "5.0.0-beta.5",
+	"private": true,
 	"devDependencies": {
 		"@rbxts/compiler-types": "^1.3.1-types.0",
 		"@rbxts/exploit-types": "github:richie0866/exploit-types",

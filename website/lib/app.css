@@ -57,5 +57,5 @@ button:focus:not(:focus-visible) {
 	outline: none;
 }
 * {
-	--fds-menu-offset: 0 !important
+	--fds-menu-offset: 0 !important;
 }

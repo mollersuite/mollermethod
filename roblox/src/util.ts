@@ -64,4 +64,3 @@ export const escape_lua_pattern = (s: string) =>
 		"-": "%-",
 		"?": "%?",
 	})[0]
-

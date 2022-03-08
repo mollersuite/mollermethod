@@ -1,24 +1,25 @@
 {
-  "name": "website",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "svelte-kit dev",
-    "build": "svelte-kit build",
-    "package": "svelte-kit package",
-    "preview": "svelte-kit preview",
-	"test": "playwright test"
-  },
-  "devDependencies": {
-    "@fluentui/svg-icons": "^1.1.162",
-    "@playwright/test": "^1.19.2",
-    "@sveltejs/adapter-static": "^1.0.0-next.29",
-    "@sveltejs/kit": "next",
-    "fluent-svelte": "^1.4.1",
-    "prettier-plugin-svelte": "^2.6.0",
-    "svelte": "^3.44.0"
-  },
-  "type": "module",
-  "dependencies": {
-    "@fontsource/jetbrains-mono": "^4.5.3"
-  }
+	"name": "mollermethod-website",
+	"version": "1.0.0",
+	"private": true,
+	"scripts": {
+		"dev": "svelte-kit dev",
+		"build": "svelte-kit build",
+		"package": "svelte-kit package",
+		"preview": "svelte-kit preview",
+		"test": "playwright test"
+	},
+	"devDependencies": {
+		"@fluentui/svg-icons": "^1.1.162",
+		"@playwright/test": "^1.19.2",
+		"@sveltejs/adapter-static": "^1.0.0-next.29",
+		"@sveltejs/kit": "next",
+		"fluent-svelte": "^1.4.1",
+		"prettier-plugin-svelte": "^2.6.0",
+		"svelte": "^3.44.0"
+	},
+	"type": "module",
+	"dependencies": {
+		"@fontsource/jetbrains-mono": "^4.5.3"
+	}
 }

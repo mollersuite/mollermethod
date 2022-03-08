@@ -30,7 +30,6 @@ const state: {
 	remote?: RemoteFunction<(action: string, detail?: string) => unknown>
 } = {}
 
-
 async function activate() {
 	const remotename = HttpService.GenerateGUID()
 	run_script(

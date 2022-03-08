@@ -1,4 +1,4 @@
-import loader from './loader.client.lua?raw'
+import loader from "./loader.client.lua?raw"
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
 	const response = await resolve(event)

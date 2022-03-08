@@ -23,7 +23,7 @@ declare const IY_LOADED: true | void
 /**
  * Fakes a .Touched event to `ToTouch` with `Part`.
  * The `Toggle` argument must be either 0 or 1 (for fire/unfire).
- * 
+ *
  * **Note:** The `ToTouch` argument must have a child with class `TouchTransmitter` in order for this function to work.
  */
 declare const firetouchinterest: ((Part: Instance, ToTouch: BasePart, Toggle: 0 | 1) => void) | void

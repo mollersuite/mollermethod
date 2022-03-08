@@ -11,5 +11,5 @@ jobs:
       - name: Update diagram
         uses: githubocto/repo-visualizer@main
         with:
-          artifact_name: 'Diagram'
+          artifact_name: "Diagram"
           should_push: false

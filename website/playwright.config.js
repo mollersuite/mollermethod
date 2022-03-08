@@ -5,9 +5,9 @@ const config = {
 		port: 3000,
 	},
 	use: {
-		browserName: 'chromium',
-		defaultBrowserType: 'chromium'
-	}
+		browserName: "chromium",
+		defaultBrowserType: "chromium",
+	},
 }
 
 export default config
