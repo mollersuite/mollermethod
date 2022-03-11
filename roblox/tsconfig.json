@@ -17,13 +17,7 @@
 		"typeRoots": ["node_modules/@rbxts"],
 		"plugins": [
 			{
-				"transform": "rbxts-transform-debug",
-				"environmentRequires": {
-					"CF_PAGES": null
-				}
-			},
-			{
-				"transform": "rbxts-transformer-services"
+				"transform": "rbxts-transform-env"
 			}
 		],
 		// configurable

@@ -2,10 +2,9 @@ import Roact from "@rbxts/roact"
 import { rejoin, respawn } from "Bracket/commands"
 import { ACCENT, BLACK, WHITE } from "colors"
 import Mollybdos from "Mollybdos"
-import { $git } from "rbxts-transform-debug"
+import { $env } from "rbxts-transform-env"
 import { QUOTES } from "strings"
 import { random } from "util"
-const { Branch } = $git()
 
 const IconButton = (
 	Props: Partial<Pick<ImageLabel, "Image" | "ImageRectSize" | "ImageRectOffset" | "Position">> & {
@@ -88,7 +87,7 @@ export = ({ Kill }: { Kill: () => void }) => (
 			Font="RobotoCondensed"
 			AutomaticSize="X"
 			TextColor3={WHITE}
-			Text={`v${PKG_VERSION}${!["main", "HEAD"].includes(Branch) ? ` (${Branch})` : ""}`}
+			Text={`v${PKG_VERSION}${$env("CF_PAGES") === "1" ? "" : " (dev)"}`}
 			BorderSizePixel={0}>
 			<uicorner CornerRadius={new UDim(0, 16)} />
 		</textlabel>

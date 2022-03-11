@@ -8,7 +8,7 @@
 		"@rbxts/exploit-types": "github:richie0866/exploit-types",
 		"@rbxts/services": "^1.2.0",
 		"@rbxts/types": "^1.0.571",
-		"rbxts-transform-debug": "^1.0.0-ts4.5",
+		"rbxts-transform-env": "^1.1.0-ts4.5",
 		"rbxts-transformer-services": "^1.0.1",
 		"roblox-ts": "^1.3.2"
 	},
