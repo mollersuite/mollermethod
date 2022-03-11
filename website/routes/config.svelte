@@ -260,8 +260,9 @@
 	let toggle = "LeftBracket"
 	let debug = false
 	/**
+	 * The uglyness of the loader.
 	 * @type {0 | 50 | 100}
-	*/
+	 */
 	let ugly = 0
 	$: config =
 		"\n" +
@@ -272,36 +273,12 @@
 			.map(([key, value]) => `\t${key} = ${value};`)
 			.join("\n") +
 		"\n"
-</script>
-
-<svelte:head>
-	<title>mollermethod config generator</title>
-	<meta name="description" content="Make a loader for mollermethod." />
-</svelte:head>
-<!-- <nav> -->
-<ComboBox items={KeyCode.map(key => ({ name: key, value: key }))} bind:value={toggle}>
-	<span>Bracket's toggle key</span>
-</ComboBox>
-<ToggleSwitch bind:checked={debug}>
-	Debug Mode?
-	<small>Disables updating and logs to console</small>
-</ToggleSwitch>
-<!-- svelte-ignore a11y-label-has-associated-control -->
-<label>
-	<Slider
-		bind:value={ugly}
-		min={0}
-		max={100}
-		step={50}
-		ticks={[0, 50, 100]}
-		suffix="% ugly"
-		tickPlacement="after" />
-	<span>Ugly Scale</span>
-</label>
-<!-- </nav> -->
-<pre readonly id="output" rows="5">{{
+	$: loaders = {
+		// nice loader, this is the one used in marketing
 		[0]: `loadstring(game:HttpGet '${$page.url.host}') {${config}}`,
+		// async, and uses origin
 		[50]: `loadstring(game:HttpGetAsync('${$page.url.origin}'), 'mollermethod')({${config}})`,
+		// used during development
 		[100]: `local CONFIG = {${config}}
 local GUI = Instance.new("ScreenGui")
 CONFIG.gui = GUI
@@ -338,7 +315,35 @@ local project = rbxmSuite.launch("mollermethod.rbxm", {
 })
 rbxmSuite.require(project)(CONFIG)
 `,
-	}[ugly]}</pre>
+	}
+</script>
+
+<svelte:head>
+	<title>mollermethod config generator</title>
+	<meta name="description" content="Make a loader for mollermethod." />
+</svelte:head>
+<!-- <nav> -->
+<ComboBox items={KeyCode.map(key => ({ name: key, value: key }))} bind:value={toggle}>
+	<span>Bracket's toggle key</span>
+</ComboBox>
+<ToggleSwitch bind:checked={debug}>
+	Debug Mode?
+	<small>Disables updating and logs to console</small>
+</ToggleSwitch>
+<!-- svelte-ignore a11y-label-has-associated-control -->
+<label>
+	<Slider
+		bind:value={ugly}
+		min={0}
+		max={100}
+		step={50}
+		ticks={[0, 50, 100]}
+		suffix="% ugly"
+		tickPlacement="after" />
+	<span>Ugly Scale</span>
+</label>
+<!-- </nav> -->
+<pre readonly id="output" rows="5">{loaders[ugly]}</pre>
 
 <style>
 	label {
