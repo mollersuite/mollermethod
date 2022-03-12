@@ -21,7 +21,7 @@ CONFIG.gui = GUI
 GUI.Name = game:GetService("HttpService"):GenerateGUID()
 GUI.IgnoreGuiInset = true
 GUI.ResetOnSpawn = false
-GUI.DisplayOrder = (2 ^ 31) - 1
+GUI.DisplayOrder = 7
 if gethui then
 	GUI.Parent = gethui()
 else
