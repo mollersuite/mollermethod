@@ -1,5 +1,11 @@
 <div align="center"><img src="https://5079.ml/5079mlicon.svg" alt="mollermethod" height="100"><h1>mollermethod</h1></div>
 
+# Deprecated
+
+mollermethod's UI depended on Roblox's desktop beta sidebar.
+
+They have removed the sidebar and replaced it with the legacy UI.
+
 ## trendsetter
 
 trendsetter is mollermethod's ui, to be exact what you see when you pause. It's what we've been
