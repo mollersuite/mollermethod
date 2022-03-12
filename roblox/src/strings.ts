@@ -1,4 +1,5 @@
 export const QUOTES = [
+	'"Is that a dinosaur in the readme btw" - 0866, 2022',
 	'"can i send him your home address" - tact, 2022',
 	'"how do you unplug ethernet cables?" - Charlie, 2022',
 	'"why does it say 14 hours on mollermethod" - tact, 2022',
