@@ -4,16 +4,9 @@
 	import Button from "$lib/components/Button.svelte"
 	import "$lib/app.css"
 	$: path = $page.url.pathname
-	import { InfoBar, Button as Button_2 } from "fluent-svelte"
 	import Settings from "@fluentui/svg-icons/icons/clipboard_settings_20_regular.svg?raw"
 </script>
 
-<InfoBar closable={false} title="RIP mollermethod"
-	>Roblox's new update removed the sidebar that mollermethod's UI was based around. <Button_2
-		slot="action"
-		variant="hyperlink"
-		href="https://github.com/mollersuite/mollermethod">Source code</Button_2>
-</InfoBar>
 <Header>
 	<Button href="/" label="mollermethod" selected={"/" === path}>
 		<img src="/icon.png" alt="mollermethod" height="20" class:navigating={$navigating} />
