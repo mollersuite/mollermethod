@@ -1,7 +1,7 @@
 import Roact from "@rbxts/roact"
-import { pure, useEffect } from "@rbxts/roact-hooked"
-import { Debris, TweenService } from "@rbxts/services"
+import { pure, useEffect, useState } from "@rbxts/roact-hooked"
 import { BLACK, WHITE } from "colors"
+import { useSpring } from "hooks/common/use-spring"
 import { play } from "util"
 
 const Notification = ({
@@ -16,22 +16,14 @@ const Notification = ({
 	App?: string
 }) => {
 	const ref = Roact.createRef<Frame>()
+	const [shown, setShown] = useState(false)
 
 	useEffect(() => {
 		play("rbxassetid://8183296024")
-		Debris.AddItem(ref.getValue()!, Duration + 0.6)
-		const tween = TweenService.Create(
-			ref.getValue()!,
-			new TweenInfo(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-			{ Position: new UDim2(1, -15, 1, -15) }
-		)
-		tween.Play()
-		tween.Completed.Connect(() => {
-			TweenService.Create(
-				ref.getValue()!,
-				new TweenInfo(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In, 0, false, Duration),
-				{ Position: new UDim2(1, -15, 3, -15) }
-			).Play()
+		task.spawn(() => {
+			setShown(true)
+			task.wait(Duration)
+			setShown(false)
 		})
 	}, [])
 
@@ -40,7 +32,10 @@ const Notification = ({
 			Ref={ref}
 			AnchorPoint={new Vector2(1, 1)}
 			BackgroundColor3={BLACK}
-			Position={new UDim2(1, -15, 3, -15)}
+			Position={useSpring(shown ? new UDim2(1, -15, 1, -15) : new UDim2(1, -15, 1, 125), {
+				frequency: 2,
+				dampingRatio: 0.8,
+			})}
 			Size={UDim2.fromOffset(362, 100)}>
 			<uicorner CornerRadius={new UDim(0, 12)} />
 			<uistroke
