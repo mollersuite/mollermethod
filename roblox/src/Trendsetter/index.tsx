@@ -3,10 +3,11 @@ import { GuiService } from "@rbxts/services"
 import { ACCENT, WHITE } from "colors"
 import Left from "./Left"
 import { useEffect, useState, pure } from "@rbxts/roact-hooked"
+import { useMouseLocation } from "hooks/common/use-mouse-location"
 
 const Trendsetter = () => {
 	const [open, setOpen] = useState(GuiService.MenuIsOpen)
-
+	const offset = useMouseLocation()
 	useEffect(() => {
 		const backdrop = game
 			.GetService("CoreGui")
@@ -30,7 +31,7 @@ const Trendsetter = () => {
 			Size={new UDim2(1, -464, 1, 0)}
 			BorderSizePixel={0}>
 			<uigradient
-				Rotation={15}
+				Rotation={offset.map(({ X, Y }) => (X / 5 + Y / 5) / 2)}
 				Color={
 					new ColorSequence([
 						new ColorSequenceKeypoint(0, ACCENT),
