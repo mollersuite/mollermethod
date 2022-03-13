@@ -1,5 +1,7 @@
+import Roact from "@rbxts/roact"
 import { SoundService } from "@rbxts/services"
 
+export const Kill = Roact.createContext(() => {})
 /**
  * A wrapper around getcustomasset
  *
