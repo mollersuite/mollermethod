@@ -5,10 +5,8 @@
 	"private": true,
 	"devDependencies": {
 		"@prettier/plugin-lua": "github:prettier/plugin-lua",
-		"luamin": "^1.0.4",
 		"prettier": "^2.4.1"
 	},
-	"type": "module",
 	"scripts": {
 		"deploy": "bash ./scripts/deploy.sh"
 	},
