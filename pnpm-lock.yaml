@@ -5,9 +5,11 @@ importers:
   .:
     specifiers:
       '@prettier/plugin-lua': github:prettier/plugin-lua
+      luamin: ^1.0.4
       prettier: ^2.4.1
     devDependencies:
       '@prettier/plugin-lua': github.com/prettier/plugin-lua/63d45f57abe20828edda91d068fd957174bbada4_prettier@2.5.1
+      luamin: 1.0.4
       prettier: 2.5.1
 
   roblox:
@@ -1642,6 +1644,13 @@ packages:
     resolution: {integrity: sha512-k2Gmn8iV6qdME3ztZC2spubmQISimFOPLuQKiPaLcVdRz0IpdxrNClVepMlyTJlhodm/zG/VfbkWERm3kUIh+Q==}
     engines: {npm: '>=6.13.4'}
     hasBin: true
+    dev: true
+
+  /luamin/1.0.4:
+    resolution: {integrity: sha1-lEUptY/G+k0x6s4uA1PUEhDw49M=}
+    hasBin: true
+    dependencies:
+      luaparse: 0.2.1
     dev: true
 
   /luaparse/0.2.1:

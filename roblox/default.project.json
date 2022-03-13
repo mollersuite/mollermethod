@@ -1,6 +1,6 @@
 {
 	"name": "mollermethod",
-	"globIgnorePaths": ["**/package.json", "**/tsconfig.json"],
+	"globIgnorePaths": ["**/package.json", "**/tsconfig.json", "**/jsconfig.json", "**/package-lock.json"],
 	"tree": {
 		"$path": "out",
 		"include": {

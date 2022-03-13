@@ -19,6 +19,7 @@ interface DataModel {
  * @since Infinite Yield 3.8
  */
 declare const IY_LOADED: true | void
+declare const gethui: (() => Instance) | void
 
 /**
  * Fakes a .Touched event to `ToTouch` with `Part`.
