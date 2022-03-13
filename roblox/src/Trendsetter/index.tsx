@@ -44,7 +44,7 @@ const Trendsetter = () => {
 			/>
 			{/* in-house features */}
 			<Left />
-			<textbutton
+			<textlabel
 				AutomaticSize="XY"
 				TextColor3={WHITE}
 				TextTransparency={0.5}
