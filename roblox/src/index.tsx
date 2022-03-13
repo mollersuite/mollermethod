@@ -1,6 +1,6 @@
 import { ACCENT } from "colors"
 import { Debris, TweenService, UserInputService } from "@rbxts/services"
-import { play, random } from "util"
+import { Kill, play, random } from "util"
 import { QUOTES } from "strings"
 import Roact from "@rbxts/roact"
 import Bracket from "Bracket" // Bracket is the admin commands
