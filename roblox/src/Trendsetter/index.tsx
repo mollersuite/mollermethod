@@ -4,7 +4,7 @@ import { ACCENT, WHITE } from "colors"
 import Left from "./Left"
 import { useEffect, useState, pure } from "@rbxts/roact-hooked"
 
-const Trendsetter = ({ Kill }: { Kill: () => void }) => {
+const Trendsetter = () => {
 	const [open, setOpen] = useState(GuiService.MenuIsOpen)
 
 	useEffect(() => {
@@ -42,7 +42,7 @@ const Trendsetter = ({ Kill }: { Kill: () => void }) => {
 				}
 			/>
 			{/* in-house features */}
-			<Left Kill={Kill} />
+			<Left />
 			<textbutton
 				AutomaticSize="XY"
 				TextColor3={WHITE}

@@ -4,7 +4,7 @@ import { ACCENT, BLACK, WHITE } from "colors"
 import Mollybdos from "Mollybdos"
 import { $env } from "rbxts-transform-env"
 import { QUOTES } from "strings"
-import { random } from "util"
+import { Kill, random } from "util"
 
 const IconButton = (
 	Props: Partial<Pick<ImageLabel, "Image" | "ImageRectSize" | "ImageRectOffset" | "Position">> & {
@@ -68,16 +68,20 @@ const LocalBar = () => (
 /**
  * the top left corner has a couple widgets, like the playerlist, changelog, and localplayer buttons
  **/
-export = ({ Kill }: { Kill: () => void }) => (
+export = () => (
 	<>
 		<LocalBar />
-		<IconButton
-			CornerRadius={new UDim(1)}
-			Position={UDim2.fromOffset(320, 42)}
-			Clicked={Kill}
-			Image="rbxassetid://3926305904"
-			ImageRectOffset={new Vector2(284, 4)}
-			ImageRectSize={new Vector2(24, 24)}
+		<Kill.Consumer
+			render={kill => (
+				<IconButton
+					CornerRadius={new UDim(1)}
+					Position={UDim2.fromOffset(320, 42)}
+					Clicked={kill}
+					Image="rbxassetid://3926305904"
+					ImageRectOffset={new Vector2(284, 4)}
+					ImageRectSize={new Vector2(24, 24)}
+				/>
+			)}
 		/>
 		<textlabel
 			Position={UDim2.fromOffset(320, 10)}
@@ -87,7 +91,7 @@ export = ({ Kill }: { Kill: () => void }) => (
 			Font="RobotoCondensed"
 			AutomaticSize="X"
 			TextColor3={WHITE}
-			Text={`v${PKG_VERSION}${$env("CF_PAGES") === "1" ? "" : " (dev)"}`}
+			Text={$env("CF_PAGES") === "1" ? `v${PKG_VERSION}` : "dev"}
 			BorderSizePixel={0}>
 			<uicorner CornerRadius={new UDim(0, 16)} />
 		</textlabel>

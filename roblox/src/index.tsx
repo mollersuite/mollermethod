@@ -47,16 +47,14 @@ export = function (options: { debug?: true; gui: ScreenGui; bracket_toggle?: Enu
 	)
 
 	const tree = Roact.mount(
-		<>
+		<Kill.Provider
+			value={() => {
+				Roact.unmount(tree)
+				GUI.Destroy()
+			}}>
 			<Bracket Key="Bracket" button={options.bracket_toggle ?? Enum.KeyCode.LeftBracket} />
-			<Trendsetter
-				Key="Menu"
-				Kill={() => {
-					Roact.unmount(tree)
-					GUI.Destroy()
-				}}
-			/>
-		</>,
+			<Trendsetter Key="Menu" />
+		</Kill.Provider>,
 		GUI
 	)
 
