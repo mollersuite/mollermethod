@@ -5,13 +5,7 @@ import { BLACK, WHITE, ACCENT, GRAY } from "colors"
 import Details from "./Details"
 
 const PlayerList = pure(
-	({
-		selected,
-		setSelected,
-	}: {
-		selected: Player | void
-		setSelected: Dispatch<Player | void>
-	}) => {
+	({ selected, setSelected }: { selected?: Player; setSelected: Dispatch<Player | undefined> }) => {
 		// handling players leaving and joining
 		const [players, setPlayers] = useState<Player[]>(Players.GetPlayers())
 		useEffect(() => {
@@ -73,7 +67,7 @@ const PlayerList = pure(
 )
 
 export = pure(() => {
-	const [selected, setSelected] = useState<Player | void>(undefined)
+	const [selected, setSelected] = useState<Player | undefined>(undefined)
 
 	// handling selected player leaving
 	useEffect(() => {

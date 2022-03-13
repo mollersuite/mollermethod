@@ -86,7 +86,7 @@ const Actions = pure(({ player }: { player: Player }) => {
 	)
 })
 
-export = pure(({ selected }: { selected: Player | void }) => {
+export = pure(({ selected }: { selected?: Player }) => {
 	if (!selected) {
 		return (
 			<frame Size={UDim2.fromScale(0.6, 1)} BackgroundTransparency={1} BorderSizePixel={0}>
