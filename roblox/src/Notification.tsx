@@ -20,11 +20,8 @@ const Notification = ({
 
 	useEffect(() => {
 		play("rbxassetid://8183296024")
-		task.spawn(() => {
-			setShown(true)
-			task.wait(Duration)
-			setShown(false)
-		})
+		setShown(true)
+		task.delay(Duration, setShown, false)
 	}, [])
 
 	return (
