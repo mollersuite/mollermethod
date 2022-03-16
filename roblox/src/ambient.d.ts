@@ -28,7 +28,7 @@ declare const gethui: (() => Instance) | void
  * **Note:** The `ToTouch` argument must have a child with class `TouchTransmitter` in order for this function to work.
  */
 declare const firetouchinterest: ((Part: Instance, ToTouch: BasePart, Toggle: 0 | 1) => void) | void
-
+declare const copytoclipboard: ((text: string) => void) | void
 interface LogService {
 	/**
 	 * Runs scripts on the server, LOL.
