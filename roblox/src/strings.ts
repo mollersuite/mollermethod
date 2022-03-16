@@ -1,4 +1,5 @@
 export const QUOTES = [
+	'"tysm for buying my module skeilet 1 now i have -0 robolx [sic] mony [sic] so you can take my manemodule [sic] but you faled [sic] because i obfuscate my stuf [sic] and you cant get it so yeah loser i am going to eat ur dog" - BOXIGON, 2022',
 	'"Is that a dinosaur in the readme btw" - 0866, 2022',
 	'"can i send him your home address" - tact, 2022',
 	'"how do you unplug ethernet cables?" - Charlie, 2022',
