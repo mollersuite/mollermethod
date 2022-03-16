@@ -2,6 +2,7 @@ import Roact from "@rbxts/roact"
 import { pure, useEffect, useState } from "@rbxts/roact-hooked"
 import { BLACK, WHITE } from "colors"
 import { useSpring } from "hooks/common/use-spring"
+import { useDelayedUpdate } from "hooks/use-delayed-update"
 import { play } from "util"
 
 const Notification = ({
@@ -17,14 +18,14 @@ const Notification = ({
 }) => {
 	const ref = Roact.createRef<Frame>()
 	const [shown, setShown] = useState(false)
-
+	const visible = useDelayedUpdate(shown, 1)
 	useEffect(() => {
 		play("rbxassetid://8183296024")
 		setShown(true)
 		task.delay(Duration, setShown, false)
 	}, [])
 
-	return (
+	return visible ? (
 		<frame
 			Ref={ref}
 			AnchorPoint={new Vector2(1, 1)}
@@ -79,6 +80,8 @@ const Notification = ({
 				BorderSizePixel={0}
 			/>
 		</frame>
+	) : (
+		<Roact.Fragment />
 	)
 }
 
