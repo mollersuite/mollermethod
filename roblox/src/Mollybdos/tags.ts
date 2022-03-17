@@ -137,6 +137,7 @@ export default async function tags_of(Player: Player): Promise<Tags> {
 					2684849, // Furry Fandom
 					5833102, // CodeProtogens
 					13802474, // Furry Den
+					5240855, // Furry Family
 				],
 			},
 		}),
