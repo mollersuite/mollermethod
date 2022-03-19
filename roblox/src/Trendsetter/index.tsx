@@ -27,8 +27,8 @@ const Trendsetter = () => {
 	return (
 		<frame
 			Visible={open}
-			Position={UDim2.fromOffset(464)}
-			Size={new UDim2(1, -464, 1, 0)}
+			Position={UDim2.fromOffset(1106.5)}
+			Size={new UDim2(1, -1106.5, 1, 0)}
 			BorderSizePixel={0}>
 			<uigradient
 				Rotation={offset.map(({ X, Y }) => (X / 5 + Y / 5) / 2)}
