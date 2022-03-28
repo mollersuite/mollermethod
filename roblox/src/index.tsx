@@ -21,7 +21,7 @@ import Trendsetter from "Trendsetter" // Trendsetter is the pause menu
  */
 export = function (options: { debug?: true; gui: ScreenGui; bracket_toggle?: Enum.KeyCode }) {
 	const GUI = options.gui
-	play("rbxassetid://8192419115")
+	play("rbxassetid://9064208547")
 
 	/*
 	  so here we are detecting IY and giving them ads for Bracket

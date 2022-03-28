@@ -1,47 +1,27 @@
 import Roact from "@rbxts/roact"
 import { GuiService } from "@rbxts/services"
-import { ACCENT, WHITE } from "colors"
+import { WHITE } from "colors"
 import Left from "./Left"
 import { useEffect, useState, pure } from "@rbxts/roact-hooked"
-import { useMouseLocation } from "hooks/common/use-mouse-location"
 
 const Trendsetter = () => {
 	const [open, setOpen] = useState(GuiService.MenuIsOpen)
-	const offset = useMouseLocation()
 	useEffect(() => {
-		const backdrop = game
-			.GetService("CoreGui")
-			.FindFirstChild("InGameMenu")
-			?.FindFirstChild("Overlay")
-			?.FindFirstChild("InputCapturer") as GuiObject | undefined
-		if (backdrop) backdrop.Visible = false
 		const closed = GuiService.MenuClosed.Connect(() => setOpen(false))
 		const opened = GuiService.MenuOpened.Connect(() => setOpen(true))
 		return () => {
 			opened.Disconnect()
 			closed.Disconnect()
-			if (backdrop) backdrop.Visible = true
 		}
 	}, [])
 
 	return (
 		<frame
 			Visible={open}
-			Position={UDim2.fromOffset(464)}
-			Size={new UDim2(1, -464, 1, 0)}
-			BorderSizePixel={0}>
-			<uigradient
-				Rotation={offset.map(({ X, Y }) => (X / 5 + Y / 5) / 2)}
-				Color={
-					new ColorSequence([
-						new ColorSequenceKeypoint(0, ACCENT),
-						new ColorSequenceKeypoint(1, new Color3(0, 0, 0)),
-					])
-				}
-				Transparency={
-					new NumberSequence([new NumberSequenceKeypoint(0, 0), new NumberSequenceKeypoint(1, 1)])
-				}
-			/>
+			Position={UDim2.fromOffset(0, 36)}
+			Size={new UDim2(1, 0, 1, -36)}
+			BorderSizePixel={0}
+			BackgroundTransparency={1}>
 			{/* in-house features */}
 			<Left />
 			<textlabel
@@ -49,8 +29,7 @@ const Trendsetter = () => {
 				TextColor3={WHITE}
 				TextTransparency={0.5}
 				Text="🕯️ Dedicated to Molly the Beagle, who was put down on January 31st, 2022."
-				AnchorPoint={new Vector2(0.5, 1)}
-				Position={UDim2.fromScale(0.5, 1)}
+				Position={UDim2.fromScale(0, 1)}
 				BackgroundTransparency={1}
 			/>
 		</frame>

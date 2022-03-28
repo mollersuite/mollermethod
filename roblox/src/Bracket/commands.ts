@@ -68,3 +68,10 @@ export const respawn: Command = {
 		newchar.Destroy()
 	},
 }
+export const jobid: Command = {
+	description: "get a js snippet to join the server with the job id",
+	execute() {
+		assert(setclipboard, "you need to be able to set the clipboard")
+		setclipboard(`Roblox.GameLauncher.joinGameInstance('${game.PlaceId}', '${game.JobId}')`)
+	},
+}

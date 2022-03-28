@@ -25,9 +25,8 @@ import Suggestions from "./Suggestions"
 export = hooked(({ button }: { button: Enum.KeyCode }) => {
 	const [shown, setShown] = useState(false)
 	const [text, setText] = useState("")
-
 	const box = Roact.createRef<TextBox>()
-	const gradient = Roact.createRef<UIGradient>()
+	
 	// handles toggle key
 	useEffect(() => {
 		const input_began = UserInputService.InputBegan.Connect((input, text) => {
@@ -110,7 +109,6 @@ export = hooked(({ button }: { button: Enum.KeyCode }) => {
 					Transparency={0}
 					LineJoinMode="Round">
 					<uigradient
-						Ref={gradient}
 						Rotation={(utf8.len(text)[0] || 0) * 5}
 						Color={
 							new ColorSequence([

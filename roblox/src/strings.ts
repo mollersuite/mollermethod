@@ -1,4 +1,6 @@
 export const QUOTES = [
+	'"I got a question if 86 wpm ok or bad" - Charlie, 2022',
+	`"cat broke rules https://cdn.discordapp.com/attachments/926218849064460328/953181130071343124/unknown.png" - Bongo, 2022`,
 	'"tysm for buying my module skeilet 1 now i have -0 robolx [sic] mony [sic] so you can take my manemodule [sic] but you faled [sic] because i obfuscate my stuf [sic] and you cant get it so yeah loser i am going to eat ur dog" - BOXIGON, 2022',
 	'"Is that a dinosaur in the readme btw" - 0866, 2022',
 	'"can i send him your home address" - tact, 2022',
