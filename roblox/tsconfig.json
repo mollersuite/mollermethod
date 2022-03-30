@@ -15,11 +15,6 @@
 		"strict": true,
 		"target": "ESNext",
 		"typeRoots": ["node_modules/@rbxts"],
-		"plugins": [
-			{
-				"transform": "rbxts-transform-env"
-			}
-		],
 		// configurable
 		"rootDir": "src",
 		"outDir": "out",

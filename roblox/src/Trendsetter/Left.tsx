@@ -2,7 +2,6 @@ import Roact from "@rbxts/roact"
 import { rejoin, respawn } from "Bracket/commands"
 import { ACCENT, BLACK, WHITE } from "colors"
 import Mollybdos from "Mollybdos"
-import { $env } from "rbxts-transform-env"
 import { QUOTES } from "strings"
 import { Kill, random } from "util"
 
@@ -91,7 +90,7 @@ export = () => (
 			Font="RobotoCondensed"
 			AutomaticSize="X"
 			TextColor3={WHITE}
-			Text={$env("CF_PAGES") === "1" ? `v${PKG_VERSION}` : "dev"}
+			Text={`v${PKG_VERSION}`}
 			BorderSizePixel={0}>
 			<uicorner CornerRadius={new UDim(0, 16)} />
 		</textlabel>
