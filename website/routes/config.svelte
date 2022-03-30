@@ -274,8 +274,8 @@
 			.join("\n") +
 		"\n"
 	$: loaders = {
-		// nice loader, this is the one used in marketing
-		[0]: `loadstring(game:HttpGet '${$page.url.host}') {${config}}`,
+		// nice loader
+		[0]: `loadstring(game:HttpGet '${$page.url.origin}') {${config}}`,
 		// async, and uses origin
 		[50]: `loadstring(game:HttpGetAsync('${$page.url.origin}'), 'mollermethod')({${config}})`,
 		// used during development
