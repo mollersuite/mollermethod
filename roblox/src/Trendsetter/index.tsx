@@ -1,6 +1,5 @@
 import Roact from "@rbxts/roact"
 import { GuiService } from "@rbxts/services"
-import { WHITE } from "colors"
 import Left from "./Left"
 import { useEffect, useState, pure } from "@rbxts/roact-hooked"
 
@@ -24,14 +23,6 @@ const Trendsetter = () => {
 			BackgroundTransparency={1}>
 			{/* in-house features */}
 			<Left />
-			<textlabel
-				AutomaticSize="XY"
-				TextColor3={WHITE}
-				TextTransparency={0.5}
-				Text="🕯️ Dedicated to Molly the Beagle, who was put down on January 31st, 2022."
-				Position={UDim2.fromScale(0, 1)}
-				BackgroundTransparency={1}
-			/>
 		</frame>
 	)
 }
