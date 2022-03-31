@@ -259,10 +259,12 @@
 	import { page } from "$app/stores"
 	let toggle = "LeftBracket"
 	let debug = false
+	let external = false
 	$: config =
 		"\n" +
 		Object.entries({
 			bracket_toggle: "Enum.KeyCode." + toggle,
+			bracket_external: external,
 			debug,
 		})
 			.map(([key, value]) => `\t${key} = ${value};`)
@@ -281,6 +283,10 @@
 <ToggleSwitch bind:checked={debug}>
 	Debug Mode?
 	<small>Disables updating and logs to console</small>
+</ToggleSwitch>
+<ToggleSwitch bind:checked={external}>
+	External Bracket?
+	<small>Bracket will open in a console window. Only confirmed to work on Script-Ware.</small>
 </ToggleSwitch>
 <!-- </nav> -->
 <pre readonly id="output" rows="5">{`loadstring(game:HttpGet '${$page.url.origin}') {${config}}`}</pre>
