@@ -14,13 +14,13 @@ export = pure(() => {
 		title?.("Bracket")
 		rconsoleprint("Welcome to Bracket. Enter a command below.\n")
 
-		task.spawn(() => {
+		async function loop() {
 			while (running) {
-				rconsoleprint("] ")
-				run(rconsoleinput())
+				rconsoleprint!("] ")
+				await run(rconsoleinput())
 			}
-		})
-		
+		}
+		loop()
 		return () => {
 			running = false
 			rconsoleclear?.()
