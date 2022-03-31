@@ -292,13 +292,6 @@
 <pre readonly id="output" rows="5">{`loadstring(game:HttpGet '${$page.url.origin}') {${config}}`}</pre>
 
 <style>
-	label {
-		display: flex;
-		gap: 1ch;
-		justify-content: center;
-		align-items: center;
-		flex-direction: row;
-	}
 	span {
 		white-space: pre;
 		flex-grow: 1;
