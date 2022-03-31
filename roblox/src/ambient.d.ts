@@ -35,3 +35,18 @@ interface LogService {
 	 **/
 	ExecuteScript(script: string): void
 }
+
+// Console APIS
+
+// In both exploits
+declare const rconsoleprint: ((message: string) => void) | void
+declare const rconsoleclear: (() => void) | void
+declare const rconsoleinput: (() => string) | void
+
+// We will need to detect which one exists, first one is S-W, second is Synapse
+declare const rconsolesettitle: ((title: string) => void) | void
+declare const rconsolename: ((title: string) => void) | void
+
+// S-W exclusive
+declare const rconsolecreate: (() => void) | void
+declare const rconsoledestroy: (() => void) | void

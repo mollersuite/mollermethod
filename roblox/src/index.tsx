@@ -3,9 +3,10 @@ import { Debris, TweenService, UserInputService } from "@rbxts/services"
 import { Kill, play, random } from "util"
 import { QUOTES } from "strings"
 import Roact from "@rbxts/roact"
-import Bracket from "Bracket" // Bracket is the admin commands
+import Bracket from "Bracket"
+import BracketExternal from "Bracket/external"
 import Notification from "Notification"
-import Trendsetter from "Trendsetter" // Trendsetter is the pause menu
+import Trendsetter from "Trendsetter"
 
 /**
  * @see https://mthd.ml
@@ -19,7 +20,12 @@ import Trendsetter from "Trendsetter" // Trendsetter is the pause menu
  * }
  * ```
  */
-export = function (options: { debug?: true; gui: ScreenGui; bracket_toggle?: Enum.KeyCode }) {
+export = function (options: {
+	debug?: true
+	gui: ScreenGui
+	bracket_toggle?: Enum.KeyCode
+	bracket_external?: boolean
+}) {
 	const GUI = options.gui
 	play("rbxassetid://9064208547")
 
@@ -52,7 +58,11 @@ export = function (options: { debug?: true; gui: ScreenGui; bracket_toggle?: Enu
 				Roact.unmount(tree)
 				GUI.Destroy()
 			}}>
-			<Bracket Key="Bracket" button={options.bracket_toggle ?? Enum.KeyCode.LeftBracket} />
+			{options.bracket_external ? (
+				<BracketExternal />
+			) : (
+				<Bracket Key="Bracket" button={options.bracket_toggle ?? Enum.KeyCode.LeftBracket} />
+			)}
 			<Trendsetter Key="Menu" />
 		</Kill.Provider>,
 		GUI
