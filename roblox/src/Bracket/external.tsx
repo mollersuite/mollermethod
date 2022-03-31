@@ -17,7 +17,7 @@ export = pure(() => {
 		async function loop() {
 			while (running) {
 				rconsoleprint!("] ")
-				await run(rconsoleinput())
+				await run(rconsoleinput!())
 			}
 		}
 		loop()
