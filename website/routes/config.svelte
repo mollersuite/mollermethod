@@ -257,20 +257,29 @@
 	]
 	import { ToggleSwitch, ComboBox } from "fluent-svelte"
 	import { page } from "$app/stores"
+	import { convert, fix } from "$lib/lua"
+	import Color from '$lib/components/Color.svelte'
 	let toggle = "LeftBracket"
 	let debug = false
 	let external = false
-	$: config =
-		"\n" +
-		Object.entries({
-			bracket_toggle: external ? undefined : "Enum.KeyCode." + toggle,
-			bracket_external: external,
+
+	// Colors
+	let accent = "#ff4539"
+	let background = "#1c1c1c"
+	let foreground = "#f0f6fc"
+
+	$: config = fix(
+		convert({
+			bracket_toggle: "Enum.KeyCode." + toggle,
 			debug,
+			bracket_external: external,
+			theme: {
+				accent: JSON.stringify(accent),
+				background: JSON.stringify(background),
+				foreground: JSON.stringify(foreground),
+			},
 		})
-		.filter(([, v]) => v !== undefined)
-			.map(([key, value]) => `\t${key} = ${value};`)
-			.join("\n") +
-		"\n"
+	)
 </script>
 
 <svelte:head>
@@ -278,7 +287,10 @@
 	<meta name="description" content="Make a loader for mollermethod." />
 </svelte:head>
 <!-- <nav> -->
-<ComboBox items={KeyCode.map(key => ({ name: key, value: key }))} bind:value={toggle} disabled={external}>
+<ComboBox
+	items={KeyCode.map(key => ({ name: key, value: key }))}
+	bind:value={toggle}
+	disabled={external}>
 	<span>Bracket's toggle key</span>
 </ComboBox>
 <ToggleSwitch bind:checked={debug}>
@@ -289,10 +301,25 @@
 	External Bracket?
 	<small>Bracket will open in a console window. Only confirmed to work on Script-Ware.</small>
 </ToggleSwitch>
-<!-- </nav> -->
-<pre readonly id="output" rows="5">{`loadstring(game:HttpGet '${$page.url.origin}') {${config}}`}</pre>
+<nav>
+	<Color id="background" bind:value={background}>Background color</Color>
+	<Color id="accent" bind:value={accent}>Accent color</Color>
+	<Color id="foreground" bind:value={foreground}>Foreground color</Color>
+</nav>
+<pre
+	readonly
+	id="output"
+	rows="5">{`loadstring(game:HttpGet '${$page.url.origin}') ${config}`}</pre>
 
 <style>
+	
+	nav {
+		display: flex;
+		justify-content: center;
+		gap: 1ch;
+		flex-direction: column;
+		width: max-content;
+	}
 	span {
 		white-space: pre;
 		flex-grow: 1;
