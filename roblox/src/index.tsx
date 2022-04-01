@@ -75,9 +75,9 @@ export = function (options: {
 	if (options.plugins) {
 		for (const source of options.plugins) {
 			task.defer(() => {
-				const [plugin, error] = loadstring(source)
-				if (error) {
-					warn(error)
+				const [plugin, err] = loadstring(source)
+				if (err) {
+					warn(err)
 					return
 				} else if (plugin) {
 					plugins.push(
