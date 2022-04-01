@@ -26,11 +26,10 @@ export default async (cmd: string, plugins: Plugin[] = []) => {
 	const name = args.shift()
 	if (name) {
 		const cmd = commands[name as keyof typeof commands]
-		const action: actions.Action = Object.assign(
-			{},
-			actions,
-			...plugins.mapFiltered(plugin => plugin.Actions)
-		)[name]
+		const action = rawget(
+			Object.assign({}, actions, ...plugins.mapFiltered(plugin => plugin.Actions)),
+			name
+		) as actions.Action | void
 
 		if (cmd) {
 			try {

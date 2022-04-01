@@ -20,7 +20,7 @@ import Trendsetter from "Trendsetter"
  * }
  * ```
  */
-export = function (options: {
+export = async function (options: {
 	debug?: true
 	gui: ScreenGui
 	bracket_toggle?: Enum.KeyCode
@@ -54,6 +54,25 @@ export = function (options: {
 	)
 
 	const plugins: Plugin[] = []
+
+	if (options.plugins) {
+		await Promise.allSettled(
+			options.plugins.map(async source => {
+				const [plugin, err] = loadstring(source)
+				if (err) {
+					warn(err)
+					return
+				} else if (plugin) {
+					plugins.push(
+						plugin({
+							notify: print,
+						})
+					)
+				}
+			})
+		)
+	}
+
 	const tree = Roact.mount(
 		<Plugins.Provider value={plugins}>
 			<Kill.Provider
@@ -71,25 +90,6 @@ export = function (options: {
 		</Plugins.Provider>,
 		GUI
 	)
-
-	if (options.plugins) {
-		for (const source of options.plugins) {
-			task.defer(() => {
-				const [plugin, err] = loadstring(source)
-				if (err) {
-					warn(err)
-					return
-				} else if (plugin) {
-					plugins.push(
-						plugin({
-							notify: print,
-						})
-					)
-				}
-			})
-		}
-	}
-
 	/*
 		Google Assistant-style startup animation
 	 */
