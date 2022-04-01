@@ -1,6 +1,6 @@
 import { ACCENT } from "colors"
 import { Debris, TweenService, UserInputService } from "@rbxts/services"
-import { Kill, play, random } from "util"
+import { Kill, play, random, Plugins, Plugin } from "util"
 import { QUOTES } from "strings"
 import Roact from "@rbxts/roact"
 import Bracket from "Bracket"
@@ -25,6 +25,7 @@ export = function (options: {
 	gui: ScreenGui
 	bracket_toggle?: Enum.KeyCode
 	bracket_external?: boolean
+	plugins?: string[]
 }) {
 	const GUI = options.gui
 	play("rbxassetid://9064208547")
@@ -52,21 +53,42 @@ export = function (options: {
 		"Notification"
 	)
 
+	const plugins: Plugin[] = []
 	const tree = Roact.mount(
-		<Kill.Provider
-			value={() => {
-				Roact.unmount(tree)
-				GUI.Destroy()
-			}}>
-			{options.bracket_external ? (
-				<BracketExternal />
-			) : (
-				<Bracket Key="Bracket" button={options.bracket_toggle ?? Enum.KeyCode.LeftBracket} />
-			)}
-			<Trendsetter Key="Menu" />
-		</Kill.Provider>,
+		<Plugins.Provider value={plugins}>
+			<Kill.Provider
+				value={() => {
+					Roact.unmount(tree)
+					GUI.Destroy()
+				}}>
+				{options.bracket_external ? (
+					<BracketExternal />
+				) : (
+					<Bracket Key="Bracket" button={options.bracket_toggle ?? Enum.KeyCode.LeftBracket} />
+				)}
+				<Trendsetter Key="Menu" />
+			</Kill.Provider>
+		</Plugins.Provider>,
 		GUI
 	)
+
+	if (options.plugins) {
+		for (const source of options.plugins) {
+			task.spawn(() => {
+				const [plugin, error] = loadstring(source)
+				if (error) {
+					warn(error)
+					return
+				} else if (plugin) {
+					plugins.push(
+						plugin({
+							notify: print,
+						})
+					)
+				}
+			})
+		}
+	}
 
 	/*
 		Google Assistant-style startup animation
