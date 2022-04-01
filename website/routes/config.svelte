@@ -263,10 +263,11 @@
 	$: config =
 		"\n" +
 		Object.entries({
-			bracket_toggle: "Enum.KeyCode." + toggle,
+			bracket_toggle: external ? undefined : "Enum.KeyCode." + toggle,
 			bracket_external: external,
 			debug,
 		})
+		.filter(([, v]) => v !== undefined)
 			.map(([key, value]) => `\t${key} = ${value};`)
 			.join("\n") +
 		"\n"
@@ -277,7 +278,7 @@
 	<meta name="description" content="Make a loader for mollermethod." />
 </svelte:head>
 <!-- <nav> -->
-<ComboBox items={KeyCode.map(key => ({ name: key, value: key }))} bind:value={toggle}>
+<ComboBox items={KeyCode.map(key => ({ name: key, value: key }))} bind:value={toggle} disabled={external}>
 	<span>Bracket's toggle key</span>
 </ComboBox>
 <ToggleSwitch bind:checked={debug}>
