@@ -44,7 +44,7 @@ const supportedTypes = {
 		const motor = useMotor([vector2.X, vector2.Y])
 		motor.setGoal([new Spring(vector2.X, options), new Spring(vector2.Y, options)])
 		return getBinding(motor).map(([X, Y]) => new Vector2(X, Y))
-	}
+	},
 }
 
 export function useSpring<T extends CheckableTypes[keyof typeof supportedTypes]>(

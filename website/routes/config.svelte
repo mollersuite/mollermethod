@@ -258,7 +258,7 @@
 	import { ToggleSwitch, ComboBox } from "fluent-svelte"
 	import { page } from "$app/stores"
 	import { convert, fix } from "$lib/lua"
-	import Color from '$lib/components/Color.svelte'
+	import Color from "$lib/components/Color.svelte"
 	let toggle = "LeftBracket"
 	let debug = false
 	let external = false
@@ -312,7 +312,6 @@
 	rows="5">{`loadstring(game:HttpGet '${$page.url.origin}') ${config}`}</pre>
 
 <style>
-	
 	nav {
 		display: flex;
 		justify-content: center;
