@@ -22,8 +22,6 @@ import { Plugins } from "util"
 that part of mollybdos
 */
 
-const actions_list = Object.entries(actions)
-
 const TagList = pure(({ tags }: { tags: Tags }) => {
 	if (tags.filter(tag => tag.score !== 0).isEmpty()) return <></>
 	return (
@@ -63,10 +61,18 @@ const TagList = pure(({ tags }: { tags: Tags }) => {
 })
 
 const Actions = pure(({ player }: { player: Player }) => {
+	const plugins = useContext(Plugins)
+
 	return (
 		<frame BackgroundTransparency={1} AutomaticSize="Y" Size={UDim2.fromScale(1, 0)}>
 			<uilistlayout FillDirection="Vertical" SortOrder="Name" />
-			{actions_list.map(([name, action]) => (
+			{Object.entries(
+				Object.assign(
+					{},
+					actions,
+					...plugins.mapFiltered(plugin => plugin.Actions)
+				) as typeof actions
+			).map(([name, action]) => (
 				<textbutton
 					Key={name}
 					Size={new UDim2(1, 0, 0, 25)}
