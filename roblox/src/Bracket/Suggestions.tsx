@@ -9,18 +9,16 @@ import { pure, useContext } from "@rbxts/roact-hooked"
 
 const map_action = ([name, action]: [string | number, actions.Action]) => ({
 	name: name as string,
-	display: action.display ?? (name as string).sub(1, 1).upper() + (name as string).sub(2),
-	description: action.description,
-	enabled: action.enabled ?? (() => true),
 	action: true,
+	...action,
 })
 
 const cmds: {
 	name: string
-	display: string
+	display?: string
 	description: string
-	action: boolean
-	enabled: () => boolean
+	action?: boolean
+	enabled?: () => boolean
 }[] = [
 	...Object.entries(commands).map(([name, command]) => ({
 		name,
@@ -44,10 +42,10 @@ export = pure(({ Text: text, KeyCode: button }: { Text: string; KeyCode: Enum.Ke
 		<>
 			{[...cmds, ...Object.entries(plugins_to_actions(plugins)).map(map_action)]
 				.filter(cmd => cmd.name.match("^" + escape_lua_pattern(escaped))[0] !== undefined)
-				.map(cmd => {
+				.map(({ name, action = false, description, display, enabled = () => true }) => {
 					return (
 						<frame
-							Key={cmd.name}
+							Key={name}
 							BackgroundTransparency={0.4}
 							BackgroundColor3={BLACK}
 							Size={new UDim2(0.7, 0, 0, 25)}
@@ -59,48 +57,48 @@ export = pure(({ Text: text, KeyCode: button }: { Text: string; KeyCode: Enum.Ke
 								PaddingBottom={new UDim(0, 16)}
 							/>
 							<textlabel
-								Text={`<b>${text}</b>${cmd.name.sub(escaped.size() + 1)}`}
+								Text={`<b>${text}</b>${name.sub(escaped.size() + 1)}`}
 								TextSize={11}
 								Font="Gotham"
 								RichText
 								Size={new UDim2(1, 0, 0, 11)}
 								TextXAlignment="Left"
 								TextYAlignment="Center"
-								TextColor3={cmd.enabled() ? WHITE : GRAY[3]}
+								TextColor3={enabled() ? WHITE : GRAY[3]}
 								BackgroundTransparency={1}
 							/>
 							<textlabel
-								Text={cmd.display}
+								Text={display ?? name.sub(1, 1).upper() + name.sub(2)}
 								TextSize={14}
 								Size={new UDim2(1, 0, 0, 14)}
 								Position={UDim2.fromOffset(0, 11)}
 								Font="GothamBlack"
 								TextXAlignment="Left"
 								TextYAlignment="Center"
-								TextColor3={cmd.enabled() ? WHITE : GRAY[3]}
+								TextColor3={enabled() ? WHITE : GRAY[3]}
 								BackgroundTransparency={1}
 							/>
 							<textlabel
 								Position={UDim2.fromOffset(0, 25)}
-								Text={cmd.description}
+								Text={description}
 								TextSize={12}
 								Font="Gotham"
 								TextXAlignment="Left"
 								TextYAlignment="Center"
 								TextWrapped
-								TextColor3={cmd.enabled() ? WHITE : GRAY[3]}
+								TextColor3={enabled() ? WHITE : GRAY[3]}
 								Size={UDim2.fromScale(1, 0)}
 								AutomaticSize="Y"
 								BackgroundTransparency={1}
 							/>
-							{cmd.action ? (
+							{action ? (
 								<imagelabel
 									Image="rbxassetid://3926305904"
 									ImageRectOffset={new Vector2(84, 44)}
 									ImageRectSize={new Vector2(36, 36)}
 									Size={UDim2.fromOffset(16, 16)}
 									BackgroundTransparency={1}
-									ImageColor3={cmd.enabled() ? WHITE : GRAY[3]}
+									ImageColor3={enabled() ? WHITE : GRAY[3]}
 									AnchorPoint={new Vector2(1, 0.5)}
 									Position={UDim2.fromScale(1, 0.5)}
 								/>
