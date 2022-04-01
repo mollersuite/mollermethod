@@ -1,7 +1,9 @@
-import { play } from "util"
+import { play, Plugin } from "util"
 import { Players } from "@rbxts/services"
 import * as commands from "./commands"
 import * as actions from "actions"
+import Object from "@rbxts/object-utils"
+
 const LocalPlayer = Players.LocalPlayer
 
 const get_players = (selector = "N/A") => {
@@ -19,12 +21,17 @@ const get_players = (selector = "N/A") => {
 	)
 }
 
-export default async (cmd: string) => {
+export default async (cmd: string, plugins: Plugin[] = []) => {
 	const args = cmd.split(" ")
 	const name = args.shift()
 	if (name) {
 		const cmd = commands[name as keyof typeof commands]
-		const action = actions[name as keyof typeof actions]
+		const action: actions.Action = Object.assign(
+			{},
+			actions,
+			...plugins.mapFiltered(plugin => plugin.Actions)
+		)[name]
+
 		if (cmd) {
 			try {
 				await cmd.execute(args)

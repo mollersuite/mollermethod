@@ -1,6 +1,6 @@
 import { ACCENT, BLACK, GRAY, WHITE } from "colors"
-import { play } from "util"
-import { hooked, useEffect, useState } from "@rbxts/roact-hooked"
+import { play, Plugins } from "util"
+import { hooked, useContext, useEffect, useState } from "@rbxts/roact-hooked"
 import { UserInputService } from "@rbxts/services"
 import execute from "./run"
 import Roact from "@rbxts/roact"
@@ -25,8 +25,10 @@ import Suggestions from "./Suggestions"
 export = hooked(({ button }: { button: Enum.KeyCode }) => {
 	const [shown, setShown] = useState(false)
 	const [text, setText] = useState("")
+	const plugins = useContext(Plugins)
+
 	const box = Roact.createRef<TextBox>()
-	
+
 	// handles toggle key
 	useEffect(() => {
 		const input_began = UserInputService.InputBegan.Connect((input, text) => {
@@ -88,8 +90,8 @@ export = hooked(({ button }: { button: Enum.KeyCode }) => {
 							return
 						}
 						if (rbx.Text.sub(1, 1) === UserInputService.GetStringForKeyCode(button)) {
-							execute(rbx.Text.sub(2))
-						} else execute(rbx.Text)
+							execute(rbx.Text.sub(2), plugins)
+						} else execute(rbx.Text, plugins)
 					},
 				}}
 				Change={{
