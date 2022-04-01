@@ -1,6 +1,6 @@
 import Roact from "@rbxts/roact"
+import colors from "colors"
 import { rejoin, respawn } from "Bracket/commands"
-import { ACCENT, BLACK, WHITE } from "colors"
 import Mollybdos from "Mollybdos"
 import { QUOTES } from "strings"
 import { Kill, random } from "util"
@@ -14,7 +14,7 @@ const IconButton = (
 	<textbutton
 		Size={UDim2.fromOffset(32, 32)}
 		Text=""
-		BackgroundColor3={BLACK}
+		BackgroundColor3={colors.BLACK}
 		Position={Props.Position}
 		Event={{
 			Activated: Props.Clicked,
@@ -37,7 +37,7 @@ const LocalBar = () => (
 	<frame
 		Position={UDim2.fromOffset(10, 10)}
 		Size={UDim2.fromOffset(300, 64)}
-		BackgroundColor3={BLACK}
+		BackgroundColor3={colors.BLACK}
 		BorderSizePixel={0}>
 		<uicorner CornerRadius={new UDim(0, 16)} />
 		<uilistlayout FillDirection="Horizontal" VerticalAlignment="Center" />
@@ -85,11 +85,11 @@ export = () => (
 		<textlabel
 			Position={UDim2.fromOffset(320, 10)}
 			Size={UDim2.fromOffset(90, 22)}
-			BackgroundColor3={ACCENT}
+			BackgroundColor3={colors.ACCENT}
 			TextSize={14}
 			Font="RobotoCondensed"
 			AutomaticSize="X"
-			TextColor3={WHITE}
+			TextColor3={colors.WHITE}
 			Text={`v${PKG_VERSION}`}
 			BorderSizePixel={0}>
 			<uicorner CornerRadius={new UDim(0, 16)} />
@@ -101,8 +101,8 @@ export = () => (
 			Size={UDim2.fromOffset(400, 100)}
 			TextSize={14}
 			Font="Arial"
-			BackgroundColor3={ACCENT}
-			TextColor3={WHITE}
+			BackgroundColor3={colors.ACCENT}
+			TextColor3={colors.WHITE}
 			Text={random(QUOTES).split(" - ").join("\n- ")}
 			Event={{
 				MouseButton1Click: rbx => {

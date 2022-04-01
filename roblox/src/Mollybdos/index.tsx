@@ -1,7 +1,7 @@
 import Roact from "@rbxts/roact"
 import { useEffect, useState, pure, Dispatch } from "@rbxts/roact-hooked"
 import { Players } from "@rbxts/services"
-import { BLACK, WHITE, ACCENT, GRAY } from "colors"
+import colors from "colors"
 import Details from "./Details"
 
 const PlayerList = pure(
@@ -26,7 +26,7 @@ const PlayerList = pure(
 			<scrollingframe
 				Size={UDim2.fromScale(0.4, 1)}
 				BorderSizePixel={0}
-				BackgroundColor3={GRAY[6]}
+				BackgroundColor3={colors.GRAY[6]}
 				ClipsDescendants
 				AutomaticCanvasSize="Y"
 				ScrollBarThickness={5}
@@ -51,8 +51,8 @@ const PlayerList = pure(
 						Event={{
 							Activated: () => setSelected(player),
 						}}
-						BackgroundColor3={player === selected ? ACCENT : GRAY[6]}
-						TextColor3={WHITE}>
+						BackgroundColor3={player === selected ? colors.ACCENT : colors.GRAY[6]}
+						TextColor3={colors.WHITE}>
 						<uipadding
 							PaddingTop={new UDim(0, 5)}
 							PaddingBottom={new UDim(0, 5)}
@@ -82,7 +82,7 @@ export = pure(() => {
 		<frame
 			Position={UDim2.fromOffset(10, 84)}
 			Size={UDim2.fromOffset(400, 300)}
-			BackgroundColor3={BLACK}
+			BackgroundColor3={colors.BLACK}
 			BorderSizePixel={0}>
 			<uicorner CornerRadius={new UDim(0, 16)} />
 			<uilistlayout FillDirection="Horizontal" />

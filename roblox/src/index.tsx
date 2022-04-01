@@ -1,4 +1,3 @@
-import { ACCENT } from "colors"
 import { Debris, TweenService, UserInputService } from "@rbxts/services"
 import { Kill, play, random, Plugins, Plugin } from "util"
 import { QUOTES } from "strings"
@@ -7,6 +6,7 @@ import Bracket from "Bracket"
 import BracketExternal from "Bracket/external"
 import Notification from "Notification"
 import Trendsetter from "Trendsetter"
+import colors from "colors"
 
 /**
  * @see https://mthd.ml
@@ -26,8 +26,18 @@ export = async function (options: {
 	bracket_toggle?: Enum.KeyCode
 	bracket_external?: boolean
 	plugins?: string[]
+	theme?: {
+		background: string
+		foreground: string
+		accent: string
+	}
 }) {
 	const GUI = options.gui
+	if (options.theme) {
+		colors.ACCENT = Color3.fromHex(options.theme.accent)
+		colors.WHITE = Color3.fromHex(options.theme.foreground)
+		colors.BLACK = Color3.fromHex(options.theme.background)
+	}
 	play("rbxassetid://9064208547")
 
 	/*
@@ -101,7 +111,7 @@ export = async function (options: {
 	border.BackgroundTransparency = 1
 	const stroke = new Instance("UIStroke", border)
 	stroke.Thickness = 15
-	stroke.Color = ACCENT
+	stroke.Color = colors.ACCENT
 	TweenService.Create(
 		border,
 		new TweenInfo(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, true),

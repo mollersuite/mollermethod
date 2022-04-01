@@ -1,4 +1,4 @@
-import { ACCENT, BLACK, GRAY, WHITE } from "colors"
+import colors from "colors"
 import { play, Plugins } from "util"
 import { hooked, useContext, useEffect, useState } from "@rbxts/roact-hooked"
 import { UserInputService } from "@rbxts/services"
@@ -70,7 +70,6 @@ export = hooked(({ button }: { button: Enum.KeyCode }) => {
 			<textbox
 				Key="!"
 				Ref={box}
-				BackgroundTransparency={0.4}
 				Size={new UDim2(1, 0, 0, 32)}
 				Text={text}
 				TextSize={14}
@@ -79,9 +78,9 @@ export = hooked(({ button }: { button: Enum.KeyCode }) => {
 				AutomaticSize="Y"
 				TextWrapped
 				TextYAlignment="Center"
-				TextColor3={WHITE}
+				TextColor3={colors.WHITE}
 				PlaceholderText="Type a command..."
-				BackgroundColor3={BLACK}
+				BackgroundColor3={colors.BLACK}
 				Event={{
 					FocusLost: (rbx, enter) => {
 						setShown(false)
@@ -114,10 +113,10 @@ export = hooked(({ button }: { button: Enum.KeyCode }) => {
 						Rotation={(utf8.len(text)[0] || 0) * 5}
 						Color={
 							new ColorSequence([
-								new ColorSequenceKeypoint(0, ACCENT),
-								new ColorSequenceKeypoint(0.499, ACCENT),
-								new ColorSequenceKeypoint(0.5, GRAY[4]),
-								new ColorSequenceKeypoint(1, GRAY[4]),
+								new ColorSequenceKeypoint(0, colors.ACCENT),
+								new ColorSequenceKeypoint(0.499, colors.ACCENT),
+								new ColorSequenceKeypoint(0.5, colors.GRAY[4]),
+								new ColorSequenceKeypoint(1, colors.GRAY[4]),
 							])
 						}
 					/>

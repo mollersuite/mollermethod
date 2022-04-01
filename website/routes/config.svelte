@@ -255,21 +255,33 @@
 		"Thumbstick1",
 		"Thumbstick2",
 	]
-	import { ToggleSwitch, ComboBox } from "fluent-svelte"
+	import { ToggleSwitch, ComboBox, Expander } from "fluent-svelte"
 	import { page } from "$app/stores"
+	import { convert, fix } from "$lib/lua"
+	import Color from "$lib/components/Color.svelte"
+	import Preview from "@fluentui/svg-icons/icons/eye_20_regular.svg?raw"
+	import ColorIcon from "@fluentui/svg-icons/icons/color_20_regular.svg?raw"
 	let toggle = "LeftBracket"
 	let debug = false
 	let external = false
-	$: config =
-		"\n" +
-		Object.entries({
+
+	// Colors
+	let accent = "#ff4539"
+	let background = "#1c1c1c"
+	let foreground = "#f0f6fc"
+
+	$: config = fix(
+		convert({
 			bracket_toggle: "Enum.KeyCode." + toggle,
-			bracket_external: external,
 			debug,
+			bracket_external: external,
+			theme: {
+				accent: JSON.stringify(accent),
+				background: JSON.stringify(background),
+				foreground: JSON.stringify(foreground),
+			},
 		})
-			.map(([key, value]) => `\t${key} = ${value};`)
-			.join("\n") +
-		"\n"
+	)
 </script>
 
 <svelte:head>
@@ -277,7 +289,10 @@
 	<meta name="description" content="Make a loader for mollermethod." />
 </svelte:head>
 <!-- <nav> -->
-<ComboBox items={KeyCode.map(key => ({ name: key, value: key }))} bind:value={toggle}>
+<ComboBox
+	items={KeyCode.map(key => ({ name: key, value: key }))}
+	bind:value={toggle}
+	disabled={external}>
 	<span>Bracket's toggle key</span>
 </ComboBox>
 <ToggleSwitch bind:checked={debug}>
@@ -288,10 +303,66 @@
 	External Bracket?
 	<small>Bracket will open in a console window. Only confirmed to work on Script-Ware.</small>
 </ToggleSwitch>
-<!-- </nav> -->
-<pre readonly id="output" rows="5">{`loadstring(game:HttpGet '${$page.url.origin}') {${config}}`}</pre>
+<Expander>
+	<svelte:fragment slot="icon">
+{@html ColorIcon}
+	</svelte:fragment> Theme
+	<svelte:fragment slot="content">
+		<nav>
+	<Color id="background" bind:value={background}>Background color</Color>
+	<Color id="accent" bind:value={accent}>Accent color</Color>
+	<Color id="foreground" bind:value={foreground}>Foreground color</Color>
+</nav>
+	</svelte:fragment>
+</Expander>
+<Expander>
+	<svelte:fragment slot="icon">
+			{@html Preview}
+	</svelte:fragment> Theme Preview
+	<svelte:fragment slot="content">
+		<div class="eightpx"><div class="bracket" style="--accent: {accent}; --foreground: {foreground}; --background: {background}">Bracket will look like this</div></div>
+	</svelte:fragment>
+</Expander>
+<pre
+	readonly
+	id="output"
+	rows="5">{`loadstring(game:HttpGet '${$page.url.origin}') ${config}`}</pre>
 
 <style>
+	.eightpx {
+		border-radius: 8px;
+		padding: 0;
+		margin: 0;
+		overflow: hidden;
+	}
+	.bracket {
+		display: flex;
+		font-family: "Roboto Mono", "JetBrains Mono", ui-monospace, "Input Mono", "Cascadia Mono", "Segoe UI Mono",
+		"Ubuntu Mono", "Fira Code", Menlo, Monaco, Consolas, monospace;
+		font-size: 10px;
+		box-sizing: border-box;
+		align-items: center;
+		gap: 1ch;
+		flex-direction: row;
+		width: 100%;
+		height: calc(32px + 8px + 8px);
+		padding: 8px;
+		border-radius: 8px;
+		background: var(--background);
+		color: var(--foreground);
+	  	border-width: 3px;
+  		border-style: solid;
+	    border-image-slice: 1;
+ 		border-image-source: linear-gradient(45deg, var(--accent) 49.9% , gray 50%);
+
+	}
+	nav {
+		display: flex;
+		justify-content: center;
+		gap: 1ch;
+		flex-direction: column;
+		width: max-content;
+	}
 	span {
 		white-space: pre;
 		flex-grow: 1;
