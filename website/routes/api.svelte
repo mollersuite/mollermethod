@@ -9,7 +9,7 @@
 <pre>local util = ...</pre>
 <p>The <code>util</code> table has the following functions:</p>
 <dl>
-<dt><code>util.notify(text)</code></dt>
+<dt><code>util.notify(text: string) -> void</code></dt>
 <dd>Display a notification with the given text.</dd>
 </dl>
 <h2>Plugin interface</h2>
