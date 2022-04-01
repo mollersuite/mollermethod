@@ -1,11 +1,12 @@
 import { ACCENT } from "colors"
 import { Debris, TweenService, UserInputService } from "@rbxts/services"
-import { Kill, play, random } from "util"
+import { Kill, play, random, Plugins, Plugin } from "util"
 import { QUOTES } from "strings"
 import Roact from "@rbxts/roact"
-import Bracket from "Bracket" // Bracket is the admin commands
+import Bracket from "Bracket"
+import BracketExternal from "Bracket/external"
 import Notification from "Notification"
-import Trendsetter from "Trendsetter" // Trendsetter is the pause menu
+import Trendsetter from "Trendsetter"
 
 /**
  * @see https://mthd.ml
@@ -19,7 +20,13 @@ import Trendsetter from "Trendsetter" // Trendsetter is the pause menu
  * }
  * ```
  */
-export = function (options: { debug?: true; gui: ScreenGui; bracket_toggle?: Enum.KeyCode }) {
+export = async function (options: {
+	debug?: true
+	gui: ScreenGui
+	bracket_toggle?: Enum.KeyCode
+	bracket_external?: boolean
+	plugins?: string[]
+}) {
 	const GUI = options.gui
 	play("rbxassetid://9064208547")
 
@@ -46,18 +53,43 @@ export = function (options: { debug?: true; gui: ScreenGui; bracket_toggle?: Enu
 		"Notification"
 	)
 
+	const plugins: Plugin[] = []
+
+	if (options.plugins) {
+		await Promise.allSettled(
+			options.plugins.map(async source => {
+				const [plugin, err] = loadstring(source)
+				if (err) {
+					warn(err)
+					return
+				} else if (plugin) {
+					plugins.push(
+						plugin({
+							notify: print,
+						})
+					)
+				}
+			})
+		)
+	}
+
 	const tree = Roact.mount(
-		<Kill.Provider
-			value={() => {
-				Roact.unmount(tree)
-				GUI.Destroy()
-			}}>
-			<Bracket Key="Bracket" button={options.bracket_toggle ?? Enum.KeyCode.LeftBracket} />
-			<Trendsetter Key="Menu" />
-		</Kill.Provider>,
+		<Plugins.Provider value={plugins}>
+			<Kill.Provider
+				value={() => {
+					Roact.unmount(tree)
+					GUI.Destroy()
+				}}>
+				{options.bracket_external ? (
+					<BracketExternal />
+				) : (
+					<Bracket Key="Bracket" button={options.bracket_toggle ?? Enum.KeyCode.LeftBracket} />
+				)}
+				<Trendsetter Key="Menu" />
+			</Kill.Provider>
+		</Plugins.Provider>,
 		GUI
 	)
-
 	/*
 		Google Assistant-style startup animation
 	 */

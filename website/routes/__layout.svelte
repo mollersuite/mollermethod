@@ -5,6 +5,7 @@
 	import "$lib/app.css"
 	$: path = $page.url.pathname
 	import Settings from "@fluentui/svg-icons/icons/clipboard_settings_20_regular.svg?raw"
+	import Cube from "@fluentui/svg-icons/icons/cube_20_regular.svg?raw"
 </script>
 
 <Header>
@@ -14,6 +15,9 @@
 
 	<Button href="/config" label="Settings" selected={path === "/config"}>
 		{@html Settings}
+	</Button>
+	<Button href="/api" label="API" selected={path === "/api"}>
+		{@html Cube}
 	</Button>
 	<Button href="https://discord.gg/HAw7Zf8GF5" label="Discord">
 		<svg role="img" viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg"

@@ -255,67 +255,21 @@
 		"Thumbstick1",
 		"Thumbstick2",
 	]
-	import { ToggleSwitch, ComboBox, Slider } from "fluent-svelte"
+	import { ToggleSwitch, ComboBox } from "fluent-svelte"
 	import { page } from "$app/stores"
 	let toggle = "LeftBracket"
 	let debug = false
-	/**
-	 * The uglyness of the loader.
-	 * @type {0 | 50 | 100}
-	 */
-	let ugly = 0
+	let external = false
 	$: config =
 		"\n" +
 		Object.entries({
 			bracket_toggle: "Enum.KeyCode." + toggle,
+			bracket_external: external,
 			debug,
 		})
 			.map(([key, value]) => `\t${key} = ${value};`)
 			.join("\n") +
 		"\n"
-	$: loaders = {
-		// nice loader
-		[0]: `loadstring(game:HttpGet '${$page.url.origin}') {${config}}`,
-		// async, and uses origin
-		[50]: `loadstring(game:HttpGetAsync('${$page.url.origin}'), 'mollermethod')({${config}})`,
-		// used during development
-		[100]: `local CONFIG = {${config}}
-local GUI = Instance.new("ScreenGui")
-CONFIG.gui = GUI
-GUI.Name = game:GetService("HttpService"):GenerateGUID()
-GUI.IgnoreGuiInset = true
-GUI.ResetOnSpawn = false
-GUI.DisplayOrder = (2 ^ 31) - 1
-if gethui then
-	GUI.Parent = gethui()
-else
-	xpcall(
-		function()
-			GUI.Parent = game:GetService("CoreGui")
-		end,
-		function()
-			GUI.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
-		end
-	)
-end
-if not CONFIG.debug then
-	writefile("mollermethod.rbxm", game:HttpGetAsync("https://mthd.ml/mollermethod.rbxm"))
-end
-
-local rbxmSuite =
-	loadstring(
-		game:HttpGetAsync(
-			"https://github.com/richie0866/rbxm-suite/releases/download/v2.0.2/rbxm-suite.lua"
-		)
-	)()
-local project = rbxmSuite.launch("mollermethod.rbxm", {
-	debug = true, --CONFIG.debug, -- Oddly, debug mode is 2x faster than release mode.
-	verbose = CONFIG.debug,
-	runscripts = false,
-})
-rbxmSuite.require(project)(CONFIG)
-`,
-	}
 </script>
 
 <svelte:head>
@@ -330,29 +284,14 @@ rbxmSuite.require(project)(CONFIG)
 	Debug Mode?
 	<small>Disables updating and logs to console</small>
 </ToggleSwitch>
-<!-- svelte-ignore a11y-label-has-associated-control -->
-<label>
-	<Slider
-		bind:value={ugly}
-		min={0}
-		max={100}
-		step={50}
-		ticks={[0, 50, 100]}
-		suffix="% ugly"
-		tickPlacement="after" />
-	<span>Ugly Scale</span>
-</label>
+<ToggleSwitch bind:checked={external}>
+	External Bracket?
+	<small>Bracket will open in a console window. Only confirmed to work on Script-Ware.</small>
+</ToggleSwitch>
 <!-- </nav> -->
-<pre readonly id="output" rows="5">{loaders[ugly]}</pre>
+<pre readonly id="output" rows="5">{`loadstring(game:HttpGet '${$page.url.origin}') {${config}}`}</pre>
 
 <style>
-	label {
-		display: flex;
-		gap: 1ch;
-		justify-content: center;
-		align-items: center;
-		flex-direction: row;
-	}
 	span {
 		white-space: pre;
 		flex-grow: 1;
