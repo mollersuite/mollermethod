@@ -1,6 +1,6 @@
 import Roact from "@rbxts/roact"
+import colors from "colors"
 import { pure, useEffect, useState } from "@rbxts/roact-hooked"
-import { BLACK, WHITE } from "colors"
 import { useSpring } from "hooks/common/use-spring"
 import { useDelayedUpdate } from "hooks/use-delayed-update"
 import { play } from "util"
@@ -29,7 +29,7 @@ const Notification = ({
 		<frame
 			Ref={ref}
 			AnchorPoint={new Vector2(1, 1)}
-			BackgroundColor3={BLACK}
+			BackgroundColor3={colors.BLACK}
 			Position={useSpring(shown ? new UDim2(1, -15, 1, -15) : new UDim2(1, -15, 1, 125), {
 				frequency: 2,
 				dampingRatio: 0.8,
@@ -56,7 +56,7 @@ const Notification = ({
 				Text={App}
 				Font="GothamBlack"
 				TextSize={24}
-				TextColor3={WHITE}
+				TextColor3={colors.WHITE}
 				TextXAlignment="Left"
 				TextYAlignment="Top"
 				Position={UDim2.fromOffset(70, 5)}
@@ -70,7 +70,7 @@ const Notification = ({
 				Font="Gotham"
 				RichText
 				TextSize={11}
-				TextColor3={WHITE}
+				TextColor3={colors.WHITE}
 				TextXAlignment="Left"
 				TextYAlignment="Top"
 				Position={UDim2.fromOffset(70, 30)}

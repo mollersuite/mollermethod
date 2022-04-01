@@ -1,9 +1,9 @@
 import Roact from "@rbxts/roact"
+import colors from "colors"
 import { escape_lua_pattern, Plugins, Plugin } from "util"
 import * as actions from "actions"
 import * as commands from "./commands"
 import { UserInputService } from "@rbxts/services"
-import { BLACK, GRAY, WHITE } from "colors"
 import Object from "@rbxts/object-utils"
 import { pure, useContext } from "@rbxts/roact-hooked"
 
@@ -47,7 +47,7 @@ export = pure(({ Text: text, KeyCode: button }: { Text: string; KeyCode: Enum.Ke
 						<frame
 							Key={name}
 							BackgroundTransparency={0.4}
-							BackgroundColor3={BLACK}
+							BackgroundColor3={colors.BLACK}
 							Size={new UDim2(0.7, 0, 0, 25)}
 							AutomaticSize="Y">
 							<uipadding
@@ -64,7 +64,8 @@ export = pure(({ Text: text, KeyCode: button }: { Text: string; KeyCode: Enum.Ke
 								Size={new UDim2(1, 0, 0, 11)}
 								TextXAlignment="Left"
 								TextYAlignment="Center"
-								TextColor3={enabled() ? WHITE : GRAY[3]}
+								TextColor3={colors.WHITE}
+								TextTransparency={enabled() ? 0 : 0.5}
 								BackgroundTransparency={1}
 							/>
 							<textlabel
@@ -75,7 +76,8 @@ export = pure(({ Text: text, KeyCode: button }: { Text: string; KeyCode: Enum.Ke
 								Font="GothamBlack"
 								TextXAlignment="Left"
 								TextYAlignment="Center"
-								TextColor3={enabled() ? WHITE : GRAY[3]}
+								TextColor3={colors.WHITE}
+								TextTransparency={enabled() ? 0 : 0.5}
 								BackgroundTransparency={1}
 							/>
 							<textlabel
@@ -86,7 +88,8 @@ export = pure(({ Text: text, KeyCode: button }: { Text: string; KeyCode: Enum.Ke
 								TextXAlignment="Left"
 								TextYAlignment="Center"
 								TextWrapped
-								TextColor3={enabled() ? WHITE : GRAY[3]}
+								TextColor3={colors.WHITE}
+								TextTransparency={enabled() ? 0 : 0.5}
 								Size={UDim2.fromScale(1, 0)}
 								AutomaticSize="Y"
 								BackgroundTransparency={1}
@@ -98,7 +101,8 @@ export = pure(({ Text: text, KeyCode: button }: { Text: string; KeyCode: Enum.Ke
 									ImageRectSize={new Vector2(36, 36)}
 									Size={UDim2.fromOffset(16, 16)}
 									BackgroundTransparency={1}
-									ImageColor3={enabled() ? WHITE : GRAY[3]}
+									ImageColor3={colors.WHITE}
+									ImageTransparency={enabled() ? 0 : 0.5}
 									AnchorPoint={new Vector2(1, 0.5)}
 									Position={UDim2.fromScale(1, 0.5)}
 								/>
