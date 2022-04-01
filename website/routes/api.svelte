@@ -1,3 +1,8 @@
+<svelte:head>
+	<title>mollermethod API docs</title>
+	<meta name="description" content="Make mollermethod plugins." />
+</svelte:head>
+
 <h1>mollermethod API docs</h1>
 <h2><code>util</code> table</h2>
 <p>The <code>util</code> table is passed to your plugin with varargs.</p>
