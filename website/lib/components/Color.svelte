@@ -4,12 +4,12 @@
 </script>
 
 <label for={id}>
-	<slot/>
+	<slot />
 	<div class="color-pick"><input {id} type="color" bind:value /></div>
 </label>
 
 <style>
-		label {
+	label {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		grid-gap: 1rem;
@@ -30,9 +30,9 @@
 		transform: scale(1.5);
 	}
 	.color-pick:hover {
-		transform: scale(1.1)
+		transform: scale(1.1);
 	}
 	.color-pick:focus-within {
-		transform: scale(1.5)
+		transform: scale(1.5);
 	}
 </style>
