@@ -1,9 +1,10 @@
 import Roact from "@rbxts/roact"
 import Object from "@rbxts/object-utils"
-import { pure, useEffect, useState } from "@rbxts/roact-hooked"
+import { pure, useContext, useEffect, useState } from "@rbxts/roact-hooked"
 import { BLACK, GRAY, WHITE, ACCENT } from "colors"
 import * as actions from "actions"
 import tags_of, { Tags } from "./tags"
+import { Plugins } from "util"
 
 /*
 /------------------------------\
@@ -103,11 +104,12 @@ export = pure(({ selected }: { selected?: Player }) => {
 			</frame>
 		)
 	}
+	const plugins = useContext(Plugins)
 	const [tags, setTags] = useState<Tags>([])
 	useEffect(() => {
 		setTags([])
 		if (selected) {
-			const promise = tags_of(selected).then(setTags)
+			const promise = tags_of(selected, plugins).then(setTags)
 			return () => promise.cancel()
 		}
 	}, [selected])

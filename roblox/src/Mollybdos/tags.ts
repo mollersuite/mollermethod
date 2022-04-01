@@ -1,4 +1,5 @@
 import { GroupService, Players } from "@rbxts/services"
+import { Plugin } from "util"
 
 async function appearance_tags(
 	Player: Player,
@@ -54,7 +55,7 @@ export type Tags = readonly {
 	readonly score: number
 }[]
 
-export default async function tags_of(Player: Player): Promise<Tags> {
+export default async function tags_of(Player: Player, plugins: Plugin[]): Promise<Tags> {
 	const Tags: Record<string, number> = setmetatable(
 		{},
 		{
@@ -141,6 +142,9 @@ export default async function tags_of(Player: Player): Promise<Tags> {
 				],
 			},
 		}),
+		...plugins
+			.mapFiltered(plugin => plugin.Tags)
+			.map(async tag => tag(Player, name => Tags[name]++)),
 	])
 
 	const final_array = []
