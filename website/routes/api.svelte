@@ -2,15 +2,26 @@
 	<title>mollermethod API docs</title>
 	<meta name="description" content="Make mollermethod plugins." />
 </svelte:head>
-
+<script>
+	import image from '$lib/notif.png'
+</script>
 <h1>mollermethod API docs</h1>
 <h2><code>util</code> table</h2>
 <p>The <code>util</code> table is passed to your plugin with varargs.</p>
 <pre>local util = ...</pre>
 <p>The <code>util</code> table has the following functions:</p>
 <dl>
-	<dt><code>util.notify(text: string) -> void</code></dt>
-	<dd>Display a notification with the given text.</dd>
+	<dt><pre>util.notify(options: {`{
+	Text: string // RichText is on btw
+	Icon?: string // Defaults to "rbxassetid://7554747376"
+	Duration?: number // In seconds, defaults to 5
+	App?: string // Defaults to "mollermethod"
+}`}) -> void</pre></dt>
+	<dd>
+		Display a notification with the given text.
+		<br>
+		<img src={image} alt="a mollermethod notif"/>
+	</dd>
 </dl>
 <h2>Plugin interface</h2>
 <p>You return a plugin interface. Here's the TypeScript type since I'm lazy</p>
