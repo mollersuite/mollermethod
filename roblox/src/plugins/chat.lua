@@ -58,7 +58,11 @@ return {
 			elseif writefile then
 				writefile('chat-logs.txt', table.concat(logs, "\n"))
 			else
-				warn("No file writing function found")
+				util.notify({
+					App = 'Chat Logger',
+					Text = "You exploit does not support writing files",
+					Duration = 5
+				})
 			end
 		end)
 		local ChatMessageTemplate = Instance.new('TextLabel')
