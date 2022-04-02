@@ -12,7 +12,8 @@
 		"gethui",
 		"writedialog",
 		"getcustomasset",
-		"getsynasset"
+		"getsynasset",
+		"syn"
 	],
 	"robloxLsp.typeChecking.mode": "Disabled",
 	"typescript.preferences.quoteStyle": "double",
