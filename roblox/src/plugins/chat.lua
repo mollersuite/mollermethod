@@ -41,6 +41,27 @@ return {
 		local UIListLayout = Instance.new('UIListLayout', chat)
 		UIListLayout.Padding = UDim.new()
 		UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+		local WriteLogsToFile = Instance.new('TextButton', frame)
+		WriteLogsToFile.Name = 'WriteLogsToFile'
+		WriteLogsToFile.Size = UDim2.new(1, 0, 0.1, 0)
+		WriteLogsToFile.Position = UDim2.new(0, 0, 1, 0)
+		WriteLogsToFile.AnchorPoint = Vector2.new(0,1)
+		WriteLogsToFile.TextColor3 = util.colors.WHITE
+		WriteLogsToFile.BackgroundColor3 = util.colors.GRAY[10]
+		WriteLogsToFile.Font = Enum.Font.Gotham
+		WriteLogsToFile.Text = 'Write Logs To File'
+		WriteLogsToFile.TextSize = 18
+		WriteLogsToFile.MouseButton1Click:Connect(function()
+			if writedialog then
+				writedialog("Save chat logs to file", "Text documents (*.txt)", table.concat(logs, "\n"))
+			elseif writefile then
+				writefile('chat-logs.txt', table.concat(logs, "\n"))
+			else
+				warn("No file writing function found")
+			end
+		end)
+		local UICorner = Instance.new('UICorner', WriteLogsToFile)
+		UICorner.CornerRadius = UDim.new(0,18)
 		local ChatMessageTemplate = Instance.new('TextLabel')
 		ChatMessageTemplate.Name = 'ChatMessageTemplate'
 		ChatMessageTemplate.Size = UDim2.new(1, 0, 0.05, 0)
