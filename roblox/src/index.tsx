@@ -83,6 +83,7 @@ export = async function ({
 					notify: (args: Parameters<typeof Notification["validateProps"]>[0]) =>
 						Roact.mount(<Notification {...args} />, GUI, "Notification"),
 					GUI,
+					colors,
 				})
 			)
 		})
@@ -100,6 +101,7 @@ export = async function ({
 							notify: (args: Parameters<typeof Notification["validateProps"]>[0]) =>
 								Roact.mount(<Notification {...args} />, GUI, "Notification"),
 							GUI,
+							colors,
 						})
 					)
 				})()

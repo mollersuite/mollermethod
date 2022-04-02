@@ -24,6 +24,19 @@
 	</dd>
 	<dt><pre>util.GUI: LayerCollector</pre></dt>
 	<dd>A container to put your GUIs in</dd>
+	<dt><pre>util.colors: {`{
+		ACCENT: Color3,
+		BLACK: Color3,
+		WHITE: Color3,
+		GRAY: Color3[],
+		RED: Color3[],
+		GREEN: Color3[],
+		BLUE: Color3[],
+		YELLOW: Color3[],
+		ORANGE: Color3[],
+		PURPLE: Color3[],
+	}`}</pre></dt>
+	<dd>A table of colors</dd>
 </dl>
 <h2>Plugin interface</h2>
 <p>You return a plugin interface. Here's the TypeScript type since I'm lazy</p>
