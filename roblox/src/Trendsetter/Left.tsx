@@ -28,6 +28,7 @@ const IconButton = (
 			BackgroundTransparency={1}
 			BorderSizePixel={0}
 			ScaleType="Fit"
+			ImageColor3={colors.WHITE}
 		/>
 		<uicorner CornerRadius={Props.CornerRadius ?? new UDim(0, 4)} />
 	</textbutton>
