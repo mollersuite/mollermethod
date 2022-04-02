@@ -73,6 +73,8 @@ export = async function ({
 	)
 
 	const plugins: Plugin[] = []
+
+	// load plugins from settings
 	await Promise.allSettled(
 		plugin_sources.map(async source => {
 			const [plugin, err] = loadstring(source)
@@ -89,6 +91,7 @@ export = async function ({
 		})
 	)
 
+	// Load default plugins
 	await Promise.allSettled(
 		script.plugins.GetDescendants().map(module => {
 			if (module.IsA("ModuleScript")) {
