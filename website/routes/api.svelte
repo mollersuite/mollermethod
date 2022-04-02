@@ -25,11 +25,18 @@
 </dl>
 <h2>Plugin interface</h2>
 <p>You return a plugin interface. Here's the TypeScript type since I'm lazy</p>
-<pre>{`interface Action {
+<pre>{`// Actions display in both Mollybdos and Bracket.
+interface Action {
 	display?: string // Displayed in Mollybdos. Defaults to the key, with the first letter uppercase.
 	enabled?: () => boolean // Defaults to () => true
 	description: string //  Displayed in Bracket autocomplete
 	execute(this: void, player: Player): Promise<unknown> | unknown
+}
+
+// Commands display only in Bracket.
+interface Command {
+	description: string // Displayed in Bracket autocomplete
+	execute(this: void, args: string[]): void | Promise<unknown>
 }
 
 interface Plugin {
@@ -40,5 +47,8 @@ interface Plugin {
 	readonly Tags?: (player: Player, add: (tag: string) => unknown) => unknown
 	readonly Actions?: {
 		[key: string]: Action // The key will be used as the Bracket command name
+	}
+	readonly Commands?: {
+		[key: string]: Command
 	}
 }`}</pre>
