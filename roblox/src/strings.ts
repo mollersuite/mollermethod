@@ -24,4 +24,5 @@ export const QUOTES = [
 	'"this is molly moller herself in the oven https://www.youtube.com/watch?v=Ck8o6j4R3HI" - Charlie, 2021',
 	'"I decided to edit it [Immortality Lord] and make it have quite a few new features" - Charlie, 2020',
 	`"I'ma hack u y'all" - cash_youtwin, 2020`,
+	`"new acerus x script inf yeild" - Bro_PlaysRBLX, 2022`,
 ]
