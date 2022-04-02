@@ -4,6 +4,7 @@
 </svelte:head>
 <script>
 	import image from '$lib/notif.png'
+	import example from '$lib/example.lua?raw'
 </script>
 <h1>mollermethod API docs</h1>
 <h2><code>util</code> table</h2>
@@ -69,3 +70,6 @@ interface Plugin {
 		[key: string]: Command
 	}
 }`}</pre>
+<h2>Plugin example</h2>
+<p>Here's an example plugin. It's a simple example, but it's a good starting point.</p>
+<pre>{example}</pre>
