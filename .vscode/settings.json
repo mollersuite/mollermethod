@@ -10,7 +10,9 @@
 	"robloxLsp.diagnostics.globals": [
 		"writefile",
 		"gethui",
-		"writedialog"
+		"writedialog",
+		"getcustomasset",
+		"getsynasset"
 	],
 	"robloxLsp.typeChecking.mode": "Disabled",
 	"typescript.preferences.quoteStyle": "double",
