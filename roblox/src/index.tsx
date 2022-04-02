@@ -75,7 +75,8 @@ export = async function (options: {
 				} else if (plugin) {
 					plugins.push(
 						plugin({
-							notify: print,
+							notify: (args: Parameters<typeof Notification>[0]) =>
+								Roact.mount(<Notification {...args} />, GUI, "Notification"),
 						})
 					)
 				}
