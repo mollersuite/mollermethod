@@ -24,7 +24,9 @@ export default async (cmd: string, plugins: Plugin[] = []) => {
 	const args = cmd.split(" ")
 	const name = args.shift()
 	if (name) {
-		const cmd = commands[name as keyof typeof commands]
+		const [cmd = commands[name as keyof typeof commands]] = plugins.mapFiltered(
+			plugin => plugin.Commands?.[name]
+		)
 		const [action = actions[name as keyof typeof actions]] = plugins.mapFiltered(
 			plugin => plugin.Actions?.[name]
 		)
