@@ -33,6 +33,9 @@ const cmds: {
 const plugins_to_actions = (plugins: Plugin[]): NonNullable<Plugin["Actions"]> =>
 	Object.assign({}, ...plugins.mapFiltered(plugin => plugin.Actions))
 
+const plugins_to_commands = (plugins: Plugin[]): NonNullable<Plugin["Commands"]> =>
+	Object.assign({}, ...plugins.mapFiltered(plugin => plugin.Commands))
+
 export = pure(({ Text: text, KeyCode: button }: { Text: string; KeyCode: Enum.KeyCode }) => {
 	const plugins = useContext(Plugins)
 	const escaped =
@@ -40,7 +43,17 @@ export = pure(({ Text: text, KeyCode: button }: { Text: string; KeyCode: Enum.Ke
 
 	return (
 		<>
-			{[...cmds, ...Object.entries(plugins_to_actions(plugins)).map(map_action)]
+			{[
+				...cmds,
+				...Object.entries(plugins_to_actions(plugins)).map(map_action),
+				...Object.entries(plugins_to_commands(plugins)).map(([name, command]) => ({
+					name: tostring(name),
+					display: (name as string).sub(1, 1).upper() + (name as string).sub(2),
+					description: command.description,
+					action: false,
+					enabled: () => true,
+				})),
+			]
 				.filter(cmd => cmd.name.match("^" + escape_lua_pattern(escaped))[0] !== undefined)
 				.map(({ name, action = false, description, display, enabled = () => true }) => {
 					return (

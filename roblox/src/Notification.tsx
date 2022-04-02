@@ -1,8 +1,7 @@
 import Roact from "@rbxts/roact"
 import colors from "colors"
 import { pure, useEffect, useState } from "@rbxts/roact-hooked"
-import { useSpring } from "hooks/common/use-spring"
-import { useDelayedUpdate } from "hooks/use-delayed-update"
+import { useSpring, useDelayedValue } from "@rbxts/roact-hooked-plus"
 import { play } from "util"
 
 const Notification = ({
@@ -18,22 +17,21 @@ const Notification = ({
 }) => {
 	const ref = Roact.createRef<Frame>()
 	const [shown, setShown] = useState(false)
-	const visible = useDelayedUpdate(shown, 1)
+	const visible = useDelayedValue(shown, 1000)
 	useEffect(() => {
 		play("rbxassetid://8183296024")
 		setShown(true)
 		task.delay(Duration, setShown, false)
 	}, [])
 
-	return visible ? (
+	return shown || visible ? (
 		<frame
 			Ref={ref}
 			AnchorPoint={new Vector2(1, 1)}
 			BackgroundColor3={colors.BLACK}
-			Position={useSpring(shown ? new UDim2(1, -15, 1, -15) : new UDim2(1, -15, 1, 125), {
-				frequency: 2,
-				dampingRatio: 0.8,
-			})}
+			Position={useSpring(shown ? 0 : 1, { frequency: 2, dampingRatio: 0.8 }).map(n =>
+				new UDim2(1, -15, 1, -15).Lerp(new UDim2(1, -15, 1, 125), n)
+			)}
 			Size={UDim2.fromOffset(362, 100)}>
 			<uicorner CornerRadius={new UDim(0, 12)} />
 			<uistroke

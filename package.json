@@ -1,8 +1,9 @@
 {
 	"name": "mollermethod",
 	"description": "Scripting, unleashed.",
-	"version": "6.2.0",
+	"version": "6.3.0",
 	"private": true,
+	"packageManager": "pnpm@6.32.4",
 	"devDependencies": {
 		"@prettier/plugin-lua": "github:prettier/plugin-lua",
 		"prettier": "^2.4.1"
