@@ -4,9 +4,9 @@
 	import Button from "$lib/components/Button.svelte"
 	import "$lib/app.css"
 	$: path = $page.url.pathname
-	import Settings from "@fluentui/svg-icons/icons/clipboard_settings_20_regular.svg?raw"
-	import Cube from "@fluentui/svg-icons/icons/cube_20_regular.svg?raw"
-	import BookQuestionMark from "@fluentui/svg-icons/icons/book_question_mark_20_regular.svg?raw"
+	import Settings from "@fluentui/svg-icons/icons/clipboard_settings_20_filled.svg?raw"
+	import Cube from "@fluentui/svg-icons/icons/cube_20_filled.svg?raw"
+	import BookQuestionMark from "@fluentui/svg-icons/icons/book_question_mark_20_filled.svg?raw"
 </script>
 
 <Header>
