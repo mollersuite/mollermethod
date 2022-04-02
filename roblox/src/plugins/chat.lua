@@ -2,6 +2,7 @@ local util = ...
 local Players = game:GetService("Players")
 local events = {}
 local container = util.GUI
+local logs = {}
 
 events['Destroying'] = container.Destroying:Connect(function() -- disconnects events when gui deathed
 	for _, event in pairs(events) do
@@ -52,13 +53,16 @@ return {
 		ChatMessageTemplate.TextXAlignment = Enum.TextXAlignment.Left
 		ChatMessageTemplate.TextColor3 = util.colors.WHITE
 		local function chatted (player, message)
+			local formatted
+			if player.Name ~= player.DisplayName then
+				formatted = player.DisplayName .. ' (@' .. player.Name .. '): ' .. message
+			else
+				formatted = '@' .. player.Name .. ': ' .. message
+			end
+			logs[#logs + 1] = formatted
 			local Label = ChatMessageTemplate:Clone()
 			Label.Name = player.Name
-			if player.Name ~= player.DisplayName then
-				Label.Text = player.DisplayName .. ' (@' .. player.Name .. ') : ' .. message
-			else
-				Label.Text = '@' .. player.Name .. ' : ' .. message
-			end
+			Label.Text = formatted
 			Label.Parent = chat
 		end
 
