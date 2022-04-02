@@ -8,7 +8,8 @@
 </svelte:head>
 
 <h1>Exploit Health Checker</h1>
-<p>Make sure your exploit works with mollermethod.</p>
+
+<p>Make sure your exploit works with mollermethod. (check console for results)<p>
 <pre>loadstring(game:HttpGetAsync "{$page.url.origin}/checker.client.lua", "Exploit Health Checker")()</pre>
 
 <style>
