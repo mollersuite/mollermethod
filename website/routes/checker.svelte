@@ -9,7 +9,7 @@
 
 <h1>Exploit Health Checker</h1>
 <p>Make sure your exploit works with mollermethod.</p>
-<pre>loadstring("{$page.url.origin}/checker.client.lua", "Exploit Health Checker")()</pre>
+<pre>loadstring(game:HttpGetAsync "{$page.url.origin}/checker.client.lua", "Exploit Health Checker")()</pre>
 
 <style>
 	h1,p,pre {
