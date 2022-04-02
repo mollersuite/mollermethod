@@ -48,6 +48,7 @@ return {
 		WriteLogsToFile.AnchorPoint = Vector2.new(0,1)
 		WriteLogsToFile.TextColor3 = util.colors.WHITE
 		WriteLogsToFile.BackgroundColor3 = util.colors.GRAY[10]
+		WriteLogsToFile.BackgroundTransparency = 0
 		WriteLogsToFile.Font = Enum.Font.Gotham
 		WriteLogsToFile.Text = 'Write Logs To File'
 		WriteLogsToFile.TextSize = 18
@@ -60,8 +61,6 @@ return {
 				warn("No file writing function found")
 			end
 		end)
-		local UICorner = Instance.new('UICorner', WriteLogsToFile)
-		UICorner.CornerRadius = UDim.new(0,18)
 		local ChatMessageTemplate = Instance.new('TextLabel')
 		ChatMessageTemplate.Name = 'ChatMessageTemplate'
 		ChatMessageTemplate.Size = UDim2.new(1, 0, 0.05, 0)
