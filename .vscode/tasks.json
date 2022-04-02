@@ -12,7 +12,8 @@
 			"problemMatcher": [],
 			"dependsOn": ["roblox-ts"],
 			"label": "rojo watch",
-			"detail": "rojo build --watch default.project.json -o %~%/code/overlay/workspace/mollermethod.rbxm"
+			"detail": "rojo build --watch default.project.json -o %~%/code/overlay/workspace/mollermethod.rbxm",
+			"path": "./roblox/"
 		},
 		{
 			"type": "npm",
@@ -24,7 +25,8 @@
 			},
 			"isBackground": true,
 			"problemMatcher": ["$tsc-watch"],
-			"detail": "npm lo"
+			"detail": "npm lo",
+			"path": "./roblox/"
 		}
 	]
 }
