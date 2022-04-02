@@ -25,7 +25,7 @@ return {
 		frame.BackgroundColor3 = util.colors.BLACK
 		local controller = util.Snapdragon.createDragController(frame, {
         	SnapEnabled = true
-    	});
+    	})
     	controller:Connect()
 		local UICorner = Instance.new('UICorner', frame)
 		UICorner.CornerRadius = UDim.new(0,18)
