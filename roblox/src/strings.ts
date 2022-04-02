@@ -1,4 +1,6 @@
 export const QUOTES = [
+	'"you getting bang lol" - Voiletfissy, 2022',
+	'"new acerus x script inf yeild" - Bro_PlaysRBLX, 2022',
 	'"I got a question if 86 wpm ok or bad" - Charlie, 2022',
 	`"cat broke rules https://cdn.discordapp.com/attachments/926218849064460328/953181130071343124/unknown.png" - Bongo, 2022`,
 	'"tysm for buying my module skeilet 1 now i have -0 robolx [sic] mony [sic] so you can take my manemodule [sic] but you faled [sic] because i obfuscate my stuf [sic] and you cant get it so yeah loser i am going to eat ur dog" - BOXIGON, 2022',
@@ -24,5 +26,4 @@ export const QUOTES = [
 	'"this is molly moller herself in the oven https://www.youtube.com/watch?v=Ck8o6j4R3HI" - Charlie, 2021',
 	'"I decided to edit it [Immortality Lord] and make it have quite a few new features" - Charlie, 2020',
 	`"I'ma hack u y'all" - cash_youtwin, 2020`,
-	`"new acerus x script inf yeild" - Bro_PlaysRBLX, 2022`,
 ]
