@@ -20,7 +20,14 @@ import colors from "colors"
  * }
  * ```
  */
-export = async function (options: {
+export = async function ({
+	gui: GUI,
+	bracket_external,
+	bracket_toggle,
+	debug,
+	plugins: plugin_sources = [],
+	theme,
+}: {
 	debug?: true
 	gui: ScreenGui
 	bracket_toggle?: Enum.KeyCode
@@ -32,11 +39,10 @@ export = async function (options: {
 		accent: string
 	}
 }) {
-	const GUI = options.gui
-	if (options.theme) {
-		colors.ACCENT = Color3.fromHex(options.theme.accent)
-		colors.WHITE = Color3.fromHex(options.theme.foreground)
-		colors.BLACK = Color3.fromHex(options.theme.background)
+	if (theme) {
+		colors.ACCENT = Color3.fromHex(theme.accent)
+		colors.WHITE = Color3.fromHex(theme.foreground)
+		colors.BLACK = Color3.fromHex(theme.background)
 	}
 	play("rbxassetid://9064208547")
 
@@ -54,7 +60,7 @@ export = async function (options: {
 			Text={`<b>Pause</b> to open mollermethod.\n<i>${random(QUOTES)}</i>${
 				IY_LOADED
 					? `\n<b>Did you know that mollermethod has its own IY alternative? Press ${UserInputService.GetStringForKeyCode(
-							options.bracket_toggle ?? Enum.KeyCode.LeftBracket
+							bracket_toggle ?? Enum.KeyCode.LeftBracket
 					  )} to open it.</b>`
 					: ""
 			}`}
@@ -64,25 +70,19 @@ export = async function (options: {
 	)
 
 	const plugins: Plugin[] = []
+	await Promise.allSettled(
+		plugin_sources.map(async source => {
+			const [plugin, err] = loadstring(source)
+			assert(plugin, err)
 
-	if (options.plugins) {
-		await Promise.allSettled(
-			options.plugins.map(async source => {
-				const [plugin, err] = loadstring(source)
-				if (err) {
-					warn(err)
-					return
-				} else if (plugin) {
-					plugins.push(
-						plugin({
-							notify: (args: Parameters<typeof Notification["validateProps"]>[0]) =>
-								Roact.mount(<Notification {...args} />, GUI, "Notification"),
-						})
-					)
-				}
-			})
-		)
-	}
+			plugins.push(
+				plugin({
+					notify: (args: Parameters<typeof Notification["validateProps"]>[0]) =>
+						Roact.mount(<Notification {...args} />, GUI, "Notification"),
+				})
+			)
+		})
+	)
 
 	const tree = Roact.mount(
 		<Plugins.Provider value={plugins}>
@@ -91,10 +91,10 @@ export = async function (options: {
 					Roact.unmount(tree)
 					GUI.Destroy()
 				}}>
-				{options.bracket_external ? (
+				{bracket_external ? (
 					<BracketExternal />
 				) : (
-					<Bracket Key="Bracket" button={options.bracket_toggle ?? Enum.KeyCode.LeftBracket} />
+					<Bracket Key="Bracket" button={bracket_toggle ?? Enum.KeyCode.LeftBracket} />
 				)}
 				<Trendsetter Key="Menu" />
 			</Kill.Provider>
