@@ -24,7 +24,6 @@ return {
 		frame.AnchorPoint = Vector2.new(0.5,0.5)
 		frame.BackgroundColor3 = util.colors.BLACK
 		local controller = util.Snapdragon.createDragController(frame, {
-        	DragGui = frame,
         	SnapEnabled = true
     	});
     	controller:Connect()
@@ -32,7 +31,7 @@ return {
 		UICorner.CornerRadius = UDim.new(0,18)
 		local chat = Instance.new('ScrollingFrame', frame)
 		chat.Name = 'Chat'
-		chat.Size = UDim2.new(1, 0, 0.8, 0)
+		chat.Size = UDim2.new(1, 0, 0.9, 0)
 		chat.BackgroundColor3 = util.colors.GRAY[9]
 		chat.BackgroundTransparency = 0
 		chat.BorderSizePixel = 0
