@@ -20,6 +20,7 @@ importers:
       '@rbxts/roact-hooked': ^1.2.3
       '@rbxts/roact-hooked-plus': ^1.0.2
       '@rbxts/services': ^1.2.0
+      '@rbxts/snapdragon': ^2.0.0-beta.1
       '@rbxts/types': ^1.0.571
       rbxts-transform-env: ^1.1.0-ts4.5
       rbxts-transformer-services: ^1.0.1
@@ -30,6 +31,7 @@ importers:
       '@rbxts/roact': 1.4.0-ts.2
       '@rbxts/roact-hooked': 1.2.4_@rbxts+roact@1.4.0-ts.2
       '@rbxts/roact-hooked-plus': 1.0.2_40eb2926aa90c6b503aef99d413ee5c2
+      '@rbxts/snapdragon': 2.0.0-beta.1
     devDependencies:
       '@rbxts/compiler-types': 1.3.1-types.0
       '@rbxts/exploit-types': github.com/richie0866/exploit-types/c7b6101043b7b004aa320d11d01a66b166107f74
@@ -712,6 +714,10 @@ packages:
 
   /@rbxts/services/1.2.0:
     resolution: {integrity: sha512-GEnAGgRz/oFEfBCjr+UChO7D49c/l+Wgr2OHMkURBKbVAqGg7hVQbEs9PUr+9BuVx/8OlsqZ/cvrUYbwAyd60A==}
+
+  /@rbxts/snapdragon/2.0.0-beta.1:
+    resolution: {integrity: sha512-cN2Qgg2Z+Tj5FZGXLFOrBz/QYq92du1al/vnLGtv7WDOb4SmhfQ8tNVCC4Jh/OBdmZuRYp/t07QSjKgYmolnlA==}
+    dev: false
 
   /@rbxts/types/1.0.571:
     resolution: {integrity: sha512-VKBktp/GefC8uHzzRhZJE8EhQw6Zq2oMzc8dlWoaj2xe6rT2bWllYg4pl7tuw29LjaUuIqWm0GUhbSqMiKmmaQ==}

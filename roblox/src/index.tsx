@@ -7,7 +7,7 @@ import BracketExternal from "Bracket/external"
 import Notification from "Notification"
 import Trendsetter from "Trendsetter"
 import colors from "colors"
-
+import Snapdragon from '@rbxts/snapdragon'
 declare const script: ModuleScript & {
 	plugins: Folder
 }
@@ -86,6 +86,7 @@ export = async function ({
 						Roact.mount(<Notification {...args} />, GUI, "Notification"),
 					GUI,
 					colors,
+					Snapdragon,
 				})
 			)
 		})
@@ -105,6 +106,7 @@ export = async function ({
 								Roact.mount(<Notification {...args} />, GUI, "Notification"),
 							GUI,
 							colors,
+							Snapdragon
 						})
 					)
 				})()

@@ -37,6 +37,8 @@
 		PURPLE: Color3[],
 	}`}</pre></dt>
 	<dd>A table of colors</dd>
+	<dt><pre>util.Snapdragon: import('@rbxts/snapdragon')</pre></dt>
+	<dd>The <a href="https://docs.vorlias.com/rbx-snapdragon/">Snapdragon</a> dragging module</dd>
 </dl>
 <h2>Plugin interface</h2>
 <p>You return a plugin interface. Here's the TypeScript type since I'm lazy</p>
