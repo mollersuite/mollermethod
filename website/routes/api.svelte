@@ -22,6 +22,8 @@
 		<br>
 		<img src={image} alt="a mollermethod notif"/>
 	</dd>
+	<dt><pre>util.GUI: LayerCollector</pre></dt>
+	<dd>A container to put your GUIs in</dd>
 </dl>
 <h2>Plugin interface</h2>
 <p>You return a plugin interface. Here's the TypeScript type since I'm lazy</p>
