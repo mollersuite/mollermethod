@@ -47,8 +47,8 @@ export = pure(({ Text: text, KeyCode: button }: { Text: string; KeyCode: Enum.Ke
 				...cmds,
 				...Object.entries(plugins_to_actions(plugins)).map(map_action),
 				...Object.entries(plugins_to_commands(plugins)).map(([name, command]) => ({
-					name,
-					display: name.sub(1, 1).upper() + name.sub(2),
+					name: tostring(name),
+					display: (name as string).sub(1, 1).upper() + (name as string).sub(2),
 					description: command.description,
 					action: false,
 					enabled: () => true,
