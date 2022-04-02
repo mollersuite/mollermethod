@@ -16,7 +16,7 @@ export interface Plugin {
 }
 
 export const Kill = Roact.createContext(() => {})
-export const Plugins = Roact.createContext([] as Plugin[])
+export const Plugins = Roact.createContext<Plugin[]>([])
 
 /**
  * A wrapper around getcustomasset
