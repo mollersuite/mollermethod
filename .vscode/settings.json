@@ -7,7 +7,11 @@
 	"editor.autoIndent": "advanced",
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"roblox-ts.editor.hideDeprecated": false,
-	"robloxLsp.diagnostics.globals": ["writefile", "gethui"],
+	"robloxLsp.diagnostics.globals": [
+		"writefile",
+		"gethui",
+		"writedialog"
+	],
 	"robloxLsp.typeChecking.mode": "Disabled",
 	"typescript.preferences.quoteStyle": "double",
 	"conventionalCommits.scopes": ["bracket", "mollybdos", "trendsetter", "mollerpotence"],
