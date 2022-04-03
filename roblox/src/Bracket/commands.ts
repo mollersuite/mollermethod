@@ -52,36 +52,101 @@ export const support: Command = {
 
 export const fly: Command = {
 	description: "Toggles fly mode.",
-	async execute(args) {
-		Flight = true
-		if (Character?.FindFirstChild("Torso")) {
-			const Torso = Character!.FindFirstChild("Torso") as BasePart
-			const Humanoid = Character.FindFirstChildWhichIsA("Humanoid")!
-			const BodyGyro = new Instance("BodyGyro", Torso)
-			BodyGyro.P = 9e4
-			BodyGyro.MaxTorque = new Vector3(9e9, 9e9, 9e9)
-			BodyGyro.CFrame = Torso.CFrame
-			const BodyVelocity = new Instance("BodyVelocity", Torso)
-			BodyVelocity.Velocity = new Vector3(0, 0, 0)
-			BodyVelocity.MaxForce = new Vector3(9e9, 9e9, 9e9)
-			Humanoid!.PlatformStand = true
-			UserInputService.InputBegan.Connect((input, gpe) => {
-				if (!gpe) {
-					if (input.KeyCode === Enum.KeyCode.Space) {
-						BodyVelocity.Velocity = BodyVelocity.Velocity.add(new Vector3(0, 10, 0))
+	async execute() {
+		Flight = !Flight
+		if (Flight) {
+			if (Character?.FindFirstChild("Torso")) {
+				const Humanoid = Character.FindFirstChildWhichIsA("Humanoid")!
+				const Root = Humanoid.RootPart!
+				const BodyGyro = new Instance("BodyGyro", Root)
+				BodyGyro.P = 9e4
+				BodyGyro.MaxTorque = new Vector3(9e9, 9e9, 9e9)
+				BodyGyro.CFrame = Root.CFrame
+				const BodyVelocity = new Instance("BodyVelocity", Root)
+				BodyVelocity.Velocity = new Vector3(0, 0, 0)
+				BodyVelocity.MaxForce = new Vector3(9e9, 9e9, 9e9)
+				Humanoid!.PlatformStand = true
+				let moving = false
+				UserInputService.InputBegan.Connect((input, gpe) => {
+					if (!gpe) {
+						moving = true
+						if (input.KeyCode === Enum.KeyCode.W) {
+							BodyVelocity.MaxForce = new Vector3(9e9, 9e9, 9e9)
+							while (moving) {
+								BodyVelocity.Velocity = Workspace!.CurrentCamera!.CFrame.LookVector.mul(200)
+								task.wait()
+							}
+						}
 					}
-					if (input.KeyCode === Enum.KeyCode.W) {
-						BodyVelocity.Velocity = Workspace!.CurrentCamera!.CFrame.LookVector.mul(20)
+				})
+				UserInputService.InputEnded.Connect((input, gpe) => {
+					if (!gpe) {
+						if (input.KeyCode === Enum.KeyCode.W) {
+							moving = false
+							BodyVelocity.Velocity = new Vector3()
+							BodyVelocity.MaxForce = new Vector3(9e9, 9e9, 9e9)
+						}
 					}
-				}
-			})
-			UserInputService.InputEnded.Connect((input, gpe) => {
-				if (!gpe) {
-					if (input.KeyCode === Enum.KeyCode.Space || input.KeyCode === Enum.KeyCode.W) {
-						BodyVelocity.Velocity = new Vector3(0, 0, 0)
+				})
+			}
+		} else {
+			if (Character?.FindFirstChild("Torso")) {
+				const Humanoid = Character.FindFirstChildWhichIsA("Humanoid")!
+				const Root = Humanoid.RootPart!
+				Root.FindFirstChildWhichIsA("BodyGyro")?.Destroy()
+				Root.FindFirstChildWhichIsA("BodyVelocity")?.Destroy()
+				Humanoid.PlatformStand = false
+			}
+		}
+	},
+}
+
+export const fish: Command = {
+	description: "flop like a fish",
+	async execute() {
+		Flight = !Flight
+		if (Flight) {
+			if (Character?.FindFirstChild("Torso")) {
+				const Humanoid = Character.FindFirstChildWhichIsA("Humanoid")!
+				const Root = Humanoid.RootPart!
+				const BodyGyro = new Instance("BodyGyro", Root)
+				BodyGyro.P = 9e4
+				BodyGyro.MaxTorque = new Vector3(9e9, 9e9, 9e9)
+				BodyGyro.CFrame = Root.CFrame
+				const BodyVelocity = new Instance("BodyVelocity", Root)
+				BodyVelocity.Velocity = new Vector3(0, 0, 0)
+				BodyVelocity.MaxForce = new Vector3(9e9, 9e9, 9e9)
+				Humanoid!.PlatformStand = true
+				let moving = false
+				UserInputService.InputBegan.Connect((input, gpe) => {
+					if (!gpe) {
+						moving = true
+						if (input.KeyCode === Enum.KeyCode.W) {
+							BodyVelocity.MaxForce = new Vector3(9e9, 9e9, 9e9)
+							while (moving) {
+								BodyVelocity.Velocity = Workspace!.CurrentCamera!.CFrame.LookVector.mul(200)
+								task.wait()
+							}
+						}
 					}
-				}
-			})
+				})
+				UserInputService.InputEnded.Connect((input, gpe) => {
+					if (!gpe) {
+						if (input.KeyCode === Enum.KeyCode.W) {
+							moving = false
+							BodyVelocity.MaxForce = new Vector3(0, 0, 0)
+						}
+					}
+				})
+			}
+		} else {
+			if (Character?.FindFirstChild("Torso")) {
+				const Humanoid = Character.FindFirstChildWhichIsA("Humanoid")!
+				const Root = Humanoid.RootPart!
+				Root.FindFirstChildWhichIsA("BodyGyro")?.Destroy()
+				Root.FindFirstChildWhichIsA("BodyVelocity")?.Destroy()
+				Humanoid.PlatformStand = false
+			}
 		}
 	},
 }
