@@ -2,6 +2,7 @@
 // they appear in mollybdos & bracket at the same time
 import { Players, RunService } from "@rbxts/services"
 import mollerpotence from "mollerpotence"
+import { asset } from "util"
 const LocalPlayer = Players.LocalPlayer
 
 export interface Action {
@@ -64,44 +65,49 @@ export const fling: Action = {
 			// frc.Force = new Vector3(xran*4, 9999*5, zran*4)
 			// Debris.AddItem(frc, 0.1)
 		} else {
-			const target_root = victim.Character?.PrimaryPart!
-			const end_time = time() + max_time
-			const char = LocalPlayer.Character!
-			const our_root = char.PrimaryPart!
-			while (true) {
-				char!.GetChildren().forEach(child => {
-					if (child.IsA("BasePart")) {
-						child.CanCollide = false
-						child.Velocity = Vector3.zero
-					}
-				})
-
-				if (target_root.Velocity.Magnitude > target_speed) {
-					break
-				}
-
-				if (time() > end_time) throw "Fling failed - max time exceeded"
-				assert(our_root.Parent, "Fling failed - our root is not attached")
-
-				const [delta] = RunService.RenderStepped.Wait()
-				char!.PivotTo(
-					target_root.CFrame.mul(CFrame.Angles(math.pi, math.random() * 10, 0))
-						.add(new Vector3(0, -1, 0))
-						.add(target_root.Velocity.mul(delta).mul(5))
-				)
-				our_root.Velocity = Vector3.zero
-				our_root.RotVelocity = new Vector3(0, 5000, 0)
-			}
-
-			char.GetChildren().forEach(child => {
-				if (child.IsA("BasePart")) {
-					child.CanCollide = child.Name !== "HumanoidRootPart"
-					child.Velocity = Vector3.zero
-					child.RotVelocity = Vector3.zero
+			const victim_char = victim.Character
+			assert(victim_char, "Victim has no character")
+			const victim_humanoid = victim_char.FindFirstChildWhichIsA("Humanoid")
+			assert(victim_humanoid, "Victim has no humanoid")
+			const victim_root = victim_humanoid.RootPart
+			assert(victim_root, "Victim has no root")
+			const char = LocalPlayer.Character
+			assert(char, "You have no character")
+			const humanoid = char.FindFirstChildWhichIsA("Humanoid")
+			assert(humanoid, "You have no humanoid")
+			const root = humanoid.RootPart
+			assert(root, "You have no root")
+			const bv = new Instance("BodyAngularVelocity")
+			bv.MaxTorque = new Vector3(1, 1, 1).mul(math.huge)
+			bv.P = math.huge
+			bv.AngularVelocity = new Vector3(0, 9e5, 0)
+			bv.Parent = root
+			const parts = char.GetChildren()
+			parts.forEach(part => {
+				if (part.IsA("BasePart")) {
+					part.CanCollide = false
+					part.Massless = true
+					part.Velocity = Vector3.zero
 				}
 			})
-
-			assert(our_root.Parent, "Fling failed - our root is not attached")
+			const RunServiceConnection = RunService.Stepped.Connect(() => {
+				root.Position = victim_root.Position
+				parts.forEach(part => {
+					if (part.IsA("BasePart")) {
+						part.CanCollide = false
+					}
+				})
+			})
+			const HumanoidConnection = humanoid.Died.Connect(() => {
+				RunServiceConnection.Disconnect()
+				HumanoidConnection.Disconnect()
+				VictimConnection.Disconnect()
+			})
+			const VictimConnection = victim_humanoid.Died.Connect(() => {
+				RunServiceConnection.Disconnect()
+				HumanoidConnection.Disconnect()
+				VictimConnection.Disconnect()
+			})
 		}
 	},
 }
