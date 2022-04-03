@@ -26,13 +26,14 @@ const PlayerList = pure(
 			<scrollingframe
 				Size={UDim2.fromScale(0.4, 1)}
 				BorderSizePixel={0}
-				BackgroundColor3={colors.GRAY[6]}
+				BackgroundColor3={colors.WHITE}
+				BackgroundTransparency={0.7}
 				ClipsDescendants
 				AutomaticCanvasSize="Y"
 				ScrollBarThickness={5}
 				CanvasSize={UDim2.fromScale(0, 1)}>
 				<uilistlayout SortOrder="Name" />
-				{players.map(player => (
+				{players.map((player) => (
 					<textbutton
 						Size={new UDim2(1, 0, 0, 0)}
 						TextWrapped
@@ -51,7 +52,8 @@ const PlayerList = pure(
 						Event={{
 							Activated: () => setSelected(player),
 						}}
-						BackgroundColor3={player === selected ? colors.ACCENT : colors.GRAY[6]}
+						BackgroundColor3={colors.ACCENT}
+						BackgroundTransparency={player === selected ? 0 : 1}
 						TextColor3={colors.WHITE}>
 						<uipadding
 							PaddingTop={new UDim(0, 5)}
@@ -84,7 +86,6 @@ export = pure(() => {
 			Size={UDim2.fromOffset(400, 300)}
 			BackgroundColor3={colors.BLACK}
 			BorderSizePixel={0}>
-			<uicorner CornerRadius={new UDim(0, 16)} />
 			<uilistlayout FillDirection="Horizontal" />
 			<PlayerList selected={selected} setSelected={setSelected} />
 			<Details selected={selected} />

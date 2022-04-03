@@ -47,8 +47,7 @@ return {
 		WriteLogsToFile.Position = UDim2.new(0, 0, 1, 0)
 		WriteLogsToFile.AnchorPoint = Vector2.new(0,1)
 		WriteLogsToFile.TextColor3 = util.colors.WHITE
-		WriteLogsToFile.BackgroundColor3 = util.colors.GRAY[10]
-		WriteLogsToFile.BackgroundTransparency = 0
+		WriteLogsToFile.BackgroundTransparency = 1
 		WriteLogsToFile.Font = Enum.Font.Gotham
 		WriteLogsToFile.Text = 'Write Logs To File'
 		WriteLogsToFile.TextSize = 18
