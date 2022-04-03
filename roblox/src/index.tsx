@@ -47,7 +47,7 @@ export = async function ({
 		colors.WHITE = Color3.fromHex(theme.foreground)
 		colors.BLACK = Color3.fromHex(theme.background)
 	}
-	play("rbxassetid://9064208547")
+	play("rbxassetid://8370988437")
 
 	/*
 	  so here we are detecting IY and giving them ads for Bracket
