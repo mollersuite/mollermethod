@@ -177,3 +177,30 @@ export const jobid: Command = {
 		setclipboard(`Roblox.GameLauncher.joinGameInstance('${game.PlaceId}', '${game.JobId}')`)
 	},
 }
+let Swim = false
+export const swim: Command = {
+	description: "swim like a fish",
+	async execute() {
+		const Character = Player.Character
+		const Humanoid = Character?.FindFirstChildWhichIsA("Humanoid")
+		assert(Humanoid, "you need a humanoid")
+		Swim = !Swim
+		if (Swim) {
+			Workspace.Gravity = 0
+			for (const state of Enum.HumanoidStateType.GetEnumItems()) {
+				if (state.Name === "Swimming") {
+					Humanoid.SetStateEnabled(state, true)
+				} else {
+					Humanoid.SetStateEnabled(state, false)
+				}
+			}
+			Humanoid.ChangeState(Enum.HumanoidStateType.Swimming)
+		} else {
+			Workspace.Gravity = 198.2
+			for (const state of Enum.HumanoidStateType.GetEnumItems()) {
+				Humanoid.SetStateEnabled(state, true)
+			}
+			Humanoid.ChangeState(Enum.HumanoidStateType.RunningNoPhysics)
+		}
+	},
+}
