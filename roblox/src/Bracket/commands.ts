@@ -1,6 +1,8 @@
-import { HttpService, TeleportService, Players, Workspace } from "@rbxts/services"
+import { HttpService, TeleportService, Players, Workspace, UserInputService } from "@rbxts/services"
 import { play } from "util"
 const Player = Players.LocalPlayer
+const Character = Player.Character
+let Flight = false
 
 export interface Command {
 	readonly description: string
@@ -47,6 +49,43 @@ export const support: Command = {
 		}
 	},
 }
+
+export const fly: Command = {
+	description: "Toggles fly mode.",
+	async execute(args) {
+		Flight = true
+		if (Character?.FindFirstChild("Torso")) {
+			const Torso = Character!.FindFirstChild("Torso") as BasePart
+			const Humanoid = Character.FindFirstChildWhichIsA("Humanoid")!
+			const BodyGyro = new Instance("BodyGyro", Torso)
+			BodyGyro.P = 9e4
+			BodyGyro.MaxTorque = new Vector3(9e9, 9e9, 9e9)
+			BodyGyro.CFrame = Torso.CFrame
+			const BodyVelocity = new Instance("BodyVelocity", Torso)
+			BodyVelocity.Velocity = new Vector3(0, 0, 0)
+			BodyVelocity.MaxForce = new Vector3(9e9, 9e9, 9e9)
+			Humanoid!.PlatformStand = true
+			UserInputService.InputBegan.Connect((input, gpe) => {
+				if (!gpe) {
+					if (input.KeyCode === Enum.KeyCode.Space) {
+						BodyVelocity.Velocity = BodyVelocity.Velocity.add(new Vector3(0, 10, 0))
+					}
+					if (input.KeyCode === Enum.KeyCode.W) {
+						BodyVelocity.Velocity = Workspace!.CurrentCamera!.CFrame.LookVector.mul(20)
+					}
+				}
+			})
+			UserInputService.InputEnded.Connect((input, gpe) => {
+				if (!gpe) {
+					if (input.KeyCode === Enum.KeyCode.Space || input.KeyCode === Enum.KeyCode.W) {
+						BodyVelocity.Velocity = new Vector3(0, 0, 0)
+					}
+				}
+			})
+		}
+	},
+}
+
 export const trollsmile: Command = {
 	description: "trollsmile winning",
 	execute: () => {
