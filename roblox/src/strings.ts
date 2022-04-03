@@ -2,6 +2,8 @@ export const QUOTES = [
 	'"you getting bang lol" - Voiletfissy, 2022',
 	'"new acerus x script inf yeild" - Bro_PlaysRBLX, 2022',
 	`"i keep almost accidentally sending porn [...] cause im busy sending porn in friend's dms" - Amourousity, 2022`,
+	'"luaquack often executes children" - Charlie, 2022',
+	'"GuiMain? Mr. LuaQuack." - Charlie, 2022',
 	'"I got a question if 86 wpm ok or bad" - Charlie, 2022',
 	`"cat broke rules https://cdn.discordapp.com/attachments/926218849064460328/953181130071343124/unknown.png" - Bongo, 2022`,
 	'"tysm for buying my module skeilet 1 now i have -0 robolx [sic] mony [sic] so you can take my manemodule [sic] but you faled [sic] because i obfuscate my stuf [sic] and you cant get it so yeah loser i am going to eat ur dog" - BOXIGON, 2022',
