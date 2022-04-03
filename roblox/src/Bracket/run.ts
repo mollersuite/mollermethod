@@ -1,4 +1,5 @@
-import { play, Plugin } from "util"
+import { play } from "util"
+import type { Plugin, Action } from "types"
 import { Players } from "@rbxts/services"
 import * as commands from "./commands"
 import * as actions from "actions"

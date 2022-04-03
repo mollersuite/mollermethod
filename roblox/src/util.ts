@@ -1,19 +1,6 @@
 import Roact from "@rbxts/roact"
 import { SoundService } from "@rbxts/services"
-import type { Action } from "actions"
-import type { Command } from "Bracket/commands"
-
-export interface Plugin {
-	readonly Name: string
-	readonly Author: string
-	readonly Tags?: (player: Player, add: (tag: string) => unknown) => unknown
-	readonly Actions?: {
-		[key: string]: Action
-	}
-	readonly Commands?: {
-		[key: string]: Command
-	}
-}
+import type { Plugin } from "./types"
 
 export const Kill = Roact.createContext(() => {})
 export const Plugins = Roact.createContext<Plugin[]>([])

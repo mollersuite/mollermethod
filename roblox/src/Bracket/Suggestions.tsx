@@ -1,13 +1,14 @@
 import Roact from "@rbxts/roact"
 import colors from "colors"
-import { escape_lua_pattern, Plugins, Plugin } from "util"
+import { escape_lua_pattern, Plugins } from "util"
+import type { Plugin, Action } from "types"
 import * as actions from "actions"
 import * as commands from "./commands"
 import { UserInputService } from "@rbxts/services"
 import Object from "@rbxts/object-utils"
 import { pure, useContext } from "@rbxts/roact-hooked"
 
-const map_action = ([name, action]: [string | number, actions.Action]) => ({
+const map_action = ([name, action]: [string | number, Action]) => ({
 	name: name as string,
 	action: true,
 	...action,

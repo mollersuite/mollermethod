@@ -2,15 +2,9 @@
 // they appear in mollybdos & bracket at the same time
 import { Players, RunService } from "@rbxts/services"
 import mollerpotence from "mollerpotence"
-import { asset } from "util"
+import type { Action } from "types"
 const LocalPlayer = Players.LocalPlayer
 
-export interface Action {
-	display?: string
-	description: string
-	execute(this: void, player: Player): Promise<unknown> | unknown
-	enabled?: () => boolean
-}
 
 export const to: Action = {
 	description: "Teleport to a player",

@@ -1,12 +1,9 @@
 import { HttpService, TeleportService, Players, Workspace, UserInputService } from "@rbxts/services"
 import { play } from "util"
+import type { Command } from "types"
 let Flight = false
 const Player = Players.LocalPlayer
 
-export interface Command {
-	readonly description: string
-	execute(this: void, args: string[]): void | Promise<unknown>
-}
 
 export const exit: Command = {
 	description: "Closes the game.",

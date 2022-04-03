@@ -1,5 +1,6 @@
 import { Debris, TweenService, UserInputService } from "@rbxts/services"
-import { Kill, play, random, Plugins, Plugin } from "util"
+import { Kill, play, random, Plugins } from "util"
+import { Plugin } from "types"
 import { QUOTES } from "strings"
 import Roact from "@rbxts/roact"
 import Bracket from "Bracket"

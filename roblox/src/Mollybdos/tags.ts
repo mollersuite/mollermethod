@@ -1,5 +1,5 @@
 import { GroupService, Players } from "@rbxts/services"
-import { Plugin } from "util"
+import type { Plugin } from "types"
 
 async function appearance_tags(
 	Player: Player,
