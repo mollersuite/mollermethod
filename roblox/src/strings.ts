@@ -1,4 +1,5 @@
 export const QUOTES = [
+	'"how can i do meth" - Charlie, 2022',
 	'"you getting bang lol" - Voiletfissy, 2022',
 	'"new acerus x script inf yeild" - Bro_PlaysRBLX, 2022',
 	`"i keep almost accidentally sending porn [...] cause im busy sending porn in friend's dms" - Amourousity, 2022`,
