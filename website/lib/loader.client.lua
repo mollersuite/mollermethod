@@ -93,7 +93,7 @@ end)
 xpcall(
 	function()
 		if not CONFIG.debug then
-			writefile("mollermethod.rbxm", game:HttpGetAsync("https://mthd.ml/mollermethod.rbxm"))
+			writefile("mollermethod.rbxm", game:HttpGetAsync("https://mollermethod.pages.dev/mollermethod.rbxm"))
 		end
 
 		local rbxmSuite =
