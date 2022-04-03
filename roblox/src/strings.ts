@@ -22,6 +22,7 @@ export const QUOTES = [
 	'"this is why you dont give people stuff that actually works and isnt bad" - Charlie, 2021',
 	'"Well listen and listen well, me and Auxnos partnered and fixed the animations, lights, and fixed the guns." - mongrio, 2021',
 	'"this is molly moller herself in the oven https://www.youtube.com/watch?v=Ck8o6j4R3HI" - Charlie, 2021',
+	'"you cant legally be a pedophile at 14 smh" - Amourousity, 2021',
 	'"I decided to edit it [Immortality Lord] and make it have quite a few new features" - Charlie, 2020',
 	`"I'ma hack u y'all" - cash_youtwin, 2020`,
 	`"new acerus x script inf yeild" - Bro_PlaysRBLX, 2022`,
