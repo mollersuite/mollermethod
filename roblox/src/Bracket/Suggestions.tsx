@@ -8,8 +8,8 @@ import { UserInputService } from "@rbxts/services"
 import Object from "@rbxts/object-utils"
 import { pure, useContext } from "@rbxts/roact-hooked"
 
-const map_action = ([name, action]: [string | number, Action]) => ({
-	name: name as string,
+const map_action = ([name, action]: [string, Action]) => ({
+	name,
 	action: true,
 	...action,
 })
@@ -48,8 +48,8 @@ export = pure(({ Text: text, KeyCode: button }: { Text: string; KeyCode: Enum.Ke
 				...cmds,
 				...Object.entries(plugins_to_actions(plugins)).map(map_action),
 				...Object.entries(plugins_to_commands(plugins)).map(([name, command]) => ({
-					name: tostring(name),
-					display: (name as string).sub(1, 1).upper() + (name as string).sub(2),
+					name: name,
+					display: name.sub(1, 1).upper() + name.sub(2),
 					description: command.description,
 					action: false,
 					enabled: () => true,

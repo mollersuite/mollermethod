@@ -14,10 +14,6 @@ export interface Plugin {
 	readonly Name: string
 	readonly Author: string
 	readonly Tags?: (player: Player, add: (tag: string) => unknown) => unknown
-	readonly Actions?: {
-		[key: string]: Action
-	}
-	readonly Commands?: {
-		[key: string]: Command
-	}
+	readonly Actions?: Record<string, Action>
+	readonly Commands?: Record<string, Command>
 }
