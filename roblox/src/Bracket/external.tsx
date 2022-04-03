@@ -15,7 +15,15 @@ export = pure(() => {
 		assert(rconsoleprint, "rconsoleprint is not defined")
 		assert(rconsoleinput, "rconsoleinput is not defined")
 		title?.("Bracket")
-		rconsoleprint("Welcome to Bracket. Enter a command below.\n")
+		rconsoleprint(` * █████╗
+ * ██╔══╝
+ * ██║
+ * ██║
+ * █████╗
+ * ╚════╝
+ * Welcome to Bracket.
+ * Enter a command below.
+ `)
 
 		async function loop() {
 			while (running) {
