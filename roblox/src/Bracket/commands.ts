@@ -1,8 +1,7 @@
 import { HttpService, TeleportService, Players, Workspace, UserInputService } from "@rbxts/services"
 import { play } from "util"
-const Player = Players.LocalPlayer
-const Character = Player.Character
 let Flight = false
+const Player = Players.LocalPlayer
 
 export interface Command {
 	readonly description: string
@@ -53,6 +52,7 @@ export const support: Command = {
 export const fly: Command = {
 	description: "Toggles fly mode.",
 	async execute() {
+		const Character = Player.Character
 		Flight = !Flight
 		if (Flight) {
 			if (Character?.FindFirstChild("Torso")) {
@@ -104,6 +104,7 @@ export const fly: Command = {
 export const fish: Command = {
 	description: "flop like a fish",
 	async execute() {
+		const Character = Player.Character
 		Flight = !Flight
 		if (Flight) {
 			if (Character?.FindFirstChild("Torso")) {
