@@ -107,10 +107,6 @@ export const fish: Command = {
 			if (Character?.FindFirstChild("Torso")) {
 				const Humanoid = Character.FindFirstChildWhichIsA("Humanoid")!
 				const Root = Humanoid.RootPart!
-				const BodyGyro = new Instance("BodyGyro", Root)
-				BodyGyro.P = 9e4
-				BodyGyro.MaxTorque = new Vector3(9e9, 9e9, 9e9)
-				BodyGyro.CFrame = Root.CFrame
 				const BodyVelocity = new Instance("BodyVelocity", Root)
 				BodyVelocity.Velocity = new Vector3(0, 0, 0)
 				BodyVelocity.MaxForce = new Vector3(9e9, 9e9, 9e9)
@@ -141,7 +137,6 @@ export const fish: Command = {
 			if (Character?.FindFirstChild("Torso")) {
 				const Humanoid = Character.FindFirstChildWhichIsA("Humanoid")!
 				const Root = Humanoid.RootPart!
-				Root.FindFirstChildWhichIsA("BodyGyro")?.Destroy()
 				Root.FindFirstChildWhichIsA("BodyVelocity")?.Destroy()
 				Humanoid.PlatformStand = false
 			}
