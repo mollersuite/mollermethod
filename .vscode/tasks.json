@@ -10,9 +10,11 @@
 			},
 			"isBackground": true,
 			"problemMatcher": [],
-			"dependsOn": ["roblox-ts"],
+			"dependsOn": [
+				"roblox-ts"
+			],
 			"label": "rojo watch",
-			"detail": "rojo build --watch default.project.json -o %~%/code/overlay/workspace/mollermethod.rbxm",
+			"detail": "runs rojo in watch mode compiling to your workspace",
 			"path": "./roblox/"
 		},
 		{
@@ -21,11 +23,13 @@
 			"script": "ts-watch",
 			"group": {
 				"kind": "build",
-				"isDefault": true
+				"isDefault": false
 			},
 			"isBackground": true,
-			"problemMatcher": ["$tsc-watch"],
-			"detail": "npm lo",
+			"problemMatcher": [
+				"$tsc-watch"
+			],
+			"detail": "transpiles your code to lua",
 			"path": "./roblox/"
 		}
 	]
