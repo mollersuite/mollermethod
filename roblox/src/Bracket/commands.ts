@@ -74,11 +74,18 @@ export const fly: Command = {
 								task.wait()
 							}
 						}
+						if (input.KeyCode === Enum.KeyCode.S) {
+							BodyVelocity.MaxForce = new Vector3(9e9, 9e9, 9e9)
+							while (moving) {
+								BodyVelocity.Velocity = Workspace!.CurrentCamera!.CFrame.LookVector.mul(-200)
+								task.wait()
+							}
+						}
 					}
 				})
 				UserInputService.InputEnded.Connect((input, gpe) => {
 					if (!gpe) {
-						if (input.KeyCode === Enum.KeyCode.W) {
+						if (input.KeyCode === Enum.KeyCode.W || input.KeyCode === Enum.KeyCode.S) {
 							moving = false
 							BodyVelocity.Velocity = new Vector3()
 							BodyVelocity.MaxForce = new Vector3(9e9, 9e9, 9e9)
