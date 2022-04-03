@@ -31,8 +31,6 @@ export const bring: Action = {
 	},
 }
 
-const max_time = 10
-const target_speed = 150
 export const fling: Action = {
 	description: "Make 'em fly. Requires either CanCollide or mollerpotence",
 	enabled: () => {
