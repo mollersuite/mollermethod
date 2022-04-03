@@ -5,6 +5,7 @@ import { UserInputService } from "@rbxts/services"
 import execute from "./run"
 import Roact from "@rbxts/roact"
 import Suggestions from "./Suggestions"
+import { useSpring } from "@rbxts/roact-hooked-plus"
 
 /**
  * # Bracket
@@ -104,13 +105,13 @@ export = hooked(({ button }: { button: Enum.KeyCode }) => {
 					PaddingTop={new UDim(0, 8)}
 				/>
 				<uistroke
-					Thickness={5}
+					Thickness={useSpring(math.min(utf8.len(text)[0] || 0, 10), {})}
 					Color={new Color3(1, 1, 1)}
 					ApplyStrokeMode="Border"
 					Transparency={0}
 					LineJoinMode="Round">
 					<uigradient
-						Rotation={(utf8.len(text)[0] || 0) * 5}
+						Rotation={useSpring((utf8.len(text)[0] || 0) * 5, {})}
 						Color={
 							new ColorSequence([
 								new ColorSequenceKeypoint(0, colors.ACCENT),
