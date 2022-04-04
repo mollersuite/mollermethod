@@ -1,6 +1,14 @@
-import { HttpService, TeleportService, Players, Workspace, UserInputService, Debris } from "@rbxts/services"
+import {
+	HttpService,
+	TeleportService,
+	Players,
+	Workspace,
+	UserInputService,
+	Debris,
+} from "@rbxts/services"
 import { play } from "util"
 import type { Command } from "types"
+import Roact from "@rbxts/roact"
 let Flight = false
 const Player = Players.LocalPlayer
 
@@ -211,6 +219,19 @@ export const swim: Command = {
 
 let Invisible = false
 const block = new Instance("Part")
+block.Shape = Enum.PartType.Cylinder
+block.Name = HttpService.GenerateGUID()
+Roact.mount(
+	<billboardgui ResetOnSpawn={false} Adornee={block} Size={UDim2.fromScale(2, 2)}>
+		<imagelabel
+			Size={UDim2.fromScale(1, 1)}
+			Image="rbxassetid://7037156897"
+			BackgroundTransparency={1}
+		/>
+	</billboardgui>,
+	gethui?.() || game.GetService("CoreGui"),
+	HttpService.GenerateGUID()
+)
 export const invisible: Command = {
 	description: "Become invisible",
 	async execute() {
@@ -228,6 +249,7 @@ export const invisible: Command = {
 			block.Massless = false
 			block.CFrame = root.CFrame
 			block.Parent = Workspace
+
 			const BodyGyro = new Instance("BodyGyro", block)
 			BodyGyro.P = 9e4
 			BodyGyro.MaxTorque = Vector3.one.mul(9e9)
