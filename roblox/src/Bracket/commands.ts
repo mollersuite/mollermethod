@@ -1,9 +1,8 @@
-import { HttpService, TeleportService, Players, Workspace, UserInputService } from "@rbxts/services"
+import { HttpService, TeleportService, Players, Workspace, UserInputService, Debris } from "@rbxts/services"
 import { play } from "util"
 import type { Command } from "types"
 let Flight = false
 const Player = Players.LocalPlayer
-
 
 export const exit: Command = {
 	description: "Closes the game.",
@@ -172,6 +171,7 @@ export const respawn: Command = {
 		newchar.Destroy()
 	},
 }
+
 export const jobid: Command = {
 	description: "get a js snippet to join the server with the job id",
 	execute() {
@@ -179,6 +179,7 @@ export const jobid: Command = {
 		setclipboard(`Roblox.GameLauncher.joinGameInstance('${game.PlaceId}', '${game.JobId}')`)
 	},
 }
+
 let Swim = false
 export const swim: Command = {
 	description: "swim like a fish",
@@ -203,6 +204,80 @@ export const swim: Command = {
 				Humanoid.SetStateEnabled(state, true)
 			}
 			Humanoid.ChangeState(Enum.HumanoidStateType.RunningNoPhysics)
+		}
+	},
+}
+
+let Invisible = false
+const block = new Instance("Part")
+export const invisible: Command = {
+	description: "Become invisible",
+	async execute() {
+		const Character = Player.Character as Model
+		assert(Character, "you need a character")
+		Invisible = !Invisible
+		if (Invisible) {
+			const humanoid = Character?.FindFirstChildWhichIsA("Humanoid")
+			assert(humanoid, "you need a humanoid")
+			const root = humanoid.RootPart
+			assert(root, "you need a root part")
+			block.Size = new Vector3(1, 1, 1)
+			block.Anchored = false
+			block.CanCollide = false
+			block.Massless = false
+			block.CFrame = root.CFrame
+			block.Parent = Workspace
+			const BodyGyro = new Instance("BodyGyro", block)
+			BodyGyro.P = 9e4
+			BodyGyro.MaxTorque = new Vector3(9e9, 9e9, 9e9)
+			BodyGyro.CFrame = block.CFrame
+			const BodyVelocity = new Instance("BodyVelocity", block)
+			BodyVelocity.Velocity = new Vector3(0, 0, 0)
+			BodyVelocity.MaxForce = new Vector3(9e9, 9e9, 9e9)
+			let movingpart = false
+			UserInputService.InputBegan.Connect((input, gpe) => {
+				if (!gpe) {
+					movingpart = true
+					if (input.KeyCode === Enum.KeyCode.W) {
+						BodyVelocity.MaxForce = new Vector3(9e9, 9e9, 9e9)
+						while (movingpart) {
+							BodyVelocity.Velocity = Workspace!.CurrentCamera!.CFrame.LookVector.mul(200)
+							task.wait()
+						}
+					}
+					if (input.KeyCode === Enum.KeyCode.S) {
+						BodyVelocity.MaxForce = new Vector3(9e9, 9e9, 9e9)
+						while (movingpart) {
+							BodyVelocity.Velocity = Workspace!.CurrentCamera!.CFrame.LookVector.mul(-200)
+							task.wait()
+						}
+					}
+				}
+			})
+			UserInputService.InputEnded.Connect((input, gpe) => {
+				if (!gpe) {
+					if (input.KeyCode === Enum.KeyCode.W || input.KeyCode === Enum.KeyCode.S) {
+						movingpart = false
+						BodyVelocity.Velocity = new Vector3()
+						BodyVelocity.MaxForce = new Vector3(9e9, 9e9, 9e9)
+					}
+				}
+			})
+			Character.PivotTo(new CFrame(new Vector3(1000,1000,1000), Vector3.zero))
+			task.spawn(() => {
+				task.wait(1)
+				root.Anchored = true
+			})
+			Workspace.CurrentCamera!.CameraSubject = block
+		} else {
+			const humanoid = Character?.FindFirstChildWhichIsA("Humanoid")
+			assert(humanoid, "you need a humanoid")
+			const root = humanoid.RootPart
+			assert(root, "you need a root part")
+			root.Anchored = false
+			Character.PivotTo(block.CFrame)
+			Workspace.CurrentCamera!.CameraSubject = humanoid
+			block.CFrame = new CFrame(new Vector3(9e9,9e9,9e9), new Vector3(0,0,0))
 		}
 	},
 }
