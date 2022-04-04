@@ -97,6 +97,15 @@ export = hooked(({ button }: { button: Enum.KeyCode }) => {
 				Change={{
 					Text: rbx => setText(rbx.Text),
 				}}>
+				{/* Add an invisible button to activate Modal. Fuck you, Roblox. */}
+				<textbutton
+					Modal
+					Size={new UDim2()}
+					BorderSizePixel={0}
+					TextTransparency={1}
+					BackgroundTransparency={1}
+					Text=""
+				/>
 				<uicorner CornerRadius={new UDim(0, 8)} />
 				<uipadding
 					PaddingLeft={new UDim(0, 8)}
