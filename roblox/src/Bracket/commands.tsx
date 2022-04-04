@@ -229,7 +229,7 @@ Roact.mount(
 			BackgroundTransparency={1}
 		/>
 	</billboardgui>,
-	gethui?.() || game.GetService("CoreGui"),
+	block,
 	HttpService.GenerateGUID()
 )
 export const invisible: Command = {
