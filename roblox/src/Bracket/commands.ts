@@ -195,6 +195,10 @@ export const swim: Command = {
 				}
 			}
 			Humanoid.ChangeState(Enum.HumanoidStateType.Swimming)
+			while (Swim) {
+				Character!.TranslateBy(Humanoid.MoveDirection.div(2))
+				task.wait()
+			}
 		} else {
 			Workspace.Gravity = 198.2
 			for (const state of Enum.HumanoidStateType.GetEnumItems()) {
