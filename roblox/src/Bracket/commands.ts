@@ -218,7 +218,7 @@ export const invisible: Command = {
 			assert(humanoid, "you need a humanoid")
 			const root = humanoid.RootPart
 			assert(root, "you need a root part")
-			block.Size = new Vector3(1, 1, 1)
+			block.Size = Vector3.one
 			block.Anchored = false
 			block.CanCollide = false
 			block.Massless = false
@@ -226,24 +226,24 @@ export const invisible: Command = {
 			block.Parent = Workspace
 			const BodyGyro = new Instance("BodyGyro", block)
 			BodyGyro.P = 9e4
-			BodyGyro.MaxTorque = new Vector3(9e9, 9e9, 9e9)
+			BodyGyro.MaxTorque = Vector3.one.mul(9e9)
 			BodyGyro.CFrame = block.CFrame
 			const BodyVelocity = new Instance("BodyVelocity", block)
-			BodyVelocity.Velocity = new Vector3(0, 0, 0)
-			BodyVelocity.MaxForce = new Vector3(9e9, 9e9, 9e9)
+			BodyVelocity.Velocity = Vector3.zero
+			BodyVelocity.MaxForce = Vector3.one.mul(9e9)
 			let movingpart = false
 			UserInputService.InputBegan.Connect((input, gpe) => {
 				if (!gpe) {
 					movingpart = true
 					if (input.KeyCode === Enum.KeyCode.W) {
-						BodyVelocity.MaxForce = new Vector3(9e9, 9e9, 9e9)
+						BodyVelocity.MaxForce = Vector3.one.mul(9e9)
 						while (movingpart) {
 							BodyVelocity.Velocity = Workspace!.CurrentCamera!.CFrame.LookVector.mul(200)
 							task.wait()
 						}
 					}
 					if (input.KeyCode === Enum.KeyCode.S) {
-						BodyVelocity.MaxForce = new Vector3(9e9, 9e9, 9e9)
+						BodyVelocity.MaxForce = Vector3.one.mul(9e9)
 						while (movingpart) {
 							BodyVelocity.Velocity = Workspace!.CurrentCamera!.CFrame.LookVector.mul(-200)
 							task.wait()
@@ -255,12 +255,12 @@ export const invisible: Command = {
 				if (!gpe) {
 					if (input.KeyCode === Enum.KeyCode.W || input.KeyCode === Enum.KeyCode.S) {
 						movingpart = false
-						BodyVelocity.Velocity = new Vector3()
-						BodyVelocity.MaxForce = new Vector3(9e9, 9e9, 9e9)
+						BodyVelocity.Velocity = Vector3.zero
+						BodyVelocity.MaxForce = Vector3.one.mul(9e9)
 					}
 				}
 			})
-			Character.PivotTo(new CFrame(new Vector3(1000,1000,1000), Vector3.zero))
+			Character.PivotTo(new CFrame(Vector3.one.mul(1000), Vector3.zero))
 			task.spawn(() => {
 				task.wait(1)
 				root.Anchored = true
@@ -274,7 +274,7 @@ export const invisible: Command = {
 			root.Anchored = false
 			Character.PivotTo(block.CFrame)
 			Workspace.CurrentCamera!.CameraSubject = humanoid
-			block.CFrame = new CFrame(new Vector3(9e9,9e9,9e9), new Vector3(0,0,0))
+			block.CFrame = new CFrame(Vector3.one.mul(9e9), Vector3.zero)
 		}
 	},
 }
