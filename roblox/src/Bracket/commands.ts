@@ -56,25 +56,23 @@ export const fly: Command = {
 				const Root = Humanoid.RootPart!
 				const BodyGyro = new Instance("BodyGyro", Root)
 				BodyGyro.P = 9e4
-				BodyGyro.MaxTorque = new Vector3(9e9, 9e9, 9e9)
+				BodyGyro.MaxTorque = Vector3.one.mul(9e9)
 				BodyGyro.CFrame = Root.CFrame
 				const BodyVelocity = new Instance("BodyVelocity", Root)
-				BodyVelocity.Velocity = new Vector3(0, 0, 0)
-				BodyVelocity.MaxForce = new Vector3(9e9, 9e9, 9e9)
+				BodyVelocity.Velocity = Vector3.zero
+				BodyVelocity.MaxForce = Vector3.one.mul(9e9)
 				Humanoid!.PlatformStand = true
 				let moving = false
 				UserInputService.InputBegan.Connect((input, gpe) => {
 					if (!gpe) {
 						moving = true
 						if (input.KeyCode === Enum.KeyCode.W) {
-							BodyVelocity.MaxForce = new Vector3(9e9, 9e9, 9e9)
 							while (moving) {
 								BodyVelocity.Velocity = Workspace!.CurrentCamera!.CFrame.LookVector.mul(200)
 								task.wait()
 							}
 						}
 						if (input.KeyCode === Enum.KeyCode.S) {
-							BodyVelocity.MaxForce = new Vector3(9e9, 9e9, 9e9)
 							while (moving) {
 								BodyVelocity.Velocity = Workspace!.CurrentCamera!.CFrame.LookVector.mul(-200)
 								task.wait()
@@ -86,8 +84,7 @@ export const fly: Command = {
 					if (!gpe) {
 						if (input.KeyCode === Enum.KeyCode.W || input.KeyCode === Enum.KeyCode.S) {
 							moving = false
-							BodyVelocity.Velocity = new Vector3()
-							BodyVelocity.MaxForce = new Vector3(9e9, 9e9, 9e9)
+							BodyVelocity.Velocity = Vector3.zero
 						}
 					}
 				})
@@ -114,15 +111,15 @@ export const fish: Command = {
 				const Humanoid = Character.FindFirstChildWhichIsA("Humanoid")!
 				const Root = Humanoid.RootPart!
 				const BodyVelocity = new Instance("BodyVelocity", Root)
-				BodyVelocity.Velocity = new Vector3(0, 0, 0)
-				BodyVelocity.MaxForce = new Vector3(9e9, 9e9, 9e9)
+				BodyVelocity.Velocity = Vector3.zero
+				BodyVelocity.MaxForce = Vector3.one.mul(9e9)
 				Humanoid!.PlatformStand = true
 				let moving = false
 				UserInputService.InputBegan.Connect((input, gpe) => {
 					if (!gpe) {
 						moving = true
 						if (input.KeyCode === Enum.KeyCode.W) {
-							BodyVelocity.MaxForce = new Vector3(9e9, 9e9, 9e9)
+							BodyVelocity.MaxForce = Vector3.one.mul(9e9)
 							while (moving) {
 								BodyVelocity.Velocity = Workspace!.CurrentCamera!.CFrame.LookVector.mul(200)
 								task.wait()
@@ -134,7 +131,7 @@ export const fish: Command = {
 					if (!gpe) {
 						if (input.KeyCode === Enum.KeyCode.W) {
 							moving = false
-							BodyVelocity.MaxForce = new Vector3(0, 0, 0)
+							BodyVelocity.MaxForce = Vector3.zero
 						}
 					}
 				})

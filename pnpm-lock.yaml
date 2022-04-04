@@ -22,8 +22,6 @@ importers:
       '@rbxts/services': ^1.2.0
       '@rbxts/snapdragon': ^2.0.0-beta.1
       '@rbxts/types': ^1.0.571
-      rbxts-transform-env: ^1.1.0-ts4.5
-      rbxts-transformer-services: ^1.0.1
       roblox-ts: 1.2.7
     dependencies:
       '@rbxts/flipper': 2.0.1
@@ -37,8 +35,6 @@ importers:
       '@rbxts/exploit-types': github.com/richie0866/exploit-types/c7b6101043b7b004aa320d11d01a66b166107f74
       '@rbxts/services': 1.2.0
       '@rbxts/types': 1.0.571
-      rbxts-transform-env: 1.1.0-ts4.5
-      rbxts-transformer-services: 1.0.1
       roblox-ts: 1.2.7
 
   website:
@@ -1047,11 +1043,6 @@ packages:
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dev: true
 
-  /dotenv/8.6.0:
-    resolution: {integrity: sha512-IrPdXQsk2BbzvCBGBOTmmSH5SodmqZNt4ERAZDmW4CT+tL8VtvinqywuANaFu4bOMWki16nqf0e4oC0QIaDr/g==}
-    engines: {node: '>=10'}
-    dev: true
-
   /electron-to-chromium/1.4.76:
     resolution: {integrity: sha512-3Vftv7cenJtQb+k00McEBZ2vVmZ/x+HEF7pcZONZIkOsESqAqVuACmBxMv0JhzX7u0YltU0vSqRqgBSTAhFUjA==}
     dev: true
@@ -1918,21 +1909,6 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /rbxts-transform-env/1.1.0-ts4.5:
-    resolution: {integrity: sha512-vvoIijGnefcJWR75rTTVBbcpnDgrYDaAzijR/Dl/HveGRNTisycJYHjlB2MdXn7LLl9gqiY5ujdCFZOutQgDYg==}
-    dependencies:
-      chalk: 4.1.2
-      colors: 1.4.0
-      dotenv: 8.6.0
-      typescript: 4.5.5
-    dev: true
-
-  /rbxts-transformer-services/1.0.1:
-    resolution: {integrity: sha512-+tNaseOIwAzrl2Me7oL8YTaEpkc6JRLSqCeWZHD2F6nPO+h2nx6zwkRUAQqdpQ19jA9cAG3qqh7lOxT8K6qoQw==}
-    dependencies:
-      typescript: 4.6.2
-    dev: true
-
   /react-is/17.0.2:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
     dev: true
@@ -2156,18 +2132,6 @@ packages:
 
   /typescript/4.4.4:
     resolution: {integrity: sha512-DqGhF5IKoBl8WNf8C1gu8q0xZSInh9j1kJJMqT3a94w1JzVaBU4EXOSMrz9yDqMT0xt3selp83fuFMQ0uzv6qA==}
-    engines: {node: '>=4.2.0'}
-    hasBin: true
-    dev: true
-
-  /typescript/4.5.5:
-    resolution: {integrity: sha512-TCTIul70LyWe6IJWT8QSYeA54WQe8EjQFU4wY52Fasj5UKx88LNYKCgBEHcOMOrFF1rKGbD8v/xcNWVUq9SymA==}
-    engines: {node: '>=4.2.0'}
-    hasBin: true
-    dev: true
-
-  /typescript/4.6.2:
-    resolution: {integrity: sha512-HM/hFigTBHZhLXshn9sN37H085+hQGeJHJ/X7LpBWLID/fbc2acUMfU+lGD98X81sKP+pFa9f0DZmCwB9GnbAg==}
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: true

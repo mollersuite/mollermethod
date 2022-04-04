@@ -70,9 +70,9 @@ export const fling: Action = {
 			const root = humanoid.RootPart
 			assert(root, "You have no root")
 			const bv = new Instance("BodyAngularVelocity")
-			bv.MaxTorque = new Vector3(1, 1, 1).mul(math.huge)
+			bv.MaxTorque = Vector3.one.mul(math.huge)
 			bv.P = math.huge
-			bv.AngularVelocity = new Vector3(0, 9e5, 0)
+			bv.AngularVelocity = Vector3.yAxis.mul(9e5)
 			bv.Parent = root
 			const parts = char.GetChildren()
 			parts.forEach(part => {

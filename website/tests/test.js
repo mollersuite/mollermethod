@@ -23,31 +23,32 @@ test("you can visit the discord", async ({ page }) => {
 test.describe.parallel("config generator", async () => {
 	test.beforeEach(({ page }) => page.goto("/config"))
 
-	test("custom key", async ({ page }) => {
+	test("custom key", async ({ page, baseURL }) => {
 		await page.click("#main > .combo-box > button")
 		await page.click("#main > .combo-box > ul :has-text('RightParenthesis')")
-		expect(await page.textContent("#output")).toBe(`loadstring(game:HttpGet 'localhost:3000') {
+		expect(await page.textContent("#output")).toBe(`loadstring(game:HttpGet '${baseURL}') {
 	bracket_toggle = Enum.KeyCode.RightParenthesis;
 	debug = false;
+	bracket_external = false;
+	theme = {
+		accent = "#ff4539";
+		background = "#1c1c1c";
+		foreground = "#f0f6fc";
+	};
 }`)
 	})
 
-	test("debug mode", async ({ page }) => {
+	test("debug mode", async ({ page, baseURL }) => {
 		await page.click("#main > label.toggle-switch-container")
-		expect(await page.textContent("#output")).toBe(`loadstring(game:HttpGet 'localhost:3000') {
+		expect(await page.textContent("#output")).toBe(`loadstring(game:HttpGet '${baseURL}') {
 	bracket_toggle = Enum.KeyCode.LeftBracket;
 	debug = true;
+	bracket_external = false;
+	theme = {
+		accent = "#ff4539";
+		background = "#1c1c1c";
+		foreground = "#f0f6fc";
+	};
 }`)
-	})
-
-	test("verbose loader", async ({ page, baseURL }) => {
-		await page.focus(".slider")
-		await page.keyboard.press("ArrowRight")
-
-		expect(await page.textContent("#output"))
-			.toBe(`loadstring(game:HttpGetAsync('${baseURL}'), 'mollermethod')({
-	bracket_toggle = Enum.KeyCode.LeftBracket;
-	debug = false;
-})`)
 	})
 })

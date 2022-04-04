@@ -63,12 +63,8 @@ interface Plugin {
 	readonly Author: string
 	// Runs when the user selects a player in Mollybdos. Call \`tag\` to add a tag to the player. You can call this multiple times to give the tag a "score."
 	readonly Tags?: (player: Player, add: (tag: string) => unknown) => unknown
-	readonly Actions?: {
-		[key: string]: Action // The key will be used as the Bracket command name
-	}
-	readonly Commands?: {
-		[key: string]: Command
-	}
+	readonly Actions?: Record<string, Action> // The key will be used as the Bracket command name
+	readonly Commands?: Record<string, Command></string>
 }`}</pre>
 <h2>Plugin example</h2>
 <p>Here's an example plugin. It's a simple example, but it's a good starting point.</p>

@@ -1,4 +1,5 @@
 export const QUOTES = [
+	'"Is it possible to use your gui script stuff on Xbox ?" - JFK#1292',
 	'"how can i do meth" - Charlie, 2022',
 	'"you getting bang lol" - Voiletfissy, 2022',
 	'"new acerus x script inf yeild" - Bro_PlaysRBLX, 2022',
@@ -26,7 +27,7 @@ export const QUOTES = [
 	'"WHAT THE FUCK IS MOLY MOLER [sic] DOING" - DeadBoris, 2021',
 	'"i fuking hat you ashole ill fuck find you [...] tis yor fault" - Vexaria, 2021',
 	'"this is why you dont give people stuff that actually works and isnt bad" - Charlie, 2021',
-	'"Today, Molly has entered the meth stash, consumed 100 pounds of meth, got on the computer and downloaded VLC media player for linux and passed out while trying to go outside", GoodFuude, 2021',
+	'"Today, Molly has entered the meth stash, consumed 100 pounds of meth, got on the computer and downloaded VLC media player for linux and passed out while trying to go outside" - GoodFuude, 2021',
 	'"Well listen and listen well, me and Auxnos partnered and fixed the animations, lights, and fixed the guns." - mongrio, 2021',
 	'"this is molly moller herself in the oven https://www.youtube.com/watch?v=Ck8o6j4R3HI" - Charlie, 2021',
 	'"you cant legally be a pedophile at 14 smh" - Amourousity, 2021',
