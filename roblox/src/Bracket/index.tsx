@@ -54,14 +54,14 @@ export = hooked(({ button }: { button: Enum.KeyCode }) => {
 	return (
 		<scrollingframe
 			ClipsDescendants={false}
+			BorderSizePixel={0}
 			CanvasSize={new UDim2()}
-			Size={UDim2.fromScale(0.7, 1)}
+			Size={new UDim2(0.7, 0, 1, -50)}
 			AnchorPoint={new Vector2(0.5, 0)}
 			BackgroundTransparency={1}
 			ScrollBarThickness={3}
 			AutomaticCanvasSize="Y"
-			Position={UDim2.fromScale(0.5, 0)}>
-			<uipadding PaddingTop={new UDim(0, 50)} />
+			Position={new UDim2(0.5, 0, 0, 50)}>
 			<uilistlayout
 				SortOrder="Name"
 				HorizontalAlignment="Center"
