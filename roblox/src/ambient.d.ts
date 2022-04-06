@@ -122,4 +122,4 @@ declare const writedialog: ((title: string, filter: string, data: string) => boo
  * @param filter File filter, e.g. "*.txt"
  */
 
-declare const readdialog: ((title: string, filter: string) => boolean | string) | void
+declare const readdialog: ((title: string, filter: string) => [boolean, string]) | void
