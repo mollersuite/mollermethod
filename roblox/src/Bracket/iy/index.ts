@@ -7,10 +7,11 @@ export = (source: string, container: LayerCollector): Plugin => {
 	const [load, err] = loadstring(source)
 	assert(load, err)
 	const functions = {
-		...env({ container }),
+		...getrenv(),
 		...getgenv(),
+		...env({ container }),
 	}
-	setfenv(load, env)
+	setfenv(load, functions)
 	const plugin: IYPlugin = load()
 
 	const Commands: Record<string, Command> = {}
