@@ -1,5 +1,5 @@
 export const QUOTES = [
-	'"Is it possible to use your gui script stuff on Xbox ?" - JFK#1292',
+	'"Is it possible to use your gui script stuff on Xbox ?" - JFK#1292, 2022',
 	'"how can i do meth" - Charlie, 2022',
 	'"you getting bang lol" - Voiletfissy, 2022',
 	'"new acerus x script inf yeild" - Bro_PlaysRBLX, 2022',
