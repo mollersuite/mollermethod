@@ -53,9 +53,9 @@ importers:
       '@fluentui/svg-icons': 1.1.162
       '@playwright/test': 1.19.2
       '@sveltejs/adapter-static': 1.0.0-next.29
-      '@sveltejs/kit': 1.0.0-next.304_svelte@3.46.4
+      '@sveltejs/kit': 1.0.0-next.307_svelte@3.46.4
       fluent-svelte: 1.5.1
-      prettier-plugin-svelte: 2.6.0_prettier@2.5.1+svelte@3.46.4
+      prettier-plugin-svelte: 2.6.0_svelte@3.46.4
       svelte: 3.46.4
 
 packages:
@@ -733,8 +733,8 @@ packages:
       tiny-glob: 0.2.9
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.304_svelte@3.46.4:
-    resolution: {integrity: sha512-3+bCoDsF2Omolx51lK6+4Zgr8NYge8USxKpZpAg8OfonEW8L4GToyV4g+udLMCI3CC4QEw3eS1RFUj9UxLf2NQ==}
+  /@sveltejs/kit/1.0.0-next.307_svelte@3.46.4:
+    resolution: {integrity: sha512-dVxSuP0YyGL6/4VVhjLxxj4hHlVscrXJttvsffGnFOUJ1JtrJ496xoxhxB7iSVpYdTMXocjA9w54ZIC59m0J7A==}
     engines: {node: '>=14.13'}
     hasBin: true
     peerDependencies:
@@ -1847,13 +1847,12 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
-  /prettier-plugin-svelte/2.6.0_prettier@2.5.1+svelte@3.46.4:
+  /prettier-plugin-svelte/2.6.0_svelte@3.46.4:
     resolution: {integrity: sha512-NPSRf6Y5rufRlBleok/pqg4+1FyGsL0zYhkYP6hnueeL1J/uCm3OfOZPsLX4zqD9VAdcXfyEL2PYqGv8ZoOSfA==}
     peerDependencies:
       prettier: ^1.16.4 || ^2.0.0
       svelte: ^3.2.0
     dependencies:
-      prettier: 2.5.1
       svelte: 3.46.4
     dev: true
 
