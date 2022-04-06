@@ -177,7 +177,29 @@ c-104 98 -253 173 -418 209 -96 21 -252 29 -340 18z" />
 	Does mollermethod work on Script-Ware®️?
 	<svelte:fragment slot="content">Yes, our lead dev uses only Script-Ware!</svelte:fragment>
 </Expander>
-
+<Expander>
+	<svelte:fragment slot="icon"
+		><svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+			><path
+				d="M13 2a2.47 2.47 0 0 1 2.47 2.47l-.001.53H19a1 1 0 0 1 1 1l-.001 3.499-1.53.001a2.47 2.47 0 0 0-2.464 2.307L16 11.97v.06a2.47 2.47 0 0 0 2.307 2.465l.163.005 1.529-.001.001 3.504a1 1 0 0 1-1 1l-3.531-.001v.528a2.47 2.47 0 1 1-4.939 0v-.528H7a1 1 0 0 1-1-1l-.001-3.531h-.53a2.47 2.47 0 0 1 0-4.94H6L6 6a1 1 0 0 1 1-1h3.53v-.53A2.47 2.47 0 0 1 13 2Z" /></svg
+		></svelte:fragment>
+	Where can I find plugins for mollermethod?
+	<svelte:fragment slot="content">
+		<p>
+			mollermethod has a compatibility layer for <a href="https://github.com/EdgeIY/infiniteyield"
+				>Infinite Yield</a>
+			plugins, and will automatically read your Infinite Yield config to load them. You can find
+			Infinite Yield plugins on
+			<a href="https://github.com/Infinite-Store/Infinite-Store">Infinite Store.</a>
+		</p>
+		<p>
+			mollermethod also has its <a href="/api" sveltekit:prefetch>own plugin API</a>, allowing you to make custom actions (shows in both Bracket & Mollybdos), commands (shows in Bracket), and tags (shows in Mollybdos). 
+		</p>
+		<p>
+			In the future this site will have a dedicated section for plugins.
+		</p>
+	</svelte:fragment>
+</Expander>
 <Expander>
 	<svelte:fragment slot="icon">{@html External}</svelte:fragment>
 	How do I use Bracket in an external window?
@@ -196,9 +218,9 @@ c-104 98 -253 173 -418 209 -96 21 -252 29 -340 18z" />
 </Expander>
 
 <Expander on:click={() => (version += 0.5)}>
-<svelte:fragment slot="icon">
-{@html CloudScript}
-</svelte:fragment>
+	<svelte:fragment slot="icon">
+		{@html CloudScript}
+	</svelte:fragment>
 	How do I use cloud scripts?
 	<svelte:fragment slot="content">
 		First pause Roblox, then look at the bottom left.
