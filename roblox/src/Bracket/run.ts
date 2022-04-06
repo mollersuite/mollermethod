@@ -6,7 +6,7 @@ import * as actions from "actions"
 
 const LocalPlayer = Players.LocalPlayer
 
-const get_players = (selector = "N/A") => {
+export const get_players = (selector = "N/A") => {
 	if (selector === "all") return Players.GetPlayers()
 	if (selector === "me") return [LocalPlayer]
 	if (selector === "friends")

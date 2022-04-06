@@ -2,6 +2,7 @@
 
 import Roact from "@rbxts/roact"
 import { HttpService } from "@rbxts/services"
+import { get_players } from "../run"
 import Notification from "Notification"
 
 // https://github.com/EdgeIY/infiniteyield/wiki/r15
@@ -35,6 +36,9 @@ export = (options: { container: LayerCollector }) => ({
 	tools,
 	isNumber,
 	writefileExploit,
+	
+	// https://github.com/EdgeIY/infiniteyield/wiki/getPlayer
+	getPlayer: get_players,
 
 	// TODO: https://github.com/EdgeIY/infiniteyield/wiki/GetInTable
 
@@ -43,5 +47,5 @@ export = (options: { container: LayerCollector }) => ({
 
 	// https://github.com/EdgeIY/infiniteyield/wiki/notify
 	notify: (title: string, message: string) =>
-		Roact.mount(<Notification Text={message} App={title} />, options.container, "IY Notification")
+		Roact.mount(<Notification Text={message} App={title} />, options.container, "IY Notification"),
 })
