@@ -9,6 +9,7 @@ import {
 import { play } from "util"
 import type { Command } from "types"
 import Roact from "@rbxts/roact"
+import colors from "colors"
 let Flight = false
 const Player = Players.LocalPlayer
 
