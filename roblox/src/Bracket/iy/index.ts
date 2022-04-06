@@ -10,6 +10,7 @@ export = (source: string, container: LayerCollector): Plugin => {
 		...getrenv(),
 		...getgenv(),
 		...env({ container }),
+		getstring: (index: number) => "getstring not implemented",
 	}
 	setfenv(load, functions)
 	const plugin: IYPlugin = load()
@@ -20,12 +21,8 @@ export = (source: string, container: LayerCollector): Plugin => {
 			description: value.Description,
 			execute: async args => {
 				// Fuck you, Edge.
-				const command = value.Function
-				setfenv(command, {
-					...functions,
-					getstring: (index: number) => args.filter((_, i) => i + 1 <= index).join(" "),
-				})
-				return command(args, Players.LocalPlayer)
+				functions.getstring = (index: number) => args.filter((_, i) => i + 1 <= index).join(" ")
+				return value.Function(args, Players.LocalPlayer)
 			},
 		}
 	}

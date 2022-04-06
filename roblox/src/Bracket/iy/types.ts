@@ -10,3 +10,8 @@ export interface IYPlugin {
 	PluginDescription: string
 	Commands: Record<string, IYCommand>
 }
+
+export interface IYConfig {
+	PluginsTable: string[]
+	
+}
