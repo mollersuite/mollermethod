@@ -65,10 +65,10 @@ export = pure(({ Text: text, KeyCode: button }: { Text: string; KeyCode: Enum.Ke
 							Size={new UDim2(0.7, 0, 0, 25)}
 							AutomaticSize="Y">
 							<uipadding
-								PaddingLeft={new UDim(0, 16)}
-								PaddingRight={new UDim(0, 16)}
-								PaddingTop={new UDim(0, 16)}
-								PaddingBottom={new UDim(0, 16)}
+								PaddingLeft={new UDim(0, 8)}
+								PaddingRight={new UDim(0, 8)}
+								PaddingTop={new UDim(0, 8)}
+								PaddingBottom={new UDim(0, 8)}
 							/>
 							<textlabel
 								Text={`<b>${text}</b>${name.sub(escaped.size() + 1)}`}
