@@ -4,20 +4,28 @@ import env from "./env"
 import type { IYPlugin } from "./types"
 
 export = (source: string, container: LayerCollector): Plugin => {
-	const [run, err] = loadstring(source)
-	assert(run, err)
-
-	setfenv(run, {
+	const [load, err] = loadstring(source)
+	assert(load, err)
+	const functions = {
 		...env({ container }),
 		...getgenv(),
-	})
-	const plugin: IYPlugin = run()
+	}
+	setfenv(load, env)
+	const plugin: IYPlugin = load()
 
 	const Commands: Record<string, Command> = {}
 	for (const [key, value] of pairs(plugin.Commands)) {
 		Commands[key as string] = {
 			description: value.Description,
-			execute: async args => value.Function(args, Players.LocalPlayer),
+			execute: async args => {
+				// Fuck you, Edge.
+				const command = value.Function
+				setfenv(command, {
+					...functions,
+					getstring: (index: number) => args.filter((_, i) => i + 1 <= index).join(" "),
+				})
+				return command(args, Players.LocalPlayer)
+			},
 		}
 	}
 
