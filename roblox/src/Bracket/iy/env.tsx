@@ -43,7 +43,5 @@ export = (options: { container: LayerCollector }) => ({
 
 	// https://github.com/EdgeIY/infiniteyield/wiki/notify
 	notify: (title: string, message: string) =>
-		Roact.mount(<Notification Text={message} App={title} />, options.container, "IY Notification"),
-	// todo: MUST ADD! https://github.com/Infinite-Store/Infinite-Store/blob/d29d0e83c5068f91f7cd008ffdd49318e86c7bff/plugins/fakeify.iy#L19
-	getstring: (index: number) => error("getstring is not implemented because it depends on global state"),
+		Roact.mount(<Notification Text={message} App={title} />, options.container, "IY Notification")
 })
