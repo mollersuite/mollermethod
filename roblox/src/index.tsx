@@ -118,11 +118,17 @@ export = async function ({
 	// Load IY plugins
 	if (isfile("IY_FE.iy")) {
 		const config = HttpService.JSONDecode(readfile("IY_FE.iy")) as IYConfig
-		await Promise.allSettled(
+		if (debug) {
+			print(...config.PluginsTable.map((name, index) => `${index}: ${name}`))
+		}
+		const results = await Promise.allSettled(
 			config.PluginsTable.map(async plugin_path => {
 				plugins.push(iy_to_bracket(readfile(plugin_path), GUI))
 			})
 		)
+		if (debug) {
+			print(...results.map((status, index) => `${index + 1}: ${status}`))
+		}
 	}
 
 	const tree = Roact.mount(
