@@ -28,6 +28,9 @@ const isNumber = (value: string) => tonumber(value) !== undefined || value === "
 // https://github.com/EdgeIY/infiniteyield/wiki/writefileExploit
 const writefileExploit = () => !!writefile
 
+// https://github.com/EdgeIY/infiniteyield/wiki/GetInTable
+const GetInTable = (t: readonly defined[], value: defined) => t.indexOf(value)
+
 // should probably put `container` in a context later
 export = (options: { container: LayerCollector }) => ({
 	r15,
@@ -36,11 +39,10 @@ export = (options: { container: LayerCollector }) => ({
 	tools,
 	isNumber,
 	writefileExploit,
-	
+	GetInTable,
+
 	// https://github.com/EdgeIY/infiniteyield/wiki/getPlayer
 	getPlayer: get_players,
-
-	// TODO: https://github.com/EdgeIY/infiniteyield/wiki/GetInTable
 
 	// https://github.com/EdgeIY/infiniteyield/wiki/splitString
 	splitString: string.split,
