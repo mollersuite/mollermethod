@@ -31,6 +31,19 @@
 			],
 			"detail": "transpiles your code to lua",
 			"path": "./roblox/"
+		},
+		{
+			"type": "npm",
+			"script": "dev",
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"isBackground": true,
+			"problemMatcher": [],
+			"label": "web server",
+			"detail": "runs the sveltekit server",
+			"path": "./website/"
 		}
 	]
 }
