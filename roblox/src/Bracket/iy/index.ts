@@ -21,7 +21,7 @@ export = (source: string, container: LayerCollector): Plugin => {
 			description: value.Description,
 			execute: async args => {
 				// Fuck you, Edge.
-				functions.getstring = (index: number) => args.filter((_, i) => i + 1 <= index).join(" ")
+				functions.getstring = (index: number) => args.filter((_, i) => i + 1 >= index).join(" ")
 				return value.Function(args, Players.LocalPlayer)
 			},
 		}
