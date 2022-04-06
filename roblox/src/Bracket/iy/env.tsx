@@ -55,6 +55,7 @@ export = (options: { container: LayerCollector }) => ({
 	isNumber,
 	writefileExploit,
 	GetInTable,
+	Match,
 	respawn,
 
 	// https://github.com/EdgeIY/infiniteyield/wiki/getPlayer
