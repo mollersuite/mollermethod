@@ -1,6 +1,5 @@
-import { Debris, TweenService, UserInputService } from "@rbxts/services"
+import { Debris, HttpService, TweenService, UserInputService } from "@rbxts/services"
 import { Kill, play, random, Plugins } from "util"
-import { Plugin } from "types"
 import { QUOTES } from "strings"
 import Roact from "@rbxts/roact"
 import Bracket from "Bracket"
@@ -8,10 +7,15 @@ import BracketExternal from "Bracket/external"
 import Notification from "Notification"
 import Trendsetter from "Trendsetter"
 import colors from "colors"
-import Snapdragon from '@rbxts/snapdragon'
+import Snapdragon from "@rbxts/snapdragon"
+
+import type { Plugin } from "types"
+import type { IYConfig } from "Bracket/iy/types"
+import iy_to_bracket from "Bracket/iy"
 declare const script: ModuleScript & {
 	plugins: Folder
 }
+
 /**
  * @see https://mthd.ml
  * @name mollermethod
@@ -103,13 +107,23 @@ export = async function ({
 								Roact.mount(<Notification {...args} />, GUI, "Notification"),
 							GUI,
 							colors,
-							Snapdragon
+							Snapdragon,
 						})
 					)
 				})()
 			} else return Promise.resolve()
 		})
 	)
+
+	// Load IY plugins
+	if (isfile("IY_FE.iy")) {
+		const config = HttpService.JSONDecode(readfile("IY_FE.iy")) as IYConfig
+		await Promise.allSettled(
+			config.PluginsTable.map(async plugin_path => {
+				plugins.push(iy_to_bracket(readfile(plugin_path), GUI))
+			})
+		)
+	}
 
 	const tree = Roact.mount(
 		<Plugins.Provider value={plugins}>
