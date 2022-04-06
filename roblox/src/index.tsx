@@ -61,13 +61,9 @@ export = async function ({
 	*/
 	Roact.mount(
 		<Notification
-			Text={`<b>Pause</b> to open mollermethod.\n<i>${random(QUOTES)}</i>${
-				IY_LOADED
-					? `\n<b>Did you know that mollermethod has its own IY alternative? Press ${UserInputService.GetStringForKeyCode(
-							bracket_toggle ?? Enum.KeyCode.LeftBracket
-					  )} to open it.</b>`
-					: ""
-			}`}
+			Text={`<b>Pause</b> to open mollermethod.\nPress <b>${UserInputService.GetStringForKeyCode(
+				bracket_toggle ?? Enum.KeyCode.LeftBracket
+			)}</b> to open Bracket.\n<i>${random(QUOTES)}</i>`}
 		/>,
 		GUI,
 		"Notification"
