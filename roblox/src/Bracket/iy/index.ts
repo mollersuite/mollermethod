@@ -1,9 +1,10 @@
 import { Players } from "@rbxts/services"
+import run from "Bracket/run"
 import type { Command, Plugin } from "types"
 import env from "./env"
 import type { IYPlugin } from "./types"
 
-export = (source: string, container: LayerCollector): Plugin => {
+export = (source: string, container: LayerCollector, plugins: Plugin[]) => {
 	const [load, err] = loadstring(source)
 	assert(load, err)
 	const functions = {
@@ -11,6 +12,8 @@ export = (source: string, container: LayerCollector): Plugin => {
 		...getgenv(),
 		...env({ container }),
 		getstring: (index: number) => "getstring not implemented",
+		// https://github.com/EdgeIY/infiniteyield/wiki/execCmd
+		execCmd: (cmd: string) => run(cmd, plugins),
 	}
 	setfenv(load, functions)
 	const plugin: IYPlugin = load()
@@ -27,9 +30,9 @@ export = (source: string, container: LayerCollector): Plugin => {
 		}
 	}
 
-	return {
+	plugins.push({
 		Name: plugin.PluginName,
 		Author: "IY user",
 		Commands,
-	}
+	})
 }

@@ -122,9 +122,9 @@ export = async function ({
 			print(...config.PluginsTable.map((name, index) => `${index}: ${name}`))
 		}
 		const results = await Promise.allSettled(
-			config.PluginsTable.map(async plugin_path => {
-				plugins.push(iy_to_bracket(readfile(plugin_path), GUI))
-			})
+			config.PluginsTable.map(async plugin_path =>
+				iy_to_bracket(readfile(plugin_path), GUI, plugins)
+			)
 		)
 		if (debug) {
 			print(...results.map((status, index) => `${index + 1}: ${status}`))
