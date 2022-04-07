@@ -95,23 +95,19 @@ export = async function ({
 
 	// Load default plugins
 	await Promise.allSettled(
-		script.plugins.GetDescendants().map(module => {
+		script.plugins.GetDescendants().map(async module => {
 			if (module.IsA("ModuleScript")) {
-				return (async () => {
-					const [plugin, err] = loadstring(module.Source, module.Name)
-					assert(plugin, err)
-
-					plugins.push(
-						plugin({
-							notify: (args: Parameters<typeof Notification["validateProps"]>[0]) =>
-								Roact.mount(<Notification {...args} />, GUI, "Notification"),
-							GUI,
-							colors,
-							Snapdragon,
-						})
-					)
-				})()
-			} else return Promise.resolve()
+				const plugin = require(module) as (opts: any) => Plugin
+				plugins.push(
+					plugin({
+						notify: (args: Parameters<typeof Notification["validateProps"]>[0]) =>
+							Roact.mount(<Notification {...args} />, GUI, "Notification"),
+						GUI,
+						colors,
+						Snapdragon,
+					})
+				)
+			} else return
 		})
 	)
 
