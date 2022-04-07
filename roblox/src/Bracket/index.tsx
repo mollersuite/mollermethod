@@ -49,6 +49,8 @@ export = hooked(({ button }: { button: Enum.KeyCode }) => {
 			AnchorPoint={new Vector2(0.5, 0)}
 			BackgroundTransparency={1}
 			ScrollBarThickness={3}
+			ScrollBarImageColor3={colors.ACCENT}
+			VerticalScrollBarInset="Always"
 			AutomaticCanvasSize="Y"
 			Visible={shown}
 			Position={new UDim2(0.5, 0, 0, 25)}>
