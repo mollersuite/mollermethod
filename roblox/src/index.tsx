@@ -47,6 +47,7 @@ export = async function ({
 		accent: string
 	}
 }) {
+	debug && warn(`starting init`)
 	if (theme) {
 		colors.ACCENT = Color3.fromHex(theme.accent)
 		colors.WHITE = Color3.fromHex(theme.foreground)
@@ -75,7 +76,7 @@ export = async function ({
 
 	const plugins: Plugin[] = []
 
-	// load plugins from settings
+	debug && warn(`loading ${plugin_sources.size()} plugins from settings`)
 	await Promise.allSettled(
 		plugin_sources.map(async source => {
 			const [plugin, err] = loadstring(source)
@@ -93,7 +94,7 @@ export = async function ({
 		})
 	)
 
-	// Load default plugins
+	debug && warn(`loading default plugins`)
 	await Promise.allSettled(
 		script.plugins.GetDescendants().map(async module => {
 			if (module.IsA("ModuleScript")) {
@@ -113,20 +114,16 @@ export = async function ({
 
 	// Load IY plugins
 	if (isfile("IY_FE.iy")) {
+		debug && warn(`loading iy plugins`)
 		const config = HttpService.JSONDecode(readfile("IY_FE.iy")) as IYConfig
-		if (debug) {
-			print(...config.PluginsTable.map((name, index) => `${index}: ${name}`))
-		}
-		const results = await Promise.allSettled(
+		await Promise.allSettled(
 			config.PluginsTable.map(async plugin_path =>
 				iy_to_bracket(readfile(plugin_path), GUI, plugins)
 			)
 		)
-		if (debug) {
-			print(...results.map((status, index) => `${index + 1}: ${status}`))
-		}
 	}
 
+	debug && warn(`starting UI`)
 	const tree = Roact.mount(
 		<Plugins.Provider value={plugins}>
 			<Kill.Provider
@@ -144,6 +141,7 @@ export = async function ({
 		</Plugins.Provider>,
 		GUI
 	)
+	debug && warn(`done`)
 	/*
 		Google Assistant-style startup animation
 	 */
