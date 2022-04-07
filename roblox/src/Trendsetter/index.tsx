@@ -1,10 +1,10 @@
 import Roact from "@rbxts/roact"
 import { GuiService } from "@rbxts/services"
 import Left from "./Left"
-import { useEffect, useState, pure } from "@rbxts/roact-hooked"
+import { useEffect, useBinding, pure } from "@rbxts/roact-hooked"
 
 const Trendsetter = () => {
-	const [open, setOpen] = useState(GuiService.MenuIsOpen)
+	const [open, setOpen] = useBinding(GuiService.MenuIsOpen)
 	useEffect(() => {
 		const closed = GuiService.MenuClosed.Connect(() => setOpen(false))
 		const opened = GuiService.MenuOpened.Connect(() => setOpen(true))
