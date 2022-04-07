@@ -1,7 +1,7 @@
 // Creates IY's core functions.
 
 import Roact from "@rbxts/roact"
-import { HttpService } from "@rbxts/services"
+import { HttpService, Workspace } from "@rbxts/services"
 import { get_players } from "../run"
 import Notification from "Notification"
 
@@ -28,6 +28,24 @@ const isNumber = (value: string) => tonumber(value) !== undefined || value === "
 // https://github.com/EdgeIY/infiniteyield/wiki/writefileExploit
 const writefileExploit = () => !!writefile
 
+// https://github.com/EdgeIY/infiniteyield/wiki/GetInTable
+const GetInTable = (t: readonly defined[], value: defined) => t.indexOf(value)
+
+// https://github.com/EdgeIY/infiniteyield/wiki/Match
+const Match = (t: string, p: string) => t.match(p)
+
+// https://github.com/EdgeIY/infiniteyield/wiki/respawn
+const respawn = (player: Player) => {
+	const char = player.Character
+		char?.FindFirstChildOfClass("Humanoid")?.ChangeState("Dead")
+		char?.ClearAllChildren()
+		const newchar = new Instance("Model", Workspace)
+		player.Character = newchar
+		task.wait()
+		player.Character = char
+		newchar.Destroy()
+}
+
 // should probably put `container` in a context later
 export = (options: { container: LayerCollector }) => ({
 	r15,
@@ -36,11 +54,12 @@ export = (options: { container: LayerCollector }) => ({
 	tools,
 	isNumber,
 	writefileExploit,
-	
+	GetInTable,
+	Match,
+	respawn,
+
 	// https://github.com/EdgeIY/infiniteyield/wiki/getPlayer
 	getPlayer: get_players,
-
-	// TODO: https://github.com/EdgeIY/infiniteyield/wiki/GetInTable
 
 	// https://github.com/EdgeIY/infiniteyield/wiki/splitString
 	splitString: string.split,
