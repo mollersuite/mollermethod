@@ -1,6 +1,6 @@
 import colors from "colors"
 import { play, Plugins } from "util"
-import { hooked, useContext, useEffect, useState } from "@rbxts/roact-hooked"
+import { hooked, useContext, useEffect, useState, useBinding, useRef } from "@rbxts/roact-hooked"
 import { UserInputService } from "@rbxts/services"
 import execute from "./run"
 import Roact from "@rbxts/roact"
@@ -24,33 +24,22 @@ import { useSpring } from "@rbxts/roact-hooked-plus"
  * ```
  */
 export = hooked(({ button }: { button: Enum.KeyCode }) => {
-	const [shown, setShown] = useState(false)
+	const [shown, setShown] = useBinding(false)
 	const [text, setText] = useState("")
 	const plugins = useContext(Plugins)
-
-	const box = Roact.createRef<TextBox>()
+	const box = useRef<TextBox>()
 
 	// handles toggle key
 	useEffect(() => {
 		const input_began = UserInputService.InputBegan.Connect((input, text) => {
 			if (input.KeyCode === button && !text) {
-				// TODO: make this configurable
-				setShown(!shown)
+				setShown(true)
+				play("rbxassetid://8458409341") // windows 11 hardware connect
+				box.getValue()!.CaptureFocus()
 			}
 		})
 		return () => input_began.Disconnect()
 	}, [])
-
-	// autofocus
-	useEffect(() => {
-		if (shown) {
-			play("rbxassetid://8458409341") // windows 11 hardware connect
-			box.getValue()!.CaptureFocus()
-		}
-	}, [shown])
-
-	if (!shown) return <></>
-
 	return (
 		<scrollingframe
 			ClipsDescendants={false}
@@ -61,6 +50,7 @@ export = hooked(({ button }: { button: Enum.KeyCode }) => {
 			BackgroundTransparency={1}
 			ScrollBarThickness={3}
 			AutomaticCanvasSize="Y"
+			Visible={shown}
 			Position={new UDim2(0.5, 0, 0, 25)}>
 			<uilistlayout
 				SortOrder="Name"
