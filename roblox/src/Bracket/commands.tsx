@@ -316,3 +316,14 @@ export const speed: Command = {
 		humanoid.WalkSpeed = walkspeed ?? 16
 	},
 }
+
+export const jump: Command = {
+	description: "set jump power",
+	async execute (args) {
+		const jumpPower = tonumber(args[0])
+		const character = Player.Character
+		const humanoid = character?.FindFirstChildWhichIsA("Humanoid")
+		assert(humanoid, "you need a humanoid")
+		humanoid.JumpPower = jumpPower ?? 50
+	}
+}
