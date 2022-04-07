@@ -305,3 +305,14 @@ export const invisible: Command = {
 		}
 	},
 }
+
+export const speed: Command = {
+	description: "set speed",
+	async execute(args) {
+		const walkspeed = tonumber(args[0])
+		const character = Player.Character
+		const humanoid = character?.FindFirstChildWhichIsA("Humanoid")
+		assert(humanoid, "you need a humanoid")
+		humanoid.WalkSpeed = walkspeed ?? 16
+	},
+}
