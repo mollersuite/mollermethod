@@ -1,15 +1,7 @@
-import {
-	HttpService,
-	TeleportService,
-	Players,
-	Workspace,
-	UserInputService,
-	Debris,
-} from "@rbxts/services"
-import { play } from "util"
+import { HttpService, TeleportService, Players, Workspace, UserInputService } from "@rbxts/services"
+import { join_code, play } from "util"
 import type { Command } from "types"
 import Roact from "@rbxts/roact"
-import colors from "colors"
 let Flight = false
 const Player = Players.LocalPlayer
 
@@ -178,11 +170,11 @@ export const respawn: Command = {
 	},
 }
 
-export const jobid: Command = {
-	description: "get a js snippet to join the server with the job id",
+export const joincode: Command = {
+	description: "copies a markdown message with links to join your server",
 	execute() {
 		assert(setclipboard, "you need to be able to set the clipboard")
-		setclipboard(`Roblox.GameLauncher.joinGameInstance('${game.PlaceId}', '${game.JobId}')`)
+		return join_code().then(setclipboard)
 	},
 }
 
@@ -319,11 +311,11 @@ export const speed: Command = {
 
 export const jump: Command = {
 	description: "set jump power",
-	async execute (args) {
+	async execute(args) {
 		const jumpPower = tonumber(args[0])
 		const character = Player.Character
 		const humanoid = character?.FindFirstChildWhichIsA("Humanoid")
 		assert(humanoid, "you need a humanoid")
 		humanoid.JumpPower = jumpPower ?? 50
-	}
+	},
 }
