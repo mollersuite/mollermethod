@@ -39,6 +39,9 @@ else
 	)
 end
 local loading = true
+function bez(a, b, c, t)
+	return a.lerp(a:lerp(b, t), b:lerp(c, t), t)
+end
 task.spawn(function()
 	local text = Instance.new("TextLabel", GUI)
 	text.TextTransparency = 1
@@ -55,12 +58,12 @@ task.spawn(function()
 	text.TextSize = 14
 	text.TextWrapped = true
 	game:GetService("TweenService"):Create(
-		text,
-		TweenInfo.new(.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, true),
-		{
-			TextTransparency = 0,
-			BackgroundTransparency = 0,
-		}
+	text,
+	TweenInfo.new(.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, true),
+	{
+		TextTransparency = 0,
+		BackgroundTransparency = 0,
+	}
 	):Play()
 
 	while loading do
@@ -72,12 +75,23 @@ task.spawn(function()
 		particle.ScaleType = Enum.ScaleType.Fit
 		particle.ZIndex = 100
 		particle.Position = UDim2.new(math.random(), 0, math.random(), 0)
+		task.spawn(function ()
+			local start = particle.Position
+			local mid = start:Lerp(UDim2.new(),0.7) + UDim2.new(0,0,0.4,0)
+			local _end = UDim2.new(0,0,1,0)
+			local segments = 30
+			for i = 0, 1, 1 / segments do
+				Tween:Create(particle, TweenInfo.new(1/60, Enum.EasingStyle.Linear), {
+					Position = bez(start, mid, _end, i)
+				}):Play()
+				task.wait(1/60)
+			end
+		end)
 		Tween:Create(particle, TweenInfo.new(.1), { ImageTransparency = 0 }):Play()
 		Tween:Create(
 			particle,
-			TweenInfo.new(1, Enum.EasingStyle.Exponential, Enum.EasingDirection.In),
+			TweenInfo.new(1, Enum.EasingStyle.Linear),
 			{
-				Position = UDim2.new(),
 				Size = UDim2.new(),
 			}
 		):Play()
@@ -86,12 +100,12 @@ task.spawn(function()
 	end
 	game:GetService("Debris"):AddItem(text, .5)
 	game:GetService("TweenService"):Create(
-		text,
-		TweenInfo.new(.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, true),
-		{
-			TextTransparency = 1,
-			BackgroundTransparency = 1,
-		}
+	text,
+	TweenInfo.new(.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, true),
+	{
+		TextTransparency = 1,
+		BackgroundTransparency = 1,
+	}
 	):Play()
 end)
 xpcall(
