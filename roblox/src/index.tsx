@@ -6,12 +6,12 @@ import Bracket from "Bracket"
 import BracketExternal from "Bracket/external"
 import Notification from "Notification"
 import Trendsetter from "Trendsetter"
-import colors from "colors"
 import Snapdragon from "@rbxts/snapdragon"
+import iy_to_bracket from "Bracket/iy"
+import colors from "colors"
 
 import type { Plugin } from "types"
 import type { IYConfig } from "Bracket/iy/types"
-import iy_to_bracket from "Bracket/iy"
 declare const script: ModuleScript & {
 	plugins: Folder
 }
