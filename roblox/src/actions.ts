@@ -75,20 +75,20 @@ export const fling: Action = {
 			bv.AngularVelocity = Vector3.yAxis.mul(9e5)
 			bv.Parent = root
 			const parts = char.GetChildren()
-			parts.forEach(part => {
+			for (const part of parts) {
 				if (part.IsA("BasePart")) {
 					part.CanCollide = false
 					part.Massless = true
 					part.Velocity = Vector3.zero
 				}
-			})
+			}
 			const RunServiceConnection = RunService.Stepped.Connect(() => {
 				root.Position = victim_root.Position
-				parts.forEach(part => {
+				for (const part of parts) {
 					if (part.IsA("BasePart")) {
 						part.CanCollide = false
 					}
-				})
+				}
 			})
 			const HumanoidConnection = humanoid.Died.Connect(() => {
 				RunServiceConnection.Disconnect()
@@ -117,13 +117,13 @@ export const handlekill: Action = {
 			const humanoid = victim.Character.FindFirstChildOfClass("Humanoid")
 			assert(humanoid, "No humanoid found")
 			if (humanoid.Health <= 0) return "We killed them!"
-			victim.Character.GetChildren().forEach(child => {
+			for (const child of victim.Character.GetChildren()) {
 				if (child.IsA("BasePart")) {
 					firetouchinterest(handle, child, 1)
 					task.wait()
 					firetouchinterest(handle, child, 0)
 				}
-			})
+			}
 		}
 		throw "We died"
 	},
