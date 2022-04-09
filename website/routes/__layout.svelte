@@ -37,10 +37,11 @@
 <main id="main">
 	<slot />
 </main>
-
+<small>Dedicated to Molly the Beagle, 2009-2022</small>
 <style>
 	main {
 		flex: 1;
+		flex-grow: 1;
 		display: flex;
 		flex-direction: column;
 		padding: 1rem;
@@ -62,5 +63,12 @@
 	}
 	.navigating {
 		animation: blink 1s infinite;
+	}
+	small {
+		font-size: 0.8rem;
+		color: #888;
+		text-align: center;
+		display: block;
+		font-family: var(--fds-font-family-small);
 	}
 </style>
