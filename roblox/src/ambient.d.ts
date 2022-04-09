@@ -123,3 +123,9 @@ declare const writedialog: ((title: string, filter: string, data: string) => boo
  */
 
 declare const readdialog: ((title: string, filter: string) => [boolean, string]) | void
+
+// Profile API (S-W)
+declare const writeprofile: ((setting: string, profile: string, data: string) => void) | void
+// todo: check if it can return nil or error
+declare const readprofile: ((setting: string, profile: string) => string) | void
+declare const issetting: ((setting: string) => boolean) | void
