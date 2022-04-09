@@ -37,13 +37,13 @@ const Match = (t: string, p: string) => t.match(p)
 // https://github.com/EdgeIY/infiniteyield/wiki/respawn
 const respawn = (player: Player) => {
 	const char = player.Character
-		char?.FindFirstChildOfClass("Humanoid")?.ChangeState("Dead")
-		char?.ClearAllChildren()
-		const newchar = new Instance("Model", Workspace)
-		player.Character = newchar
-		task.wait()
-		player.Character = char
-		newchar.Destroy()
+	char?.FindFirstChildOfClass("Humanoid")?.ChangeState("Dead")
+	char?.ClearAllChildren()
+	const newchar = new Instance("Model", Workspace)
+	player.Character = newchar
+	task.wait()
+	player.Character = char
+	newchar.Destroy()
 }
 
 // should probably put `container` in a context later

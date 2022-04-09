@@ -10,9 +10,7 @@
 			},
 			"isBackground": true,
 			"problemMatcher": [],
-			"dependsOn": [
-				"roblox-ts"
-			],
+			"dependsOn": ["roblox-ts"],
 			"label": "rojo watch",
 			"detail": "runs rojo in watch mode compiling to your workspace",
 			"path": "./roblox/"
@@ -26,9 +24,7 @@
 				"isDefault": false
 			},
 			"isBackground": true,
-			"problemMatcher": [
-				"$tsc-watch"
-			],
+			"problemMatcher": ["$tsc-watch"],
 			"detail": "transpiles your code to lua",
 			"path": "./roblox/"
 		},

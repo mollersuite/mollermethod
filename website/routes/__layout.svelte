@@ -7,7 +7,7 @@
 	import Settings from "@fluentui/svg-icons/icons/clipboard_settings_20_filled.svg?raw"
 	import Cube from "@fluentui/svg-icons/icons/cube_20_filled.svg?raw"
 	import BookQuestionMark from "@fluentui/svg-icons/icons/book_question_mark_20_filled.svg?raw"
-	import Check from '@fluentui/svg-icons/icons/heart_pulse_20_filled.svg?raw'
+	import Check from "@fluentui/svg-icons/icons/heart_pulse_20_filled.svg?raw"
 </script>
 
 <Header>
@@ -24,7 +24,7 @@
 	<Button href="/faq" label="FAQ" selected={path === "/faq"}>
 		{@html BookQuestionMark}
 	</Button>
-	<Button href="/checker" label="Exploit Health Checker" selected={path === '/checker'}>
+	<Button href="/checker" label="Exploit Health Checker" selected={path === "/checker"}>
 		{@html Check}
 	</Button>
 	<Button href="https://discord.gg/HAw7Zf8GF5" label="Discord">

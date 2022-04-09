@@ -5,7 +5,6 @@ import mollerpotence from "mollerpotence"
 import type { Action } from "types"
 const LocalPlayer = Players.LocalPlayer
 
-
 export const to: Action = {
 	description: "Teleport to a player",
 	execute(victim) {

@@ -188,16 +188,16 @@ c-104 98 -253 173 -418 209 -96 21 -252 29 -340 18z" />
 		<p>
 			mollermethod has a compatibility layer for <a href="https://github.com/EdgeIY/infiniteyield"
 				>Infinite Yield</a>
-			plugins, and will automatically read your Infinite Yield config to load them. You can find
-			Infinite Yield plugins on
+			plugins, and will automatically read your Infinite Yield config to load them. You can find Infinite
+			Yield plugins on
 			<a href="https://github.com/Infinite-Store/Infinite-Store">Infinite Store.</a>
 		</p>
 		<p>
-			mollermethod also has its <a href="/api" sveltekit:prefetch>own plugin API</a>, allowing you to make custom actions (shows in both Bracket & Mollybdos), commands (shows in Bracket), and tags (shows in Mollybdos). 
+			mollermethod also has its <a href="/api" sveltekit:prefetch>own plugin API</a>, allowing you
+			to make custom actions (shows in both Bracket & Mollybdos), commands (shows in Bracket), and
+			tags (shows in Mollybdos).
 		</p>
-		<p>
-			In the future this site will have a dedicated section for plugins.
-		</p>
+		<p>In the future this site will have a dedicated section for plugins.</p>
 	</svelte:fragment>
 </Expander>
 <Expander>

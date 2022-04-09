@@ -1,31 +1,35 @@
+<script>
+	import image from "$lib/notif.png"
+	import example from "$lib/example.lua?raw"
+</script>
+
 <svelte:head>
 	<title>mollermethod API docs</title>
 	<meta name="description" content="Make mollermethod plugins." />
 </svelte:head>
-<script>
-	import image from '$lib/notif.png'
-	import example from '$lib/example.lua?raw'
-</script>
 <h1>mollermethod API docs</h1>
 <h2><code>util</code> table</h2>
 <p>The <code>util</code> table is passed to your plugin with varargs.</p>
 <pre>local util = ...</pre>
 <p>The <code>util</code> table has the following functions:</p>
 <dl>
-	<dt><pre>util.notify(options: {`{
+	<dt>
+		<pre>util.notify(options: {`{
 	Text: string // RichText is on btw
 	Icon?: string // Defaults to "rbxassetid://7554747376"
 	Duration?: number // In seconds, defaults to 5
 	App?: string // Defaults to "mollermethod"
-}`}) -> void</pre></dt>
+}`}) -> void</pre>
+	</dt>
 	<dd>
 		Display a notification with the given text.
-		<br>
-		<img src={image} alt="a mollermethod notif"/>
+		<br />
+		<img src={image} alt="a mollermethod notif" />
 	</dd>
 	<dt><pre>util.GUI: LayerCollector</pre></dt>
 	<dd>A container to put your GUIs in</dd>
-	<dt><pre>util.colors: {`{
+	<dt>
+		<pre>util.colors: {`{
 		ACCENT: Color3,
 		BLACK: Color3,
 		WHITE: Color3,
@@ -36,7 +40,8 @@
 		YELLOW: Color3[],
 		ORANGE: Color3[],
 		PURPLE: Color3[],
-	}`}</pre></dt>
+	}`}</pre>
+	</dt>
 	<dd>A table of colors</dd>
 	<dt><pre>util.Snapdragon: import('@rbxts/snapdragon')</pre></dt>
 	<dd>The <a href="https://docs.vorlias.com/rbx-snapdragon/">Snapdragon</a> dragging module</dd>

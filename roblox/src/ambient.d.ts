@@ -40,8 +40,8 @@ declare const firetouchinterest: ((Part: Instance, ToTouch: BasePart, Toggle: 0 
 
 /**
  * Sets the clipboard to the text you specified.
- * @param text The text to set the clipboard to. 
-*/
+ * @param text The text to set the clipboard to.
+ */
 
 declare const setclipboard: ((text: string) => void) | void
 interface LogService {
@@ -59,13 +59,13 @@ interface LogService {
 /**
  * Prints message to the console and takes an optional colour argument. If none is given, the default will be white.
  * @param message The message to print to the console.
-*/
+ */
 
 declare const rconsoleprint: ((message: string, colour?: string) => void) | void
 
 /**
  * Clears the console.
-*/
+ */
 
 declare const rconsoleclear: (() => void) | void
 
@@ -80,14 +80,14 @@ declare const rconsoleinput: (() => string) | void
 /**
  * Set the console's title to the one provided.
  * @param title The title to set the console to.
-*/
+ */
 
 declare const rconsolesettitle: ((title: string) => void) | void
 
 /**
  * Set the console's title to the one provided.
  * @param title The title to set the console to.
-*/
+ */
 
 declare const rconsolename: ((title: string) => void) | void
 
@@ -101,7 +101,7 @@ declare const rconsolecreate: (() => void) | void
 
 /**
  * Closes the console window.
-*/
+ */
 
 declare const rconsoledestroy: (() => void) | void
 
