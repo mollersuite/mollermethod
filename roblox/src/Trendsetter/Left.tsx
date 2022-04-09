@@ -3,7 +3,7 @@ import colors from "colors"
 import { rejoin, respawn } from "Bracket/commands"
 import Mollybdos from "Mollybdos"
 import { QUOTES } from "strings"
-import { Kill, random } from "util"
+import { join_code, Kill, random } from "util"
 
 const IconButton = (
 	Props: Partial<Pick<ImageLabel, "Image" | "ImageRectSize" | "ImageRectOffset" | "Position">> & {
@@ -61,6 +61,13 @@ const LocalBar = () => (
 			ImageRectOffset={new Vector2(244, 484)}
 			ImageRectSize={new Vector2(36, 36)}
 			Clicked={() => rejoin.execute([])}
+		/>
+		{/* join code */}
+		<IconButton
+			Image="rbxassetid://3926307971"
+			ImageRectOffset={new Vector2(884, 84)}
+			ImageRectSize={new Vector2(36, 36)}
+			Clicked={() => join_code().then(setclipboard)}
 		/>
 	</frame>
 )

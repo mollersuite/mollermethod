@@ -305,22 +305,28 @@
 </ToggleSwitch>
 <Expander>
 	<svelte:fragment slot="icon">
-{@html ColorIcon}
+		{@html ColorIcon}
 	</svelte:fragment> Theme
 	<svelte:fragment slot="content">
 		<nav>
-	<Color id="background" bind:value={background}>Background color</Color>
-	<Color id="accent" bind:value={accent}>Accent color</Color>
-	<Color id="foreground" bind:value={foreground}>Foreground color</Color>
-</nav>
+			<Color id="background" bind:value={background}>Background color</Color>
+			<Color id="accent" bind:value={accent}>Accent color</Color>
+			<Color id="foreground" bind:value={foreground}>Foreground color</Color>
+		</nav>
 	</svelte:fragment>
 </Expander>
 <Expander>
 	<svelte:fragment slot="icon">
-			{@html Preview}
+		{@html Preview}
 	</svelte:fragment> Theme Preview
 	<svelte:fragment slot="content">
-		<div class="eightpx"><div class="bracket" style="--accent: {accent}; --foreground: {foreground}; --background: {background}">Bracket will look like this</div></div>
+		<div class="eightpx">
+			<div
+				class="bracket"
+				style="--accent: {accent}; --foreground: {foreground}; --background: {background}">
+				Bracket will look like this
+			</div>
+		</div>
 	</svelte:fragment>
 </Expander>
 <pre
@@ -337,8 +343,8 @@
 	}
 	.bracket {
 		display: flex;
-		font-family: "Roboto Mono", "JetBrains Mono", ui-monospace, "Input Mono", "Cascadia Mono", "Segoe UI Mono",
-		"Ubuntu Mono", "Fira Code", Menlo, Monaco, Consolas, monospace;
+		font-family: "Roboto Mono", "JetBrains Mono", ui-monospace, "Input Mono", "Cascadia Mono",
+			"Segoe UI Mono", "Ubuntu Mono", "Fira Code", Menlo, Monaco, Consolas, monospace;
 		font-size: 10px;
 		box-sizing: border-box;
 		align-items: center;
@@ -350,11 +356,10 @@
 		border-radius: 8px;
 		background: var(--background);
 		color: var(--foreground);
-	  	border-width: 3px;
-  		border-style: solid;
-	    border-image-slice: 1;
- 		border-image-source: linear-gradient(45deg, var(--accent) 49.9% , gray 50%);
-
+		border-width: 3px;
+		border-style: solid;
+		border-image-slice: 1;
+		border-image-source: linear-gradient(45deg, var(--accent) 49.9%, gray 50%);
 	}
 	nav {
 		display: flex;

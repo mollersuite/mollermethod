@@ -1,3 +1,4 @@
+import Object from "@rbxts/object-utils"
 import Roact from "@rbxts/roact"
 import { SoundService } from "@rbxts/services"
 import type { Plugin } from "./types"
@@ -69,3 +70,27 @@ export const escape_lua_pattern = (s: string) =>
 		"-": "%-",
 		"?": "%?",
 	})[0]
+
+export async function join_code() {
+	const methods: Record<string, (this: void) => Promise<string> | string> = {
+		JavaScript() {
+			return `\`Roblox.GameLauncher.joinGameInstance('${game.PlaceId}', '${game.JobId}')\``
+		},
+		Mobile() {
+			return `<robloxmobile://placeID=${game.PlaceId}&gameInstanceId=${game.JobId}>`
+		},
+		async RoPro() {
+			return game.HttpPostAsync(
+				`https://ropro.io/api/createInvite.php?universeid=${game.GameId}&serverid=${game.JobId}`,
+				""
+			)
+		},
+		RoGold() {
+			return `https://roblox.com/discover#/rg-join/${game.PlaceId}/${game.JobId}`
+		},
+	}
+
+	const output = Object.entries(methods).map(async ([name, run]) => `${name}: ${await run()}`)
+
+	return Promise.all<Promise<string>[]>(output).then(lines => lines.join("\n"))
+}

@@ -33,7 +33,7 @@ const PlayerList = pure(
 				ScrollBarThickness={5}
 				CanvasSize={UDim2.fromScale(0, 1)}>
 				<uilistlayout SortOrder="Name" />
-				{players.map((player) => (
+				{players.map(player => (
 					<textbutton
 						Size={new UDim2(1, 0, 0, 0)}
 						TextWrapped

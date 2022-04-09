@@ -7,7 +7,7 @@
 	import Settings from "@fluentui/svg-icons/icons/clipboard_settings_20_filled.svg?raw"
 	import Cube from "@fluentui/svg-icons/icons/cube_20_filled.svg?raw"
 	import BookQuestionMark from "@fluentui/svg-icons/icons/book_question_mark_20_filled.svg?raw"
-	import Check from '@fluentui/svg-icons/icons/heart_pulse_20_filled.svg?raw'
+	import Check from "@fluentui/svg-icons/icons/heart_pulse_20_filled.svg?raw"
 </script>
 
 <Header>
@@ -24,7 +24,7 @@
 	<Button href="/faq" label="FAQ" selected={path === "/faq"}>
 		{@html BookQuestionMark}
 	</Button>
-	<Button href="/checker" label="Exploit Health Checker" selected={path === '/checker'}>
+	<Button href="/checker" label="Exploit Health Checker" selected={path === "/checker"}>
 		{@html Check}
 	</Button>
 	<Button href="https://discord.gg/HAw7Zf8GF5" label="Discord">
@@ -37,10 +37,11 @@
 <main id="main">
 	<slot />
 </main>
-
+<small>Dedicated to Molly the Beagle, 2009-2022</small>
 <style>
 	main {
 		flex: 1;
+		flex-grow: 1;
 		display: flex;
 		flex-direction: column;
 		padding: 1rem;
@@ -62,5 +63,12 @@
 	}
 	.navigating {
 		animation: blink 1s infinite;
+	}
+	small {
+		font-size: 0.8rem;
+		color: #888;
+		text-align: center;
+		display: block;
+		font-family: var(--fds-font-family-small);
 	}
 </style>

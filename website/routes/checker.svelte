@@ -1,5 +1,5 @@
 <script>
-	import { page } from '$app/stores'
+	import { page } from "$app/stores"
 </script>
 
 <svelte:head>
@@ -9,11 +9,15 @@
 
 <h1>Exploit Health Checker</h1>
 
-<p>Make sure your exploit works with mollermethod. (check console for results)<p>
-<pre>loadstring(game:HttpGetAsync "{$page.url.origin}/checker.client.lua", "Exploit Health Checker")()</pre>
+<p>Make sure your exploit works with mollermethod. (check console for results)</p>
+<p />
+<pre>loadstring(game:HttpGetAsync "{$page.url
+		.origin}/checker.client.lua", "Exploit Health Checker")()</pre>
 
 <style>
-	h1,p,pre {
+	h1,
+	p,
+	pre {
 		text-align: center;
 	}
 </style>

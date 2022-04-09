@@ -13,5 +13,4 @@ export interface IYPlugin {
 
 export interface IYConfig {
 	PluginsTable: string[]
-	
 }
