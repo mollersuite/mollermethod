@@ -26,29 +26,19 @@ export = class Config<Format extends JSONObject = JSONObject> {
 	constructor(public name: string) {
 		this.file = name + ".json"
 
-		if (issetting) {
-			this.noob = !issetting(name)
-		} else if (!isfile(this.file)) {
+		 if (!isfile(this.file)) {
 			writefile(this.file, "{}")
 			this.noob = true
 		}
 	}
 
 	public get<T extends keyof Format & string>(value: T): Format[T] {
-		if (readprofile) {
-			return HttpService.JSONDecode(readprofile(this.name, value as string)) as Format[T]
-		} else {
 			return (HttpService.JSONDecode(readfile(this.file)) as Format)[value]
-		}
 	}
 
 	public set<T extends keyof Format & string>(name: T, value: Format[T]): void {
-		if (writeprofile) {
-			writeprofile(this.name, name as string, HttpService.JSONEncode(value))
-		} else {
 			let data = HttpService.JSONDecode(readfile(this.file)) as Format
 			data[name] = value
 			writefile(this.file, HttpService.JSONEncode(data))
-		}
 	}
 }
