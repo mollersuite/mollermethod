@@ -21,16 +21,16 @@ interface JSONObject {
  * @alpha
  */
 export = class Config<Format extends JSONObject = JSONObject> {
-	public new: boolean = false
+	public noob: boolean = false
 	private file: string
 	constructor(public name: string) {
 		this.file = name + ".json"
 
 		if (issetting) {
-			this.new = !issetting(name)
+			this.noob = !issetting(name)
 		} else if (!isfile(this.file)) {
 			writefile(this.file, "{}")
-			this.new = true
+			this.noob = true
 		}
 	}
 
