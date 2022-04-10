@@ -264,7 +264,7 @@
 	let toggle = "LeftBracket"
 	let debug = false
 	let external = false
-
+	let quiet = false
 	// Colors
 	let accent = "#ff4539"
 	let background = "#1c1c1c"
@@ -274,6 +274,7 @@
 		convert({
 			bracket_toggle: "Enum.KeyCode." + toggle,
 			debug,
+			quiet,
 			bracket_external: external,
 			theme: {
 				accent: JSON.stringify(accent),
@@ -302,6 +303,10 @@
 <ToggleSwitch bind:checked={external}>
 	External Bracket?
 	<small>Bracket will open in a console window. Only confirmed to work on Script-Ware.</small>
+</ToggleSwitch>
+<ToggleSwitch bind:checked={quiet}>
+	Quiet Mode?
+	<small>mollermethod will not play sounds.</small>
 </ToggleSwitch>
 <Expander>
 	<svelte:fragment slot="icon">
