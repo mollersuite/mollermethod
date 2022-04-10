@@ -78,7 +78,7 @@ export const escape_lua_pattern = (s: string) =>
 export async function join_code() {
 	const methods: Record<string, (this: void) => Promise<string> | string> = {
 		JavaScript() {
-			return `\`Roblox.GameLauncher.joinGameInstance('${game.PlaceId}', '${game.JobId}')\``
+			return `\`Roblox.GameLauncher.joinGameInstance(${game.PlaceId}, '${game.JobId}')\``
 		},
 		Mobile() {
 			return `<robloxmobile://placeID=${game.PlaceId}&gameInstanceId=${game.JobId}>`
