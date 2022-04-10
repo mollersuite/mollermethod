@@ -12,6 +12,7 @@ import colors from "colors"
 
 import type { Plugin } from "types"
 import type { IYConfig } from "Bracket/iy/types"
+import Expletive from "Trendsetter/Expletive"
 declare const script: ModuleScript & {
 	plugins: Folder
 }
@@ -35,7 +36,7 @@ export = async function ({
 	debug,
 	plugins: plugin_sources = [],
 	theme,
-	volume = 5
+	volume = 5,
 }: {
 	debug?: true
 	gui: ScreenGui
@@ -46,7 +47,7 @@ export = async function ({
 		background: string
 		foreground: string
 		accent: string
-		}
+	}
 	volume?: number
 }) {
 	debug && warn(`starting init`)
@@ -140,6 +141,7 @@ export = async function ({
 					<Bracket Key="Bracket" button={bracket_toggle ?? Enum.KeyCode.LeftBracket} />
 				)}
 				<Trendsetter Key="Menu" />
+				<Expletive Key="Taskbar" />
 			</Kill.Provider>
 		</Plugins.Provider>,
 		GUI

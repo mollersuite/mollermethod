@@ -7,6 +7,8 @@ import Roact from "@rbxts/roact"
 import Suggestions from "./Suggestions"
 import { useSpring } from "@rbxts/roact-hooked-plus"
 
+export const toggle: BindableEvent<(state: boolean) => unknown> = new Instance("BindableEvent")
+
 /**
  * # Bracket
  *
@@ -23,7 +25,7 @@ import { useSpring } from "@rbxts/roact-hooked-plus"
  * ╚════╝
  * ```
  */
-export = hooked(({ button }: { button: Enum.KeyCode }) => {
+export default hooked(({ button }: { button: Enum.KeyCode }) => {
 	const [shown, setShown] = useBinding(false)
 	const [text, setText] = useState("")
 	const plugins = useContext(Plugins)
@@ -39,6 +41,16 @@ export = hooked(({ button }: { button: Enum.KeyCode }) => {
 			}
 		})
 		return () => input_began.Disconnect()
+	}, [])
+	useEffect(() => {
+		const event = toggle.Event.Connect(state => {
+			setShown(state)
+			if (state) {
+				play("rbxassetid://8458409341") // windows 11 hardware connect
+				box.getValue()!.CaptureFocus()
+			}
+		})
+		return () => event.Disconnect()
 	}, [])
 	return (
 		<scrollingframe
