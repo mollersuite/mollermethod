@@ -62,7 +62,7 @@ export default async function tags_of(Player: Player, plugins: Plugin[]): Promis
 			__index: () => 0,
 		}
 	)
-
+	if (Player.AccountAge > 365.25 * 6) Tags.Veteran = 1
 	await Promise.all([
 		appearance_tags(Player, {
 			Tags,
