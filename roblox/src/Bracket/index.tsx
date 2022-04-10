@@ -90,7 +90,7 @@ export default hooked(({ button }: { button: Enum.KeyCode }) => {
 					FocusLost: (rbx, enter) => {
 						setShown(false)
 						if (!enter) {
-							play("rbxassetid://8926096648", 10) // windows 11 hardware disconnect
+							play("rbxassetid://8926096648") // windows 11 hardware disconnect
 							return
 						}
 						if (rbx.Text.sub(1, 1) === UserInputService.GetStringForKeyCode(button)) {
