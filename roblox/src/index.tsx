@@ -1,5 +1,5 @@
 import { Debris, HttpService, TweenService, UserInputService } from "@rbxts/services"
-import { Kill, play, random, Plugins, set_quiet } from "util"
+import { Kill, play, random, Plugins, set_volume } from "util"
 import { QUOTES } from "strings"
 import Roact from "@rbxts/roact"
 import Bracket from "Bracket"
@@ -35,7 +35,7 @@ export = async function ({
 	debug,
 	plugins: plugin_sources = [],
 	theme,
-	quiet = false
+	volume = 5
 }: {
 	debug?: true
 	gui: ScreenGui
@@ -47,7 +47,7 @@ export = async function ({
 		foreground: string
 		accent: string
 		}
-	quiet: boolean
+	volume?: number
 }) {
 	debug && warn(`starting init`)
 	if (theme) {
@@ -55,7 +55,7 @@ export = async function ({
 		colors.WHITE = Color3.fromHex(theme.foreground)
 		colors.BLACK = Color3.fromHex(theme.background)
 	}
-	set_quiet(quiet)
+	set_volume(volume)
 	play("rbxassetid://8370988437")
 
 	/*

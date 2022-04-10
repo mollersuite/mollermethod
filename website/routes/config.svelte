@@ -255,7 +255,7 @@
 		"Thumbstick1",
 		"Thumbstick2",
 	]
-	import { ToggleSwitch, ComboBox, Expander } from "fluent-svelte"
+	import { ToggleSwitch, ComboBox, Expander, NumberBox } from "fluent-svelte"
 	import { page } from "$app/stores"
 	import { convert, fix } from "$lib/lua"
 	import Color from "$lib/components/Color.svelte"
@@ -264,7 +264,7 @@
 	let toggle = "LeftBracket"
 	let debug = false
 	let external = false
-	let quiet = false
+	let volume = 5
 	// Colors
 	let accent = "#ff4539"
 	let background = "#1c1c1c"
@@ -274,7 +274,7 @@
 		convert({
 			bracket_toggle: "Enum.KeyCode." + toggle,
 			debug,
-			quiet,
+			volume,
 			bracket_external: external,
 			theme: {
 				accent: JSON.stringify(accent),
@@ -304,10 +304,9 @@
 	External Bracket?
 	<small>Bracket will open in a console window. Only confirmed to work on Script-Ware.</small>
 </ToggleSwitch>
-<ToggleSwitch bind:checked={quiet}>
-	Quiet Mode?
-	<small>mollermethod will not play sounds.</small>
-</ToggleSwitch>
+<NumberBox bind:value={volume} min={0} max={10} inline required >
+	Volume
+</NumberBox>
 <Expander>
 	<svelte:fragment slot="icon">
 		{@html ColorIcon}

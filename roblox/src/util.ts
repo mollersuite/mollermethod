@@ -22,23 +22,23 @@ export function asset(url: string): string {
 	return (getcustomasset || getsynasset)("mollermethod_" + name)
 }
 
-let quiet = false
+let default_volume = 1
 /**
  * Plays a sound without parenting it
  *
  * @param id A Content string pointing to a sound. Try using {@link asset} if you haven't uploaded the sound.
  * @param volume The volume of the sound. Default is 5, max is 10
  */
-export function play(id: string, volume = 5) {
-	if (quiet) return
+export function play(id: string, volume = default_volume) {
+	if (volume) return
 	const sound = new Instance("Sound")
 	sound.SoundId = id
 	sound.Volume = volume
 	SoundService.PlayLocalSound(sound)
 }
 
-export function set_quiet(quiet_: boolean) {
-	quiet = quiet_
+export function set_volume(volume_: number) {
+	default_volume = volume_
 }
 /**
  * fuck lua fuck lua
