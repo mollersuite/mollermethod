@@ -34,9 +34,9 @@ export default async (cmd: string, plugins: Plugin[] = []) => {
 		if (cmd) {
 			try {
 				await cmd.execute(args)
-				play("rbxassetid://8503529139", 10)
+				play("rbxassetid://8503529139")
 			} catch {
-				play("rbxassetid://8458408918", 10)
+				play("rbxassetid://8458408918")
 			}
 		} else if (action) {
 			if (action.enabled && !action.enabled()) {
@@ -44,7 +44,7 @@ export default async (cmd: string, plugins: Plugin[] = []) => {
 			} else {
 				const players = get_players(args.join(" "))
 				Promise.all(players.map(plr => action.execute(plr) ?? Promise.resolve()))
-					.andThenCall(play, "rbxassetid://8503529139", 10) // succeed because it ran on everyone
+					.andThenCall(play, "rbxassetid://8503529139") // succeed because it ran on everyone
 					.catch(
 						() => play("rbxassetid://8458408918") // fail since one of them threw an error
 					)
