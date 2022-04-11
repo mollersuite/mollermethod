@@ -9,7 +9,7 @@ import Trendsetter from "Trendsetter"
 import Snapdragon from "@rbxts/snapdragon"
 import iy_to_bracket from "Bracket/iy"
 import colors from "colors"
-import "adminbail"
+import AdminBail from "adminbail"
 
 import type { Plugin } from "types"
 import type { IYConfig } from "Bracket/iy/types"
@@ -130,21 +130,26 @@ export = async function ({
 
 	debug && warn(`starting UI`)
 	const tree = Roact.mount(
-		<Plugins.Provider value={plugins}>
-			<Kill.Provider
-				value={() => {
-					Roact.unmount(tree)
-					GUI.Destroy()
-				}}>
-				{bracket_external ? (
-					<BracketExternal />
-				) : (
-					<Bracket Key="Bracket" button={bracket_toggle ?? Enum.KeyCode.LeftBracket} />
-				)}
-				<Trendsetter Key="Menu" />
-				<Expletive Key="Taskbar" />
-			</Kill.Provider>
-		</Plugins.Provider>,
+		<>
+			{/* UIs */}
+			<Plugins.Provider value={plugins}>
+				<Kill.Provider
+					value={() => {
+						Roact.unmount(tree)
+						GUI.Destroy()
+					}}>
+					{bracket_external ? (
+						<BracketExternal />
+					) : (
+						<Bracket Key="Bracket" button={bracket_toggle ?? Enum.KeyCode.LeftBracket} />
+					)}
+					<Trendsetter Key="Menu" />
+					<Expletive Key="Taskbar" />
+				</Kill.Provider>
+			</Plugins.Provider>
+			{/* Services */}
+			<AdminBail container={GUI} />
+		</>,
 		GUI
 	)
 	debug && warn(`done`)
