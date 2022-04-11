@@ -9,6 +9,7 @@ import Trendsetter from "Trendsetter"
 import Snapdragon from "@rbxts/snapdragon"
 import iy_to_bracket from "Bracket/iy"
 import colors from "colors"
+import "adminbail"
 
 import type { Plugin } from "types"
 import type { IYConfig } from "Bracket/iy/types"
