@@ -13,10 +13,8 @@ export const Plugins = Roact.createContext<Plugin[]>([])
  * @returns A Content string pointing to the asset
  */
 export function asset(url: string): string {
-	// then its already an asset
-	if (url.match("^rbxasset.*://")) return url
 	// otherwise, we need to download it
-	const name = url.match("([^/]+)$")
+	const [name] = url.match("([^/]+)$")
 	const data = game.HttpGetAsync(url)
 	writefile("mollermethod_" + name, data)
 	return (getcustomasset || getsynasset)("mollermethod_" + name)

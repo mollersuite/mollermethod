@@ -1,5 +1,5 @@
 import { Debris, HttpService, TweenService, UserInputService } from "@rbxts/services"
-import { Kill, play, random, Plugins, set_volume } from "util"
+import { Kill, play, random, Plugins, set_volume, asset } from "util"
 import { QUOTES } from "strings"
 import Roact from "@rbxts/roact"
 import Bracket from "Bracket"
@@ -9,7 +9,7 @@ import Trendsetter from "Trendsetter"
 import Snapdragon from "@rbxts/snapdragon"
 import iy_to_bracket from "Bracket/iy"
 import colors from "colors"
-import AdminBail from "adminbail"
+import AdminBail from "bail"
 
 import type { Plugin } from "types"
 import type { IYConfig } from "Bracket/iy/types"
@@ -58,8 +58,13 @@ export = async function ({
 		colors.BLACK = Color3.fromHex(theme.background)
 	}
 	set_volume(volume)
-	play("rbxassetid://8370988437")
-
+	task.defer(() => {
+		if (isfile("mollermethod_Blog-Sound-1.ogg")) {
+			play(getcustomasset("mollermethod_Blog-Sound-1.ogg"))
+		} else {
+			play(asset("https://ubuntu.com/wp-content/uploads/2012/02/Blog-Sound-1.ogg"))
+		}
+	})
 	/*
 	  so here we are detecting IY and giving them ads for Bracket
 	  of course IY_LOADED isn't in roblox api
