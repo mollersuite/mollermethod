@@ -3,7 +3,7 @@ import { pure, useEffect, useState } from "@rbxts/roact-hooked"
 import { useSpring } from "@rbxts/roact-hooked-plus"
 import colors from "colors"
 import { toggle as bracket_shown } from "Bracket"
-import { Kill } from "util"
+import { join_code, Kill } from "util"
 
 const Button = pure<{
 	Text: string
@@ -75,7 +75,7 @@ export = pure(() => {
 				new UDim2(0.5, 0, 1, -50).Lerp(new UDim2(0.5, 0, 0, 50), n)
 			)}
 			Size={useSpring(open ? 0 : 1, { frequency: 2, dampingRatio: 1 }).map(n =>
-				new UDim2(0.2, 0, 0, 50).Lerp(new UDim2(0, 50, 0, 50), n)
+				new UDim2(0.5, 0, 0, 50).Lerp(new UDim2(0, 50, 0, 50), n)
 			)}
 			AnchorPoint={new Vector2(0.5, 1)}
 			ClipsDescendants>
@@ -119,6 +119,11 @@ export = pure(() => {
 			<Button Text="Mollybdos" Image="rbxassetid://9370016791" />
 			<Button Text="Scripts" Image="rbxassetid://9369994718" />
 			<Button Text="Settings" Image="rbxassetid://9369994833" />
+			<Button
+				Text="Copy invite"
+				Image="rbxassetid://9377140521"
+				Activated={() => join_code().then(setclipboard)}
+			/>
 		</frame>
 	)
 })
