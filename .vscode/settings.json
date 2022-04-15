@@ -13,7 +13,14 @@
 		"writedialog",
 		"getcustomasset",
 		"getsynasset",
-		"syn"
+		"syn",
+		"isfile",
+		"request",
+		"getgenv",
+		"makefolder",
+		"readfile",
+		"delfolder",
+		"isfolder"
 	],
 	"robloxLsp.typeChecking.mode": "Disabled",
 	"typescript.preferences.quoteStyle": "double",
