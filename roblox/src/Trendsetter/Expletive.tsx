@@ -40,7 +40,7 @@ const Button = pure<{
 				TextColor3={colors.WHITE}
 				Position={useSpring(hovered ? 1 : 0, {
 					dampingRatio: 1,
-				}).map(n => UDim2.fromScale(0, 0.5).Lerp(new UDim2(0, 32, 0.5, 0), n))}
+				}).map(n => UDim2.fromScale(0, 0.5).Lerp(new UDim2(0, 25, 0.5, 0), n))}
 				AnchorPoint={new Vector2(0, 0.5)}
 				Font="GothamBlack"
 				Text={Text}
