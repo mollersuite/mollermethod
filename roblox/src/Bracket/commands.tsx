@@ -1,8 +1,8 @@
 import { HttpService, TeleportService, Players, Workspace, UserInputService } from "@rbxts/services"
 import { join_code, play } from "util"
-import type { Command } from "types"
 import Roact from "@rbxts/roact"
-let Flight = false
+import { DisableFreecam, EnableFreecam } from "./freecam"
+import type { Command } from "types"
 const Player = Players.LocalPlayer
 
 export const exit: Command = {
@@ -46,6 +46,7 @@ export const support: Command = {
 	},
 }
 
+let Flight = false
 export const fly: Command = {
 	description: "Toggles fly mode.",
 	async execute() {
@@ -317,5 +318,18 @@ export const jump: Command = {
 		const humanoid = character?.FindFirstChildWhichIsA("Humanoid")
 		assert(humanoid, "you need a humanoid")
 		humanoid.JumpPower = jumpPower ?? 50
+	},
+}
+
+let Freecam = false
+export const freecam: Command = {
+	description: "move your camera around",
+	async execute() {
+		Freecam = !Freecam
+		if (Freecam) {
+			EnableFreecam()
+		} else {
+			DisableFreecam()
+		}
 	},
 }
