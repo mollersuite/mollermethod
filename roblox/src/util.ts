@@ -78,10 +78,7 @@ export async function join_code() {
 		JavaScript() {
 			return `\`Roblox.GameLauncher.joinGameInstance(${game.PlaceId}, '${game.JobId}')\``
 		},
-		Mobile() {
-			return `<robloxmobile://placeID=${game.PlaceId}&gameInstanceId=${game.JobId}>`
-		},
-		async RoPro() {
+		"RoPro (and mobile)": async () => {
 			return game.HttpPostAsync(
 				`https://ropro.io/api/createInvite.php?universeid=${game.GameId}&serverid=${game.JobId}`,
 				""
