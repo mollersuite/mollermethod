@@ -5,28 +5,6 @@ import colors from "colors"
 import { toggle as bracket_shown } from "Bracket"
 import { Kill } from "util"
 
-const Tag = pure<{
-	Text: string
-	Activated?: (rbx: TextButton, input: InputObject, clickCount: number) => unknown
-}>(({ Text, Activated }) => {
-	return (
-		<textbutton
-			Size={UDim2.fromOffset(30, 30)}
-			TextSize={12}
-			Event={{
-				Activated,
-			}}
-			Text={Text}
-			Font="GothamBold"
-			AutomaticSize="X"
-			TextColor3={colors.WHITE}
-			BackgroundColor3={colors.BLACK}>
-			<uicorner CornerRadius={new UDim(0, 10)} />
-			<uipadding PaddingLeft={new UDim(0, 5)} PaddingRight={new UDim(0, 5)} />
-		</textbutton>
-	)
-})
-
 const Button = pure<{
 	Text: string
 	Image: string
