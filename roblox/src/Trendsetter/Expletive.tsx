@@ -75,7 +75,7 @@ export = pure(() => {
 				new UDim2(0.5, 0, 1, -50).Lerp(new UDim2(0.5, 0, 0, 50), n)
 			)}
 			Size={useSpring(open ? 0 : 1, { frequency: 2, dampingRatio: 1 }).map(n =>
-				new UDim2(0.9, 0, 0, 50).Lerp(new UDim2(0, 50, 0, 50), n)
+				new UDim2(0.2, 0, 0, 50).Lerp(new UDim2(0, 50, 0, 50), n)
 			)}
 			AnchorPoint={new Vector2(0.5, 1)}
 			ClipsDescendants>
