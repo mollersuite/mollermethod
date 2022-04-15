@@ -60,15 +60,11 @@ export = pure(() => {
 	const [hover, setHover] = useState(false)
 	useEffect(() => setOpen(true), [])
 	return (
-		<scrollingframe
+		<frame
 			Event={{
 				MouseEnter: () => setHover(true),
 				MouseLeave: () => setHover(false),
 			}}
-			CanvasSize={new UDim2()}
-			AutomaticCanvasSize={open ? "X" : "None"}
-			HorizontalScrollBarInset="Always"
-			ScrollBarThickness={3}
 			BackgroundTransparency={useSpring(hover ? 0.5 : 0.7, {
 				frequency: 1,
 				dampingRatio: 1,
@@ -111,6 +107,6 @@ export = pure(() => {
 			<Button Text="Mollybdos" Image="rbxassetid://9370016791" />
 			<Button Text="Scripts" Image="rbxassetid://9369994718" />
 			<Button Text="Settings" Image="rbxassetid://9369994833" />
-		</scrollingframe>
+		</frame>
 	)
 })
