@@ -77,7 +77,8 @@ export = pure(() => {
 			Size={useSpring(open ? 0 : 1, { frequency: 2, dampingRatio: 1 }).map(n =>
 				new UDim2(0.9, 0, 0, 50).Lerp(new UDim2(0, 50, 0, 50), n)
 			)}
-			AnchorPoint={new Vector2(0.5, 1)}>
+			AnchorPoint={new Vector2(0.5, 1)}
+			ClipsDescendants>
 			<uicorner CornerRadius={new UDim(0, 10)} />
 			<uipadding PaddingLeft={new UDim(0, 10)} PaddingRight={new UDim(0, 10)} />
 			<uilistlayout
