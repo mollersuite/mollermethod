@@ -95,7 +95,18 @@ export = pure(() => {
 				BackgroundColor3={colors.BLACK}
 				Size={UDim2.fromOffset(30, 30)}
 				ScaleType="Fit"
-				BackgroundTransparency={1}></imagebutton>
+				BackgroundTransparency={1}>
+				<textlabel
+					TextSize={5}
+					Font="RobotoMono"
+					Text={PKG_VERSION}
+					TextColor3={colors.WHITE}
+					BackgroundTransparency={1}
+					Size={UDim2.fromScale(1, 1)}
+					TextXAlignment="Right"
+					TextYAlignment="Bottom"
+				/>
+			</imagebutton>
 			<Button
 				Text="Bracket"
 				Image="rbxassetid://9370028870"
