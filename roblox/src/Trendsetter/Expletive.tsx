@@ -8,14 +8,16 @@ import { join_code, Kill } from "util"
 const Button = pure<{
 	Text: string
 	Image: string
+	LayoutOrder?: number
 	Activated?: (rbx: TextButton, input: InputObject, clickCount: number) => unknown
-}>(({ Text, Activated, Image }) => {
+}>(({ Text, Activated, Image, LayoutOrder }) => {
 	const [hovered, setHovered] = useState(false)
 
 	return (
 		<textbutton
 			BackgroundColor3={colors.BLACK}
 			Text=""
+			LayoutOrder={LayoutOrder}
 			Event={{
 				MouseEnter: () => setHovered(true),
 				MouseLeave: () => setHovered(false),
@@ -85,9 +87,11 @@ export = pure(() => {
 				FillDirection={Enum.FillDirection.Horizontal}
 				HorizontalAlignment={Enum.HorizontalAlignment.Left}
 				VerticalAlignment={Enum.VerticalAlignment.Center}
+				SortOrder="LayoutOrder"
 				Padding={new UDim(0, 10)}
 			/>
 			<imagebutton
+				LayoutOrder={1}
 				BorderSizePixel={0}
 				Event={{
 					Activated: () => setOpen(!open),
@@ -110,20 +114,24 @@ export = pure(() => {
 			</imagebutton>
 			<Button
 				Text="Bracket"
+				LayoutOrder={2}
 				Image="rbxassetid://9370028870"
 				Activated={() => bracket_shown.Fire(true)}
 			/>
 			<Kill.Consumer
-				render={kill => <Button Text="Close" Image="rbxassetid://9370045727" Activated={kill} />}
+				render={kill => (
+					<Button LayoutOrder={3} Text="Close" Image="rbxassetid://9370045727" Activated={kill} />
+				)}
 			/>
-			<Button Text="Mollybdos" Image="rbxassetid://9370016791" />
-			<Button Text="Scripts" Image="rbxassetid://9369994718" />
-			<Button Text="Settings" Image="rbxassetid://9369994833" />
+			<Button Text="Mollybdos" Image="rbxassetid://9370016791" LayoutOrder={4} />
+			<Button Text="Scripts" Image="rbxassetid://9369994718" LayoutOrder={5} />
 			<Button
 				Text="Copy invite"
+				LayoutOrder={6}
 				Image="rbxassetid://9377140521"
 				Activated={() => join_code().then(setclipboard)}
 			/>
+			<Button Text="Settings" Image="rbxassetid://9369994833" LayoutOrder={7} />
 		</frame>
 	)
 })
