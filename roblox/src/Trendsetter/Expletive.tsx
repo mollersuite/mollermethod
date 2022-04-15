@@ -1,5 +1,5 @@
 import Roact from "@rbxts/roact"
-import { pure, useState } from "@rbxts/roact-hooked"
+import { pure, useEffect, useState } from "@rbxts/roact-hooked"
 import { useSpring } from "@rbxts/roact-hooked-plus"
 import colors from "colors"
 import { toggle as bracket_shown } from "Bracket"
@@ -56,8 +56,9 @@ const Button = pure<{
 	)
 })
 export = pure(() => {
-	const [open, setOpen] = useState(true)
+	const [open, setOpen] = useState(false)
 	const [hover, setHover] = useState(false)
+	useEffect(() => setOpen(true), [])
 	return (
 		<scrollingframe
 			Event={{
