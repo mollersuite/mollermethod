@@ -14,7 +14,7 @@ export const toggle: BindableEvent<(state: boolean) => unknown> = new Instance("
  *
  * The command invoker.
  *
- * Made of Mollybdenum.
+ * From mollermethod - a script hub by Mollybdenum, a division of Etcetera
  *
  * ```
  * █████╗

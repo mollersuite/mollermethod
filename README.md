@@ -3,4 +3,4 @@
 <h1>mollermethod</h1>
 </div>
 
-a script hub, made of mollybdenum.
+Scripting, unleashed.
