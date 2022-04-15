@@ -74,8 +74,8 @@ export const escape_lua_pattern = (s: string) =>
 	})[0]
 
 export async function join_code() {
-	const methods: Record<string, (this: void) => Promise<string> | string> = {
-		JavaScript() {
+	const methods: Record<string, (this: void) => Promise<string>> = {
+		async JavaScript() {
 			return `\`Roblox.GameLauncher.joinGameInstance(${game.PlaceId}, '${game.JobId}')\``
 		},
 		"RoPro (and mobile)": async () => {
@@ -84,12 +84,16 @@ export async function join_code() {
 				""
 			)
 		},
-		RoGold() {
+		async RoGold() {
 			return `https://roblox.com/discover#/rg-join/${game.PlaceId}/${game.JobId}`
 		},
 	}
 
-	const output = Object.entries(methods).map(async ([name, run]) => `${name}: ${await run()}`)
+	const output = Object.entries(methods).map(async ([name, run]) =>
+		run()
+			.then(code => `${name}: ${code}`)
+			.catch(() => `${name}: Errored!`)
+	)
 
 	return Promise.all<Promise<string>[]>(output).then(lines => lines.join("\n"))
 }
