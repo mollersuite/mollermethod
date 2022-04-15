@@ -51,7 +51,12 @@ export = pure<{ container: LayerCollector }>(({ container }) => {
 				)
 			} else if (game.CreatorType === Enum.CreatorType.Group) {
 				const player_role = player.GetRoleInGroup(game.CreatorId).lower()
-				if (staffRoles.some(role => !!player_role.find(role))) {
+				if (
+					staffRoles.some(role => {
+						const [match] = player_role.match(role)
+						if (match) return true
+					})
+				) {
 					Roact.mount(
 						<Notification
 							Text={`A member of the group with the role of ${player_role} has joined the game. This person is a potential admin.`}
