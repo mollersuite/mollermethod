@@ -65,24 +65,6 @@ export = async function ({
 			play(asset("https://ubuntu.com/wp-content/uploads/2012/02/Blog-Sound-1.ogg"))
 		}
 	})
-	/*
-	  so here we are detecting IY and giving them ads for Bracket
-	  of course IY_LOADED isn't in roblox api
-	  but in Lua if you access a variable that doesn't exist it will return nil
-	  in typescript it will error
-	  so we have to use ambient.d.ts to trick typescript into thinking it exists
-	  which then compiles to Lua
-	  which can check properly for IY_LOADED
-	*/
-	Roact.mount(
-		<Notification
-			Text={`<b>Pause</b> to open mollermethod.\nPress <b>${UserInputService.GetStringForKeyCode(
-				bracket_toggle ?? Enum.KeyCode.LeftBracket
-			)}</b> to open Bracket.\n<i>${random(QUOTES)}</i>`}
-		/>,
-		GUI,
-		"Notification"
-	)
 
 	const plugins: Plugin[] = []
 
