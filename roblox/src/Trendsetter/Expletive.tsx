@@ -12,6 +12,7 @@ const Button = pure<{
 	Activated?: (rbx: TextButton, input: InputObject, clickCount: number) => unknown
 }>(({ Text, Activated, Image, LayoutOrder }) => {
 	const [hovered, setHovered] = useState(false)
+	const [active, setActive] = useState(false)
 
 	return (
 		<textbutton
@@ -20,11 +21,17 @@ const Button = pure<{
 			LayoutOrder={LayoutOrder}
 			Event={{
 				MouseEnter: () => setHovered(true),
-				MouseLeave: () => setHovered(false),
+				MouseLeave: () => {
+					setHovered(false)
+					setActive(false)
+				},
 				Activated,
+				MouseButton1Down: () => setActive(true),
+				MouseButton1Up: () => setActive(false),
 			}}
 			AutomaticSize="X"
 			Size={UDim2.fromOffset(30, 30)}>
+			<uiscale Scale={useSpring(active ? 1.1 : 1, {})} />
 			<uipadding PaddingLeft={new UDim(0, 10)} PaddingRight={new UDim(0, 10)} />
 			<uicorner CornerRadius={new UDim(0, 10)} />
 			<imagelabel
