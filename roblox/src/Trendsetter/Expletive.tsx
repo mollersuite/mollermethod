@@ -1,11 +1,12 @@
 import Roact from "@rbxts/roact"
 import { pure, useEffect, useState } from "@rbxts/roact-hooked"
-import { useSpring } from "@rbxts/roact-hooked-plus"
+import { useSingleMotor, useSpring } from "@rbxts/roact-hooked-plus"
 import colors from "colors"
 import { toggle as bracket_shown } from "Bracket"
 import { join_code, Kill } from "util"
 import { rejoin, respawn } from "Bracket/commands"
-
+import { Spring } from "@rbxts/flipper"
+// let count = 0
 const Button = pure<{
 	Text: string
 	Image: string
@@ -65,20 +66,18 @@ const Button = pure<{
 		</textbutton>
 	)
 })
+const spring = (n: number) => new Spring(n, { dampingRatio: 1 })
 export = pure(() => {
 	const [open, setOpen] = useState(false)
-	const [hover, setHover] = useState(false)
+	const [transparency, setTransparency] = useSingleMotor(0.7)
 	useEffect(() => setOpen(true), [])
 	return (
 		<frame
 			Event={{
-				MouseEnter: () => setHover(true),
-				MouseLeave: () => setHover(false),
+				MouseEnter: () => setTransparency(spring(0.5)),
+				MouseLeave: () => setTransparency(spring(0.7)),
 			}}
-			BackgroundTransparency={useSpring(hover ? 0.5 : 0.7, {
-				frequency: 1,
-				dampingRatio: 1,
-			})}
+			BackgroundTransparency={transparency}
 			BorderSizePixel={0}
 			BackgroundColor3={colors.BLACK}
 			Position={useSpring(open ? 0 : 1, { frequency: 2, dampingRatio: 1 }).map(n =>
@@ -154,6 +153,15 @@ export = pure(() => {
 			/>
 			{/* END */}
 			<Button Text="Settings" Image="rbxassetid://9369994833" LayoutOrder={9} />
+			{/* <textlabel
+				Text={`Rendered ${++count} times`}
+				LayoutOrder={100}
+				BackgroundTransparency={1}
+				AutomaticSize="XY"
+				TextSize={15}
+				Font="RobotoMono"
+				TextColor3={colors.WHITE}
+			/> */}
 		</frame>
 	)
 })
