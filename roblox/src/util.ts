@@ -88,7 +88,7 @@ export async function join_code() {
 			return `https://roblox.com/discover#/rg-join/${game.PlaceId}/${game.JobId}`
 		},
 		async r2283() {
-			return `https://roblox.com?placeID=${game.PlaceId}&gameID=${game.JobId}`
+			return `https://roblox.com/home?placeID=${game.PlaceId}&gameID=${game.JobId}`
 		},
 	}
 
