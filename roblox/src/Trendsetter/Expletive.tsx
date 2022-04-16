@@ -131,7 +131,7 @@ export = pure(() => {
 					<Button LayoutOrder={3} Text="Close" Image="rbxassetid://9370045727" Activated={kill} />
 				)}
 			/>
-			<Button Text="Mollybdos" Image="rbxassetid://9370016791" LayoutOrder={4} />
+			<Button Text="Players" Image="rbxassetid://9370016791" LayoutOrder={4} />
 			<Button Text="Scripts" Image="rbxassetid://9369994718" LayoutOrder={5} />
 			{/* START "the ones that will be in localplayer when thats added" section */}
 			<Button
@@ -152,7 +152,7 @@ export = pure(() => {
 				Image="rbxassetid://9380809978"
 				Activated={() => rejoin.execute([])}
 			/>
-				{/* END */}
+			{/* END */}
 			<Button Text="Settings" Image="rbxassetid://9369994833" LayoutOrder={9} />
 		</frame>
 	)
