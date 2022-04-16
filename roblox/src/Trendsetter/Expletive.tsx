@@ -6,7 +6,7 @@ import { toggle as bracket_shown } from "Bracket"
 import { join_code, Kill } from "util"
 import { rejoin, respawn } from "Bracket/commands"
 import { Spring } from "@rbxts/flipper"
-// let count = 0
+let count = 0
 const Button = pure<{
 	Text: string
 	Image: string
@@ -66,11 +66,11 @@ const Button = pure<{
 		</textbutton>
 	)
 })
-const spring = (n: number) => new Spring(n, { dampingRatio: 1 })
+const spring = (n: number) => new Spring(n, { dampingRatio: 1, frequency: 2 })
 export = pure(() => {
-	const [open, setOpen] = useState(false)
+	const [closed, setOpen] = useSingleMotor(1)
 	const [transparency, setTransparency] = useSingleMotor(0.7)
-	useEffect(() => setOpen(true), [])
+	useEffect(() => setOpen(spring(0)), [])
 	return (
 		<frame
 			Event={{
@@ -80,12 +80,8 @@ export = pure(() => {
 			BackgroundTransparency={transparency}
 			BorderSizePixel={0}
 			BackgroundColor3={colors.BLACK}
-			Position={useSpring(open ? 0 : 1, { frequency: 2, dampingRatio: 1 }).map(n =>
-				new UDim2(0.5, 0, 1, -50).Lerp(new UDim2(0.5, 0, 0, 50), n)
-			)}
-			Size={useSpring(open ? 0 : 1, { frequency: 2, dampingRatio: 1 }).map(n =>
-				new UDim2(0.5, 0, 0, 50).Lerp(new UDim2(0, 50, 0, 50), n)
-			)}
+			Position={closed.map(n => new UDim2(0.5, 0, 1, -50).Lerp(new UDim2(0.5, 0, 0, 50), n))}
+			Size={closed.map(n => new UDim2(0.5, 0, 0, 50).Lerp(new UDim2(0, 50, 0, 50), n))}
 			AnchorPoint={new Vector2(0.5, 1)}
 			ClipsDescendants>
 			<uicorner CornerRadius={new UDim(0, 10)} />
@@ -101,7 +97,7 @@ export = pure(() => {
 				LayoutOrder={1}
 				BorderSizePixel={0}
 				Event={{
-					Activated: () => setOpen(!open),
+					Activated: () => setOpen(spring(closed.getValue() === 1 ? 0 : 1)),
 				}}
 				Image="rbxassetid://7554747376"
 				BackgroundColor3={colors.BLACK}
@@ -127,7 +123,12 @@ export = pure(() => {
 			/>
 			<Kill.Consumer
 				render={kill => (
-					<Button LayoutOrder={3} Text="Close" Image="rbxassetid://9370045727" Activated={kill} />
+					<Button
+						LayoutOrder={3}
+						Text="Close"
+						Image="rbxassetid://9370045727"
+						Activated={kill}
+					/>
 				)}
 			/>
 			<Button Text="Players" Image="rbxassetid://9370016791" LayoutOrder={4} />
@@ -153,7 +154,7 @@ export = pure(() => {
 			/>
 			{/* END */}
 			<Button Text="Settings" Image="rbxassetid://9369994833" LayoutOrder={9} />
-			{/* <textlabel
+			<textlabel
 				Text={`Rendered ${++count} times`}
 				LayoutOrder={100}
 				BackgroundTransparency={1}
@@ -161,7 +162,7 @@ export = pure(() => {
 				TextSize={15}
 				Font="RobotoMono"
 				TextColor3={colors.WHITE}
-			/> */}
+			/>
 		</frame>
 	)
 })
