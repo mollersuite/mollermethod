@@ -153,7 +153,7 @@ export = pure(() => {
 				Activated={() => rejoin.execute([])}
 			/>
 				{/* END */}
-			<Button Text="Settings" Image="rbxassetid://9369994833" LayoutOrder={7} />
+			<Button Text="Settings" Image="rbxassetid://9369994833" LayoutOrder={9} />
 		</frame>
 	)
 })
