@@ -4,6 +4,7 @@ import { useSpring } from "@rbxts/roact-hooked-plus"
 import colors from "colors"
 import { toggle as bracket_shown } from "Bracket"
 import { join_code, Kill } from "util"
+import { rejoin, respawn } from "Bracket/commands"
 
 const Button = pure<{
 	Text: string
@@ -132,12 +133,26 @@ export = pure(() => {
 			/>
 			<Button Text="Mollybdos" Image="rbxassetid://9370016791" LayoutOrder={4} />
 			<Button Text="Scripts" Image="rbxassetid://9369994718" LayoutOrder={5} />
+			{/* START "the ones that will be in localplayer when thats added" section */}
 			<Button
 				Text="Copy invite"
 				LayoutOrder={6}
 				Image="rbxassetid://9377140521"
 				Activated={() => join_code().then(setclipboard)}
 			/>
+			<Button
+				Text="Respawn"
+				LayoutOrder={7}
+				Image="rbxassetid://9380799867"
+				Activated={() => respawn.execute([])}
+			/>
+			<Button
+				Text="Rejoin"
+				LayoutOrder={8}
+				Image="rbxassetid://9380809978"
+				Activated={() => rejoin.execute([])}
+			/>
+				{/* END */}
 			<Button Text="Settings" Image="rbxassetid://9369994833" LayoutOrder={7} />
 		</frame>
 	)
