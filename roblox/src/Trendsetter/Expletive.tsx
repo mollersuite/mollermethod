@@ -6,7 +6,7 @@ import { toggle as bracket_shown } from "Bracket"
 import { join_code, Kill } from "util"
 import { rejoin, respawn } from "Bracket/commands"
 import { Spring } from "@rbxts/flipper"
-let count = 0
+// let count = 0
 const Button = pure<{
 	Text: string
 	Image: string
@@ -154,7 +154,7 @@ export = pure(() => {
 			/>
 			{/* END */}
 			<Button Text="Settings" Image="rbxassetid://9369994833" LayoutOrder={9} />
-			<textlabel
+			{/* <textlabel
 				Text={`Rendered ${++count} times`}
 				LayoutOrder={100}
 				BackgroundTransparency={1}
@@ -162,7 +162,7 @@ export = pure(() => {
 				TextSize={15}
 				Font="RobotoMono"
 				TextColor3={colors.WHITE}
-			/>
+			/> */}
 		</frame>
 	)
 })
