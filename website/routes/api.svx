@@ -18,13 +18,16 @@ local util = ...
 
 ### `util.notify`
 
-```lua
+```ts
 util.notify(options: {
-	Text: string -- RichText is on btw
-	Icon?: string -- Defaults to "rbxassetid://7554747376"
-	Duration?: number -- In seconds, defaults to 5
-	App?: string -- Defaults to "mollermethod"
-}) -> void
+	this: void,
+	name: string,
+	description: string,
+	icon: "Error" | "Info" | "Success" | "Warning",
+	duration: number,
+	holder: Instance,
+	callback?: Callback
+}) => void
 ```
 
 Displays a notification.
