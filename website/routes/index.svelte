@@ -34,8 +34,9 @@
 	}
 	.giant {
 		position: absolute;
-		right: 0;
-		top: 15%;
+		right: 10%;
+		top: 50%;
+		transform: translateY(-50%);
 		opacity: 50%;
 		z-index: -1;
 		max-width: 100vw;
@@ -48,5 +49,18 @@
 		gap: 1ch;
 		height: 100%;
 		flex-direction: column;
+	}
+	@media (max-width: 768px) {
+		.giant {
+			bottom: 0;
+			top: initial;
+			transform: none;
+			width: 50%;
+		}
+	}
+	@media (prefers-color-scheme: light) {
+		.giant {
+			filter: invert(100%);
+		}
 	}
 </style>

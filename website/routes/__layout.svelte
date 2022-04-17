@@ -12,7 +12,7 @@
 
 <Header>
 	<Button href="/" label="mollermethod" selected={"/" === path}>
-		<img src="/icon.png" alt="mollermethod" height="20" class:navigating={$navigating} />
+		<img src="/icon.png" alt="mollermethod" height="20" class:navigating={$navigating} class="logo" />
 	</Button>
 
 	<Button href="/config" label="Settings" selected={path === "/config"}>
@@ -46,7 +46,7 @@
 		flex-direction: column;
 		padding: 1rem;
 		width: 100%;
-		max-width: 1200px;
+		max-width: 1500px;
 		margin: 0 auto;
 		box-sizing: border-box;
 	}
@@ -70,5 +70,10 @@
 		text-align: center;
 		display: block;
 		font-family: var(--fds-font-family-small);
+	}
+	@media (prefers-color-scheme: light) {
+		.logo {
+			filter: invert(100%);
+		}
 	}
 </style>
