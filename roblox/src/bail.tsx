@@ -38,16 +38,17 @@ const staffRoles = [
 	"pres",
 ]
 
-export = pure<{ container: LayerCollector }>(({ container }) => {
+export = pure<{ container: Instance }>(({ container }) => {
 	useEffect(() => {
 		const ev = Players.PlayerAdded.Connect(player => {
 			if (player.UserId === game.CreatorId || player.IsFriendsWith(game.CreatorId)) {
-				Roact.mount(
-					<Notification
-						Text="The owner or a friend of the owner of the place has joined the game. We suggest you leave the place."
-						App="mollerbail"
-					/>,
-					container
+				Notification.new(
+					"mollerbail",
+					"The owner or a friend of the owner of the place has joined the game. Click here to leave the place.",
+					'Warning',
+					5,
+					container,
+					() => game.Shutdown()
 				)
 			} else if (game.CreatorType === Enum.CreatorType.Group) {
 				const player_role = player.GetRoleInGroup(game.CreatorId).lower()
@@ -57,11 +58,11 @@ export = pure<{ container: LayerCollector }>(({ container }) => {
 						if (match) return true
 					})
 				) {
-					Roact.mount(
-						<Notification
-							Text={`A member of the group with the role of ${player_role} has joined the game. This person is a potential admin.`}
-							App="mollerbail"
-						/>,
+					Notification.new(
+						"mollerbail",
+						`A member of the group with the role of ${player_role} has joined the game. This person is a potential admin.`,
+						"Warning",
+						5,
 						container
 					)
 				}

@@ -47,7 +47,7 @@ const respawn = (player: Player) => {
 }
 
 // should probably put `container` in a context later
-export = (options: { container: LayerCollector }) => ({
+export = (options: { container: Instance }) => ({
 	r15,
 	randomString,
 	FindInTable,
@@ -66,5 +66,5 @@ export = (options: { container: LayerCollector }) => ({
 
 	// https://github.com/EdgeIY/infiniteyield/wiki/notify
 	notify: (title: string, message: string) =>
-		Roact.mount(<Notification Text={message} App={title} />, options.container, "IY Notification"),
+		Notification.new(title, message, "Info", 5, options.container),
 })

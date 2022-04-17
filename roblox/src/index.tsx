@@ -72,6 +72,31 @@ export = async function ({
 	}
 
 	const plugins: Plugin[] = []
+	const notif_holder = (() => {
+		const notifications = new Instance("Frame", GUI)
+		notifications.Name = "notifications"
+		notifications.AnchorPoint = new Vector2(1, 0)
+		notifications.BackgroundColor3 = Color3.fromHex("#FFFFFF")
+		notifications.BackgroundTransparency = 1
+		notifications.Position = UDim2.fromScale(1, 0)
+		notifications.Size = UDim2.fromScale(1, 1)
+
+		const uIPadding = new Instance("UIPadding")
+		uIPadding.Name = "uIPadding"
+		uIPadding.PaddingBottom = new UDim(0, 15)
+		uIPadding.PaddingRight = new UDim(0, 15)
+		uIPadding.Parent = notifications
+
+		const uIListLayout = new Instance("UIListLayout")
+		uIListLayout.Name = "uIListLayout"
+		uIListLayout.Padding = new UDim(0, 10)
+		uIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Right
+		uIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+		uIListLayout.VerticalAlignment = Enum.VerticalAlignment.Bottom
+		uIListLayout.Parent = notifications
+		return notifications
+	})()
+
 
 	debug && warn(`loading ${plugin_sources.size()} plugins from settings`)
 	await Promise.allSettled(
@@ -81,8 +106,14 @@ export = async function ({
 
 			plugins.push(
 				plugin({
-					notify: (args: Parameters<typeof Notification["validateProps"]>[0]) =>
-						Roact.mount(<Notification {...args} />, GUI, "Notification"),
+					notify: (
+						name: string,
+						description: string,
+						icon: "Error" | "Info" | "Success" | "Warning",
+						duration: number,
+						callback?: Callback
+					) =>
+						Notification.new(name, description, icon, duration, notif_holder, callback),
 					GUI,
 					colors,
 					Snapdragon,
@@ -98,8 +129,21 @@ export = async function ({
 				const plugin = require(module) as (opts: any) => Plugin
 				plugins.push(
 					plugin({
-						notify: (args: Parameters<typeof Notification["validateProps"]>[0]) =>
-							Roact.mount(<Notification {...args} />, GUI, "Notification"),
+						notify: (
+							name: string,
+							description: string,
+							icon: "Error" | "Info" | "Success" | "Warning",
+							duration: number,
+							callback?: Callback
+						) =>
+							Notification.new(
+								name,
+								description,
+								icon,
+								duration,
+								notif_holder,
+								callback
+							),
 						GUI,
 						colors,
 						Snapdragon,
@@ -115,7 +159,7 @@ export = async function ({
 		const config = HttpService.JSONDecode(readfile("IY_FE.iy")) as IYConfig
 		await Promise.allSettled(
 			config.PluginsTable.map(async plugin_path =>
-				iy_to_bracket(readfile(plugin_path), GUI, plugins)
+				iy_to_bracket(readfile(plugin_path), notif_holder, plugins)
 			)
 		)
 	}
@@ -143,7 +187,7 @@ export = async function ({
 				</Kill.Provider>
 			</Plugins.Provider>
 			{/* Services */}
-			<AdminBail container={GUI} />
+			<AdminBail container={notif_holder} />
 		</>,
 		GUI
 	)
