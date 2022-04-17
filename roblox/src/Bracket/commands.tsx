@@ -50,9 +50,9 @@ export const fly: Command = {
 	description: "Toggles fly mode.",
 	async execute() {
 		const Character = Player.Character
+		assert(Character, "Character not found")
 		Flight = !Flight
 		if (Flight) {
-			if (Character?.FindFirstChild("Torso")) {
 				const Humanoid = Character.FindFirstChildWhichIsA("Humanoid")!
 				const Root = Humanoid.RootPart!
 				const BodyGyro = new Instance("BodyGyro", Root)
@@ -89,15 +89,12 @@ export const fly: Command = {
 						}
 					}
 				})
-			}
 		} else {
-			if (Character?.FindFirstChild("Torso")) {
 				const Humanoid = Character.FindFirstChildWhichIsA("Humanoid")!
 				const Root = Humanoid.RootPart!
 				Root.FindFirstChildWhichIsA("BodyGyro")?.Destroy()
 				Root.FindFirstChildWhichIsA("BodyVelocity")?.Destroy()
 				Humanoid.PlatformStand = false
-			}
 		}
 	},
 }
@@ -106,9 +103,9 @@ export const fish: Command = {
 	description: "flop like a fish",
 	async execute() {
 		const Character = Player.Character
+		assert(Character, "Character not found")
 		Flight = !Flight
 		if (Flight) {
-			if (Character?.FindFirstChild("Torso")) {
 				const Humanoid = Character.FindFirstChildWhichIsA("Humanoid")!
 				const Root = Humanoid.RootPart!
 				const BodyVelocity = new Instance("BodyVelocity", Root)
@@ -136,14 +133,11 @@ export const fish: Command = {
 						}
 					}
 				})
-			}
 		} else {
-			if (Character?.FindFirstChild("Torso")) {
 				const Humanoid = Character.FindFirstChildWhichIsA("Humanoid")!
 				const Root = Humanoid.RootPart!
 				Root.FindFirstChildWhichIsA("BodyVelocity")?.Destroy()
 				Humanoid.PlatformStand = false
-			}
 		}
 	},
 }
