@@ -37,7 +37,7 @@
 <main id="main">
 	<slot />
 </main>
-<small>Dedicated to Molly the Beagle, 2009-2022</small>
+<small>Dedicated to Molly the Beagle, 2009-2022 💔</small>
 <style>
 	main {
 		flex: 1;
