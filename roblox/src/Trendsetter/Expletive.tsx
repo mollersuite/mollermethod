@@ -42,6 +42,7 @@ const Button = pure<{
 				AnchorPoint={new Vector2(0, 0.5)}
 				Position={UDim2.fromScale(0, 0.5)}
 				Image={Image}
+				ImageColor3={colors.WHITE}
 				ScaleType="Fit"
 			/>
 			<textlabel
