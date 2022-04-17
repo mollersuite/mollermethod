@@ -58,16 +58,17 @@ export = async function ({
 		colors.BLACK = Color3.fromHex(theme.background)
 	}
 	set_volume(volume)
-	if (RunService.IsStudio()) {
-		play("rbxassetid://9344041257")
-	} else {
+	// @ts-expect-error
+	if (getcustomasset ?? getsynasset) {
 		task.defer(() => {
 			if (isfile("mollermethod_Blog-Sound-1.ogg")) {
-				play(getcustomasset("mollermethod_Blog-Sound-1.ogg"))
+				play((getcustomasset ?? getsynasset)("mollermethod_Blog-Sound-1.ogg"))
 			} else {
 				play(asset("https://ubuntu.com/wp-content/uploads/2012/02/Blog-Sound-1.ogg"))
 			}
 		})
+	} else {
+		play("rbxassetid://9344041257")
 	}
 
 	const plugins: Plugin[] = []
