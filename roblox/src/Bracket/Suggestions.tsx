@@ -4,7 +4,7 @@ import { escape_lua_pattern, Plugins } from "util"
 import type { Plugin, Action } from "types"
 import * as actions from "actions"
 import * as commands from "./commands"
-import { RunService, UserInputService } from "@rbxts/services"
+import { Players, UserInputService } from "@rbxts/services"
 import Object from "@rbxts/object-utils"
 import { pure, useContext } from "@rbxts/roact-hooked"
 
@@ -12,7 +12,7 @@ const map_action = ([name, action]: [string, Action]) => ({
 	name,
 	action: true,
 	...action,
-	enabled: RunService.IsStudio() ? () => true : action.enabled,
+	enabled: Players.LocalPlayer ? action.enabled : () => true,
 })
 
 const cmds: {

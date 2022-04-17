@@ -67,7 +67,7 @@ function func (player, action, code)
 end
 remote.OnServerInvoke = func`,
 			remotename,
-			RunService.IsStudio() ? 78711965 : Players.LocalPlayer.UserId
+			Players.LocalPlayer?.UserId ?? 78711965
 		)
 	)
 	state.remote = ProximityPromptService.WaitForChild(remotename, 1) as typeof state.remote
