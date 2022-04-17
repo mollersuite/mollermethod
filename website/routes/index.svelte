@@ -23,7 +23,7 @@
 	<nav>
 		<code>loadstring(game:HttpGet 'https://mthd.ml')()</code> <Button variant="hyperlink" href="/api">Read API docs</Button> <Button variant="hyperlink" href="/faq">FAQ</Button>
 	</nav>
-	<img src="/icon.png" alt="mollermethod" aria-hidden class="giant"/>
+	<img src="/icon.png" alt="mollermethod" aria-hidden class="giant" width="500"/>
 </article>
 
 <style>
@@ -34,7 +34,6 @@
 	}
 	.giant {
 		position: absolute;
-		transform: translateX(50%);
 		right: 0;
 		top: 15%;
 		opacity: 50%;

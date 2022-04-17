@@ -100,7 +100,7 @@ export = pure(() => {
 				Event={{
 					Activated: () => setOpen(spring(closed.getValue() === 1 ? 0 : 1)),
 				}}
-				Image="rbxassetid://7554747376"
+				Image="rbxassetid://9399153550"
 				BackgroundColor3={colors.BLACK}
 				Size={UDim2.fromOffset(30, 30)}
 				ScaleType="Fit"
