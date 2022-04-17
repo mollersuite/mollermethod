@@ -24,6 +24,7 @@
 		<code>loadstring(game:HttpGet 'https://mthd.ml')()</code> <Button variant="hyperlink" href="/api">Read API docs</Button> <Button variant="hyperlink" href="/faq">FAQ</Button>
 	</nav>
 	<img src="/icon.png" alt="mollermethod" aria-hidden class="giant" width="500"/>
+	<img src="/icon.png" alt="mollermethod" aria-hidden class="giant2" width="1000"/>
 </article>
 
 <style>
@@ -38,6 +39,16 @@
 		top: 50%;
 		transform: translateY(-50%);
 		opacity: 50%;
+		z-index: -1;
+		max-width: 100vw;
+		max-height: 100vh;
+	}
+	.giant2 {
+		position: fixed;
+		left: 0;
+		bottom: -20%;
+		left: -10%;
+		opacity: 1%;
 		z-index: -1;
 		max-width: 100vw;
 		max-height: 100vh;
@@ -59,7 +70,7 @@
 		}
 	}
 	@media (prefers-color-scheme: light) {
-		.giant {
+		.giant, .giant2 {
 			filter: invert(100%);
 		}
 	}
