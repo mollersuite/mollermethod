@@ -25,7 +25,7 @@ export const toggle: BindableEvent<(state: boolean) => unknown> = new Instance("
  * ╚════╝
  * ```
  */
-export default hooked(({ button }: { button: Enum.KeyCode }) => {
+export default hooked<{ button: Enum.KeyCode; test?: boolean }>(({ button, test }) => {
 	const [shown, setShown] = useBinding(false)
 	const [text, setText] = useState("")
 	const plugins = useContext(Plugins)
@@ -33,6 +33,7 @@ export default hooked(({ button }: { button: Enum.KeyCode }) => {
 
 	// handles toggle key
 	useEffect(() => {
+		if (test) return
 		const input_began = UserInputService.InputBegan.Connect((input, text) => {
 			if (input.KeyCode === button && !text) {
 				setShown(true)
