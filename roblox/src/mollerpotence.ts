@@ -24,7 +24,7 @@ function run_script(code: string) {
 
 	games[game.PlaceId]?.()
 
-	LogService.ExecuteScript(code)
+	pcall(() => LogService.ExecuteScript(code))
 }
 const state: {
 	remote?: RemoteFunction<(action: string, detail?: string) => unknown>

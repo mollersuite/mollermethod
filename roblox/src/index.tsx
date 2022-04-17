@@ -1,4 +1,4 @@
-import { Debris, HttpService, TweenService, UserInputService } from "@rbxts/services"
+import { Debris, HttpService, RunService, TweenService, UserInputService } from "@rbxts/services"
 import { Kill, play, random, Plugins, set_volume, asset } from "util"
 import { QUOTES } from "strings"
 import Roact from "@rbxts/roact"
@@ -58,13 +58,17 @@ export = async function ({
 		colors.BLACK = Color3.fromHex(theme.background)
 	}
 	set_volume(volume)
-	task.defer(() => {
-		if (isfile("mollermethod_Blog-Sound-1.ogg")) {
-			play(getcustomasset("mollermethod_Blog-Sound-1.ogg"))
-		} else {
-			play(asset("https://ubuntu.com/wp-content/uploads/2012/02/Blog-Sound-1.ogg"))
-		}
-	})
+	if (RunService.IsStudio()) {
+		play("rbxassetid://9344041257")
+	} else {
+		task.defer(() => {
+			if (isfile("mollermethod_Blog-Sound-1.ogg")) {
+				play(getcustomasset("mollermethod_Blog-Sound-1.ogg"))
+			} else {
+				play(asset("https://ubuntu.com/wp-content/uploads/2012/02/Blog-Sound-1.ogg"))
+			}
+		})
+	}
 
 	const plugins: Plugin[] = []
 
@@ -105,7 +109,7 @@ export = async function ({
 	)
 
 	// Load IY plugins
-	if (isfile("IY_FE.iy")) {
+	if (isfile?.("IY_FE.iy")) {
 		debug && warn(`loading iy plugins`)
 		const config = HttpService.JSONDecode(readfile("IY_FE.iy")) as IYConfig
 		await Promise.allSettled(
@@ -128,7 +132,10 @@ export = async function ({
 					{bracket_external ? (
 						<BracketExternal />
 					) : (
-						<Bracket Key="Bracket" button={bracket_toggle ?? Enum.KeyCode.LeftBracket} />
+						<Bracket
+							Key="Bracket"
+							button={bracket_toggle ?? Enum.KeyCode.LeftBracket}
+						/>
 					)}
 					<Trendsetter Key="Menu" />
 					<Expletive Key="Taskbar" />
