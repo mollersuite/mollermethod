@@ -138,7 +138,7 @@ export = pure(() => {
 				Text="Copy invite"
 				LayoutOrder={6}
 				Image="rbxassetid://9377140521"
-				Activated={() => join_code().then(setclipboard)}
+				Activated={() => join_code().then(setclipboard ?? print)}
 			/>
 			<Button
 				Text="Respawn"

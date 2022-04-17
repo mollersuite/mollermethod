@@ -174,7 +174,7 @@ export const joincode: Command = {
 	description: "copies a markdown message with links to join your server",
 	execute() {
 		assert(setclipboard, "you need to be able to set the clipboard")
-		return join_code().then(setclipboard)
+		return join_code().then(setclipboard ?? print)
 	},
 }
 
