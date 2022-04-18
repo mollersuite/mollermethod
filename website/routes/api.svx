@@ -25,7 +25,6 @@ util.notify(options: {
 	description: string,
 	icon: "Error" | "Info" | "Success" | "Warning",
 	duration: number,
-	holder: Instance,
 	callback?: Callback
 }) => void
 ```
