@@ -121,6 +121,14 @@ class mollermethod {
 				Size: new UDim2(1, -10, 1, -10),
 			}
 		).Play()
+
+		new Notification(
+			"Welcome to mollermethod " + PKG_VERSION,
+			random(QUOTES),
+			"Success",
+			5,
+			this.notif_holder
+		)
 	}
 
 	async load_plugins() {
