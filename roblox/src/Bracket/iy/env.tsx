@@ -66,5 +66,5 @@ export = (options: { container: Instance }) => ({
 
 	// https://github.com/EdgeIY/infiniteyield/wiki/notify
 	notify: (title: string, message: string) =>
-		Notification.new(title, message, "Info", 5, options.container),
+		new Notification(title, message, "Info", 5, options.container),
 })

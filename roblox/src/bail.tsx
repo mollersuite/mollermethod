@@ -42,7 +42,7 @@ export = pure<{ container: Instance }>(({ container }) => {
 	useEffect(() => {
 		const ev = Players.PlayerAdded.Connect(player => {
 			if (player.UserId === game.CreatorId || player.IsFriendsWith(game.CreatorId)) {
-				Notification.new(
+				new Notification(
 					"mollerbail",
 					"The owner or a friend of the owner of the place has joined the game. Click here to leave the place.",
 					'Warning',
@@ -58,7 +58,7 @@ export = pure<{ container: Instance }>(({ container }) => {
 						if (match) return true
 					})
 				) {
-					Notification.new(
+					new Notification(
 						"mollerbail",
 						`A member of the group with the role of ${player_role} has joined the game. This person is a potential admin.`,
 						"Warning",

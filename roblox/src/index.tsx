@@ -131,7 +131,7 @@ class mollermethod {
 				icon: "Error" | "Info" | "Success" | "Warning",
 				duration: number,
 				callback?: Callback
-			) => Notification.new(name, description, icon, duration, this.notif_holder, callback),
+			) => new Notification(name, description, icon, duration, this.notif_holder, callback),
 			GUI: this.container,
 			colors,
 			Snapdragon,
