@@ -60,6 +60,7 @@ class mollermethod {
 		this.container = this.config.gui
 		set_volume(this.config.volume ?? 5)
 
+		// Startup sound
 		// @ts-expect-error
 		if (getcustomasset ?? getsynasset) {
 			task.defer(() => {
@@ -76,19 +77,6 @@ class mollermethod {
 		this.notif_holder = this.setup_notifs()
 		this.load_plugins()
 
-		// Startup sound
-		// @ts-expect-error
-		if (getcustomasset ?? getsynasset) {
-			task.defer(() => {
-				if (isfile("mollermethod_Blog-Sound-1.ogg")) {
-					play((getcustomasset ?? getsynasset)("mollermethod_Blog-Sound-1.ogg"))
-				} else {
-					play(asset("https://ubuntu.com/wp-content/uploads/2012/02/Blog-Sound-1.ogg"))
-				}
-			})
-		} else {
-			play("rbxassetid://9344041257")
-		}
 
 		this.tree = Roact.mount(
 			<Plugins.Provider value={this.plugins}>
