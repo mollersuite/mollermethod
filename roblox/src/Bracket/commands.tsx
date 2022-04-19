@@ -159,7 +159,7 @@ export const exit: Command = {
 	execute: () => game.Shutdown(),
 }
 export const rejoin: Command = {
-	description: "Rejoins the server.",
+	description: "Rejoins the server. [rejoin",
 	async execute() {
 		if (Players.GetPlayers().size() === 1) {
 			Player.Kick("Rejoining...")
@@ -170,7 +170,7 @@ export const rejoin: Command = {
 }
 
 export const support: Command = {
-	description: "Gives you the link to the support server.",
+	description: "Gives you the link to the support server. [support",
 	async execute() {
 		const request = (getgenv()?.request || syn?.request || http?.request) as
 			| typeof globalThis.request
@@ -197,7 +197,7 @@ export const support: Command = {
 
 let Flight = false
 export const fly: Command = {
-	description: "Toggles fly mode.",
+	description: "Toggles fly mode. [fly speed?:number",
 	async execute(args) {
 		const Character = Player.Character
 		assert(Character, "Character not found")
@@ -211,7 +211,7 @@ export const fly: Command = {
 }
 
 export const fish: Command = {
-	description: "flop like a fish",
+	description: "flop like a fish [fish",
 	async execute() {
 		const Character = Player.Character
 		assert(Character, "Character not found")
@@ -255,7 +255,7 @@ export const fish: Command = {
 }
 
 export const trollsmile: Command = {
-	description: "trollsmile winning",
+	description: "trollsmile winning [trollsmile",
 	execute: () => {
 		play("rbxassetid://6345755361")
 		return Promise.delay(1.5)
@@ -263,7 +263,7 @@ export const trollsmile: Command = {
 }
 
 export const respawn: Command = {
-	description: "Respawns you.",
+	description: "Respawns you. [respawn",
 	async execute() {
 		const char = Player.Character
 		char?.FindFirstChildOfClass("Humanoid")?.ChangeState("Dead")
@@ -277,7 +277,7 @@ export const respawn: Command = {
 }
 
 export const joincode: Command = {
-	description: "copies a markdown message with links to join your server",
+	description: "copies a markdown message with links to join your server [joincode",
 	execute() {
 		assert(setclipboard, "you need to be able to set the clipboard")
 		return join_code().then(setclipboard ?? print)
@@ -286,7 +286,7 @@ export const joincode: Command = {
 
 let Swim = false
 export const swim: Command = {
-	description: "swim like a fish",
+	description: "swim like a fish [swim",
 	async execute() {
 		const Character = Player.Character
 		const Humanoid = Character?.FindFirstChildWhichIsA("Humanoid")
@@ -332,7 +332,7 @@ Roact.mount(
 	HttpService.GenerateGUID()
 )
 export const invisible: Command = {
-	description: "Become invisible",
+	description: "Become invisible [invisible speed?:number",
 	async execute(args) {
 		const Character = Player.Character as Model
 		assert(Character, "you need a character")
@@ -372,7 +372,7 @@ export const invisible: Command = {
 }
 
 export const speed: Command = {
-	description: "set speed",
+	description: "set speed [speed walkSpeed?:number",
 	async execute(args) {
 		const walkspeed = tonumber(args[0])
 		const character = Player.Character
@@ -383,7 +383,7 @@ export const speed: Command = {
 }
 
 export const jump: Command = {
-	description: "set jump power",
+	description: "set jump power [jump jumpPower?:number",
 	async execute(args) {
 		const jumpPower = tonumber(args[0])
 		const character = Player.Character

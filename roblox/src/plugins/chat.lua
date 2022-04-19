@@ -16,7 +16,7 @@ return function(util)
 		Author = "trollar",
 		Commands = {
 			chatlogger = {
-				description = "toggles a chat logger gui. Lo!",
+				description = "toggles a chat logger gui. Lo! [chatlogger",
 				execute = function()
 					if frame then 
 						for _, event in pairs(events) do
