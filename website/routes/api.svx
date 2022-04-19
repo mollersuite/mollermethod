@@ -19,14 +19,13 @@ local util = ...
 ### `util.notify`
 
 ```ts
-util.notify(options: {
-	this: void,
+util.notify(
 	name: string,
 	description: string,
 	icon: "Error" | "Info" | "Success" | "Warning",
 	duration: number,
 	callback?: Callback
-}) => void
+) => void
 ```
 
 Displays a notification.
