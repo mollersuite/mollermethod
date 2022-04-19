@@ -104,7 +104,7 @@ export default hooked<{ button: Enum.KeyCode; test?: boolean }>(({ button, test 
 				}}>
 				{/* Add an invisible button to activate Modal. Fuck you, Roblox. */}
 				<textbutton
-					Modal
+					Modal={shown}
 					Size={new UDim2()}
 					BorderSizePixel={0}
 					TextTransparency={1}
