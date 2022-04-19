@@ -13,13 +13,14 @@ const Button = pure<{
 	Image: string
 	LayoutOrder?: number
 	Activated?: (rbx: TextButton, input: InputObject, clickCount: number) => unknown
-}>(({ Text, Activated, Image, LayoutOrder }) => {
+	Accent?: boolean
+}>(({ Text, Activated, Image, LayoutOrder, Accent }) => {
 	const [hovered, setHovered] = useState(false)
 	const [active, setActive] = useState(false)
 
 	return (
 		<textbutton
-			BackgroundColor3={colors.BLACK}
+			BackgroundColor3={Accent ? colors.ACCENT : colors.BLACK}
 			Text=""
 			LayoutOrder={LayoutOrder}
 			Event={{
@@ -149,6 +150,7 @@ export = pure<{ container: Instance }>(({ container }) => {
 				Image="rbxassetid://9370016791"
 				LayoutOrder={4}
 				Activated={() => page_to(<Mollybdos />)}
+				Accent={Page.component === Mollybdos}
 			/>
 			<Button Text="Scripts" Image="rbxassetid://9369994718" LayoutOrder={5} />
 			{/* START "the ones that will be in localplayer when thats added" section */}
