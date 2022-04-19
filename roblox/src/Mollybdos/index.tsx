@@ -24,7 +24,7 @@ const PlayerList = pure(
 
 		return (
 			<scrollingframe
-				Size={UDim2.fromScale(0.4, 1)}
+				Size={new UDim2(0, 300, 1, 0)}
 				BorderSizePixel={0}
 				BackgroundColor3={colors.WHITE}
 				BackgroundTransparency={0.7}
