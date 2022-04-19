@@ -1,4 +1,5 @@
 export const QUOTES = [
+	'"lol i manged [sic] to run synapse x on chromebook" - coolkidkumd, 2022 (it did not work)',
 	`"I made a token logger in Python and I can't get it past Defender" - Creepdasheep, 2022`,
 	'"Is it possible to use your gui script stuff on Xbox ?" - JFK#1292, 2022',
 	'"how can i do meth" - Charlie, 2022',
