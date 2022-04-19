@@ -82,8 +82,9 @@ export = pure(() => {
 
 	return (
 		<frame
-			Position={UDim2.fromOffset(10, 84)}
-			Size={UDim2.fromOffset(400, 300)}
+			Position={new UDim2(0.5, 0, 1, -150)}
+			Size={UDim2.fromOffset(960, 300)}
+			AnchorPoint={new Vector2(0.5, 1)}
 			BackgroundColor3={colors.BLACK}
 			BorderSizePixel={0}>
 			<uilistlayout FillDirection="Horizontal" />

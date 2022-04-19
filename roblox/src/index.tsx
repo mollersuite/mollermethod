@@ -5,7 +5,7 @@ import Roact from "@rbxts/roact"
 import Bracket from "Bracket"
 import BracketExternal from "Bracket/external"
 import Notification from "Notification"
-import Trendsetter from "Trendsetter"
+import Expletive from "Expletive"
 import Snapdragon from "@rbxts/snapdragon"
 import iy_to_bracket from "Bracket/iy"
 import colors from "colors"
@@ -13,7 +13,6 @@ import AdminBail from "bail"
 
 import type { Plugin } from "types"
 import type { IYConfig } from "Bracket/iy/types"
-import Expletive from "Trendsetter/Expletive"
 
 declare const script: ModuleScript & {
 	plugins: Folder
@@ -94,8 +93,7 @@ class mollermethod {
 							button={this.config.bracket_toggle ?? Enum.KeyCode.LeftBracket}
 						/>
 					)}
-					<Trendsetter Key="Menu" />
-					<Expletive Key="Taskbar" />
+					<Expletive Key="Taskbar" container={this.container} />
 				</Kill.Provider>
 				{/* Services */}
 				<AdminBail container={this.notif_holder} />

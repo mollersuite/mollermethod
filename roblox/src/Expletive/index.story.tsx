@@ -1,7 +1,7 @@
 import Roact from "@rbxts/roact"
-import Expletive from "./Expletive"
+import Expletive from "."
 
 export = (target: Frame) => {
-	const tree = Roact.mount(<Expletive />, target)
+	const tree = Roact.mount(<Expletive container={target} />, target)
 	return () => Roact.unmount(tree)
 }

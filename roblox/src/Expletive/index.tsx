@@ -6,6 +6,7 @@ import { toggle as bracket_shown } from "Bracket"
 import { join_code, Kill } from "util"
 import { rejoin, respawn } from "Bracket/commands"
 import { Spring } from "@rbxts/flipper"
+import Mollybdos from "Mollybdos"
 // let count = 0
 const Button = pure<{
 	Text: string
@@ -68,10 +69,21 @@ const Button = pure<{
 	)
 })
 const spring = (n: number) => new Spring(n, { dampingRatio: 1, frequency: 2 })
-export = pure(() => {
+export = pure<{ container: Instance }>(({ container }) => {
 	const [closed, setOpen] = useSingleMotor(1)
 	const [transparency, setTransparency] = useSingleMotor(0.7)
+	const [Page, setPage] = useState<Roact.Element>(<></>)
+
+	function page_to(component: typeof Page) {
+		if (Page.component === component.component) {
+			setPage(<></>)
+		} else {
+			setPage(component)
+		}
+	}
+
 	useEffect(() => setOpen(spring(0)), [])
+
 	return (
 		<frame
 			Event={{
@@ -132,7 +144,12 @@ export = pure(() => {
 					/>
 				)}
 			/>
-			<Button Text="Players" Image="rbxassetid://9370016791" LayoutOrder={4} />
+			<Button
+				Text="Players"
+				Image="rbxassetid://9370016791"
+				LayoutOrder={4}
+				Activated={() => page_to(<Mollybdos />)}
+			/>
 			<Button Text="Scripts" Image="rbxassetid://9369994718" LayoutOrder={5} />
 			{/* START "the ones that will be in localplayer when thats added" section */}
 			<Button
@@ -164,6 +181,7 @@ export = pure(() => {
 				Font="RobotoMono"
 				TextColor3={colors.WHITE}
 			/> */}
+			<Roact.Portal target={container}>{Page}</Roact.Portal>
 		</frame>
 	)
 })
