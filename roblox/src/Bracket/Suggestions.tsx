@@ -4,7 +4,7 @@ import { escape_lua_pattern, Plugins } from "util"
 import type { Plugin, Action } from "types"
 import * as actions from "actions"
 import * as commands from "./commands"
-import { Players, UserInputService } from "@rbxts/services"
+import { Players } from "@rbxts/services"
 import Object from "@rbxts/object-utils"
 import { pure, useContext } from "@rbxts/roact-hooked"
 
@@ -38,10 +38,8 @@ const plugins_to_actions = (plugins: Plugin[]): NonNullable<Plugin["Actions"]> =
 const plugins_to_commands = (plugins: Plugin[]): NonNullable<Plugin["Commands"]> =>
 	Object.assign({}, ...plugins.mapFiltered(plugin => plugin.Commands))
 
-export = pure(({ Text: text, KeyCode: button }: { Text: string; KeyCode: Enum.KeyCode }) => {
+export = pure(({ Text: text }: { Text: string }) => {
 	const plugins = useContext(Plugins)
-	const escaped =
-		text.sub(1, 1) === UserInputService.GetStringForKeyCode(button) ? text.sub(2) : text
 
 	return (
 		<>
@@ -56,7 +54,7 @@ export = pure(({ Text: text, KeyCode: button }: { Text: string; KeyCode: Enum.Ke
 					enabled: () => true,
 				})),
 			]
-				.filter(cmd => cmd.name.match("^" + escape_lua_pattern(escaped))[0] !== undefined)
+				.filter(cmd => cmd.name.match("^" + escape_lua_pattern(text))[0] !== undefined)
 				.map(({ name, action = false, description, display, enabled = () => true }) => {
 					return (
 						<frame
@@ -72,7 +70,7 @@ export = pure(({ Text: text, KeyCode: button }: { Text: string; KeyCode: Enum.Ke
 								PaddingBottom={new UDim(0, 8)}
 							/>
 							<textlabel
-								Text={`<b>${text}</b>${name.sub(escaped.size() + 1)}`}
+								Text={`<b>${text}</b>${name.sub(text.size() + 1)}`}
 								TextSize={11}
 								Font="Gotham"
 								RichText

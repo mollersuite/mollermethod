@@ -39,6 +39,8 @@ export default hooked<{ button: Enum.KeyCode; test?: boolean }>(({ button, test 
 				setShown(true)
 				play("rbxassetid://8458409341") // windows 11 hardware connect
 				box.getValue()!.CaptureFocus()
+				task.wait()
+				box.getValue()!.Text = ''
 			}
 		})
 		return () => input_began.Disconnect()
@@ -94,9 +96,7 @@ export default hooked<{ button: Enum.KeyCode; test?: boolean }>(({ button, test 
 							play("rbxassetid://8926096648") // windows 11 hardware disconnect
 							return
 						}
-						if (rbx.Text.sub(1, 1) === UserInputService.GetStringForKeyCode(button)) {
-							execute(rbx.Text.sub(2), plugins)
-						} else execute(rbx.Text, plugins)
+						execute(text, plugins)
 					},
 				}}
 				Change={{
@@ -137,7 +137,7 @@ export default hooked<{ button: Enum.KeyCode; test?: boolean }>(({ button, test 
 					/>
 				</uistroke>
 			</textbox>
-			<Suggestions Text={text} KeyCode={button} />
+			<Suggestions Text={text} />
 		</scrollingframe>
 	)
 })

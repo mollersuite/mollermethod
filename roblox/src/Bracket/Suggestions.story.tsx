@@ -11,7 +11,7 @@ export = (target: Frame) => {
 				VerticalAlignment="Top"
 				Padding={new UDim(0, 10)}
 			/>
-			<Suggestions Text="re" KeyCode={Enum.KeyCode.LeftBracket} />
+			<Suggestions Text="re" />
 		</Plugins.Provider>,
 		target
 	)
