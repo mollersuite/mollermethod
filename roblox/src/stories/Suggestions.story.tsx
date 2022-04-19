@@ -1,6 +1,6 @@
 import Roact from "@rbxts/roact"
 import { Plugins } from "util"
-import Suggestions from "./Suggestions"
+import Suggestions from "Bracket/Suggestions"
 
 export = (target: Frame) => {
 	const tree = Roact.mount(
