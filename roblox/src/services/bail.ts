@@ -70,5 +70,6 @@ export = pure<{ container: Instance }>(({ container }) => {
 		})
 		return () => ev.Disconnect()
 	}, [])
-	return <></>
+	
+	return Roact.createFragment()
 })

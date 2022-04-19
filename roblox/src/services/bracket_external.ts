@@ -1,7 +1,7 @@
 import Roact from "@rbxts/roact"
 import { pure, useContext, useEffect } from "@rbxts/roact-hooked"
 import { Plugins } from "util"
-import run from "./run"
+import run from "../Bracket/run"
 
 const title = rconsolename ?? rconsolesettitle
 
@@ -39,5 +39,5 @@ export = pure(() => {
 		}
 	}, [])
 
-	return <></>
+	return Roact.createFragment()
 })

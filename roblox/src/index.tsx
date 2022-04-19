@@ -2,14 +2,18 @@ import { Debris, HttpService, RunService, TweenService, UserInputService } from 
 import { Kill, play, random, Plugins, set_volume, asset } from "util"
 import { QUOTES } from "strings"
 import Roact from "@rbxts/roact"
-import Bracket from "Bracket"
-import BracketExternal from "Bracket/external"
 import Notification from "Notification"
-import Expletive from "Expletive"
 import Snapdragon from "@rbxts/snapdragon"
 import iy_to_bracket from "Bracket/iy"
 import colors from "colors"
-import AdminBail from "bail"
+
+// Components
+import Bracket from "Bracket"
+import Expletive from "Expletive"
+
+// "Services" (Components that don't display anything)
+import AdminBail from "services/bail"
+import BracketExternal from "services/bracket_external"
 
 import type { Plugin } from "types"
 import type { IYConfig } from "Bracket/iy/types"
