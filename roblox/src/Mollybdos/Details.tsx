@@ -1,6 +1,6 @@
 import Roact from "@rbxts/roact"
 import Object from "@rbxts/object-utils"
-import { pure, useContext, useEffect, useState } from "@rbxts/roact-hooked"
+import { hooked, useContext, useEffect, useState } from "@rbxts/roact-hooked"
 import colors from "colors"
 import tags_of, { Tags } from "./tags"
 import { Plugins } from "util"
@@ -22,7 +22,7 @@ import type { Action } from "types"
 that part of mollybdos
 */
 
-const TagList = pure(({ tags }: { tags: Tags }) => {
+const TagList = hooked(({ tags }: { tags: Tags }) => {
 	if (tags.filter(tag => tag.score !== 0).isEmpty()) return <></>
 	return (
 		<scrollingframe
@@ -60,7 +60,7 @@ const TagList = pure(({ tags }: { tags: Tags }) => {
 	)
 })
 
-const Actions = pure(({ player }: { player: Player }) => {
+const Actions = hooked(({ player }: { player: Player }) => {
 	const plugins = useContext(Plugins)
 
 	return (
@@ -92,10 +92,10 @@ const Actions = pure(({ player }: { player: Player }) => {
 	)
 })
 
-export = pure(({ selected }: { selected?: Player }) => {
+export = hooked(({ selected }: { selected?: Player }) => {
 	if (!selected) {
 		return (
-			<frame Size={new UDim2(0, 660, 1, 0)} BackgroundTransparency={1} BorderSizePixel={0}>
+			<frame Size={new UDim2(1, 0, 1, -50)} BackgroundTransparency={1} BorderSizePixel={0}>
 				<textlabel
 					AnchorPoint={new Vector2(0.5, 0.5)}
 					Position={UDim2.fromScale(0.5, 0.5)}
@@ -121,7 +121,7 @@ export = pure(({ selected }: { selected?: Player }) => {
 	}, [selected])
 	return (
 		<scrollingframe
-			Size={new UDim2(0, 660, 1, 0)}
+			Size={new UDim2(1, 0, 1, -50)}
 			BackgroundTransparency={1}
 			BorderSizePixel={0}
 			ClipsDescendants
