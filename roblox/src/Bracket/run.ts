@@ -39,7 +39,7 @@ export default async (cmd: string, plugins: Plugin[] = []) => {
 			if (action.enabled && !action.enabled()) {
 				play("rbxassetid://8458408918") // fail since its not enabled
 			} else {
-				const players = get_players(args.join(" "))
+				const players = args.isEmpty() ? [LocalPlayer] : get_players(args.join(" "))
 				Promise.all(players.map(plr => action.execute(plr) ?? Promise.resolve()))
 					.andThenCall(play, "rbxassetid://8503529139") // succeed because it ran on everyone
 					.catch(
