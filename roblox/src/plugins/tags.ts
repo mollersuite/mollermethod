@@ -1,5 +1,5 @@
 import { GroupService, Players } from "@rbxts/services"
-import { PluginUtil, Plugin } from "types"
+import type { Plugin } from "types"
 
 async function accessory(
 	Player: Player,

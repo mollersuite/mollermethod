@@ -2,7 +2,6 @@ import { play } from "util"
 import type { Plugin } from "types"
 import { Players } from "@rbxts/services"
 import * as commands from "./commands"
-import * as actions from "actions"
 
 const LocalPlayer = Players.LocalPlayer
 
@@ -28,7 +27,7 @@ export default async (cmd: string, plugins: Plugin[] = []) => {
 		const [cmd = commands[name as keyof typeof commands]] = plugins.mapFiltered(
 			plugin => plugin.Commands?.[name]
 		)
-		const [action = actions[name as keyof typeof actions]] = plugins.mapFiltered(
+		const [action] = plugins.mapFiltered(
 			plugin => plugin.Actions?.[name]
 		)
 		if (cmd) {

@@ -2,7 +2,6 @@ import Roact from "@rbxts/roact"
 import colors from "colors"
 import { escape_lua_pattern, Plugins } from "util"
 import type { Plugin, Action } from "types"
-import * as actions from "actions"
 import * as commands from "./commands"
 import { Players } from "@rbxts/services"
 import Object from "@rbxts/object-utils"
@@ -30,7 +29,6 @@ const cmds: {
 		action: false,
 		enabled: () => true,
 	})),
-	...Object.entries(actions).map(map_action),
 ]
 
 const plugins_to_actions = (plugins: Plugin[]): NonNullable<Plugin["Actions"]> =>

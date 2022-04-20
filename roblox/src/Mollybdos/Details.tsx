@@ -2,9 +2,9 @@ import Roact from "@rbxts/roact"
 import Object from "@rbxts/object-utils"
 import { pure, useContext, useEffect, useState } from "@rbxts/roact-hooked"
 import colors from "colors"
-import * as actions from "actions"
 import tags_of, { Tags } from "./tags"
 import { Plugins } from "util"
+import type { Action } from "types"
 
 /*
 /------------------------------\
@@ -69,9 +69,8 @@ const Actions = pure(({ player }: { player: Player }) => {
 			{Object.entries(
 				Object.assign(
 					{},
-					actions,
 					...plugins.mapFiltered(plugin => plugin.Actions)
-				) as typeof actions
+				) as Record<string, Action>
 			).map(([name, action]) => (
 				<textbutton
 					Key={name}
