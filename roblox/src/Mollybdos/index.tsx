@@ -65,14 +65,12 @@ const PlayerList = hooked(
 				Size={new UDim2(1, 0, 0, 50)}
 				Position={UDim2.fromOffset(0, 250)}
 				BorderSizePixel={0}
-				BackgroundColor3={colors.WHITE}
 				BackgroundTransparency={1}
 				ClipsDescendants
 				AutomaticCanvasSize="X"
 				CanvasSize={UDim2.fromScale(1, 0)}
 				ScrollBarThickness={5}>
 				<uipadding PaddingLeft={new UDim(0, 10)} PaddingRight={new UDim(0, 10)} />
-				<uicorner CornerRadius={new UDim(0, 10)} />
 				<uilistlayout
 					FillDirection={Enum.FillDirection.Horizontal}
 					HorizontalAlignment={Enum.HorizontalAlignment.Left}
@@ -106,6 +104,7 @@ export = hooked(() => {
 			AnchorPoint={new Vector2(0.5, 1)}
 			BackgroundColor3={colors.BLACK}
 			BorderSizePixel={0}>
+			<uicorner CornerRadius={new UDim(0, 10)} />
 			<Details selected={selected} />
 			<PlayerList selected={selected} setSelected={setSelected} />
 		</frame>
