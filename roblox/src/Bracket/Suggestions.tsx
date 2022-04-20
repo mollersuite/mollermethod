@@ -13,6 +13,7 @@ const map_action = ([name, action]: [string, Action]) => ({
 	action: true,
 	...action,
 	enabled: Players.LocalPlayer ? action.enabled : () => true,
+	description: action.description + ` [${name} victims:player`,
 })
 
 const cmds: {
