@@ -26,7 +26,7 @@ export interface PluginUtil {
 		duration: number,
 		callback?: Callback
 	) => unknown
-	GUI: ScreenGui
+	GUI: Instance
 	colors: typeof import("colors")['default']
 	Snapdragon: typeof import("@rbxts/snapdragon")
 }
