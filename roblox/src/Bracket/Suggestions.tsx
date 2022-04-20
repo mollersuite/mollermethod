@@ -2,7 +2,6 @@ import Roact from "@rbxts/roact"
 import colors from "colors"
 import { escape_lua_pattern, Plugins } from "util"
 import type { Plugin, Action } from "types"
-import * as commands from "./commands"
 import { Players } from "@rbxts/services"
 import Object from "@rbxts/object-utils"
 import { pure, useContext } from "@rbxts/roact-hooked"
@@ -14,22 +13,6 @@ const map_action = ([name, action]: [string, Action]) => ({
 	enabled: Players.LocalPlayer ? action.enabled : () => true,
 	description: action.description + ` [${name} victims:player`,
 })
-
-const cmds: {
-	name: string
-	display?: string
-	description: string
-	action?: boolean
-	enabled?: () => boolean
-}[] = [
-	...Object.entries(commands).map(([name, command]) => ({
-		name,
-		display: name.sub(1, 1).upper() + name.sub(2),
-		description: command.description,
-		action: false,
-		enabled: () => true,
-	})),
-]
 
 const plugins_to_actions = (plugins: Plugin[]): NonNullable<Plugin["Actions"]> =>
 	Object.assign({}, ...plugins.mapFiltered(plugin => plugin.Actions))
@@ -43,7 +26,6 @@ export = pure(({ Text: text }: { Text: string }) => {
 	return (
 		<>
 			{[
-				...cmds,
 				...Object.entries(plugins_to_actions(plugins)).map(map_action),
 				...Object.entries(plugins_to_commands(plugins)).map(([name, command]) => ({
 					name: name,

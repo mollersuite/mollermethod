@@ -4,7 +4,7 @@ import { useSingleMotor, useSpring } from "@rbxts/roact-hooked-plus"
 import colors from "colors"
 import { toggle as bracket_shown } from "Bracket"
 import { join_code, Kill } from "util"
-import { rejoin, respawn } from "Bracket/commands"
+// import { rejoin, respawn } from "Bracket/commands"
 import { Spring } from "@rbxts/flipper"
 import Mollybdos from "Mollybdos"
 // let count = 0
@@ -160,7 +160,7 @@ export = pure<{ container: Instance }>(({ container }) => {
 				Image="rbxassetid://9377140521"
 				Activated={() => join_code().then(setclipboard ?? print)}
 			/>
-			<Button
+			{/* <Button
 				Text="Respawn"
 				LayoutOrder={7}
 				Image="rbxassetid://9380799867"
@@ -171,7 +171,7 @@ export = pure<{ container: Instance }>(({ container }) => {
 				LayoutOrder={8}
 				Image="rbxassetid://9380809978"
 				Activated={() => rejoin.execute([])}
-			/>
+			/> */}
 			{/* END */}
 			<Button Text="Settings" Image="rbxassetid://9369994833" LayoutOrder={9} />
 			{/* <textlabel
