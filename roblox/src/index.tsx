@@ -15,7 +15,7 @@ import Expletive from "Expletive"
 import AdminBail from "services/bail"
 import BracketExternal from "services/bracket_external"
 
-import type { Plugin } from "types"
+import type { Plugin, PluginUtil } from "types"
 import type { IYConfig } from "Bracket/iy/types"
 
 declare const script: ModuleScript & {
@@ -134,14 +134,9 @@ class mollermethod {
 	}
 
 	async load_plugins() {
-		const util = {
-			notify: (
-				name: string,
-				description: string,
-				icon: "Error" | "Info" | "Success" | "Warning",
-				duration: number,
-				callback?: Callback
-			) => new Notification(name, description, icon, duration, this.notif_holder, callback),
+		const util: PluginUtil = {
+			notify: (name, description, icon, duration, callback) =>
+				new Notification(name, description, icon, duration, this.notif_holder, callback),
 			GUI: this.container,
 			colors,
 			Snapdragon,
@@ -163,10 +158,8 @@ class mollermethod {
 		await Promise.allSettled(
 			script.plugins.GetDescendants().map(async module => {
 				if (module.IsA("ModuleScript")) {
-					const plugin = require(module) as (opts: any) => Plugin
+					const plugin = require(module) as (opts: PluginUtil) => Plugin
 					this.plugins.push(plugin(util))
-				} else {
-					return
 				}
 			})
 		)

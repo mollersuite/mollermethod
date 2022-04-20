@@ -17,3 +17,16 @@ export interface Plugin {
 	readonly Actions?: Record<string, Action>
 	readonly Commands?: Record<string, Command>
 }
+
+export interface PluginUtil {
+	notify: (
+		name: string,
+		description: string,
+		icon: "Error" | "Info" | "Success" | "Warning",
+		duration: number,
+		callback?: Callback
+	) => unknown
+	GUI: ScreenGui
+	colors: typeof import("colors")['default']
+	Snapdragon: typeof import("@rbxts/snapdragon")
+}
