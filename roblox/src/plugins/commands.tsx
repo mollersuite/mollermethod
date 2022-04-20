@@ -1,8 +1,16 @@
-import { HttpService, TeleportService, Players, Workspace, UserInputService } from "@rbxts/services"
+import {
+	HttpService,
+	TeleportService,
+	Players,
+	Workspace,
+	UserInputService,
+	RunService,
+} from "@rbxts/services"
 import { join_code, play } from "util"
 import Roact from "@rbxts/roact"
 import FlyService from "Bracket/Flight"
 import type { Plugin, PluginUtil } from "types"
+import colors from "colors"
 
 const Player = Players.LocalPlayer
 
@@ -10,20 +18,12 @@ export = (util: PluginUtil): Plugin => {
 	let Flight = false
 	let Swim = false
 	let Invisible = false
-	const block = new Instance("Part")
-	block.Shape = Enum.PartType.Cylinder
+	const block = new Instance("ConeHandleAdornment", game.GetService("CoreGui"))
+	block.Adornee = Workspace.Terrain
 	block.Name = HttpService.GenerateGUID()
-	Roact.mount(
-		<billboardgui ResetOnSpawn={false} Adornee={block} Size={UDim2.fromScale(2, 2)}>
-			<imagelabel
-				Size={UDim2.fromScale(1, 1)}
-				Image="rbxassetid://7037156897"
-				BackgroundTransparency={1}
-			/>
-		</billboardgui>,
-		block,
-		HttpService.GenerateGUID()
-	)
+	block.Visible = false
+	block.Color3 = colors.ACCENT
+
 	return {
 		Name: "Built-in commands",
 		Author: "mollersuite",
@@ -217,21 +217,17 @@ export = (util: PluginUtil): Plugin => {
 						assert(humanoid, "you need a humanoid")
 						const root = humanoid.RootPart
 						assert(root, "you need a root part")
-						block.Size = Vector3.one
-						block.Anchored = false
-						block.CanCollide = false
-						block.Massless = false
+						block.Visible = true
 						block.CFrame = root.CFrame
-						block.Parent = Workspace
-
+						const fake = new Instance("Part")
+						fake.Anchored = true
 						FlyService(true, block, tonumber(args[0]))
-
 						Character.PivotTo(new CFrame(Vector3.one.mul(1000), Vector3.zero))
-						task.spawn(() => {
-							task.wait(1)
-							root.Anchored = true
+						block.GetPropertyChangedSignal("CFrame").Connect(() => {
+							fake.CFrame = block.CFrame
 						})
-						Workspace.CurrentCamera!.CameraSubject = block
+						task.delay(1, () => (root.Anchored = true))
+						Workspace.CurrentCamera!.CameraSubject = fake
 					} else {
 						FlyService(false, block)
 						const humanoid = Character?.FindFirstChildWhichIsA("Humanoid")
@@ -241,7 +237,8 @@ export = (util: PluginUtil): Plugin => {
 						root.Anchored = false
 						Character.PivotTo(block.CFrame)
 						Workspace.CurrentCamera!.CameraSubject = humanoid
-						block.CFrame = new CFrame(Vector3.one.mul(9e9), Vector3.zero)
+
+						block.Visible = false
 					}
 				},
 			},
