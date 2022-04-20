@@ -16,7 +16,6 @@ import LocalBar from "LocalBar"
 const spring = (n: number) => new Spring(n, { dampingRatio: 1, frequency: 2 })
 export = pure<{ container: Instance }>(({ container }) => {
 	const [closed, setOpen] = useSingleMotor(1)
-	const [transparency, setTransparency] = useSingleMotor(0.7)
 	const [Page, setPage] = useState<Roact.Element>(<></>)
 
 	function page_to(component: typeof Page) {
@@ -31,11 +30,7 @@ export = pure<{ container: Instance }>(({ container }) => {
 
 	return (
 		<frame
-			Event={{
-				MouseEnter: () => setTransparency(spring(0.5)),
-				MouseLeave: () => setTransparency(spring(0.7)),
-			}}
-			BackgroundTransparency={transparency}
+			BackgroundTransparency={0.5}
 			BorderSizePixel={0}
 			BackgroundColor3={colors.BLACK}
 			Position={closed.map(n => new UDim2(0.5, 0, 1, -50).Lerp(new UDim2(0.5, 0, 0, 50), n))}
