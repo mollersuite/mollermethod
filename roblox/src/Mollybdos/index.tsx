@@ -101,7 +101,7 @@ export = hooked(() => {
 
 	return (
 		<frame
-			Position={new UDim2(0.5, 0, 1, -150)}
+			Position={new UDim2(0.5, 0, 1, -110)}
 			Size={UDim2.fromOffset(960, 300)}
 			AnchorPoint={new Vector2(0.5, 1)}
 			BackgroundColor3={colors.BLACK}
