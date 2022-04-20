@@ -4,9 +4,9 @@ import { useSpring } from "@rbxts/roact-hooked-plus"
 import colors from "colors"
 
 export = pure<{
-	Text: string
-	Image: string
-	LayoutOrder?: number
+	Text: string | Roact.Binding<string>
+	Image: string | Roact.Binding<string>
+	LayoutOrder?: number | Roact.Binding<number>
 	Activated?: (rbx: TextButton, input: InputObject, clickCount: number) => unknown
 	Accent?: boolean
 }>(({ Text, Activated, Image, LayoutOrder, Accent }) => {
@@ -40,7 +40,8 @@ export = pure<{
 				Position={UDim2.fromScale(0, 0.5)}
 				Image={Image}
 				ImageColor3={colors.WHITE}
-				ScaleType="Fit" />
+				ScaleType="Fit"
+			/>
 			<textlabel
 				AutomaticSize="X"
 				TextXAlignment="Left"
@@ -58,7 +59,8 @@ export = pure<{
 				})}
 				TextTransparency={useSpring(hovered ? 0 : 1, {
 					dampingRatio: 1,
-				})} />
+				})}
+			/>
 		</textbutton>
 	)
 })

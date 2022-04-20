@@ -1,9 +1,40 @@
 import Roact from "@rbxts/roact"
-import { useEffect, useState, Dispatch, hooked } from "@rbxts/roact-hooked"
+import { useEffect, useState, Dispatch, hooked, useBinding } from "@rbxts/roact-hooked"
 import { Players } from "@rbxts/services"
 import Button from "Button"
 import colors from "colors"
 import Details from "./Details"
+
+const Player = hooked<{
+	Player: Player
+	selected?: Player
+	setSelected: Dispatch<Player | undefined>
+}>(({ Player: player, setSelected, selected }) => {
+	const [icon, setIcon] = useBinding("rbxassetid://9417608010")
+	useEffect(() => {
+		task.defer(() => {
+			setIcon(
+				Players.GetUserThumbnailAsync(
+					player.UserId,
+					Enum.ThumbnailType.HeadShot,
+					Enum.ThumbnailSize.Size48x48
+				)[0]
+			)
+		})
+	}, [])
+	return (
+		<Button
+			Image={icon}
+			Activated={() => setSelected(player)}
+			Text={
+				player.DisplayName !== player.Name
+					? `${player.DisplayName}\n(@${player.Name})`
+					: player.Name
+			}
+			Accent={player === selected}
+		/>
+	)
+})
 
 const PlayerList = hooked(
 	({
@@ -41,6 +72,7 @@ const PlayerList = hooked(
 				CanvasSize={UDim2.fromScale(1, 0)}
 				ScrollBarThickness={5}>
 				<uipadding PaddingLeft={new UDim(0, 10)} PaddingRight={new UDim(0, 10)} />
+				<uicorner CornerRadius={new UDim(0, 10)} />
 				<uilistlayout
 					FillDirection={Enum.FillDirection.Horizontal}
 					HorizontalAlignment={Enum.HorizontalAlignment.Left}
@@ -48,22 +80,7 @@ const PlayerList = hooked(
 					Padding={new UDim(0, 10)}
 				/>
 				{players.map(player => (
-					<Button
-						Image={
-							Players.GetUserThumbnailAsync(
-								player.UserId,
-								Enum.ThumbnailType.HeadShot,
-								Enum.ThumbnailSize.Size48x48
-							)[0]
-						}
-						Activated={() => setSelected(player)}
-						Text={
-							player.DisplayName !== player.Name
-								? `${player.DisplayName}\n(@${player.Name})`
-								: player.Name
-						}
-						Accent={player === selected}
-					/>
+					<Player Player={player} selected={selected} setSelected={setSelected} />
 				))}
 			</scrollingframe>
 		)
