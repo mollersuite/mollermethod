@@ -24,6 +24,7 @@ const Player = hooked<{
 	}, [])
 	return (
 		<Button
+			Key={player.DisplayName}
 			Image={icon}
 			Activated={() => setSelected(player)}
 			Text={
@@ -68,13 +69,14 @@ const PlayerList = hooked(
 				BackgroundTransparency={1}
 				ClipsDescendants
 				AutomaticCanvasSize="X"
-				CanvasSize={UDim2.fromScale(1, 0)}
-				ScrollBarThickness={5}>
+				CanvasSize={UDim2.fromScale(10, 0)}
+				ScrollBarThickness={1}>
 				<uipadding PaddingLeft={new UDim(0, 10)} PaddingRight={new UDim(0, 10)} />
 				<uilistlayout
-					FillDirection={Enum.FillDirection.Horizontal}
-					HorizontalAlignment={Enum.HorizontalAlignment.Left}
-					VerticalAlignment={Enum.VerticalAlignment.Center}
+					SortOrder="Name"
+					FillDirection="Horizontal"
+					HorizontalAlignment="Left"
+					VerticalAlignment="Center"
 					Padding={new UDim(0, 10)}
 				/>
 				{players.map(player => (
