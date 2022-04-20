@@ -26,37 +26,14 @@ export = (): Plugin => ({
 		},
 
 		fling: {
-			description: "Make 'em fly. Requires either CanCollide or mollerpotence",
+			description: "Make 'em fly. Requires CanCollide",
 			enabled: () => {
-				if (mollerpotence.remote) {
-					return true
-				} else {
-					const torso =
+				const torso =
 						LocalPlayer.Character?.FindFirstChild("UpperTorso") ??
 						LocalPlayer.Character?.FindFirstChild("Torso")
 					return (torso?.IsA("BasePart") && torso?.CanCollide) ?? false
-				}
 			},
 			async execute(victim) {
-				if (mollerpotence.remote) {
-					// Adapted from https://github.com/Sceleratis/Adonis/blob/7782a751c42b7731f38ac723af29ed75ce2e4842/MainModule/Server/Commands/Moderators.lua#L5395
-					// THIS HAS TO BE RAN ON THE SERVER SIDE
-					// it's here for reference when i implement mollerpotence
-					// const humanoid = victim.Character?.FindFirstChildOfClass("Humanoid")
-					// const root = humanoid?.RootPart
-					// if (humanoid) humanoid.Sit = true
-					// if (root) root.Velocity = Vector3.zero
-					// let xran: number, zran: number
-					// do {
-					// 	xran = math.random(-9999, 9999)
-					// } while (math.abs(xran) < 5555)
-					// do {
-					// 	zran = math.random(-9999, 9999)
-					// } while (math.abs(zran) < 5555)
-					// const frc = new Instance("BodyForce", root)
-					// frc.Force = new Vector3(xran*4, 9999*5, zran*4)
-					// Debris.AddItem(frc, 0.1)
-				} else {
 					const victim_char = victim.Character
 					assert(victim_char, "Victim has no character")
 					const victim_humanoid = victim_char.FindFirstChildWhichIsA("Humanoid")
@@ -100,7 +77,6 @@ export = (): Plugin => ({
 						HumanoidConnection.Disconnect()
 						VictimConnection.Disconnect()
 					})
-				}
 			},
 		},
 
