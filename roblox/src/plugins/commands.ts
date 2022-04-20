@@ -1,13 +1,5 @@
-import {
-	HttpService,
-	TeleportService,
-	Players,
-	Workspace,
-	UserInputService,
-	RunService,
-} from "@rbxts/services"
+import { HttpService, TeleportService, Players, Workspace, UserInputService } from "@rbxts/services"
 import { join_code, play } from "util"
-import Roact from "@rbxts/roact"
 import FlyService from "Bracket/Flight"
 import type { Plugin, PluginUtil } from "types"
 import colors from "colors"
@@ -31,16 +23,12 @@ export = (util: PluginUtil): Plugin => {
 			molly: {
 				description: "the dog",
 				execute: () => {
-					Roact.mount(
-						<imagelabel
-							Size={UDim2.fromScale(1, 1)}
-							BackgroundTransparency={1}
-							BorderSizePixel={0}
-							ZIndex={-1}
-							Image="7037156897"
-						/>,
-						util.GUI
-					)
+					const molly = new Instance("ImageLabel", util.GUI)
+					molly.Image = "rbxassetid://7037156897"
+					molly.Size = UDim2.fromScale(1, 1)
+					molly.BackgroundTransparency = 1
+					molly.ZIndex = -1
+					molly.BorderSizePixel = 0
 				},
 			},
 			exit: {
