@@ -1,6 +1,6 @@
 // mollermethod actions
 // they appear in mollybdos & bracket at the same time
-import { Players, RunService } from "@rbxts/services"
+import { GuiService, Players, RunService } from "@rbxts/services"
 import mollerpotence from "mollerpotence"
 import type { Action } from "types"
 const LocalPlayer = Players.LocalPlayer
@@ -137,5 +137,12 @@ export const kick: Action = {
 			"run",
 			`game:GetService("Players"):GetPlayerByUserId(${victim.UserId}):Kick("kicked via mollermethod")`
 		)
+	},
+}
+
+export const inspect: Action = {
+	description: "open the roblox inspect menu on a player",
+	execute(victim) {
+		GuiService.InspectPlayerFromUserId(victim.UserId)
 	},
 }
