@@ -13,7 +13,7 @@ export interface Action {
 export interface Plugin {
 	readonly Name: string
 	readonly Author: string
-	readonly Tags?: (player: Player, add: (tag: string) => unknown) => unknown
+	readonly Tags?: (this: void, player: Player, add: (tag: string) => unknown) => unknown
 	readonly Actions?: Record<string, Action>
 	readonly Commands?: Record<string, Command>
 }
