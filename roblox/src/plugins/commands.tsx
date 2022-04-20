@@ -28,6 +28,21 @@ export = (util: PluginUtil): Plugin => {
 		Name: "Built-in commands",
 		Author: "mollersuite",
 		Commands: {
+			molly: {
+				description: "the dog",
+				execute: () => {
+					Roact.mount(
+						<imagelabel
+							Size={UDim2.fromScale(1, 1)}
+							BackgroundTransparency={1}
+							BorderSizePixel={0}
+							ZIndex={-1}
+							Image="7037156897"
+						/>,
+						util.GUI
+					)
+				},
+			},
 			exit: {
 				description: "Closes the game.",
 				execute: () => game.Shutdown(),
