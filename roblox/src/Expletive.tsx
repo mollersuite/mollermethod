@@ -85,7 +85,7 @@ export = pure<{ container: Instance }>(({ container }) => {
 				)}
 			/>
 			<Button
-				Text="LocalPlayer"
+				Text="You"
 				Image="rbxassetid://9417608010"
 				LayoutOrder={4}
 				Activated={() => page_to(<LocalBar />)}
