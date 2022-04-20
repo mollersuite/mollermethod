@@ -11,6 +11,7 @@ import { Spring } from "@rbxts/flipper"
 
 import Mollybdos from "Mollybdos"
 import Button from "Button"
+import LocalBar from "LocalBar"
 
 const spring = (n: number) => new Spring(n, { dampingRatio: 1, frequency: 2 })
 export = pure<{ container: Instance }>(({ container }) => {
@@ -89,17 +90,24 @@ export = pure<{ container: Instance }>(({ container }) => {
 				)}
 			/>
 			<Button
+				Text="LocalPlayer"
+				Image="rbxassetid://9417608010"
+				LayoutOrder={4}
+				Activated={() => page_to(<LocalBar />)}
+				Accent={Page.component === LocalBar}
+			/>
+			<Button
 				Text="Players"
 				Image="rbxassetid://9370016791"
-				LayoutOrder={4}
+				LayoutOrder={5}
 				Activated={() => page_to(<Mollybdos />)}
 				Accent={Page.component === Mollybdos}
 			/>
-			<Button Text="Scripts" Image="rbxassetid://9369994718" LayoutOrder={5} />
+			<Button Text="Scripts" Image="rbxassetid://9369994718" LayoutOrder={6} />
 			{/* START "the ones that will be in localplayer when thats added" section */}
 			<Button
 				Text="Copy invite"
-				LayoutOrder={6}
+				LayoutOrder={7}
 				Image="rbxassetid://9377140521"
 				Activated={() => join_code().then(setclipboard ?? print)}
 			/>
