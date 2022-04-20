@@ -2,11 +2,11 @@ import { HttpService, TeleportService, Players, Workspace, UserInputService } fr
 import { join_code, play } from "util"
 import Roact from "@rbxts/roact"
 import FlyService from "Bracket/Flight"
-import type { Plugin } from "types"
+import type { Plugin, PluginUtil } from "types"
 
 const Player = Players.LocalPlayer
 
-export = (): Plugin => {
+export = (util: PluginUtil): Plugin => {
 	let Flight = false
 	let Swim = false
 	let Invisible = false
@@ -45,28 +45,31 @@ export = (): Plugin => {
 
 			support: {
 				description: "Gives you the link to the support server. [support",
-				async execute() {
-					const request = (getgenv()?.request || syn?.request || http?.request) as
-						| typeof globalThis.request
-						| void
-					if (request) {
-						request({
-							Url: "http://127.0.0.1:6463/rpc?v=1",
-							Method: "POST",
-							Headers: {
-								"Content-Type": "application/json",
-								Origin: "https://discord.com",
-							},
-							Body: HttpService.JSONEncode({
-								cmd: "INVITE_BROWSER",
-								nonce: HttpService.GenerateGUID(false),
-								args: { code: "9c8fFSy83p" },
-							}),
-						})
-					} else {
-						// find a way to do notifs
-					}
-				},
+				execute: () =>
+					void util.notify(
+						"Bracket",
+						"mthd.ml/support (click to open Discord)",
+						"Info",
+						5,
+						() => {
+							const request = (getgenv()?.request ||
+								syn?.request ||
+								http?.request) as typeof globalThis.request | void
+							request?.({
+								Url: "http://127.0.0.1:6463/rpc?v=1",
+								Method: "POST",
+								Headers: {
+									"Content-Type": "application/json",
+									Origin: "https://discord.com",
+								},
+								Body: HttpService.JSONEncode({
+									cmd: "INVITE_BROWSER",
+									nonce: HttpService.GenerateGUID(false),
+									args: { code: "9c8fFSy83p" },
+								}),
+							})
+						}
+					),
 			},
 
 			fly: {
