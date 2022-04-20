@@ -1,9 +1,11 @@
 import Roact from "@rbxts/roact"
 import Bracket, { toggle } from "Bracket"
+import commands from "plugins/commands"
 import { Plugins } from "util"
+
 export = (target: Frame) => {
 	const tree = Roact.mount(
-		<Plugins.Provider value={[]}>
+		<Plugins.Provider value={[commands()]}>
 			<textbutton
 				Text="open bracket"
 				AutomaticSize="XY"
