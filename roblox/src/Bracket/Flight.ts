@@ -18,7 +18,7 @@ let enabled = false
 let speed = 16
 
 // The root part and current CFrame. Undefined when there is no character.
-let humanoidRoot: BasePart | undefined
+let humanoidRoot: HandleAdornment | BasePart | undefined
 let coordinate: CFrame | undefined
 let coordinateSpring = new GroupMotor([0, 0, 0], false)
 
@@ -45,7 +45,7 @@ async function main() {
 			coordinateSpring.step(deltaTime)
 
 			const [x, y, z] = coordinateSpring.getValue()
-			humanoidRoot.AssemblyLinearVelocity = new Vector3()
+			if (humanoidRoot.IsA("BasePart")) humanoidRoot.AssemblyLinearVelocity = new Vector3()
 			humanoidRoot.CFrame = Workspace.CurrentCamera!.CFrame.Rotation.add(new Vector3(x, y, z))
 		}
 	})
@@ -78,7 +78,7 @@ function resetCoordinate() {
 		return
 	}
 	const { XVector, YVector, ZVector } = Workspace.CurrentCamera!.CFrame
-	coordinate = CFrame.fromMatrix(humanoidRoot.Position, XVector, YVector, ZVector)
+	coordinate = CFrame.fromMatrix(humanoidRoot.CFrame.Position, XVector, YVector, ZVector)
 }
 
 function resetSpring() {
@@ -129,7 +129,7 @@ function updateDirection(code: Enum.KeyCode, begin: boolean) {
 	}
 }
 main().catch(warn)
-export = (val: boolean, root: BasePart, spd = 100) => {
+export = (val: boolean, root: BasePart | HandleAdornment, spd = 100) => {
 	enabled = val
 	speed = spd
 	humanoidRoot = root
