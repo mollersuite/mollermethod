@@ -104,27 +104,7 @@ export = pure<{ container: Instance }>(({ container }) => {
 				Accent={Page.component === Mollybdos}
 			/>
 			<Button Text="Scripts" Image="rbxassetid://9369994718" LayoutOrder={6} />
-			{/* START "the ones that will be in localplayer when thats added" section */}
-			<Button
-				Text="Copy invite"
-				LayoutOrder={7}
-				Image="rbxassetid://9377140521"
-				Activated={() => join_code().then(setclipboard ?? print)}
-			/>
-			{/* <Button
-				Text="Respawn"
-				LayoutOrder={7}
-				Image="rbxassetid://9380799867"
-				Activated={() => respawn.execute([])}
-			/>
-			<Button
-				Text="Rejoin"
-				LayoutOrder={8}
-				Image="rbxassetid://9380809978"
-				Activated={() => rejoin.execute([])}
-			/> */}
-			{/* END */}
-			<Button Text="Settings" Image="rbxassetid://9369994833" LayoutOrder={9} />
+			<Button Text="Settings" Image="rbxassetid://9369994833" LayoutOrder={7} />
 			{/* <textlabel
 				Text={`Rendered ${++count} times`}
 				LayoutOrder={100}
