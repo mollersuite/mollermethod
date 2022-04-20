@@ -70,7 +70,7 @@ const PlayerList = hooked(
 				ClipsDescendants
 				AutomaticCanvasSize="X"
 				CanvasSize={UDim2.fromScale(10, 0)}
-				ScrollBarThickness={1}>
+				ScrollBarThickness={3}>
 				<uipadding PaddingLeft={new UDim(0, 10)} PaddingRight={new UDim(0, 10)} />
 				<uilistlayout
 					SortOrder="Name"
