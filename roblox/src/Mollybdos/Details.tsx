@@ -3,8 +3,7 @@ import Object from "@rbxts/object-utils"
 import { hooked, useContext, useEffect, useState } from "@rbxts/roact-hooked"
 import colors from "colors"
 import tags_of, { Tags } from "./tags"
-import { Plugins } from "util"
-import type { Action } from "types"
+import { merge, Plugins } from "util"
 
 /*
 /------------------------------\
@@ -66,28 +65,25 @@ const Actions = hooked(({ player }: { player: Player }) => {
 	return (
 		<frame BackgroundTransparency={1} AutomaticSize="Y" Size={UDim2.fromScale(1, 0)}>
 			<uilistlayout FillDirection="Vertical" SortOrder="Name" />
-			{Object.entries(
-				Object.assign(
-					{},
-					...plugins.mapFiltered(plugin => plugin.Actions)
-				) as Record<string, Action>
-			).map(([name, action]) => (
-				<textbutton
-					Key={name}
-					Size={new UDim2(1, 0, 0, 25)}
-					TextSize={11}
-					BackgroundColor3={colors.BLACK}
-					BorderSizePixel={0}
-					BackgroundTransparency={0}
-					Font="GothamBold"
-					TextColor3={colors.WHITE}
-					Visible={action.enabled?.() ?? true}
-					Text={action.display || `${name.sub(1, 1).upper()}${name.sub(2)}`}
-					Event={{
-						Activated: () => action.execute(player),
-					}}
-				/>
-			))}
+			{Object.entries(merge(plugins.mapFiltered(plugin => plugin.Actions))).map(
+				([name, action]) => (
+					<textbutton
+						Key={name}
+						Size={new UDim2(1, 0, 0, 25)}
+						TextSize={11}
+						BackgroundColor3={colors.BLACK}
+						BorderSizePixel={0}
+						BackgroundTransparency={0}
+						Font="GothamBold"
+						TextColor3={colors.WHITE}
+						Visible={action.enabled?.() ?? true}
+						Text={action.display || `${name.sub(1, 1).upper()}${name.sub(2)}`}
+						Event={{
+							Activated: () => action.execute(player),
+						}}
+					/>
+				)
+			)}
 		</frame>
 	)
 })
