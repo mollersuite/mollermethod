@@ -57,10 +57,10 @@ export default hooked<{ button: Enum.KeyCode; test?: boolean }>(({ button, test 
 	}, [])
 	return (
 		<scrollingframe
-			ClipsDescendants={false}
+			ClipsDescendants
 			BorderSizePixel={0}
 			CanvasSize={new UDim2()}
-			Size={new UDim2(0.7, 0, 1, -25)}
+			Size={new UDim2(0.7, 0, 1, -(25 + 110))}
 			AnchorPoint={new Vector2(0.5, 0)}
 			BackgroundTransparency={1}
 			ScrollBarThickness={3}
