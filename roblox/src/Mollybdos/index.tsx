@@ -1,43 +1,10 @@
 import Roact from "@rbxts/roact"
-import { useEffect, useState, Dispatch, hooked, useBinding } from "@rbxts/roact-hooked"
+import { useEffect, useState, pure, Dispatch } from "@rbxts/roact-hooked"
 import { Players } from "@rbxts/services"
-import Button from "Button"
 import colors from "colors"
 import Details from "./Details"
 
-const Player = hooked<{
-	Player: Player
-	selected?: Player
-	setSelected: Dispatch<Player | undefined>
-}>(({ Player: player, setSelected, selected }) => {
-	const [icon, setIcon] = useBinding("rbxassetid://9417608010")
-	useEffect(() => {
-		task.defer(() => {
-			setIcon(
-				Players.GetUserThumbnailAsync(
-					player.UserId,
-					Enum.ThumbnailType.HeadShot,
-					Enum.ThumbnailSize.Size48x48
-				)[0]
-			)
-		})
-	}, [])
-	return (
-		<Button
-			Key={player.DisplayName}
-			Image={icon}
-			Activated={() => setSelected(player)}
-			Text={
-				player.DisplayName !== player.Name
-					? `${player.DisplayName}\n(@${player.Name})`
-					: player.Name
-			}
-			Accent={player === selected}
-		/>
-	)
-})
-
-const PlayerList = hooked(
+const PlayerList = pure(
 	({
 		selected,
 		setSelected,
@@ -63,31 +30,51 @@ const PlayerList = hooked(
 
 		return (
 			<scrollingframe
-				Size={new UDim2(1, 0, 0, 50)}
-				Position={UDim2.fromOffset(0, 250)}
+				Size={new UDim2(0, 300, 1, 0)}
 				BorderSizePixel={0}
-				BackgroundTransparency={1}
+				BackgroundColor3={colors.WHITE}
+				BackgroundTransparency={0.7}
 				ClipsDescendants
-				AutomaticCanvasSize="X"
-				CanvasSize={UDim2.fromScale(10, 0)}
-				ScrollBarThickness={3}>
-				<uipadding PaddingLeft={new UDim(0, 10)} PaddingRight={new UDim(0, 10)} />
-				<uilistlayout
-					SortOrder="Name"
-					FillDirection="Horizontal"
-					HorizontalAlignment="Left"
-					VerticalAlignment="Center"
-					Padding={new UDim(0, 10)}
-				/>
+				AutomaticCanvasSize="Y"
+				ScrollBarThickness={5}
+				CanvasSize={UDim2.fromScale(0, 1)}>
+				<uilistlayout SortOrder="Name" />
 				{players.map(player => (
-					<Player Player={player} selected={selected} setSelected={setSelected} />
+					<textbutton
+						Size={new UDim2(1, 0, 0, 0)}
+						TextWrapped
+						AutomaticSize="Y"
+						Text={
+							player.DisplayName !== player.Name
+								? `${player.DisplayName}\n(@${player.Name})`
+								: player.Name
+						}
+						BorderSizePixel={0}
+						TextXAlignment="Left"
+						TextYAlignment="Center"
+						Font={player === selected ? "GothamBold" : "Gotham"}
+						Key={player.DisplayName}
+						TextSize={11}
+						Event={{
+							Activated: () => setSelected(player),
+						}}
+						BackgroundColor3={colors.ACCENT}
+						BackgroundTransparency={player === selected ? 0 : 1}
+						TextColor3={colors.WHITE}>
+						<uipadding
+							PaddingTop={new UDim(0, 5)}
+							PaddingBottom={new UDim(0, 5)}
+							PaddingLeft={new UDim(0, 5)}
+							PaddingRight={new UDim(0, 5)}
+						/>
+					</textbutton>
 				))}
 			</scrollingframe>
 		)
 	}
 )
 
-export = hooked(() => {
+export = pure(() => {
 	const [selected, setSelected] = useState<Player | undefined>(undefined)
 
 	// handling selected player leaving
@@ -106,9 +93,9 @@ export = hooked(() => {
 			AnchorPoint={new Vector2(0.5, 1)}
 			BackgroundColor3={colors.BLACK}
 			BorderSizePixel={0}>
-			<uicorner CornerRadius={new UDim(0, 10)} />
-			<Details selected={selected} />
+			<uilistlayout FillDirection="Horizontal" />
 			<PlayerList selected={selected} setSelected={setSelected} />
+			<Details selected={selected} />
 		</frame>
 	)
 })
