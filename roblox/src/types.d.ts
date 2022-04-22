@@ -3,6 +3,16 @@ export interface Command {
 	execute(this: void, args: string[]): void | Promise<unknown>
 }
 
+// TODO: implement, document, replace fly, fish invisible with toggles
+// toggles run only on you
+export interface Toggle {
+	readonly description: string
+	readonly localbar?: boolean
+	on (this: void, args?: string[]): unknown
+	off (this: void): unknown
+	value?: boolean
+}
+
 export interface Action {
 	display?: string
 	description: string
@@ -16,6 +26,7 @@ export interface Plugin {
 	readonly Tags?: (this: void, player: Player, add: (tag: string) => unknown) => unknown
 	readonly Actions?: Record<string, Action>
 	readonly Commands?: Record<string, Command>
+	readonly Toggles?: Record<string, Toggle>
 }
 
 export interface PluginUtil {

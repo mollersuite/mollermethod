@@ -59,33 +59,58 @@ util.colors: {
 
 mollermethod's color theme. Can be customized by the user.
 
-## Plugin interface
-
-You return a plugin interface. Here's the TypeScript type since I'm lazy
+## typings
 
 ```ts
-// Actions display in both Mollybdos and Bracket.
-interface Action {
-	display?: string // Displayed in Mollybdos. Defaults to the key, with the first letter uppercase.
-	enabled?: () => boolean // Defaults to () => true
-	description: string //  Displayed in Bracket autocomplete
-	execute(this: void, player: Player): Promise<unknown> | unknown
-}
-
-// Commands display only in Bracket.
-interface Command {
-	description: string // Displayed in Bracket autocomplete
+export interface Command {
+	readonly description: string
 	execute(this: void, args: string[]): void | Promise<unknown>
 }
 
-interface Plugin {
-	// (will be) displayed in mollermethod settings
+// Toggles run on the local player. They show in the LocalPlayer section and in Bracket
+export interface Toggle {
+	readonly description: string
+	// Should the toggle show in the menu? (default: true) Set this to false if you need the `args` every time. (e.g. for a toggle that should only be used in Bracket)
+	readonly localbar?: boolean
+	on (this: void, args?: string[]): unknown
+	off (this: void): unknown
+	readonly un?: string // For commands like `invisible`, it doesn't make sense to say `uninvisible`. Here you can change the name of the `un` version. (for example: `visible`)
+	private value?: boolean // Listed for completeness. Do not use.
+}
+
+// Actions run on player(s). They show in Mollybdos & Bracket.
+export interface Action {
+	display?: string // Shown in Mollybdos. Defaults to the name with the first letter capitalized.3
+	description: string // Shown in Bracket
+	execute(this: void, player: Player): Promise<unknown> | unknown
+	enabled?: () => boolean // Optional. If you return a falsey value, the action will be disabled. (Grayed out in Bracket, and not shown in Mollybdos)
+}
+
+// This is what you return from your plugin.
+export interface Plugin {
+	// These will be shown in plugin settings.
 	readonly Name: string
 	readonly Author: string
-	// Runs when the user selects a player in Mollybdos. Call \`tag\` to add a tag to the player. You can call this multiple times to give the tag a "score."
-	readonly Tags?: (player: Player, add: (tag: string) => unknown) => unknown
-	readonly Actions?: Record<string, Action> // The key will be used as the Bracket command name
-	readonly Commands?: Record<string, Command></string>
+
+	readonly Tags?: (this: void, player: Player, add: (tag: string) => unknown) => unknown
+	// Key becomes the name of the command.
+	readonly Actions?: Record<string, Action>
+	readonly Commands?: Record<string, Command>
+	readonly Toggles?: Record<string, Toggle>
+}
+
+// Access this via `local util = ...` in your plugin. (It's passed to your plugin with varargs)
+export interface PluginUtil {
+	notify: (
+		name: string,
+		description: string,
+		icon: "Error" | "Info" | "Success" | "Warning",
+		duration: number,
+		callback?: Callback
+	) => unknown
+	GUI: Instance
+	colors: typeof import("colors")['default']
+	Snapdragon: typeof import("@rbxts/snapdragon") //
 }
 ```
 
