@@ -20,7 +20,7 @@ export const get_players = (selector = "N/A") => {
 
 export default async (cmd: string, plugins: Plugin[] = []) => {
 	const args = cmd.split(" ")
-	const name = args.shift()
+	const name = args.shift()?.lower()
 	if (name) {
 		const [cmd] = plugins.mapFiltered(
 			plugin => plugin.Commands?.[name]

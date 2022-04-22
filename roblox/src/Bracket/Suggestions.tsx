@@ -35,7 +35,9 @@ export = pure(({ Text: text }: { Text: string }) => {
 	return (
 		<>
 			{autocompleted(plugins)
-				.filter(cmd => cmd.name.match("^" + escape_lua_pattern(text))[0] !== undefined)
+				.filter(
+					cmd => cmd.name.match("^" + escape_lua_pattern(text.lower()))[0] !== undefined
+				)
 				.map(({ name, action = false, description, display, enabled = () => true }) => {
 					return (
 						<frame
