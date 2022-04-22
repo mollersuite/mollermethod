@@ -100,3 +100,9 @@ export async function join_code() {
 
 	return Promise.all<Promise<string>[]>(output).then(lines => lines.join("\n"))
 }
+
+export function merge<T>(list: T[]): T {
+	return Object.assign({}, ...list)
+}
+
+export const title_case = (name: string) => name.sub(1, 1).upper() + name.sub(2)

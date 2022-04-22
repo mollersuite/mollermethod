@@ -1,40 +1,40 @@
 import Roact from "@rbxts/roact"
-import colors from "colors"
-import { escape_lua_pattern, Plugins } from "util"
-import type { Plugin, Action } from "types"
-import { Players } from "@rbxts/services"
 import Object from "@rbxts/object-utils"
+import colors from "colors"
+import { escape_lua_pattern, merge, Plugins, title_case } from "util"
 import { pure, useContext } from "@rbxts/roact-hooked"
+import type { Plugin } from "types"
 
-const map_action = ([name, action]: [string, Action]) => ({
-	name,
-	action: true,
-	...action,
-	enabled: Players.LocalPlayer ? action.enabled : () => true,
-	description: action.description + ` [${name} victims?:player`,
-})
-
-const plugins_to_actions = (plugins: Plugin[]): NonNullable<Plugin["Actions"]> =>
-	Object.assign({}, ...plugins.mapFiltered(plugin => plugin.Actions))
-
-const plugins_to_commands = (plugins: Plugin[]): NonNullable<Plugin["Commands"]> =>
-	Object.assign({}, ...plugins.mapFiltered(plugin => plugin.Commands))
+function autocompleted(plugins: Plugin[]) {
+	return [
+		// Plugins => Actions => Entry
+		...Object.entries(merge(plugins.mapFiltered(plugin => plugin.Actions))).map(
+			([name, action]) => ({
+				name,
+				action: true,
+				...action,
+				description: action.description + ` [${name} victims?:player`,
+			})
+		),
+		// Plugins => Commands => Entry
+		...Object.entries(merge(plugins.mapFiltered(plugin => plugin.Commands))).map(
+			([name, command]) => ({
+				name,
+				display: title_case(name),
+				description: command.description,
+				action: false,
+				enabled: () => true,
+			})
+		),
+	]
+}
 
 export = pure(({ Text: text }: { Text: string }) => {
 	const plugins = useContext(Plugins)
 
 	return (
 		<>
-			{[
-				...Object.entries(plugins_to_actions(plugins)).map(map_action),
-				...Object.entries(plugins_to_commands(plugins)).map(([name, command]) => ({
-					name: name,
-					display: name.sub(1, 1).upper() + name.sub(2),
-					description: command.description,
-					action: false,
-					enabled: () => true,
-				})),
-			]
+			{autocompleted(plugins)
 				.filter(cmd => cmd.name.match("^" + escape_lua_pattern(text))[0] !== undefined)
 				.map(({ name, action = false, description, display, enabled = () => true }) => {
 					return (
