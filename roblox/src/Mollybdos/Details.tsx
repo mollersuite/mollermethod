@@ -22,7 +22,11 @@ that part of mollybdos
 */
 
 const TagList = hooked(({ tags }: { tags: Tags }) => {
-	if (tags.filter(tag => tag.score !== 0).isEmpty()) return <></>
+
+	if (tags.filter(tag => tag.score !== 0).isEmpty())
+		return (
+			<frame BackgroundTransparency={1} BorderSizePixel={0} Size={UDim2.fromOffset(0, 15)} />
+		)
 	return (
 		<scrollingframe
 			AutomaticCanvasSize="X"
