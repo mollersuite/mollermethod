@@ -4,6 +4,7 @@ import { hooked, useContext, useEffect, useState } from "@rbxts/roact-hooked"
 import colors from "colors"
 import tags_of, { Tags } from "./tags"
 import { merge, Plugins } from "util"
+import Placeholder from "components/Placeholder"
 
 /*
 /------------------------------\
@@ -22,7 +23,6 @@ that part of mollybdos
 */
 
 const TagList = hooked(({ tags }: { tags: Tags }) => {
-
 	if (tags.filter(tag => tag.score !== 0).isEmpty())
 		return (
 			<frame BackgroundTransparency={1} BorderSizePixel={0} Size={UDim2.fromOffset(0, 15)} />
@@ -116,17 +116,7 @@ export = hooked(({ selected }: { selected?: Player }) => {
 	if (!selected) {
 		return (
 			<frame Size={new UDim2(0, 660, 1, 0)} BackgroundTransparency={1} BorderSizePixel={0}>
-				<textlabel
-					AnchorPoint={new Vector2(0.5, 0.5)}
-					Position={UDim2.fromScale(0.5, 0.5)}
-					Text="No player selected"
-					TextColor3={colors.WHITE}
-					TextTransparency={0.5}
-					Font="GothamBlack"
-					TextSize={20}
-					AutomaticSize="XY"
-					BackgroundTransparency={1}
-				/>
+				<Placeholder Text="No player selected" />
 			</frame>
 		)
 	}
