@@ -1,10 +1,10 @@
 import Roact from "@rbxts/roact"
 import Object from "@rbxts/object-utils"
-import { pure, useContext, useEffect, useState } from "@rbxts/roact-hooked"
+import { hooked, useContext, useEffect, useState } from "@rbxts/roact-hooked"
 import colors from "colors"
-import * as actions from "actions"
 import tags_of, { Tags } from "./tags"
-import { Plugins } from "util"
+import { merge, Plugins } from "util"
+import Placeholder from "components/Placeholder"
 
 /*
 /------------------------------\
@@ -22,8 +22,11 @@ import { Plugins } from "util"
 that part of mollybdos
 */
 
-const TagList = pure(({ tags }: { tags: Tags }) => {
-	if (tags.filter(tag => tag.score !== 0).isEmpty()) return <></>
+const TagList = hooked(({ tags }: { tags: Tags }) => {
+	if (tags.filter(tag => tag.score !== 0).isEmpty())
+		return (
+			<frame BackgroundTransparency={1} BorderSizePixel={0} Size={UDim2.fromOffset(0, 15)} />
+		)
 	return (
 		<scrollingframe
 			AutomaticCanvasSize="X"
@@ -45,69 +48,75 @@ const TagList = pure(({ tags }: { tags: Tags }) => {
 					<textlabel
 						LayoutOrder={-tag.score}
 						Text={`${tag.name}${tag.score > 1 ? ` (${tag.score})` : ""}`}
-						Font="Gotham"
-						TextSize={11}
-						Size={new UDim2(0, 0, 0, 22)}
+						Font="GothamBold"
+						TextSize={10}
+						Size={new UDim2(0, 0, 0, 15)}
 						AutomaticSize="X"
 						BorderSizePixel={0}
+						BackgroundTransparency={0.5}
 						TextColor3={colors.WHITE}
 						BackgroundColor3={colors.ACCENT}>
 						<uicorner CornerRadius={new UDim(0, 16)} />
-						<uipadding PaddingLeft={new UDim(0, 16)} PaddingRight={new UDim(0, 16)} />
+						<uipadding PaddingLeft={new UDim(0, 8)} PaddingRight={new UDim(0, 8)} />
 					</textlabel>
 				))}
 		</scrollingframe>
 	)
 })
 
-const Actions = pure(({ player }: { player: Player }) => {
+const Actions = hooked(({ player }: { player: Player }) => {
 	const plugins = useContext(Plugins)
 
 	return (
-		<frame BackgroundTransparency={1} AutomaticSize="Y" Size={UDim2.fromScale(1, 0)}>
-			<uilistlayout FillDirection="Vertical" SortOrder="Name" />
-			{Object.entries(
-				Object.assign(
-					{},
-					actions,
-					...plugins.mapFiltered(plugin => plugin.Actions)
-				) as typeof actions
-			).map(([name, action]) => (
-				<textbutton
-					Key={name}
-					Size={new UDim2(1, 0, 0, 25)}
-					TextSize={11}
-					BackgroundColor3={colors.BLACK}
-					BorderSizePixel={0}
-					BackgroundTransparency={0}
-					Font="GothamBold"
-					TextColor3={colors.WHITE}
-					Visible={action.enabled?.() ?? true}
-					Text={action.display || `${name.sub(1, 1).upper()}${name.sub(2)}`}
-					Event={{
-						Activated: () => action.execute(player),
-					}}
-				/>
-			))}
-		</frame>
+		<scrollingframe
+			AutomaticCanvasSize="X"
+			BackgroundTransparency={1}
+			Size={new UDim2(1, 0, 0, 30)}
+			CanvasSize={UDim2.fromScale(0, 0)}
+			ScrollBarThickness={1}
+			BorderSizePixel={0}>
+			<uilistlayout
+				FillDirection="Horizontal"
+				SortOrder="LayoutOrder"
+				VerticalAlignment="Center"
+				Padding={new UDim(0, 5)}
+			/>
+			{Object.entries(merge(plugins.mapFiltered(plugin => plugin.Actions))).map(
+				([name, action]) => (
+					<textbutton
+						Key={name}
+						Size={new UDim2(0, 0, 0, 32)}
+						AutomaticSize="X"
+						TextSize={11}
+						BackgroundColor3={colors.ACCENT}
+						BorderSizePixel={0}
+						BackgroundTransparency={0}
+						Font="Gotham"
+						TextColor3={colors.WHITE}
+						Visible={action.enabled?.() ?? true}
+						Text={action.display || `${name.sub(1, 1).upper()}${name.sub(2)}`}
+						Event={{
+							Activated: () => action.execute(player),
+						}}>
+						<uicorner CornerRadius={new UDim(0, 4)} />
+						<uipadding
+							PaddingLeft={new UDim(0, 6)}
+							PaddingRight={new UDim(0, 6)}
+							PaddingTop={new UDim(0, 11)}
+							PaddingBottom={new UDim(0, 11)}
+						/>
+					</textbutton>
+				)
+			)}
+		</scrollingframe>
 	)
 })
 
-export = pure(({ selected }: { selected?: Player }) => {
+export = hooked(({ selected }: { selected?: Player }) => {
 	if (!selected) {
 		return (
-			<frame Size={UDim2.fromScale(0.6, 1)} BackgroundTransparency={1} BorderSizePixel={0}>
-				<textlabel
-					AnchorPoint={new Vector2(0.5, 0.5)}
-					Position={UDim2.fromScale(0.5, 0.5)}
-					Text="No player selected"
-					TextColor3={colors.WHITE}
-					TextTransparency={0.5}
-					Font="Arial"
-					TextSize={11}
-					AutomaticSize="XY"
-					BackgroundTransparency={1}
-				/>
+			<frame Size={new UDim2(0, 660, 1, 0)} BackgroundTransparency={1} BorderSizePixel={0}>
+				<Placeholder Text="No player selected" />
 			</frame>
 		)
 	}
@@ -122,37 +131,35 @@ export = pure(({ selected }: { selected?: Player }) => {
 	}, [selected])
 	return (
 		<scrollingframe
-			Size={UDim2.fromScale(0.6, 1)}
+			Size={new UDim2(0, 660, 1, 0)}
 			BackgroundTransparency={1}
 			BorderSizePixel={0}
 			ClipsDescendants
 			ScrollBarThickness={5}
 			AutomaticCanvasSize="Y"
 			CanvasSize={UDim2.fromScale(0, 1)}>
-			<uipadding PaddingTop={new UDim(0, 5)} />
+			<uipadding
+				PaddingTop={new UDim(0, 16)}
+				PaddingBottom={new UDim(0, 16)}
+				PaddingLeft={new UDim(0, 16)}
+				PaddingRight={new UDim(0, 16)}
+			/>
 			<uilistlayout />
 			<textlabel
-				Text={selected.DisplayName}
+				Text={
+					selected.Name !== selected.DisplayName
+						? `${selected.DisplayName} (@${selected.Name})`
+						: selected.Name
+				}
 				Font="GothamBlack"
 				TextSize={15}
+				TextXAlignment="Left"
 				Size={UDim2.fromScale(1, 0)}
 				AutomaticSize="Y"
 				BackgroundTransparency={1}
 				BorderSizePixel={0}
 				TextColor3={colors.WHITE}
 			/>
-			{selected.Name !== selected.DisplayName ? (
-				<textlabel
-					Text={`(@${selected.Name})`}
-					Font="GothamBlack"
-					TextSize={11}
-					Size={UDim2.fromScale(1, 0)}
-					AutomaticSize="Y"
-					BackgroundTransparency={1}
-					BorderSizePixel={0}
-					TextColor3={colors.GRAY[2]}
-				/>
-			) : undefined}
 			<TagList tags={tags} />
 			<Actions player={selected} />
 		</scrollingframe>

@@ -5,7 +5,13 @@ import colors from "colors"
 import Details from "./Details"
 
 const PlayerList = pure(
-	({ selected, setSelected }: { selected?: Player; setSelected: Dispatch<Player | undefined> }) => {
+	({
+		selected,
+		setSelected,
+	}: {
+		selected?: Player
+		setSelected: Dispatch<Player | undefined>
+	}) => {
 		// handling players leaving and joining
 		const [players, setPlayers] = useState<Player[]>(Players.GetPlayers())
 		useEffect(() => {
@@ -24,15 +30,19 @@ const PlayerList = pure(
 
 		return (
 			<scrollingframe
-				Size={UDim2.fromScale(0.4, 1)}
+				Size={new UDim2(0, 300, 1, 0)}
 				BorderSizePixel={0}
-				BackgroundColor3={colors.WHITE}
-				BackgroundTransparency={0.7}
+				BackgroundTransparency={1}
 				ClipsDescendants
 				AutomaticCanvasSize="Y"
 				ScrollBarThickness={5}
 				CanvasSize={UDim2.fromScale(0, 1)}>
-				<uilistlayout SortOrder="Name" />
+				<uilistlayout SortOrder="Name" Padding={new UDim(0, 5)} />
+				<uipadding
+					PaddingTop={new UDim(0, 10)}
+					PaddingBottom={new UDim(0, 10)}
+					PaddingLeft={new UDim(0, 5)}
+				/>
 				{players.map(player => (
 					<textbutton
 						Size={new UDim2(1, 0, 0, 0)}
@@ -61,6 +71,7 @@ const PlayerList = pure(
 							PaddingLeft={new UDim(0, 5)}
 							PaddingRight={new UDim(0, 5)}
 						/>
+						<uicorner CornerRadius={new UDim(0, 5)} />
 					</textbutton>
 				))}
 			</scrollingframe>
@@ -82,10 +93,12 @@ export = pure(() => {
 
 	return (
 		<frame
-			Position={UDim2.fromOffset(10, 84)}
-			Size={UDim2.fromOffset(400, 300)}
+			Position={new UDim2(0.5, 0, 1, -110)}
+			Size={UDim2.fromOffset(960, 300)}
+			AnchorPoint={new Vector2(0.5, 1)}
 			BackgroundColor3={colors.BLACK}
 			BorderSizePixel={0}>
+			<uicorner CornerRadius={new UDim(0, 10)} />
 			<uilistlayout FillDirection="Horizontal" />
 			<PlayerList selected={selected} setSelected={setSelected} />
 			<Details selected={selected} />

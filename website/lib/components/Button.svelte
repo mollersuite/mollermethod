@@ -3,7 +3,7 @@
   
   moller button
 
-  The signature mollybdenum header button.
+  The signature Etcetera header button.
   
  -->
 <script>
@@ -88,7 +88,7 @@
 		border: solid 1px var(--fds-text-primary);
 	}
 	a.selected {
-		border: solid 1px gray;
+		border: solid 2px gray;
 	}
 	a:active,
 	button:active {

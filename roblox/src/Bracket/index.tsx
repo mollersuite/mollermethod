@@ -7,12 +7,14 @@ import Roact from "@rbxts/roact"
 import Suggestions from "./Suggestions"
 import { useSpring } from "@rbxts/roact-hooked-plus"
 
+export const toggle: BindableEvent<(state: boolean) => unknown> = new Instance("BindableEvent")
+
 /**
  * # Bracket
  *
  * The command invoker.
  *
- * Made of Mollybdenum.
+ * from mollersuite by Etcetera
  *
  * ```
  * █████╗
@@ -23,7 +25,7 @@ import { useSpring } from "@rbxts/roact-hooked-plus"
  * ╚════╝
  * ```
  */
-export = hooked(({ button }: { button: Enum.KeyCode }) => {
+export default hooked<{ button: Enum.KeyCode; test?: boolean }>(({ button, test }) => {
 	const [shown, setShown] = useBinding(false)
 	const [text, setText] = useState("")
 	const plugins = useContext(Plugins)
@@ -31,21 +33,34 @@ export = hooked(({ button }: { button: Enum.KeyCode }) => {
 
 	// handles toggle key
 	useEffect(() => {
+		if (test) return
 		const input_began = UserInputService.InputBegan.Connect((input, text) => {
 			if (input.KeyCode === button && !text) {
 				setShown(true)
 				play("rbxassetid://8458409341") // windows 11 hardware connect
 				box.getValue()!.CaptureFocus()
+				task.wait()
+				box.getValue()!.Text = ''
 			}
 		})
 		return () => input_began.Disconnect()
+	}, [])
+	useEffect(() => {
+		const event = toggle.Event.Connect(state => {
+			setShown(state)
+			if (state) {
+				play("rbxassetid://8458409341") // windows 11 hardware connect
+				box.getValue()!.CaptureFocus()
+			}
+		})
+		return () => event.Disconnect()
 	}, [])
 	return (
 		<scrollingframe
 			ClipsDescendants={false}
 			BorderSizePixel={0}
 			CanvasSize={new UDim2()}
-			Size={new UDim2(0.7, 0, 1, -25)}
+			Size={new UDim2(0.7, 0, 1, -(25 + 110))}
 			AnchorPoint={new Vector2(0.5, 0)}
 			BackgroundTransparency={1}
 			ScrollBarThickness={3}
@@ -78,12 +93,10 @@ export = hooked(({ button }: { button: Enum.KeyCode }) => {
 					FocusLost: (rbx, enter) => {
 						setShown(false)
 						if (!enter) {
-							play("rbxassetid://8926096648", 10) // windows 11 hardware disconnect
+							play("rbxassetid://8926096648") // windows 11 hardware disconnect
 							return
 						}
-						if (rbx.Text.sub(1, 1) === UserInputService.GetStringForKeyCode(button)) {
-							execute(rbx.Text.sub(2), plugins)
-						} else execute(rbx.Text, plugins)
+						execute(text, plugins)
 					},
 				}}
 				Change={{
@@ -91,7 +104,7 @@ export = hooked(({ button }: { button: Enum.KeyCode }) => {
 				}}>
 				{/* Add an invisible button to activate Modal. Fuck you, Roblox. */}
 				<textbutton
-					Modal
+					Modal={shown}
 					Size={new UDim2()}
 					BorderSizePixel={0}
 					TextTransparency={1}
@@ -124,7 +137,7 @@ export = hooked(({ button }: { button: Enum.KeyCode }) => {
 					/>
 				</uistroke>
 			</textbox>
-			<Suggestions Text={text} KeyCode={button} />
+			<Suggestions Text={text} />
 		</scrollingframe>
 	)
 })

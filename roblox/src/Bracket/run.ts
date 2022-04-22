@@ -1,9 +1,6 @@
 import { play } from "util"
 import type { Plugin } from "types"
 import { Players } from "@rbxts/services"
-import * as commands from "./commands"
-import * as actions from "actions"
-
 const LocalPlayer = Players.LocalPlayer
 
 export const get_players = (selector = "N/A") => {
@@ -23,28 +20,28 @@ export const get_players = (selector = "N/A") => {
 
 export default async (cmd: string, plugins: Plugin[] = []) => {
 	const args = cmd.split(" ")
-	const name = args.shift()
+	const name = args.shift()?.lower()
 	if (name) {
-		const [cmd = commands[name as keyof typeof commands]] = plugins.mapFiltered(
+		const [cmd] = plugins.mapFiltered(
 			plugin => plugin.Commands?.[name]
 		)
-		const [action = actions[name as keyof typeof actions]] = plugins.mapFiltered(
+		const [action] = plugins.mapFiltered(
 			plugin => plugin.Actions?.[name]
 		)
 		if (cmd) {
 			try {
 				await cmd.execute(args)
-				play("rbxassetid://8503529139", 10)
+				play("rbxassetid://8503529139")
 			} catch {
-				play("rbxassetid://8458408918", 10)
+				play("rbxassetid://8458408918")
 			}
 		} else if (action) {
 			if (action.enabled && !action.enabled()) {
 				play("rbxassetid://8458408918") // fail since its not enabled
 			} else {
-				const players = get_players(args.join(" "))
+				const players = args.isEmpty() ? [LocalPlayer] : get_players(args.join(" "))
 				Promise.all(players.map(plr => action.execute(plr) ?? Promise.resolve()))
-					.andThenCall(play, "rbxassetid://8503529139", 10) // succeed because it ran on everyone
+					.andThenCall(play, "rbxassetid://8503529139") // succeed because it ran on everyone
 					.catch(
 						() => play("rbxassetid://8458408918") // fail since one of them threw an error
 					)

@@ -1,4 +1,6 @@
 export const QUOTES = [
+	'"lol i manged [sic] to run synapse x on chromebook" - coolkidkumd, 2022 (it did not work)',
+	`"I made a token logger in Python and I can't get it past Defender" - Creepdasheep, 2022`,
 	'"Is it possible to use your gui script stuff on Xbox ?" - JFK#1292, 2022',
 	'"how can i do meth" - Charlie, 2022',
 	'"you getting bang lol" - Voiletfissy, 2022',
@@ -8,7 +10,6 @@ export const QUOTES = [
 	'"GuiMain? Mr. LuaQuack." - Charlie, 2022',
 	'"I got a question if 86 wpm ok or bad" - Charlie, 2022',
 	`"cat broke rules https://cdn.discordapp.com/attachments/926218849064460328/953181130071343124/unknown.png" - Bongo, 2022`,
-	'"tysm for buying my module skeilet 1 now i have -0 robolx [sic] mony [sic] so you can take my manemodule [sic] but you faled [sic] because i obfuscate my stuf [sic] and you cant get it so yeah loser i am going to eat ur dog" - BOXIGON, 2022',
 	'"Is that a dinosaur in the readme btw" - 0866, 2022',
 	'"can i send him your home address" - tact, 2022',
 	'"how do you unplug ethernet cables?" - Charlie, 2022',
@@ -27,7 +28,7 @@ export const QUOTES = [
 	'"WHAT THE FUCK IS MOLY MOLER [sic] DOING" - DeadBoris, 2021',
 	'"i fuking hat you ashole ill fuck find you [...] tis yor fault" - Vexaria, 2021',
 	'"this is why you dont give people stuff that actually works and isnt bad" - Charlie, 2021',
-	'"Today, Molly has entered the meth stash, consumed 100 pounds of meth, got on the computer and downloaded VLC media player for linux and passed out while trying to go outside" - GoodFuude, 2021',
+	'"Today, Molly has entered the meth stash,\nconsumed 100 pounds of meth,\ngot on the computer and downloaded VLC media player for linux and passed out while trying to go outside" - GoodFuude, 2021',
 	'"Well listen and listen well, me and Auxnos partnered and fixed the animations, lights, and fixed the guns." - mongrio, 2021',
 	'"this is molly moller herself in the oven https://www.youtube.com/watch?v=Ck8o6j4R3HI" - Charlie, 2021',
 	'"you cant legally be a pedophile at 14 smh" - Amourousity, 2021',

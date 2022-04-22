@@ -4,7 +4,7 @@ import type { Command, Plugin } from "types"
 import env from "./env"
 import type { IYPlugin } from "./types"
 
-export = (source: string, container: LayerCollector, plugins: Plugin[]) => {
+export = (source: string, container: Instance, plugins: Plugin[]) => {
 	const [load, err] = loadstring(source)
 	assert(load, err)
 	const functions = {

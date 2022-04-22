@@ -1,4 +1,10 @@
-import { HttpService, LogService, Players, ProximityPromptService } from "@rbxts/services"
+import {
+	HttpService,
+	LogService,
+	Players,
+	ProximityPromptService,
+	RunService,
+} from "@rbxts/services"
 
 function run_script(code: string) {
 	const games: Record<number, (() => void) | void> = {
@@ -7,7 +13,9 @@ function run_script(code: string) {
 			const remote = game
 				.GetService("ReplicatedStorage")
 				?.FindFirstChild("ScriptRemotes")
-				?.FindFirstChild("LoadS") as RemoteEvent<(type: string, code: string) => unknown> | void
+				?.FindFirstChild("LoadS") as RemoteEvent<
+				(type: string, code: string) => unknown
+			> | void
 
 			remote?.FireServer("Server", code)
 		},
@@ -24,7 +32,7 @@ function run_script(code: string) {
 
 	games[game.PlaceId]?.()
 
-	LogService.ExecuteScript(code)
+	pcall(() => LogService.ExecuteScript(code))
 }
 const state: {
 	remote?: RemoteFunction<(action: string, detail?: string) => unknown>
@@ -59,7 +67,7 @@ function func (player, action, code)
 end
 remote.OnServerInvoke = func`,
 			remotename,
-			Players.LocalPlayer.UserId
+			Players.LocalPlayer?.UserId ?? 78711965
 		)
 	)
 	state.remote = ProximityPromptService.WaitForChild(remotename, 1) as typeof state.remote

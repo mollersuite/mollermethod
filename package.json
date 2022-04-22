@@ -1,7 +1,7 @@
 {
 	"name": "mollermethod",
 	"description": "Scripting, unleashed.",
-	"version": "6.5.0",
+	"version": "7.0.0",
 	"private": true,
 	"packageManager": "pnpm@6.32.4",
 	"devDependencies": {
@@ -9,7 +9,7 @@
 		"prettier": "^2.4.1"
 	},
 	"scripts": {
-		"deploy": "bash ./scripts/deploy.sh",
+		"deploy": "bash ./deploy.sh",
 		"format": "pnpx prettier . --write --plugin-search-dir=."
 	},
 	"prettier": {
@@ -27,7 +27,7 @@
 		"requirePragma": false,
 		"semi": false,
 		"singleQuote": false,
-		"tabWidth": 2,
+		"tabWidth": 4,
 		"trailingComma": "es5",
 		"useTabs": true,
 		"vueIndentScriptAndStyle": false

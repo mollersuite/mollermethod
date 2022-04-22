@@ -3,7 +3,7 @@ return function(util)
 	local events = {}
 	local container = util.GUI
 	local logs = {}
-
+	local frame
 	events["Destroying"] = container.Destroying:Connect(function() -- disconnects events when gui deathed
 		for _, event in pairs(events) do
 			event:Disconnect()
@@ -16,9 +16,17 @@ return function(util)
 		Author = "trollar",
 		Commands = {
 			chatlogger = {
-				description = "makes a chat logger gui pop up. Lo!",
-				execute = function(args)
-					local frame = Instance.new("Frame", container)
+				description = "toggles a chat logger gui. Lo! [chatlogger",
+				execute = function()
+					if frame then 
+						for _, event in pairs(events) do
+							event:Disconnect()
+						end
+						table.clear(events)
+						frame:Destroy()
+						frame = nil
+					else
+					frame = Instance.new("Frame", container)
 					frame.Name = "ChatLogger"
 					frame.Size = UDim2.new(0.3, 0, 0.3, 0)
 					frame.Position = UDim2.new(0.5, 0, 0.5, 0)
@@ -59,11 +67,13 @@ return function(util)
 						elseif writefile then
 							writefile("chat-logs.txt", table.concat(logs, "\n"))
 						else
-							util.notify({
-								App = "Chat Logger",
-								Text = "You exploit does not support writing files",
-								Duration = 5,
-							})
+							util.notify(
+								'Chat Logger',
+								"Your exploit does not support writing files",
+								'Error',
+								5
+								
+							)
 						end
 					end)
 					local ChatMessageTemplate = Instance.new("TextLabel")
@@ -95,6 +105,7 @@ return function(util)
 						events[player.UserId] = player.Chatted:Connect(function(message)
 							chatted(player, message)
 						end)
+					end
 					end
 				end,
 			},

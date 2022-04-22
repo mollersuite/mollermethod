@@ -8,10 +8,10 @@ interface JSONObject {
 /**
  * A way to handle configuration for Roblox scripting utilities.
  * @since 6.5.0
- * 
+ *
  * @remarks
  * It can handle Script-Ware's profiles & other exploits' workspaces.
- * 
+ *
  * @example
  * ```ts
  * const config = new Config("MyConfig")
@@ -26,19 +26,22 @@ export = class Config<Format extends JSONObject = JSONObject> {
 	constructor(public name: string) {
 		this.file = name + ".json"
 
-		 if (!isfile(this.file)) {
-			writefile(this.file, "{}")
+		if (!isfile?.(this.file)) {
+			writefile?.(this.file, "{}")
 			this.noob = true
 		}
 	}
 
-	public get<T extends keyof Format & string>(value: T): Format[T] {
+	public get<T extends keyof Format & string> (value: T): Format[T] {
+		if (readfile) {
 			return (HttpService.JSONDecode(readfile(this.file)) as Format)[value]
+		} else return undefined!
 	}
 
-	public set<T extends keyof Format & string>(name: T, value: Format[T]): void {
-			let data = HttpService.JSONDecode(readfile(this.file)) as Format
-			data[name] = value
-			writefile(this.file, HttpService.JSONEncode(data))
+	public set<T extends keyof Format & string> (name: T, value: Format[T]): void {
+		if (!writefile) return
+		let data = HttpService.JSONDecode(readfile?.(this.file) ?? '{}') as Format
+		data[name] = value
+		writefile?.(this.file, HttpService.JSONEncode(data))
 	}
 }

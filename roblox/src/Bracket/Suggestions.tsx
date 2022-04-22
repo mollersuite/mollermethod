@@ -1,61 +1,43 @@
 import Roact from "@rbxts/roact"
-import colors from "colors"
-import { escape_lua_pattern, Plugins } from "util"
-import type { Plugin, Action } from "types"
-import * as actions from "actions"
-import * as commands from "./commands"
-import { UserInputService } from "@rbxts/services"
 import Object from "@rbxts/object-utils"
+import colors from "colors"
+import { escape_lua_pattern, merge, Plugins, title_case } from "util"
 import { pure, useContext } from "@rbxts/roact-hooked"
+import type { Plugin } from "types"
 
-const map_action = ([name, action]: [string, Action]) => ({
-	name,
-	action: true,
-	...action,
-})
+function autocompleted(plugins: Plugin[]) {
+	return [
+		// Plugins => Actions => Entry
+		...Object.entries(merge(plugins.mapFiltered(plugin => plugin.Actions))).map(
+			([name, action]) => ({
+				name,
+				action: true,
+				...action,
+				description: action.description + ` [${name} victims?:player`,
+			})
+		),
+		// Plugins => Commands => Entry
+		...Object.entries(merge(plugins.mapFiltered(plugin => plugin.Commands))).map(
+			([name, command]) => ({
+				name,
+				display: title_case(name),
+				description: command.description,
+				action: false,
+				enabled: () => true,
+			})
+		),
+	]
+}
 
-const cmds: {
-	name: string
-	display?: string
-	description: string
-	action?: boolean
-	enabled?: () => boolean
-}[] = [
-	...Object.entries(commands).map(([name, command]) => ({
-		name,
-		display: name.sub(1, 1).upper() + name.sub(2),
-		description: command.description,
-		action: false,
-		enabled: () => true,
-	})),
-	...Object.entries(actions).map(map_action),
-]
-
-const plugins_to_actions = (plugins: Plugin[]): NonNullable<Plugin["Actions"]> =>
-	Object.assign({}, ...plugins.mapFiltered(plugin => plugin.Actions))
-
-const plugins_to_commands = (plugins: Plugin[]): NonNullable<Plugin["Commands"]> =>
-	Object.assign({}, ...plugins.mapFiltered(plugin => plugin.Commands))
-
-export = pure(({ Text: text, KeyCode: button }: { Text: string; KeyCode: Enum.KeyCode }) => {
+export = pure(({ Text: text }: { Text: string }) => {
 	const plugins = useContext(Plugins)
-	const escaped =
-		text.sub(1, 1) === UserInputService.GetStringForKeyCode(button) ? text.sub(2) : text
 
 	return (
 		<>
-			{[
-				...cmds,
-				...Object.entries(plugins_to_actions(plugins)).map(map_action),
-				...Object.entries(plugins_to_commands(plugins)).map(([name, command]) => ({
-					name: name,
-					display: name.sub(1, 1).upper() + name.sub(2),
-					description: command.description,
-					action: false,
-					enabled: () => true,
-				})),
-			]
-				.filter(cmd => cmd.name.match("^" + escape_lua_pattern(escaped))[0] !== undefined)
+			{autocompleted(plugins)
+				.filter(
+					cmd => cmd.name.match("^" + escape_lua_pattern(text.lower()))[0] !== undefined
+				)
 				.map(({ name, action = false, description, display, enabled = () => true }) => {
 					return (
 						<frame
@@ -71,7 +53,7 @@ export = pure(({ Text: text, KeyCode: button }: { Text: string; KeyCode: Enum.Ke
 								PaddingBottom={new UDim(0, 8)}
 							/>
 							<textlabel
-								Text={`<b>${text}</b>${name.sub(escaped.size() + 1)}`}
+								Text={`<b>${text}</b>${name.sub(text.size() + 1)}`}
 								TextSize={11}
 								Font="Gotham"
 								RichText
