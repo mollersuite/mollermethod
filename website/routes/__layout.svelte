@@ -70,6 +70,7 @@
 		text-align: center;
 		display: block;
 		font-family: var(--fds-font-family-small);
+		margin-bottom: 0.8rem;
 	}
 	@media (prefers-color-scheme: light) {
 		.logo {
