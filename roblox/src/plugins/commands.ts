@@ -2,7 +2,6 @@ import { HttpService, TeleportService, Players, Workspace, UserInputService } fr
 import { join_code, play } from "util"
 import FlyService from "Bracket/Flight"
 import type { Plugin, PluginUtil } from "types"
-import colors from "colors"
 
 const Player = Players.LocalPlayer
 
@@ -10,6 +9,7 @@ export = (util: PluginUtil): Plugin => {
 	let Flight = false
 	let Swim = false
 	let Invisible = false
+	const colors = util.colors
 	const block = new Instance("ConeHandleAdornment", game.GetService("CoreGui"))
 	block.Adornee = Workspace.Terrain
 	block.Name = HttpService.GenerateGUID()
