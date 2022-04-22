@@ -32,13 +32,17 @@ const PlayerList = pure(
 			<scrollingframe
 				Size={new UDim2(0, 300, 1, 0)}
 				BorderSizePixel={0}
-				BackgroundColor3={colors.WHITE}
-				BackgroundTransparency={0.7}
+				BackgroundTransparency={1}
 				ClipsDescendants
 				AutomaticCanvasSize="Y"
 				ScrollBarThickness={5}
 				CanvasSize={UDim2.fromScale(0, 1)}>
-				<uilistlayout SortOrder="Name" />
+				<uilistlayout SortOrder="Name" Padding={new UDim(0, 5)} />
+				<uipadding
+					PaddingTop={new UDim(0, 10)}
+					PaddingBottom={new UDim(0, 10)}
+					PaddingLeft={new UDim(0, 5)}
+				/>
 				{players.map(player => (
 					<textbutton
 						Size={new UDim2(1, 0, 0, 0)}
@@ -67,6 +71,7 @@ const PlayerList = pure(
 							PaddingLeft={new UDim(0, 5)}
 							PaddingRight={new UDim(0, 5)}
 						/>
+						<uicorner CornerRadius={new UDim(0, 5)} />
 					</textbutton>
 				))}
 			</scrollingframe>
@@ -93,6 +98,7 @@ export = pure(() => {
 			AnchorPoint={new Vector2(0.5, 1)}
 			BackgroundColor3={colors.BLACK}
 			BorderSizePixel={0}>
+			<uicorner CornerRadius={new UDim(0, 10)} />
 			<uilistlayout FillDirection="Horizontal" />
 			<PlayerList selected={selected} setSelected={setSelected} />
 			<Details selected={selected} />
