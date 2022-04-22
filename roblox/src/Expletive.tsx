@@ -99,7 +99,7 @@ export = pure<{ container: Instance }>(({ container }) => {
 				Activated={() => page_to(<Mollybdos />)}
 				Accent={Page.component === Mollybdos}
 			/>
-			<Button
+			{/* <Button
 				Text="Scripts"
 				Image="rbxassetid://9369994718"
 				LayoutOrder={6}
@@ -110,7 +110,7 @@ export = pure<{ container: Instance }>(({ container }) => {
 				Image="rbxassetid://9369994833"
 				LayoutOrder={7}
 				Activated={() => page_to(<PlaceholderPage />)}
-			/>
+			/> */}
 			{/* <textlabel
 				Text={`Rendered ${++count} times`}
 				LayoutOrder={100}
