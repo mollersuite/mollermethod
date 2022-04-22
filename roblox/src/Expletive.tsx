@@ -12,6 +12,7 @@ import { Spring } from "@rbxts/flipper"
 import Mollybdos from "Mollybdos"
 import Button from "components/Button"
 import LocalBar from "LocalBar"
+import placeholder from "components/PlaceholderPage"
 
 const spring = (n: number) => new Spring(n, { dampingRatio: 1, frequency: 2 })
 export = pure<{ container: Instance }>(({ container }) => {
@@ -98,8 +99,20 @@ export = pure<{ container: Instance }>(({ container }) => {
 				Activated={() => page_to(<Mollybdos />)}
 				Accent={Page.component === Mollybdos}
 			/>
-			<Button Text="Scripts" Image="rbxassetid://9369994718" LayoutOrder={6} />
-			<Button Text="Settings" Image="rbxassetid://9369994833" LayoutOrder={7} />
+			<Button
+				Text="Scripts"
+				Image="rbxassetid://9369994718"
+				LayoutOrder={6}
+				Activated={() => page_to(placeholder("Scripts")())}
+				Accent={Page.component === placeholder("Scripts")}
+			/>
+			<Button
+				Text="Settings"
+				Image="rbxassetid://9369994833"
+				LayoutOrder={7}
+				Activated={() => page_to(placeholder("Settings")())}
+				Accent={Page.component === placeholder("Settings")}
+			/>
 			{/* <textlabel
 				Text={`Rendered ${++count} times`}
 				LayoutOrder={100}
