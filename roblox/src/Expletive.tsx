@@ -10,7 +10,7 @@ import { Spring } from "@rbxts/flipper"
 // let count = 0
 
 import Mollybdos from "Mollybdos"
-import Button from "Button"
+import Button from "components/Button"
 import LocalBar from "LocalBar"
 
 const spring = (n: number) => new Spring(n, { dampingRatio: 1, frequency: 2 })
