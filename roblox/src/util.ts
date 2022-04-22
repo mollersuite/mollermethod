@@ -106,3 +106,14 @@ export function merge<T>(list: T[]): T {
 }
 
 export const title_case = (name: string) => name.sub(1, 1).upper() + name.sub(2)
+
+
+export const flat = <T> (list: readonly T[][]): T[] => {
+	const result: T[] = []
+	for (const sublist of list) {
+		for (const item of sublist) {
+			result.push(item)
+		}
+	}
+	return result
+}

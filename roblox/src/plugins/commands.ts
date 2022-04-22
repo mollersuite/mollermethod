@@ -1,14 +1,11 @@
 import { HttpService, TeleportService, Players, Workspace, UserInputService } from "@rbxts/services"
 import { join_code, play } from "util"
-import FlyService from "Bracket/Flight"
 import type { Plugin, PluginUtil } from "types"
 
 const Player = Players.LocalPlayer
 
 export = (util: PluginUtil): Plugin => {
 	let Flight = false
-	let Swim = false
-	let Invisible = false
 	const colors = util.colors
 	const block = new Instance("ConeHandleAdornment", game.GetService("CoreGui"))
 	block.Adornee = Workspace.Terrain
@@ -31,10 +28,12 @@ export = (util: PluginUtil): Plugin => {
 					molly.BorderSizePixel = 0
 				},
 			},
+
 			exit: {
 				description: "Closes the game.",
 				execute: () => game.Shutdown(),
 			},
+
 			rejoin: {
 				description: "Rejoins the server. [rejoin",
 				async execute() {
@@ -73,20 +72,6 @@ export = (util: PluginUtil): Plugin => {
 							})
 						}
 					),
-			},
-
-			fly: {
-				description: "Toggles fly mode. [fly speed?:number",
-				async execute(args) {
-					const Character = Player.Character
-					assert(Character, "Character not found")
-					Flight = !Flight
-					FlyService(
-						Flight,
-						Character.FindFirstChildOfClass("Humanoid")!.RootPart!,
-						tonumber(args[0])
-					)
-				},
 			},
 
 			fish: {
@@ -160,74 +145,6 @@ export = (util: PluginUtil): Plugin => {
 				execute() {
 					assert(setclipboard, "you need to be able to set the clipboard")
 					return join_code().then(setclipboard ?? print)
-				},
-			},
-
-			swim: {
-				description: "swim like a fish [swim",
-				async execute() {
-					const Character = Player.Character
-					const Humanoid = Character?.FindFirstChildWhichIsA("Humanoid")
-					assert(Humanoid, "you need a humanoid")
-					Swim = !Swim
-					if (Swim) {
-						Workspace.Gravity = 0
-						for (const state of Enum.HumanoidStateType.GetEnumItems()) {
-							if (state.Name === "Swimming") {
-								Humanoid.SetStateEnabled(state, true)
-							} else {
-								Humanoid.SetStateEnabled(state, false)
-							}
-						}
-						Humanoid.ChangeState(Enum.HumanoidStateType.Swimming)
-						while (Swim) {
-							Character!.TranslateBy(Humanoid.MoveDirection.div(2))
-							task.wait()
-						}
-					} else {
-						Workspace.Gravity = 198.2
-						for (const state of Enum.HumanoidStateType.GetEnumItems()) {
-							Humanoid.SetStateEnabled(state, true)
-						}
-						Humanoid.ChangeState(Enum.HumanoidStateType.RunningNoPhysics)
-					}
-				},
-			},
-
-			invisible: {
-				description: "Become invisible [invisible speed?:number",
-				async execute(args) {
-					const Character = Player.Character as Model
-					assert(Character, "you need a character")
-					Invisible = !Invisible
-					if (Invisible) {
-						const humanoid = Character?.FindFirstChildWhichIsA("Humanoid")
-						assert(humanoid, "you need a humanoid")
-						const root = humanoid.RootPart
-						assert(root, "you need a root part")
-						block.Visible = true
-						block.CFrame = root.CFrame
-						const fake = new Instance("Part")
-						fake.Anchored = true
-						FlyService(true, block, tonumber(args[0]))
-						Character.PivotTo(new CFrame(Vector3.one.mul(1000), Vector3.zero))
-						block.GetPropertyChangedSignal("CFrame").Connect(() => {
-							fake.CFrame = block.CFrame
-						})
-						task.delay(1, () => (root.Anchored = true))
-						Workspace.CurrentCamera!.CameraSubject = fake
-					} else {
-						FlyService(false, block)
-						const humanoid = Character?.FindFirstChildWhichIsA("Humanoid")
-						assert(humanoid, "you need a humanoid")
-						const root = humanoid.RootPart
-						assert(root, "you need a root part")
-						root.Anchored = false
-						Character.PivotTo(block.CFrame)
-						Workspace.CurrentCamera!.CameraSubject = humanoid
-
-						block.Visible = false
-					}
 				},
 			},
 

@@ -10,6 +10,7 @@ export interface Toggle {
 	readonly localbar?: boolean
 	on (this: void, args?: string[]): unknown
 	off (this: void): unknown
+	un?: string
 	value?: boolean
 }
 

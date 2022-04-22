@@ -1,7 +1,7 @@
 import Roact from "@rbxts/roact"
 import Object from "@rbxts/object-utils"
 import colors from "colors"
-import { escape_lua_pattern, merge, Plugins, title_case } from "util"
+import { escape_lua_pattern, flat, merge, Plugins, title_case } from "util"
 import { pure, useContext } from "@rbxts/roact-hooked"
 import type { Plugin } from "types"
 
@@ -25,6 +25,28 @@ function autocompleted(plugins: Plugin[]) {
 				action: false,
 				enabled: () => true,
 			})
+		),
+		// Plugins => Toggles => Entry
+		...flat(
+			Object.entries(merge(plugins.mapFiltered(plugin => plugin.Toggles))).map(
+				([name, toggle]) => [
+					{
+						name,
+						display: title_case(name),
+						description: toggle.description,
+						action: false,
+						enabled: () => true,
+					},
+					{
+						name: toggle.un ? toggle.un : `un${name}`,
+						display: title_case(toggle.un ? toggle.un : `un${name}`),
+						description: `Opposite of ${name}.`,
+						enabled: () => true,
+						action: false,
+						toggle: true,
+					}
+				]
+			)
 		),
 	]
 }
