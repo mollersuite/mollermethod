@@ -11,45 +11,40 @@ export = (util: PluginUtil): Plugin => {
 	block.Visible = false
 	block.Color3 = colors.ACCENT
 
-	const swim: Toggle = {
-		description: "swimming in air how?? [swim",
-		localbar: true,
-		on() {
-			const Character = Player.Character
-			const Humanoid = Character?.FindFirstChildWhichIsA("Humanoid")
-			assert(Humanoid, "you need a humanoid")
-			if (Humanoid.GetState() === Enum.HumanoidStateType.Swimming) return
-			Workspace.Gravity = 0
-			for (const state of Enum.HumanoidStateType.GetEnumItems()) {
-				if (state.Name === "Swimming") {
-					Humanoid.SetStateEnabled(state, true)
-				} else {
-					Humanoid.SetStateEnabled(state, false)
-				}
-			}
-			Humanoid.ChangeState(Enum.HumanoidStateType.Swimming)
-			while (swim.value) {
-				Character!.TranslateBy(Humanoid.MoveDirection.div(2))
-				task.wait()
-			}
-		},
-		off() {
-			const Character = Player.Character
-			const Humanoid = Character?.FindFirstChildWhichIsA("Humanoid")
-			assert(Humanoid, "you need a humanoid")
-			Workspace.Gravity = 198.2
-			for (const state of Enum.HumanoidStateType.GetEnumItems()) {
-				Humanoid.SetStateEnabled(state, true)
-			}
-			Humanoid.ChangeState(Enum.HumanoidStateType.RunningNoPhysics)
-		},
-	}
-
 	return {
 		Name: "Built-in toggles",
 		Author: "mollersuite",
 		Toggles: {
-			swim,
+			swim: {
+				description: "swimming in air how?? [swim",
+				localbar: true,
+				on() {
+					const Character = Player.Character
+					const Humanoid = Character?.FindFirstChildWhichIsA("Humanoid")
+					assert(Humanoid, "you need a humanoid")
+					if (Humanoid.GetState() === Enum.HumanoidStateType.Swimming) return
+					Workspace.Gravity = 0
+					for (const state of Enum.HumanoidStateType.GetEnumItems()) {
+						if (state.Name === "Swimming") {
+							Humanoid.SetStateEnabled(state, true)
+						} else {
+							Humanoid.SetStateEnabled(state, false)
+						}
+					}
+					Humanoid.ChangeState(Enum.HumanoidStateType.Swimming)
+				},
+				off() {
+					const Character = Player.Character
+					const Humanoid = Character?.FindFirstChildWhichIsA("Humanoid")
+					assert(Humanoid, "you need a humanoid")
+					Workspace.Gravity = 198.2
+					for (const state of Enum.HumanoidStateType.GetEnumItems()) {
+						Humanoid.SetStateEnabled(state, true)
+					}
+					Humanoid.ChangeState(Enum.HumanoidStateType.RunningNoPhysics)
+				},
+			},
+			
 			invisible: {
 				un: "visible",
 				description: "turns you into a cone [invisible speed?:number",
