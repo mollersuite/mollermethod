@@ -6,6 +6,7 @@
 <script>
 	import { browser } from "$app/env"
 	import { Button, TextBlock } from "fluent-svelte"
+	import { page } from "$app/stores"
 
 	if (browser) {
 		const first_node = document.body.childNodes[0]
