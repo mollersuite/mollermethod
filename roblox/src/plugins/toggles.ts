@@ -112,7 +112,7 @@ export = (util: PluginUtil): Plugin => {
 			tracers: {
 				description: "tracers [tracers",
 				localbar: false,
-				on() {
+				on(args) {
 					// add characters to list when playeradded
 
 					const Characters: Model[] = []
@@ -151,13 +151,16 @@ export = (util: PluginUtil): Plugin => {
 						})
 					})
 
+					let CONFIG = {
+						ShowTeam: false
+					}
+
 					// Wrap things up
 
 					TracersLoop = RunService.RenderStepped.Connect(() => {
 						Characters.forEach(char => {
 							if (char === Players.LocalPlayer.Character) return
 							if (!char) return
-
 							const humanoid = char.FindFirstChildWhichIsA("Humanoid")
 
 							if (!humanoid) return
@@ -169,22 +172,30 @@ export = (util: PluginUtil): Plugin => {
 							const rootSize = root.Size
 							const rootCFrame = root.CFrame
 
-							print(rootCFrame)
-
 							const camera = Workspace.CurrentCamera
 
-							assert(camera, "workspace.CurrentCamera is undefined")
+							if (!camera) return
 
 							const [Vector, OnScreen] = camera.WorldToViewportPoint(
 								rootCFrame.mul(new Vector3(0, -rootSize.Y, 0))
 							)
 							if (OnScreen) {
 								if (Drawing) {
+									const plr = Players.GetPlayerFromCharacter(char)
+
+									if (!plr) return
+
 									if (!TracerLines[char.Name]) {
 										TracerLines[char.Name] = new Drawing("Line")
-										TracerLines[char.Name].Thickness = 1
+										TracerLines[char.Name].Thickness = 2
 										TracerLines[char.Name].Transparency = 0.7
-										TracerLines[char.Name].Color = new Color3(0, 0, 1)
+										TracerLines[char.Name].Color = plr.TeamColor.Color || Color3.fromRGB(255, 255, 255)
+									}
+
+									if (CONFIG.ShowTeam === false) {
+										if (plr.Team === Player.Team) {
+											return
+										}
 									}
 
 									TracerLines[char.Name].From = new Vector2(Vector.X, Vector.Y)
