@@ -24,7 +24,7 @@
 			<li>Script-Ware (exploit mollermethod's maintainer uses)</li>
 			<li>Synapse X (friends tested it)</li>
 			<li>Krnl (I saw it working once on it)</li>
-			<li>Fluxus (You might need to <a href="/mollermethod.rbxm" download>download the .rbxm and save it to your workspace</a>, then run mollermethod with debug on)</li>
+			<li>Fluxus (You might need to <a href="/mollermethod.rbxm" download sveltekit:reload>download the .rbxm and save it to your workspace</a>, then run mollermethod with debug on)</li>
 		</ul>
 	</svelte:fragment>
 </Expander>
