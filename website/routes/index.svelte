@@ -6,6 +6,7 @@
 <script>
 	import { browser } from "$app/env"
 	import { Button, TextBlock } from "fluent-svelte"
+	import { page } from "$app/stores"
 
 	if (browser) {
 		const first_node = document.body.childNodes[0]
@@ -21,7 +22,7 @@
 	<TextBlock variant="display">Scripting, unleashed.</TextBlock>
 	<TextBlock variant="bodyLarge">The universal script hub.</TextBlock>
 	<nav>
-		<code>{`loadstring(game:HttpGet 'https://mthd.ml') {}`}</code> <Button variant="hyperlink" href="/api">Read API docs</Button> <Button variant="hyperlink" href="/faq">FAQ</Button>
+		<code>{`loadstring(game:HttpGet '${$page.url.origin}') {}`}</code> <Button variant="hyperlink" href="/api">Read API docs</Button> <Button variant="hyperlink" href="/faq">FAQ</Button>
 	</nav>
 	<img src="/icon.png" alt="mollermethod" aria-hidden class="giant" width="500"/>
 	<img src="/icon.png" alt="mollermethod" aria-hidden class="giant2" width="1000"/>
