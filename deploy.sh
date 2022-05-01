@@ -2,11 +2,9 @@ curl -L https://github.com/Roblox/foreman/releases/download/v1.0.3/foreman-1.0.3
 chmod +x foreman
 ./foreman install
 export PATH=~/.foreman/bin:$PATH
-echo "[moller] Installing packages"
-pnpm install
 echo "[moller] Building roblox"
-pnpm run build --filter ./roblox
+cd roblox
+npm run build
+cd ../website
 echo "[moller] Building website"
-pnpm run build --filter ./website
-ls website
-ls website/build
+npm run build
