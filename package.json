@@ -31,5 +31,8 @@
 		"trailingComma": "es5",
 		"useTabs": true,
 		"vueIndentScriptAndStyle": false
+	},
+	"dependencies": {
+		"@milahu/patch-package": "^6.4.11"
 	}
 }
