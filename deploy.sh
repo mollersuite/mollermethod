@@ -3,4 +3,5 @@ chmod +x foreman
 ./foreman install
 export PATH=~/.foreman/bin:$PATH
 npx pnpm install
-npx pnpm run build -r
+npx pnpm run build --filter ./roblox
+npx pnpm run build --filter ./website
