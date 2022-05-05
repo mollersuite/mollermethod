@@ -47,7 +47,7 @@ return function (config)
 	 if config.theme then
 	 	colors.ACCENT = Color3.fromHex(config.theme.accent)
 		colors.WHITE = Color3.fromHex(config.theme.foreground)
-		colors.BLACK = Color3.fromHex(config.theme.accent)
+		colors.BLACK = Color3.fromHex(config.theme.background)
 	end
 	util.set_volume(config.volume or 5)
 
