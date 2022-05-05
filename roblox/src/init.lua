@@ -8,7 +8,6 @@ local Notification = require(script.Notification) -- From Lunar, we should do th
 local Expletive = require(script.Expletive)
 local Bracket = require(script.Bracket).default
 local BracketExternal = require(script.services.bracket_external)
-local AdminBail = require(script.services.bail)
 
 local CONSTANTS = require(script.constants)
 local colors = require(script.colors).default
@@ -134,12 +133,7 @@ return function (config)
 							button = config.bracket_toggle or Enum.KeyCode.LeftBracket,
 						}),
 					}
-				),
-				-- TODO: admin bail should be a plugin
-				Roact.createElement(AdminBail, {
-					container = notificationHolder
-				})
-
+				)
 			}
 		),
 		config.gui
