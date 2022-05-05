@@ -1,12 +1,3 @@
---[[
-	mollermethod's init file
-	written in Lua because:
-		- faster
-		- helps with debugging
-		- less of a pain to maintain
-	I'm gonna try to follow Elttob's style guide: https://github.com/Elttob/Fusion/blob/main/style-guide.md
-]]
-
 local Debris = game:GetService("Debris")
 local HttpService = game:GetService("HttpService")
 local TweenService = game:GetService("TweenService")
