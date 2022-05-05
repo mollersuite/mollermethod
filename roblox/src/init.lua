@@ -133,7 +133,7 @@ return function (config)
 					util.Kill.Provider, {
 						value = function()
 							Roact.unmount(tree)
-							config.gui.Destroy()
+							config.gui:Destroy()
 						end
 					}, {
 						Taskbar = Roact.createElement(Expletive, {
