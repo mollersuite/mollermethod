@@ -11,6 +11,7 @@ local Debris = game:GetService("Debris")
 local HttpService = game:GetService("HttpService")
 local TweenService = game:GetService("TweenService")
 
+local PKG_VERSION = require(script.version)
 local Roact = require(script.include.node_modules.roact.src)
 local Notification = require(script.Notification) -- From Lunar, we should do this ourselves
 local Expletive = require(script.Expletive)
@@ -171,7 +172,7 @@ return function (config)
 	):Play()
 
 	Notification.new(
-			"Welcome to mollermethod",
+			"Welcome to mollermethod " .. PKG_VERSION,
 			util.random(CONSTANTS.QUOTES),
 			"Success",
 			5,
