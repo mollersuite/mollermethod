@@ -1,7 +1,6 @@
 import { Players } from "@rbxts/services"
 import run from "Bracket/run"
-import type { Export, Plugin } from "types"
-import { expor } from "util"
+import type { Command, Plugin } from "types"
 import env from "./env"
 import type { IYPlugin } from "./types"
 
@@ -19,33 +18,21 @@ export = (source: string, container: Instance, plugins: Plugin[]) => {
 	setfenv(load, functions)
 	const plugin: IYPlugin = load()
 
-	const Exports: Export[] = []
+	const Commands: Record<string, Command> = {}
 	for (const [key, value] of pairs(plugin.Commands)) {
-		Exports.push(
-			expor({
-				Name: key,
-				Arguments: {
-					iy_args: {
-						Type: "string",
-						Required: false,
-					},
-				},
-				Description: value.Description,
-				Run(args) {
-					const iy_args = (args.iy_args ?? "").split(" ")
-
-					functions.getstring = (index: number) =>
-						iy_args.filter((_, i) => i + 1 >= index).join(" ")
-
-					return value.Function(iy_args, Players.LocalPlayer)
-				},
-			})
-		)
+		Commands[key as string] = {
+			description: value.Description,
+			execute: async args => {
+				// Fuck you, Edge.
+				functions.getstring = (index: number) => args.filter((_, i) => i + 1 >= index).join(" ")
+				return value.Function(args, Players.LocalPlayer)
+			},
+		}
 	}
 
 	plugins.push({
 		Name: plugin.PluginName,
 		Author: "IY user",
-		Exports,
+		Commands,
 	})
 }

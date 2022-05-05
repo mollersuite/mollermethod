@@ -1,5 +1,5 @@
 import { HttpService, TeleportService, Players, Workspace, UserInputService } from "@rbxts/services"
-import { join_code, play, expor } from "util"
+import { join_code, play } from "util"
 import type { Plugin, PluginUtil } from "types"
 
 const Player = Players.LocalPlayer
@@ -16,13 +16,10 @@ export = (util: PluginUtil): Plugin => {
 	return {
 		Name: "Built-in commands",
 		Author: "mollersuite",
-		Exports: [
-			// Joke commands
-			expor({
-				Name: "molly",
-				Arguments: {},
-				Description: "the dog",
-				Run() {
+		Commands: {
+			molly: {
+				description: "the dog",
+				execute: () => {
 					const molly = new Instance("ImageLabel", util.GUI)
 					molly.Image = "rbxassetid://7037156897"
 					molly.Size = UDim2.fromScale(1, 1)
@@ -30,41 +27,28 @@ export = (util: PluginUtil): Plugin => {
 					molly.ZIndex = -1
 					molly.BorderSizePixel = 0
 				},
-			}),
-			expor({
-				Name: "trollsmile",
-				Arguments: {},
-				Description: "trollsmile winning",
-				Run() {
-					play("rbxassetid://6345755361")
-					return Promise.delay(1.5)
-				},
-			}),
-			// Other commands
-			expor({
-				Name: "exit",
-				Arguments: {},
-				Description: "Closes the game.",
-				Run: () => game.Shutdown(),
-			}),
-			expor({
-				Name: "rejoin",
-				Arguments: {},
-				Description: "Rejoins the game.",
-				async Run() {
+			},
+
+			exit: {
+				description: "Closes the game.",
+				execute: () => game.Shutdown(),
+			},
+
+			rejoin: {
+				description: "Rejoins the server. [rejoin",
+				async execute() {
 					if (Players.GetPlayers().size() === 1) {
 						Player.Kick("Rejoining...")
 						task.wait() // not sure if this is needed but IY does it
 						TeleportService.Teleport(game.PlaceId, Player)
 					} else TeleportService.TeleportToPlaceInstance(game.PlaceId, game.JobId, Player)
 				},
-			}),
-			expor({
-				Name: "support",
-				Description: "Opens the support server",
-				Arguments: {},
-				Run() {
-					util.notify(
+			},
+
+			support: {
+				description: "Gives you the link to the support server. [support",
+				execute: () =>
+					void util.notify(
 						"Bracket",
 						"mthd.ml/support (click to open Discord)",
 						"Info",
@@ -87,38 +71,12 @@ export = (util: PluginUtil): Plugin => {
 								}),
 							})
 						}
-					)
-				},
-			}),
-			expor({
-				Name: "joincode",
-				Description: "copies a markdown message with links to join your server",
-				Arguments: {},
-				Run() {
-					assert(setclipboard, "you need to be able to set the clipboard")
-					return join_code().then(setclipboard ?? print)
-				},
-			}),
-			expor({
-				Name: "respawn",
-				Description: "respawns you",
-				Arguments: {},
-				async Run() {
-					const char = Player.Character
-					char?.FindFirstChildOfClass("Humanoid")?.ChangeState("Dead")
-					char?.ClearAllChildren()
-					const newchar = new Instance("Model", Workspace)
-					Player.Character = newchar
-					task.wait()
-					Player.Character = char
-					newchar.Destroy()
-				},
-			}),
-			expor({
-				Name: "fish",
-				Description: "the feesh",
-				Arguments: {},
-				async Run() {
+					),
+			},
+
+			fish: {
+				description: "flop like a fish [fish",
+				async execute() {
 					const Character = Player.Character
 					assert(Character, "Character not found")
 					Flight = !Flight
@@ -158,40 +116,59 @@ export = (util: PluginUtil): Plugin => {
 						Humanoid.PlatformStand = false
 					}
 				},
-			}),
-			// Takes arguments
-			expor({
-				Name: "speed",
-				Description: "set speed",
-				Arguments: {
-					walkSpeed: {
-						Type: "number",
-						Required: false,
-					},
+			},
+
+			trollsmile: {
+				description: "trollsmile winning [trollsmile",
+				execute: () => {
+					play("rbxassetid://6345755361")
+					return Promise.delay(1.5)
 				},
-				Run(args) {
+			},
+
+			respawn: {
+				description: "Respawns you. [respawn",
+				async execute() {
+					const char = Player.Character
+					char?.FindFirstChildOfClass("Humanoid")?.ChangeState("Dead")
+					char?.ClearAllChildren()
+					const newchar = new Instance("Model", Workspace)
+					Player.Character = newchar
+					task.wait()
+					Player.Character = char
+					newchar.Destroy()
+				},
+			},
+
+			joincode: {
+				description: "copies a markdown message with links to join your server [joincode",
+				execute() {
+					assert(setclipboard, "you need to be able to set the clipboard")
+					return join_code().then(setclipboard ?? print)
+				},
+			},
+
+			speed: {
+				description: "set speed [speed walkSpeed?:number",
+				async execute(args) {
+					const walkspeed = tonumber(args[0])
 					const character = Player.Character
 					const humanoid = character?.FindFirstChildWhichIsA("Humanoid")
 					assert(humanoid, "you need a humanoid")
-					humanoid.WalkSpeed = args.walkSpeed ?? 16
+					humanoid.WalkSpeed = walkspeed ?? 16
 				},
-			}),
-			expor({
-				Name: "jump",
-				Description: "set jump power",
-				Arguments: {
-					jumpPower: {
-						Type: "number",
-						Required: false,
-					},
-				},
-				Run(args) {
+			},
+
+			jump: {
+				description: "set jump power [jump jumpPower?:number",
+				async execute(args) {
+					const jumpPower = tonumber(args[0])
 					const character = Player.Character
 					const humanoid = character?.FindFirstChildWhichIsA("Humanoid")
 					assert(humanoid, "you need a humanoid")
-					humanoid.JumpPower = args.jumpPower ?? 50
+					humanoid.JumpPower = jumpPower ?? 50
 				},
-			}),
-		]
+			},
+		},
 	}
 }

@@ -1,7 +1,7 @@
 import Object from "@rbxts/object-utils"
 import Roact from "@rbxts/roact"
 import { SoundService } from "@rbxts/services"
-import type { Plugin, Toggle, Action, Command, Export } from "./types"
+import type { Plugin } from "./types"
 
 export const Kill = Roact.createContext(() => {})
 export const Plugins = Roact.createContext<Plugin[]>([])
@@ -107,7 +107,8 @@ export function merge<T>(list: T[]): T {
 
 export const title_case = (name: string) => name.sub(1, 1).upper() + name.sub(2)
 
-export const flat = <T>(list: readonly T[][]): T[] => {
+
+export const flat = <T> (list: readonly T[][]): T[] => {
 	const result: T[] = []
 	for (const sublist of list) {
 		for (const item of sublist) {
@@ -115,23 +116,4 @@ export const flat = <T>(list: readonly T[][]): T[] => {
 		}
 	}
 	return result
-}
-
-/**
- * Helps type check exports
- * @param exp An export
- * @returns The same thing
- */
-export const expor: <T extends Export["Arguments"]>(
-	exp: Export<T> & { Arguments: T }
-) => Export<T> = exp => exp
-
-export function is_action(exp: Export): exp is Export<{
-	[key: string]: {
-		Type: "players"
-		Required: boolean
-	}
-}> {
-	const values = Object.values(exp.Arguments)
-	return values.size() === 1 && values[0].Type === "players"
 }

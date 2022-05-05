@@ -1,10 +1,10 @@
 import Roact from "@rbxts/roact"
+import Object from "@rbxts/object-utils"
 import { hooked, useContext, useEffect, useState } from "@rbxts/roact-hooked"
 import colors from "colors"
 import tags_of, { Tags } from "./tags"
-import { flat, is_action, Plugins } from "util"
+import { merge, Plugins } from "util"
 import Placeholder from "components/Placeholder"
-import Object from "@rbxts/object-utils"
 
 /*
 /------------------------------\
@@ -81,35 +81,33 @@ const Actions = hooked(({ player }: { player: Player }) => {
 				VerticalAlignment="Center"
 				Padding={new UDim(0, 5)}
 			/>
-			{flat(plugins.mapFiltered(plugin => plugin.Exports)).filter(is_action).map(exp => (
-				<textbutton
-					Key={exp.Name}
-					Size={new UDim2(0, 0, 0, 32)}
-					AutomaticSize="X"
-					TextSize={11}
-					BackgroundColor3={colors.ACCENT}
-					BorderSizePixel={0}
-					BackgroundTransparency={0}
-					Font="Gotham"
-					TextColor3={colors.WHITE}
-					Visible={exp.Enabled?.() ?? true}
-					Text={exp.DisplayName || `${exp.Name.sub(1, 1).upper()}${exp.Name.sub(2)}`}
-					Event={{
-						Activated: () => {
-							exp.Run({
-								[Object.keys(exp.Arguments)[0]]: [player]
-							})
-						},
-					}}>
-					<uicorner CornerRadius={new UDim(0, 4)} />
-					<uipadding
-						PaddingLeft={new UDim(0, 6)}
-						PaddingRight={new UDim(0, 6)}
-						PaddingTop={new UDim(0, 11)}
-						PaddingBottom={new UDim(0, 11)}
-					/>
-				</textbutton>
-			))}
+			{Object.entries(merge(plugins.mapFiltered(plugin => plugin.Actions))).map(
+				([name, action]) => (
+					<textbutton
+						Key={name}
+						Size={new UDim2(0, 0, 0, 32)}
+						AutomaticSize="X"
+						TextSize={11}
+						BackgroundColor3={colors.ACCENT}
+						BorderSizePixel={0}
+						BackgroundTransparency={0}
+						Font="Gotham"
+						TextColor3={colors.WHITE}
+						Visible={action.enabled?.() ?? true}
+						Text={action.display || `${name.sub(1, 1).upper()}${name.sub(2)}`}
+						Event={{
+							Activated: () => action.execute(player),
+						}}>
+						<uicorner CornerRadius={new UDim(0, 4)} />
+						<uipadding
+							PaddingLeft={new UDim(0, 6)}
+							PaddingRight={new UDim(0, 6)}
+							PaddingTop={new UDim(0, 11)}
+							PaddingBottom={new UDim(0, 11)}
+						/>
+					</textbutton>
+				)
+			)}
 		</scrollingframe>
 	)
 })

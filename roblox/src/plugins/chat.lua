@@ -14,12 +14,10 @@ return function(util)
 		Name = "Chat Logger",
 		Description = "Adds a chat logger command to mollermethod",
 		Author = "trollar",
-		Exports = {
-			{
-				Name = 'chatlogger',
-				Description = "toggles a chat logger gui. Lo!",
-				Arguments = {},
-				Run = function()
+		Commands = {
+			chatlogger = {
+				description = "toggles a chat logger gui. Lo! [chatlogger",
+				execute = function()
 					if frame then 
 						for _, event in pairs(events) do
 							event:Disconnect()
