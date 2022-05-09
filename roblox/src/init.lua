@@ -13,7 +13,7 @@ local CONSTANTS = require(script.constants)
 local colors = require(script.colors).default
 local util = require(script.util)
 local iyToBracket = require(script.Bracket.iy)
-
+local content = getcustomasset or getsynasset
 
 
 ---@class Theme
@@ -59,10 +59,10 @@ return function (config)
 	uIListLayout.VerticalAlignment = Enum.VerticalAlignment.Bottom
 
 	-- Startup sound
-	if getcustomasset or getsynasset then
+	if content then
 		task.defer(function ()
 			if isfile('mollermethod_Blog-Sound-1.ogg') then -- All exploits with getcustomasset or getsynasset also have isfile
-				util.play((getcustomasset or getsynasset)('mollermethod_Blog-Sound-1.ogg'))
+				util.play(content('mollermethod_Blog-Sound-1.ogg'))
 			else
 				util.play(util.asset('https://ubuntu.com/wp-content/uploads/2012/02/Blog-Sound-1.ogg'))
 			end
