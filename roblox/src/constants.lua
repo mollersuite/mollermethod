@@ -30,6 +30,7 @@ module.QUOTES = {
 	'"[I want you to make a] grab knife script but its a meme knife for mobile and pc" - k9#7062, 2021',
 	'"WHAT THE FUCK IS MOLY MOLER [sic] DOING" - DeadBoris, 2021',
 	'"i fuking hat you ashole ill fuck find you [...] tis yor fault" - Vexaria, 2021',
+	'"dont make me smile your troll" - Charlie, 2021',
 	'"this is why you dont give people stuff that actually works and isnt bad" - Charlie, 2021',
 	'"Today, Molly has entered the meth stash,\nconsumed 100 pounds of meth,\ngot on the computer and downloaded VLC media player for linux and passed out while trying to go outside" - GoodFuude, 2021',
 	'"Well listen and listen well, me and Auxnos partnered and fixed the animations, lights, and fixed the guns." - mongrio, 2021',
