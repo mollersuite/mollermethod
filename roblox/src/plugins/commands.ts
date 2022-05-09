@@ -54,9 +54,9 @@ export = (util: PluginUtil): Plugin => {
 						"Info",
 						5,
 						() => {
-							const request = (getgenv()?.request ||
-								syn?.request ||
-								http?.request) as typeof globalThis.request | void
+							const request = (getgenv()?.request || syn?.request || http_request) as
+								| typeof globalThis.request
+								| void
 							request?.({
 								Url: "http://127.0.0.1:6463/rpc?v=1",
 								Method: "POST",

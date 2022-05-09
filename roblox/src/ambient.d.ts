@@ -21,12 +21,6 @@ interface DataModel {
 declare const IY_LOADED: true | void
 
 /**
- * Returns a container made for GUI's to be parented in. It hides children from FindFirstChild attacks and does not fire game.DescendantAdded.
- */
-
-declare const gethui: (() => Instance) | void
-
-/**
  * Fakes a .Touched event to `ToTouch` with `Part`.
  * The `Toggle` argument must be either 0 or 1 (for fire/unfire).
  *
@@ -38,12 +32,6 @@ declare const gethui: (() => Instance) | void
 
 declare const firetouchinterest: ((Part: Instance, ToTouch: BasePart, Toggle: 0 | 1) => void) | void
 
-/**
- * Sets the clipboard to the text you specified.
- * @param text The text to set the clipboard to.
- */
-
-declare const setclipboard: ((text: string) => void) | void
 interface LogService {
 	/**
 	 * Runs scripts on the server, LOL.
@@ -51,59 +39,6 @@ interface LogService {
 	 **/
 	ExecuteScript(script: string): void
 }
-
-// Console APIS
-
-// In both exploits
-
-/**
- * Prints message to the console and takes an optional colour argument. If none is given, the default will be white.
- * @param message The message to print to the console.
- */
-
-declare const rconsoleprint: ((message: string, colour?: string) => void) | void
-
-/**
- * Clears the console.
- */
-
-declare const rconsoleclear: (() => void) | void
-
-/**
- * Allows the user to type something into the console.
- */
-
-declare const rconsoleinput: (() => string) | void
-
-// We will need to detect which one exists, first one is S-W, second is Synapse
-
-/**
- * Set the console's title to the one provided.
- * @param title The title to set the console to.
- */
-
-declare const rconsolesettitle: ((title: string) => void) | void
-
-/**
- * Set the console's title to the one provided.
- * @param title The title to set the console to.
- */
-
-declare const rconsolename: ((title: string) => void) | void
-
-// S-W exclusive
-
-/**
- * Opens a console window.
- */
-
-declare const rconsolecreate: (() => void) | void
-
-/**
- * Closes the console window.
- */
-
-declare const rconsoledestroy: (() => void) | void
 
 // Filesystem API (S-W)
 
@@ -124,90 +59,15 @@ declare const writedialog: ((title: string, filter: string, data: string) => boo
 
 declare const readdialog: ((title: string, filter: string) => [boolean, string]) | void
 
-type Drawing = {
-    new <T extends keyof CreatableDrawings>(drawingType: T): CreatableDrawings[T];
-    readonly Fonts: {
-        UI: 0;
-        System: 1;
-        Plex: 2;
-        Monospace: 3;
-    };
-};
+declare const getsynasset: typeof getcustomasset
 
-declare const Drawing: Drawing | undefined;
-
-interface CreatableDrawings {
-    Line: Line;
-    Text: Text;
-    Image: Image;
-    Circle: Circle;
-    Square: Square;
-    Quad: Quad;
-    Triangle: Triangle;
-}
-
-type CreatableDrawing = CreatableDrawings[keyof CreatableDrawings];
-
-interface BaseDrawing {
-    Visible: boolean;
-    ZIndex: number;
-    Transparency: number;
-    Color: Color3;
-    Remove(): void;
-}
-
-interface Line extends BaseDrawing {
-    Thickness: number;
-    From: Vector2;
-    To: Vector2;
-}
-
-interface Text extends BaseDrawing {
-    Text: string;
-    readonly TextBounds: Vector2;
-    Size: number;
-    Center: boolean;
-    Outline: boolean;
-    OutlineColor: Color3;
-    Position: Vector2;
-    Font: number;
-}
-
-interface Image extends BaseDrawing {
-    Data: string;
-    Size: Vector2;
-    Position: Vector2;
-    Rounding: number;
-}
-
-interface Circle extends BaseDrawing {
-    Thickness: number;
-    NumSides: number;
-    Radius: number;
-    Filled: boolean;
-    Position: Vector2;
-}
-
-interface Square extends BaseDrawing {
-    Thickness: number;
-    Size: Vector2;
-    Position: Vector2;
-    Filled: boolean;
-}
-
-interface Quad extends BaseDrawing {
-    Thickness: number;
-    PointA: Vector2;
-    PointB: Vector2;
-    PointC: Vector2;
-    PointD: Vector2;
-    Filled: boolean;
-}
-
-interface Triangle extends BaseDrawing {
-    Thickness: number;
-    PointA: Vector2;
-    PointB: Vector2;
-    PointC: Vector2;
-    Filled: boolean;
-}
+/**
+ * Sets the environment to be used by the given function. `f` can be a Lua function or a number that specifies the function at that stack level:
+ * Level 1 is the function calling `setfenv`. `setfenv` returns the given function.
+ *
+ * As a special case, when f is 0 setfenv changes the environment of the running thread. In this case, setfenv returns no values.
+ *
+ * @param f A Lua function or the stack level.
+ * @param env The new environment.
+ */
+declare function setfenv<T extends number | Callback>(f: T, env: object): T extends 0 ? undefined : T;

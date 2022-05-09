@@ -15,7 +15,7 @@ export const Plugins = Roact.createContext<Plugin[]>([])
 export function asset(url: string): string {
 	// otherwise, we need to download it
 	const [name] = url.match("([^/]+)$")
-	const data = game.HttpGetAsync(url)
+	const [data] = game.HttpGetAsync(url)
 	writefile("mollermethod_" + name, data)
 	return (getcustomasset || getsynasset)("mollermethod_" + name)
 }

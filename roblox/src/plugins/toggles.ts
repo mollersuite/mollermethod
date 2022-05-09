@@ -10,7 +10,7 @@ export = (util: PluginUtil): Plugin => {
 	const colors = util.colors
 	const block = new Instance("ConeHandleAdornment", game.GetService("CoreGui"))
 	let TracersLoop: RBXScriptConnection
-	const TracerLines: Record<string, Line> = {}
+	const TracerLines: Record<string, DrawingLine> = {}
 	block.Adornee = Workspace.Terrain
 	block.Name = HttpService.GenerateGUID()
 	block.Visible = false
