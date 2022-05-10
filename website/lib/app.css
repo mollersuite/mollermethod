@@ -1,4 +1,4 @@
-@import './code.css';
+@import "./code.css";
 @import "fluent-svelte/theme.css";
 @import "@fontsource/jetbrains-mono";
 
@@ -39,20 +39,17 @@ a:hover {
 	text-decoration: underline;
 }
 
-
 pre,
 code,
 textarea {
-  font-size: 13px;
-  font-family: 'JetBrains Mono', ui-monospace, 'Input Mono', 'Cascadia Mono',
-    'Segoe UI Mono', 'Ubuntu Mono', 'Roboto Mono', 'Fira Code', Menlo, Monaco,
-    Consolas, monospace;
-  background-color: var(--fds-solid-background-secondary);
-  border-radius: 3px;
-  overflow-x: auto;
-  color: var(--fds-text-primary);
+	font-size: 13px;
+	font-family: "JetBrains Mono", ui-monospace, "Input Mono", "Cascadia Mono", "Segoe UI Mono",
+		"Ubuntu Mono", "Roboto Mono", "Fira Code", Menlo, Monaco, Consolas, monospace;
+	background-color: var(--fds-solid-background-secondary);
+	border-radius: 3px;
+	overflow-x: auto;
+	color: var(--fds-text-primary);
 }
-
 
 input,
 button {
@@ -67,10 +64,20 @@ button:focus:not(:focus-visible) {
 	--fds-menu-offset: 0 !important;
 }
 
-
+:where(h1,
+h2,
+h3,
+h4,
+h5,
+h6):not(:hover) .icon.icon-link{
+	opacity: 0;
+}
 .icon.icon-link::before {
-  content: '🔗\FE0E';
-  margin-right: 0.5ch;
-  font-weight: 100;
-  font-style: normal;
+	content: "🔗\FE0E";
+	color: var(--fds-text-primary);
+	margin-left: -20px;
+	padding-right: 4px;
+	float: left;
+	font-weight: 100;
+	font-style: normal;
 }
