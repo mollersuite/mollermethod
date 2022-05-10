@@ -301,7 +301,7 @@
 </ToggleSwitch>
 <ToggleSwitch bind:checked={external}>
 	External Bracket?
-	<small>Bracket will open in a console window. Only confirmed to work on Script-Ware.</small>
+	<small>Bracket will open in a console window.</small>
 </ToggleSwitch>
 <NumberBox bind:value={volume} min={0} max={10} inline required>Volume</NumberBox>
 <Expander>
