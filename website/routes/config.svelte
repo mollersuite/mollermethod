@@ -390,11 +390,6 @@
 		grid-template-columns: repeat(2, fit-content(100%));
 		grid-gap: 1.5rem;
 		justify-items: center;
-
-		padding-block-end: 2rem;
-
 		text-align: center;
-
-		border-block-end: 1px solid var(--control-color-default);
 	}
 </style>
