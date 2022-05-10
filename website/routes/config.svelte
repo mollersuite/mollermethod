@@ -258,7 +258,6 @@
 	import { ToggleSwitch, ComboBox, Expander, NumberBox } from "fluent-svelte"
 	import { page } from "$app/stores"
 	import { convert, fix } from "$lib/lua"
-	import Color from "$lib/components/Color.svelte"
 	import Preview from "@fluentui/svg-icons/icons/eye_20_regular.svg?raw"
 	import ColorIcon from "@fluentui/svg-icons/icons/color_20_regular.svg?raw"
 	let toggle = "LeftBracket"
@@ -304,19 +303,20 @@
 	External Bracket?
 	<small>Bracket will open in a console window. Only confirmed to work on Script-Ware.</small>
 </ToggleSwitch>
-<NumberBox bind:value={volume} min={0} max={10} inline required >
-	Volume
-</NumberBox>
+<NumberBox bind:value={volume} min={0} max={10} inline required>Volume</NumberBox>
 <Expander>
 	<svelte:fragment slot="icon">
 		{@html ColorIcon}
 	</svelte:fragment> Theme
 	<svelte:fragment slot="content">
-		<nav>
-			<Color id="background" bind:value={background}>Background color</Color>
-			<Color id="accent" bind:value={accent}>Accent color</Color>
-			<Color id="foreground" bind:value={foreground}>Foreground color</Color>
-		</nav>
+		<div class="group">
+			<label for="accent">Accent</label>
+			<input type="color" id="accent" bind:value={accent}/>
+			<label for="background">Background</label>
+			<input type="color" id="background" bind:value={background}/>
+			<label for="foreground">Foreground</label>
+			<input type="color" id="foreground" bind:value={foreground}/>
+		</div>
 	</svelte:fragment>
 </Expander>
 <Expander>
@@ -365,13 +365,6 @@
 		border-image-slice: 1;
 		border-image-source: linear-gradient(45deg, var(--accent) 49.9%, gray 50%);
 	}
-	nav {
-		display: flex;
-		justify-content: center;
-		gap: 1ch;
-		flex-direction: column;
-		width: max-content;
-	}
 	span {
 		white-space: pre;
 		flex-grow: 1;
@@ -379,5 +372,29 @@
 	}
 	pre {
 		tab-size: 2;
+	}
+
+	input[type="color"] {
+		border: 2px solid hsla(0, 0%, 100%, 0.2);
+		border-radius: 100vh;
+		transition: border-width 75ms ease;
+	}
+	::-webkit-color-swatch {
+		border-radius: 100vh;
+	}
+	input[type="color"]:hover {
+		border-width: 3px;
+	}
+	.group {
+		display: grid;
+		grid-template-columns: repeat(2, fit-content(100%));
+		grid-gap: 1.5rem;
+		justify-items: center;
+
+		padding-block-end: 2rem;
+
+		text-align: center;
+
+		border-block-end: 1px solid var(--control-color-default);
 	}
 </style>
