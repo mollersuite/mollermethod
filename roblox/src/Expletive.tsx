@@ -13,9 +13,10 @@ import Mollybdos from "Mollybdos"
 import Button from "components/Button"
 import LocalBar from "LocalBar"
 import PlaceholderPage from "components/PlaceholderPage"
+import Snippets from "components/Snippets"
 
 const spring = (n: number) => new Spring(n, { dampingRatio: 1, frequency: 2 })
-export = pure<{ container: Instance }>(({ container }) => {
+export = pure<{ container: Instance; notif: Frame }>(({ container, notif }) => {
 	const [closed, setOpen] = useSingleMotor(1)
 	const [Page, setPage] = useState<Roact.Element>(<></>)
 
@@ -100,16 +101,23 @@ export = pure<{ container: Instance }>(({ container }) => {
 				Accent={Page.component === Mollybdos}
 			/>
 			<Button
-				Text="Scripts"
-				Image="rbxassetid://9369994718"
+				Text="Snippets"
+				Image="rbxassetid://9620224527"
 				LayoutOrder={6}
+				Activated={() => page_to(<Snippets holder={notif} />)}
+				Accent={Page.component === Snippets}
+			/>
+			<Button
+				Text="Cloud Scripts"
+				Image="rbxassetid://9369994718"
+				LayoutOrder={7}
 				Activated={() => page_to(<PlaceholderPage />)}
 				Accent={Page.component === PlaceholderPage}
 			/>
 			<Button
 				Text="Settings"
 				Image="rbxassetid://9369994833"
-				LayoutOrder={7}
+				LayoutOrder={8}
 				Activated={() => page_to(<PlaceholderPage />)}
 				Accent={Page.component === PlaceholderPage}
 			/>

@@ -34,6 +34,14 @@ local content = getcustomasset or getsynasset
 ---mollermethod's loader
 ---@param config Config
 return function (config)
+	if not isfile("mollermethod.json") then
+		writefile("mollermethod.json", HttpService:JSONEncode({
+			snippets = {
+
+			},
+			config = config
+		}))
+	end
 	 if config.theme then
 	 	colors.ACCENT = Color3.fromHex(config.theme.accent)
 		colors.WHITE = Color3.fromHex(config.theme.foreground)
@@ -127,7 +135,8 @@ return function (config)
 						end
 					}, {
 						Taskbar = Roact.createElement(Expletive, {
-							container = config.gui
+							container = config.gui,
+							notif = notificationHolder,
 						}),
 						Bracket = config.bracket_external and Roact.createElement(BracketExternal) or Roact.createElement(Bracket, {
 							button = config.bracket_toggle or Enum.KeyCode.LeftBracket,
