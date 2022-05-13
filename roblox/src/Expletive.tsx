@@ -59,7 +59,7 @@ export = pure<{ container: Instance }>(({ container }) => {
 				ScaleType="Fit"
 				BackgroundTransparency={1}>
 				<textlabel
-					TextSize={5}
+					TextScaled
 					Font="RobotoMono"
 					Text={PKG_VERSION}
 					TextColor3={colors.WHITE}
