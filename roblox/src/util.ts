@@ -1,8 +1,15 @@
 import Object from "@rbxts/object-utils"
-import Roact from "@rbxts/roact"
+import Roact, { Binding, BindingFunction } from "@rbxts/roact"
 import { SoundService } from "@rbxts/services"
+import colors from "colors"
 import type { Plugin } from "./types"
 
+const binding = Roact.createBinding(colors) as [
+	binding: Binding<typeof colors>,
+	setBinding: BindingFunction<typeof colors>
+]
+
+export const Colors = Roact.createContext(binding)
 export const Kill = Roact.createContext(() => {})
 export const Plugins = Roact.createContext<Plugin[]>([])
 
@@ -34,8 +41,8 @@ export function play(id: string, volume = default_volume) {
 	SoundService.PlayLocalSound(sound)
 }
 
-export function set_volume(volume_: number) {
-	default_volume = volume_
+export function set_volume(volume: number) {
+	default_volume = volume
 }
 /**
  * fuck lua fuck lua

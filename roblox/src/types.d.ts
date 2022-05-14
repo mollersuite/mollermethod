@@ -1,3 +1,5 @@
+import { Binding } from "@rbxts/roact"
+
 export interface Command {
 	readonly description: string
 	execute(this: void, args: string[]): void | Promise<unknown>
@@ -39,6 +41,7 @@ export interface PluginUtil {
 		callback?: Callback
 	) => unknown
 	GUI: Instance
-	colors: typeof import("colors")['default']
+	colors: Binding<typeof import("colors")['default']>
 	Snapdragon: typeof import("@rbxts/snapdragon")
+	Roact: typeof import("@rbxts/roact")
 }

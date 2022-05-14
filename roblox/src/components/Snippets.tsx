@@ -1,9 +1,11 @@
 import Roact from "@rbxts/roact"
-import { pure, useEffect, useState } from "@rbxts/roact-hooked"
+import { pure, useContext, useEffect, useState } from "@rbxts/roact-hooked"
 import { HttpService } from "@rbxts/services"
-import colors from "colors"
 import Placeholder from "./Placeholder"
 import Notification from "Notification"
+import { Colors } from "util"
+import Page from "./Page"
+
 type Config = {
 	snippets: {
 		name: string
@@ -11,6 +13,7 @@ type Config = {
 	}[]
 }
 export = pure<{ holder: Instance }>(({ holder }) => {
+	const [colors] = useContext(Colors)
 	const [snippets, setSnippets] = useState<Config["snippets"]>([])
 	useEffect(() => {
 		if (readfile) {
@@ -18,13 +21,7 @@ export = pure<{ holder: Instance }>(({ holder }) => {
 		}
 	}, [])
 	return (
-		<frame
-			Position={new UDim2(0.5, 0, 1, -110)}
-			Size={UDim2.fromOffset(960, 300)}
-			AnchorPoint={new Vector2(0.5, 1)}
-			BackgroundColor3={colors.BLACK}
-			BorderSizePixel={0}>
-			<uicorner CornerRadius={new UDim(0, 10)} />
+		<Page>
 			<uipadding
 				PaddingLeft={new UDim(0, 10)}
 				PaddingRight={new UDim(0, 10)}
@@ -35,10 +32,10 @@ export = pure<{ holder: Instance }>(({ holder }) => {
 				LayoutOrder={-100}
 				Size={new UDim2(0, 24, 0, 24)}
 				Text="+"
-				TextColor3={colors.WHITE}
+				TextColor3={colors.map(colors => colors.WHITE)}
 				TextSize={20}
 				Font="GothamBlack"
-				BackgroundColor3={colors.ACCENT}
+				BackgroundColor3={colors.map(colors => colors.ACCENT)}
 				BorderSizePixel={0}>
 				<uicorner CornerRadius={new UDim(1, 0)} />
 			</textbutton>
@@ -56,9 +53,9 @@ export = pure<{ holder: Instance }>(({ holder }) => {
 						<textbutton
 							Text={snippet.name}
 							AutomaticSize="Y"
-							BackgroundColor3={colors.BLACK}
+							BackgroundColor3={colors.map(colors => colors.BLACK)}
 							BorderSizePixel={0}
-							TextColor3={colors.WHITE}
+							TextColor3={colors.map(colors => colors.WHITE)}
 							TextSize={20}
 							TextXAlignment="Center"
 							TextYAlignment="Center"
@@ -78,6 +75,6 @@ export = pure<{ holder: Instance }>(({ holder }) => {
 					))}
 				</>
 			)}
-		</frame>
+		</Page>
 	)
 })

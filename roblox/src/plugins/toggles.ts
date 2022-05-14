@@ -1,20 +1,25 @@
-import { Linear } from "@rbxts/flipper"
 import Object from "@rbxts/object-utils"
 import { HttpService, Players, Workspace, RunService } from "@rbxts/services"
 import Flight from "Bracket/Flight"
-import module from "Notification"
-import type { PluginUtil, Plugin, Toggle } from "types"
+import type { PluginUtil, Plugin } from "types"
 
 const Player = Players.LocalPlayer
 export = (util: PluginUtil): Plugin => {
 	const colors = util.colors
-	const block = new Instance("ConeHandleAdornment", util.GUI.Parent)
+	const block = util.Roact.createRef<ConeHandleAdornment>()
 	let TracersLoop: RBXScriptConnection
 	const TracerLines: Record<string, DrawingLine> = {}
-	block.Adornee = Workspace.Terrain
-	block.Name = HttpService.GenerateGUID()
-	block.Visible = false
-	block.Color3 = colors.ACCENT
+	
+	util.Roact.mount(
+		util.Roact.createElement("ConeHandleAdornment", {
+			Adornee: Workspace.Terrain,
+			Name: HttpService.GenerateGUID(),
+			Visible: false,
+			Color3: colors.map(colors => colors.ACCENT),
+			[util.Roact.Ref]: block
+		}),
+		util.GUI.Parent
+	)
 
 	return {
 		Name: "Built-in toggles",
@@ -54,10 +59,11 @@ export = (util: PluginUtil): Plugin => {
 				un: "visible",
 				description: "turns you into a cone [invisible speed?:number",
 				localbar: true, // Defaults to true but who cares
-				on(args) {
+				on (args) {
+					const cone = block.getValue()!
 					const speed = args ? tonumber(args[0]) : 100
-					if (block.Visible) {
-						return Flight(true, block, speed)
+					if (cone.Visible) {
+						return Flight(true, cone, speed)
 					}
 					const Character = Player.Character
 					const humanoid = Character?.FindFirstChildWhichIsA("Humanoid")
@@ -65,31 +71,35 @@ export = (util: PluginUtil): Plugin => {
 					assert(Character, "you need a character")
 					assert(humanoid, "you need a humanoid")
 					assert(root, "you need a root part")
-					block.Visible = true
-					block.CFrame = root.CFrame
+					cone.Visible = true
+					cone.CFrame = root.CFrame
 					const fake = new Instance("Part")
 					fake.Anchored = true
-					Flight(true, block, speed)
+					Flight(true, cone, speed)
 					Character.PivotTo(new CFrame(Vector3.one.mul(1000), Vector3.zero))
-					block.GetPropertyChangedSignal("CFrame").Connect(() => {
-						fake.CFrame = block.CFrame
-					})
+					block
+						.getValue()!
+						.GetPropertyChangedSignal("CFrame")
+						.Connect(() => {
+							fake.CFrame = cone.CFrame
+						})
 					task.delay(1, () => (root.Anchored = true))
 					Workspace.CurrentCamera!.CameraSubject = fake
 				},
-				off() {
+				off () {
+					const cone = block.getValue()!
 					const Character = Player.Character
 					assert(Character, "you need a character")
-					Flight(false, block)
+					Flight(false, cone)
 					const humanoid = Character?.FindFirstChildWhichIsA("Humanoid")
 					assert(humanoid, "you need a humanoid")
 					const root = humanoid.RootPart
 					assert(root, "you need a root part")
 					root.Anchored = false
-					Character.PivotTo(block.CFrame)
+					Character.PivotTo(cone.CFrame)
 					Workspace.CurrentCamera!.CameraSubject = humanoid
 
-					block.Visible = false
+					cone.Visible = false
 				},
 			},
 
