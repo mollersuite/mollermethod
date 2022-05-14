@@ -7,7 +7,7 @@ const Player = Players.LocalPlayer
 export = (util: PluginUtil): Plugin => {
 	let Flight = false
 	const colors = util.colors
-	const block = new Instance("ConeHandleAdornment", game.GetService("CoreGui"))
+	const block = new Instance("ConeHandleAdornment", util.GUI.Parent)
 	block.Adornee = Workspace.Terrain
 	block.Name = HttpService.GenerateGUID()
 	block.Visible = false

@@ -8,7 +8,7 @@ import type { PluginUtil, Plugin, Toggle } from "types"
 const Player = Players.LocalPlayer
 export = (util: PluginUtil): Plugin => {
 	const colors = util.colors
-	const block = new Instance("ConeHandleAdornment", game.GetService("CoreGui"))
+	const block = new Instance("ConeHandleAdornment", util.GUI.Parent)
 	let TracersLoop: RBXScriptConnection
 	const TracerLines: Record<string, DrawingLine> = {}
 	block.Adornee = Workspace.Terrain
