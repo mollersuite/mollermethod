@@ -32,7 +32,8 @@
 		"tabWidth": 4,
 		"trailingComma": "es5",
 		"useTabs": true,
-		"vueIndentScriptAndStyle": false
+		"vueIndentScriptAndStyle": false,
+		"pluginSearchDirs": ["."]
 	},
 	"dependencies": {
 		"@milahu/patch-package": "^6.4.11"
