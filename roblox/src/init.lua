@@ -85,7 +85,7 @@ return function(config)
 	local plugins = {}
 	local pluginUtil = {
 		notify = function(name, description, icon, duration, callback)
-			return Notification(name, description, icon, duration, notificationHolder, callback)
+			return Notification.new(name, description, icon, duration, notificationHolder, callback)
 		end,
 		GUI = config.gui,
 		colors = colorsBinding[1],
