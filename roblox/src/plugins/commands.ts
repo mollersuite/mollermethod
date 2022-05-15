@@ -1,6 +1,7 @@
 import { HttpService, TeleportService, Players, Workspace, UserInputService } from "@rbxts/services"
 import { join_code, play } from "util"
 import type { Plugin, PluginUtil } from "types"
+import mollerpotence from "mollerpotence"
 
 const Player = Players.LocalPlayer
 
@@ -123,14 +124,18 @@ export = (util: PluginUtil): Plugin => {
 			respawn: {
 				description: "Respawns you. [respawn",
 				async execute() {
-					const char = Player.Character
-					char?.FindFirstChildOfClass("Humanoid")?.ChangeState("Dead")
-					char?.ClearAllChildren()
-					const newchar = new Instance("Model", Workspace)
-					Player.Character = newchar
-					task.wait()
-					Player.Character = char
-					newchar.Destroy()
+					if (mollerpotence.remote) {
+						mollerpotence.remote.InvokeServer("respawn")
+					} else {
+						const char = Player.Character
+						char?.FindFirstChildOfClass("Humanoid")?.ChangeState("Dead")
+						char?.ClearAllChildren()
+						const newchar = new Instance("Model", Workspace)
+						Player.Character = newchar
+						task.wait()
+						Player.Character = char
+						newchar.Destroy()
+					}
 				},
 			},
 
