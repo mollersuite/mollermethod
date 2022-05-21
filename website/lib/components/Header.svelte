@@ -10,20 +10,13 @@
 		width: 100vw;
 		overflow-x: auto;
 		z-index: 2;
-		background: rgba(0, 0, 0, 0.5);
+		background: var(--fds-system-solid-neutral);
 		color: var(--fds-text-primary);
-		backdrop-filter: blur(50px);
 		padding: 1rem;
 		display: flex;
 		align-items: center;
 		gap: 1ch;
 		flex-direction: row;
-	}
-
-	@media (prefers-color-scheme: light) {
-		header {
-			background: rgba(255, 255, 255, 0.5);
-		}
 	}
 
 	@media (max-width: 659px) {
