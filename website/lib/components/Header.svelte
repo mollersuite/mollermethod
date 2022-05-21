@@ -10,8 +10,9 @@
 		width: 100vw;
 		overflow-x: auto;
 		z-index: 2;
-		background: var(--fds-system-solid-neutral);
+		background: var(--fds-solid-background-secondary);
 		color: var(--fds-text-primary);
+		backdrop-filter: blur(50px);
 		padding: 1rem;
 		display: flex;
 		align-items: center;
