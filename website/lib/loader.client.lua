@@ -312,6 +312,9 @@ CONFIG.gui = GUI
 if sethiddenproperty then
 	sethiddenproperty(GUI, "OnTopOfCoreBlur", true)
 end
+if syn and syn.protect_gui then
+	syn.protect_gui(GUI)
+end
 GUI.Name = game:GetService("HttpService"):GenerateGUID()
 GUI.IgnoreGuiInset = true
 GUI.ResetOnSpawn = false
