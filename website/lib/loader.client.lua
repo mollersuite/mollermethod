@@ -309,6 +309,9 @@ local ids =
 
 local GUI = Instance.new("ScreenGui")
 CONFIG.gui = GUI
+if sethiddenproperty then
+	sethiddenproperty(GUI, "OnTopOfCoreBlur", true)
+end
 GUI.Name = game:GetService("HttpService"):GenerateGUID()
 GUI.IgnoreGuiInset = true
 GUI.ResetOnSpawn = false
