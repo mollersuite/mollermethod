@@ -14,6 +14,7 @@ import LocalBar from "LocalBar"
 import PlaceholderPage from "components/PlaceholderPage"
 import Snippets from "components/Snippets"
 import Settings from "components/Settings"
+import mollerpotence from "mollerpotence"
 
 const spring = (n: number) => new Spring(n, { dampingRatio: 1, frequency: 2 })
 export = pure<{ container: Instance; notif: Frame }>(({ container, notif }) => {
@@ -70,16 +71,25 @@ export = pure<{ container: Instance; notif: Frame }>(({ container, notif }) => {
 					TextYAlignment="Bottom"
 				/>
 			</imagebutton>
+			<imagelabel
+				Visible={mollerpotence.enabled}
+				Size={UDim2.fromOffset(20, 20)}
+				BackgroundTransparency={1}
+				ScaleType="Fit"
+				ImageColor3={colors.map(colors => colors.WHITE)}
+				Image="rbxassetid://9693083838"
+				LayoutOrder={2}
+			/>
 			<Button
 				Text="Bracket"
-				LayoutOrder={2}
+				LayoutOrder={3}
 				Image="rbxassetid://9370028870"
 				Activated={() => bracket_shown.Fire(true)}
 			/>
 			<Kill.Consumer
 				render={kill => (
 					<Button
-						LayoutOrder={3}
+						LayoutOrder={4}
 						Text="Close"
 						Image="rbxassetid://9370045727"
 						Activated={kill}
@@ -89,35 +99,35 @@ export = pure<{ container: Instance; notif: Frame }>(({ container, notif }) => {
 			<Button
 				Text="You"
 				Image="rbxassetid://9417608010"
-				LayoutOrder={4}
+				LayoutOrder={5}
 				Activated={() => page_to(<LocalBar />)}
 				Accent={Page.component === LocalBar}
 			/>
 			<Button
 				Text="Players"
 				Image="rbxassetid://9370016791"
-				LayoutOrder={5}
+				LayoutOrder={6}
 				Activated={() => page_to(<Mollybdos />)}
 				Accent={Page.component === Mollybdos}
 			/>
 			<Button
 				Text="Snippets"
 				Image="rbxassetid://9620224527"
-				LayoutOrder={6}
+				LayoutOrder={7}
 				Activated={() => page_to(<Snippets holder={notif} />)}
 				Accent={Page.component === Snippets}
 			/>
 			<Button
 				Text="Cloud Scripts"
 				Image="rbxassetid://9369994718"
-				LayoutOrder={7}
+				LayoutOrder={8}
 				Activated={() => page_to(<PlaceholderPage />)}
 				Accent={Page.component === PlaceholderPage}
 			/>
 			<Button
 				Text="Settings"
 				Image="rbxassetid://9369994833"
-				LayoutOrder={8}
+				LayoutOrder={9}
 				Activated={() => page_to(<Settings />)}
 				Accent={Page.component === Settings}
 			/>
