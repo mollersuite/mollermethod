@@ -15,6 +15,7 @@ import PlaceholderPage from "components/PlaceholderPage"
 import Snippets from "components/Snippets"
 import Settings from "components/Settings"
 import mollerpotence from "mollerpotence"
+import CloudScripts from "components/CloudScripts"
 
 const spring = (n: number) => new Spring(n, { dampingRatio: 1, frequency: 2 })
 export = pure<{ container: Instance; notif: Frame }>(({ container, notif }) => {
@@ -121,8 +122,8 @@ export = pure<{ container: Instance; notif: Frame }>(({ container, notif }) => {
 				Text="Cloud Scripts"
 				Image="rbxassetid://9369994718"
 				LayoutOrder={8}
-				Activated={() => page_to(<PlaceholderPage />)}
-				Accent={Page.component === PlaceholderPage}
+				Activated={() => page_to(<CloudScripts />)}
+				Accent={Page.component === CloudScripts}
 			/>
 			<Button
 				Text="Settings"
