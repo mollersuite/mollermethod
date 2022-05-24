@@ -14,7 +14,7 @@ export = pure(() => {
 			description: string
 		}[]
 	>([])
-	const [query, setQuery] = useState("moller")
+	const [query, setQuery] = useState("")
 	const [colors] = useContext(Colors)
 	const [focused, setFocused] = useBinding(false)
 
