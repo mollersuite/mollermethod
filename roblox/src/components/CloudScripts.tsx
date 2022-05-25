@@ -8,12 +8,13 @@ const req = syn?.request ?? request
 
 export = pure(() => {
 	const [scripts, setScripts] = useState<
-		{
-			id: string
-			name: string
-			description: string
-		}[]
-	>([])
+		| {
+				id: string
+				name: string
+				description: string
+		  }[]
+		| undefined
+	>()
 	const [query, setQuery] = useState("")
 	const [colors] = useContext(Colors)
 	const [focused, setFocused] = useBinding(false)
@@ -64,7 +65,7 @@ export = pure(() => {
 				TextSize={20}
 				TextColor3={colors.map(colors => colors.WHITE)}
 				PlaceholderText="Search for scripts"
-				PlaceholderColor3={colors.map(colors => colors.ACCENT)}
+				PlaceholderColor3={colors.map(colors => colors.WHITE.Lerp(colors.BLACK, 0.5))}
 				BackgroundColor3={colors.map(colors => colors.WHITE)}
 				BackgroundTransparency={focused.map(focused => (focused ? 0.5 : 1))}
 				TextXAlignment="Left"
@@ -73,8 +74,8 @@ export = pure(() => {
 				Size={new UDim2(1, 0, 0, 30)}>
 				<uipadding PaddingLeft={new UDim(0, 10)} PaddingRight={new UDim(0, 10)} />
 			</textbox>
-			{scripts.isEmpty() ? (
-				<Placeholder Text="Loading..." />
+			{!scripts || scripts.isEmpty() ? (
+				<Placeholder Text={scripts ? "No scripts found." : "Make a search."} />
 			) : (
 				<>
 					<uilistlayout
