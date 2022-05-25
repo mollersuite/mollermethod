@@ -2,8 +2,8 @@ import Roact from "@rbxts/roact"
 import { pure, useBinding, useContext, useEffect, useState } from "@rbxts/roact-hooked"
 import { HttpService } from "@rbxts/services"
 import { Colors } from "util"
-import Page from "./Page"
-import Placeholder from "./Placeholder"
+import Page from "../components/Page"
+import Placeholder from "../components/Placeholder"
 const req = syn?.request ?? request
 
 export = pure(() => {

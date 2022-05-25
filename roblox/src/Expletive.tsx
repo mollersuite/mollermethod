@@ -10,12 +10,12 @@ import { Spring } from "@rbxts/flipper"
 
 import Mollybdos from "Mollybdos"
 import Button from "components/Button"
-import LocalBar from "LocalBar"
+import LocalBar from "pages/LocalPlayer"
 import PlaceholderPage from "components/PlaceholderPage"
-import Snippets from "components/Snippets"
-import Settings from "components/Settings"
+import Snippets from "pages/Snippets"
+import Settings from "pages/Settings"
 import mollerpotence from "mollerpotence"
-import CloudScripts from "components/CloudScripts"
+import CloudScripts from "pages/CloudScripts"
 
 const spring = (n: number) => new Spring(n, { dampingRatio: 1, frequency: 2 })
 export = pure<{ container: Instance; notif: Frame }>(({ container, notif }) => {

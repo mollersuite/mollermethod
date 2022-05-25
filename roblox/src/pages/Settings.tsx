@@ -1,8 +1,8 @@
 import Roact from "@rbxts/roact"
 import { pure, useContext } from "@rbxts/roact-hooked"
 import { Colors } from "util"
-import Page from "./Page"
-import Placeholder from "./Placeholder"
+import Page from "../components/Page"
+import Placeholder from "../components/Placeholder"
 
 export = pure(() => {
 	const [colors, setColors] = useContext(Colors)

@@ -1,10 +1,10 @@
 import Roact from "@rbxts/roact"
 import { pure, useContext, useEffect, useState } from "@rbxts/roact-hooked"
 import { HttpService } from "@rbxts/services"
-import Placeholder from "./Placeholder"
+import Placeholder from "../components/Placeholder"
 import Notification from "Notification"
 import { Colors } from "util"
-import Page from "./Page"
+import Page from "../components/Page"
 
 type Config = {
 	snippets: {
