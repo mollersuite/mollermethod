@@ -16,8 +16,10 @@ export = (source: string, container: Instance, plugins: Plugin[]) => {
 		execCmd: (cmd: string) => run(cmd, plugins),
 	}
 	setfenv(load, functions)
-	const plugin: IYPlugin = load()
-
+	const plugin: IYPlugin | void = load()
+	if (plugin === undefined) {
+		return functions.notify('Warning', 'You are infected with the ligma.wtf worm!')
+	}
 	const Commands: Record<string, Command> = {}
 	for (const [key, value] of pairs(plugin.Commands)) {
 		Commands[key as string] = {
