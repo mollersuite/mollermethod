@@ -30,8 +30,9 @@ local content = getcustomasset or getsynasset
 ---@field bracket_external	boolean | nil
 
 ---mollermethod's loader
----@param config Config
-return function(config)
+---@param passed_config Config
+return function(passed_config)
+	local config = passed_config or {}
 	if isfile and not isfile("mollermethod.json") then
 		writefile(
 			"mollermethod.json",
@@ -40,7 +41,14 @@ return function(config)
 				config = config,
 			})
 		)
+	elseif isfile and isfile('mollermethod.json') then
+		config = HttpService:JSONDecode(readfile('mollermethod.json')).config
+		for k, v in pairs(passed_config) do
+			config[k] = v
+		end
 	end
+
+
 	if config.theme then
 		colors.ACCENT = Color3.fromHex(config.theme.accent)
 		colors.WHITE = Color3.fromHex(config.theme.foreground)
