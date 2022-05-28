@@ -8,10 +8,10 @@ export = pure(() => {
 	const [colors, setColors] = useContext(Colors)
 	return (
 		<Page>
-			<Placeholder Text="this isn't final at all" />
+			<Placeholder Text="Settings is not implemented." />
 			<textbutton
 				AutomaticSize="XY"
-				Text="click me!"
+				Text="Toggle Light Theme"
 				Event={{
 					Activated: () =>
 						setColors({
