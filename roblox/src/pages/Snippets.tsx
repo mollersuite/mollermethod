@@ -32,7 +32,6 @@ export = pure<{ holder: Instance }>(({ holder }) => {
 			<textbutton
 				LayoutOrder={-100}
 				Size={new UDim2(0, 24, 0, 24)}
-				AutomaticSize="X"
 				Text={"+"}
 				Rotation={editing ? 45 : 0}
 				TextColor3={colors.map(colors => colors.WHITE)}
