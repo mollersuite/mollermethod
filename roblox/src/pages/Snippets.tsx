@@ -15,6 +15,7 @@ type Config = {
 export = pure<{ holder: Instance }>(({ holder }) => {
 	const [colors] = useContext(Colors)
 	const [snippets, setSnippets] = useState<Config["snippets"]>([])
+	const [editing, setEditing] = useState(false)
 	useEffect(() => {
 		if (readfile) {
 			setSnippets((HttpService.JSONDecode(readfile("mollermethod.json")) as Config).snippets)
@@ -31,15 +32,22 @@ export = pure<{ holder: Instance }>(({ holder }) => {
 			<textbutton
 				LayoutOrder={-100}
 				Size={new UDim2(0, 24, 0, 24)}
-				Text="+"
+				AutomaticSize="X"
+				Text={"+"}
+				Rotation={editing ? 45 : 0}
 				TextColor3={colors.map(colors => colors.WHITE)}
 				TextSize={20}
 				Font="GothamBlack"
 				BackgroundColor3={colors.map(colors => colors.ACCENT)}
+				Event={{
+					Activated: () => setEditing(!editing),
+				}}
 				BorderSizePixel={0}>
 				<uicorner CornerRadius={new UDim(1, 0)} />
 			</textbutton>
-			{snippets.isEmpty() ? (
+			{editing ? (
+				<Placeholder Text="This has not been implemented.\nFor now, add snippets to mollermethod.json\nin the `snippets` field\nwith the format {name: string, source: string}" />
+			) : snippets.isEmpty() ? (
 				<Placeholder Text="No snippets found" />
 			) : (
 				<>
