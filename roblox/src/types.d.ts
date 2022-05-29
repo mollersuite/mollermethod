@@ -1,6 +1,19 @@
+import { Binding } from "@rbxts/roact"
+
 export interface Command {
 	readonly description: string
 	execute(this: void, args: string[]): void | Promise<unknown>
+}
+
+// TODO: implement, document, replace fly, fish invisible with toggles
+// toggles run only on you
+export interface Toggle {
+	readonly description: string
+	readonly localbar?: boolean
+	on (this: void, args?: string[]): unknown
+	off (this: void): unknown
+	un?: string
+	value?: boolean
 }
 
 export interface Action {
@@ -16,6 +29,7 @@ export interface Plugin {
 	readonly Tags?: (this: void, player: Player, add: (tag: string) => unknown) => unknown
 	readonly Actions?: Record<string, Action>
 	readonly Commands?: Record<string, Command>
+	readonly Toggles?: Record<string, Toggle>
 }
 
 export interface PluginUtil {
@@ -27,6 +41,7 @@ export interface PluginUtil {
 		callback?: Callback
 	) => unknown
 	GUI: Instance
-	colors: typeof import("colors")['default']
+	colors: Binding<typeof import("colors")['default']>
 	Snapdragon: typeof import("@rbxts/snapdragon")
+	Roact: typeof import("@rbxts/roact")
 }

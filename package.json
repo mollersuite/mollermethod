@@ -1,12 +1,14 @@
 {
 	"name": "mollermethod",
 	"description": "Scripting, unleashed.",
-	"version": "7.0.0",
+	"version": "8.0.0",
 	"private": true,
-	"packageManager": "pnpm@6.32.4",
+	"packageManager": "pnpm@7.0.1",
 	"devDependencies": {
 		"@prettier/plugin-lua": "github:prettier/plugin-lua",
-		"prettier": "^2.4.1"
+		"prettier-plugin-svelte": "^2.6.0",
+		"prettier": "^2.4.1",
+		"svelte": "^3.46.4"
 	},
 	"scripts": {
 		"deploy": "bash ./deploy.sh",
@@ -30,7 +32,8 @@
 		"tabWidth": 4,
 		"trailingComma": "es5",
 		"useTabs": true,
-		"vueIndentScriptAndStyle": false
+		"vueIndentScriptAndStyle": false,
+		"pluginSearchDirs": ["."]
 	},
 	"dependencies": {
 		"@milahu/patch-package": "^6.4.11"

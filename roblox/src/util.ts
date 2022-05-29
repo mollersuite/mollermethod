@@ -1,8 +1,15 @@
 import Object from "@rbxts/object-utils"
-import Roact from "@rbxts/roact"
+import Roact, { Binding, BindingFunction } from "@rbxts/roact"
 import { SoundService } from "@rbxts/services"
+import colors from "colors"
 import type { Plugin } from "./types"
 
+const binding = Roact.createBinding(colors) as [
+	binding: Binding<typeof colors>,
+	setBinding: BindingFunction<typeof colors>
+]
+
+export const Colors = Roact.createContext(binding)
 export const Kill = Roact.createContext(() => {})
 export const Plugins = Roact.createContext<Plugin[]>([])
 
@@ -15,7 +22,7 @@ export const Plugins = Roact.createContext<Plugin[]>([])
 export function asset(url: string): string {
 	// otherwise, we need to download it
 	const [name] = url.match("([^/]+)$")
-	const data = game.HttpGetAsync(url)
+	const [data] = game.HttpGetAsync(url)
 	writefile("mollermethod_" + name, data)
 	return (getcustomasset || getsynasset)("mollermethod_" + name)
 }
@@ -34,8 +41,8 @@ export function play(id: string, volume = default_volume) {
 	SoundService.PlayLocalSound(sound)
 }
 
-export function set_volume(volume_: number) {
-	default_volume = volume_
+export function set_volume(volume: number) {
+	default_volume = volume
 }
 /**
  * fuck lua fuck lua
@@ -106,3 +113,14 @@ export function merge<T>(list: T[]): T {
 }
 
 export const title_case = (name: string) => name.sub(1, 1).upper() + name.sub(2)
+
+
+export const flat = <T> (list: readonly T[][]): T[] => {
+	const result: T[] = []
+	for (const sublist of list) {
+		for (const item of sublist) {
+			result.push(item)
+		}
+	}
+	return result
+}

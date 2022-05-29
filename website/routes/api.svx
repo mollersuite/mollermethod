@@ -43,7 +43,7 @@ A container to put your GUIs in.
 ### `util.colors`
 
 ```ts
-util.colors: {
+util.colors: Roact.Binding<{
 	ACCENT: Color3,
 	BLACK: Color3,
 	WHITE: Color3,
@@ -54,146 +54,67 @@ util.colors: {
 	YELLOW: Color3[],
 	ORANGE: Color3[],
 	PURPLE: Color3[],
-}
+}>
 ```
 
 mollermethod's color theme. Can be customized by the user.
 
-## Plugin interface
+---
 
-You return a plugin interface. Here's the TypeScript type since I'm lazy
+Also, access Roact with `util.Roact`, and Snapdragon with `util.Snapdragon`.
+
+## typings
 
 ```ts
-// Actions display in both Mollybdos and Bracket.
-interface Action {
-	display?: string // Displayed in Mollybdos. Defaults to the key, with the first letter uppercase.
-	enabled?: () => boolean // Defaults to () => true
-	description: string //  Displayed in Bracket autocomplete
-	execute(this: void, player: Player): Promise<unknown> | unknown
-}
-
-// Commands display only in Bracket.
-interface Command {
-	description: string // Displayed in Bracket autocomplete
+export interface Command {
+	readonly description: string
 	execute(this: void, args: string[]): void | Promise<unknown>
 }
 
-interface Plugin {
-	// (will be) displayed in mollermethod settings
+// Toggles run on the local player. They show in the LocalPlayer section and in Bracket
+export interface Toggle {
+	readonly description: string
+	// Should the toggle show in the menu? (default: true) Set this to false if you need the `args` every time. (e.g. for a toggle that should only be used in Bracket)
+	readonly localbar?: boolean
+	on (this: void, args?: string[]): unknown
+	off (this: void): unknown
+	readonly un?: string // For commands like `invisible`, it doesn't make sense to say `uninvisible`. Here you can change the name of the `un` version. (for example: `visible`)
+	private value?: boolean // Listed for completeness. Do not use.
+}
+
+// Actions run on player(s). They show in Mollybdos & Bracket.
+export interface Action {
+	display?: string // Shown in Mollybdos. Defaults to the name with the first letter capitalized.3
+	description: string // Shown in Bracket
+	execute(this: void, player: Player): Promise<unknown> | unknown
+	enabled?: () => boolean // Optional. If you return a falsey value, the action will be disabled. (Grayed out in Bracket, and not shown in Mollybdos)
+}
+
+// This is what you return from your plugin.
+export interface Plugin {
+	// These will be shown in plugin settings.
 	readonly Name: string
 	readonly Author: string
-	// Runs when the user selects a player in Mollybdos. Call \`tag\` to add a tag to the player. You can call this multiple times to give the tag a "score."
-	readonly Tags?: (player: Player, add: (tag: string) => unknown) => unknown
-	readonly Actions?: Record<string, Action> // The key will be used as the Bracket command name
-	readonly Commands?: Record<string, Command></string>
+
+	readonly Tags?: (this: void, player: Player, add: (tag: string) => unknown) => unknown
+	// Key becomes the name of the command.
+	readonly Actions?: Record<string, Action>
+	readonly Commands?: Record<string, Command>
+	readonly Toggles?: Record<string, Toggle>
 }
-```
 
-### Example
-
-Here's the chat logger plugin bundled with mollermethod.
-
-```lua
-local util = ...
-local Players = game:GetService("Players")
-local events = {}
-local container = util.GUI
-local logs = {}
-
-events["Destroying"] = container.Destroying:Connect(function() -- disconnects events when gui deathed
-	for _, event in pairs(events) do
-		event:Disconnect()
-	end
-end)
-
-return {
-	Name = "Chat Logger",
-	Description = "Adds a chat logger command to mollermethod",
-	Author = "trollar",
-	Commands = {
-		chatlogger = {
-			description = "makes a chat logger gui pop up. Lo!",
-			execute = function(args)
-				local frame = Instance.new("Frame", container)
-				frame.Name = "ChatLogger"
-				frame.Size = UDim2.new(0.3, 0, 0.3, 0)
-				frame.Position = UDim2.new(0.5, 0, 0.5, 0)
-				frame.AnchorPoint = Vector2.new(0.5, 0.5)
-				frame.BackgroundColor3 = util.colors.BLACK
-				events["Controller"] = util.Snapdragon.createDragController(frame, { SnapEnabled = true })
-				events["Controller"]:Connect()
-				local UICorner = Instance.new("UICorner", frame)
-				UICorner.CornerRadius = UDim.new(0, 18)
-				local chat = Instance.new("ScrollingFrame", frame)
-				chat.Name = "Chat"
-				chat.Size = UDim2.new(1, 0, 0.9, 0)
-				chat.BackgroundColor3 = util.colors.GRAY[9]
-				chat.BackgroundTransparency = 0
-				chat.BorderSizePixel = 0
-				chat.AutomaticCanvasSize = Enum.AutomaticSize.Y
-				chat.CanvasSize = UDim2.new(0, 0, 0, 0)
-				local UIListLayout = Instance.new("UIListLayout", chat)
-				UIListLayout.Padding = UDim.new()
-				UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-				local WriteLogsToFile = Instance.new("TextButton", frame)
-				WriteLogsToFile.Name = "WriteLogsToFile"
-				WriteLogsToFile.Size = UDim2.new(1, 0, 0.1, 0)
-				WriteLogsToFile.Position = UDim2.new(0, 0, 1, 0)
-				WriteLogsToFile.AnchorPoint = Vector2.new(0, 1)
-				WriteLogsToFile.TextColor3 = util.colors.WHITE
-				WriteLogsToFile.BackgroundTransparency = 1
-				WriteLogsToFile.Font = Enum.Font.Gotham
-				WriteLogsToFile.Text = "Write Logs To File"
-				WriteLogsToFile.TextSize = 18
-				WriteLogsToFile.MouseButton1Click:Connect(function()
-					if writedialog then
-						writedialog(
-							"Save chat logs to file",
-							"Text documents (*.txt)",
-							table.concat(logs, "\n")
-						)
-					elseif writefile then
-						writefile("chat-logs.txt", table.concat(logs, "\n"))
-					else
-						util.notify({
-							App = "Chat Logger",
-							Text = "You exploit does not support writing files",
-							Duration = 5,
-						})
-					end
-				end)
-				local ChatMessageTemplate = Instance.new("TextLabel")
-				ChatMessageTemplate.Name = "ChatMessageTemplate"
-				ChatMessageTemplate.Size = UDim2.new(1, 0, 0.05, 0)
-				ChatMessageTemplate.BackgroundColor3 = util.colors.WHITE
-				ChatMessageTemplate.BackgroundTransparency = 0.9
-				ChatMessageTemplate.Text = "[trollar] this is an example message wow!!!"
-				ChatMessageTemplate.TextSize = 12
-				ChatMessageTemplate.Font = Enum.Font.Gotham
-				ChatMessageTemplate.TextWrapped = true
-				ChatMessageTemplate.TextXAlignment = Enum.TextXAlignment.Left
-				ChatMessageTemplate.TextColor3 = util.colors.WHITE
-				local function chatted(player, message)
-					local formatted
-					if player.Name ~= player.DisplayName then
-						formatted = player.DisplayName .. " (@" .. player.Name .. "): " .. message
-					else
-						formatted = "@" .. player.Name .. ": " .. message
-					end
-					logs[#logs + 1] = formatted
-					local Label = ChatMessageTemplate:Clone()
-					Label.Name = player.Name
-					Label.Text = formatted
-					Label.Parent = chat
-				end
-
-				for _, player in pairs(Players:GetPlayers()) do
-					events[player.UserId] = player.Chatted:Connect(function(message)
-						chatted(player, message)
-					end)
-				end
-			end,
-		},
-	},
+// Access this via `local util = ...` in your plugin. (It's passed to your plugin with varargs)
+export interface PluginUtil {
+	notify: (
+		name: string,
+		description: string,
+		icon: "Error" | "Info" | "Success" | "Warning",
+		duration: number,
+		callback?: Callback
+	) => unknown
+	GUI: Instance
+	colors: Binding<typeof import("colors")['default']>
+	Snapdragon: typeof import("@rbxts/snapdragon")
+	Roact: typeof import("@rbxts/roact")
 }
 ```

@@ -1,3 +1,4 @@
+import Roact from "@rbxts/roact"
 import {
 	HttpService,
 	LogService,
@@ -5,7 +6,7 @@ import {
 	ProximityPromptService,
 	RunService,
 } from "@rbxts/services"
-
+const [binding, setBinding] = Roact.createBinding(false)
 function run_script(code: string) {
 	const games: Record<number, (() => void) | void> = {
 		// Script Showcase
@@ -36,7 +37,10 @@ function run_script(code: string) {
 }
 const state: {
 	remote?: RemoteFunction<(action: string, detail?: string) => unknown>
-} = {}
+	enabled: Roact.Binding<boolean>
+} = {
+	enabled: binding,
+}
 
 async function activate() {
 	const remotename = HttpService.GenerateGUID()
@@ -74,6 +78,7 @@ remote.OnServerInvoke = func`,
 
 	if (state.remote) {
 		print("mollerpotence enabled")
+		setBinding(true)
 	}
 }
 

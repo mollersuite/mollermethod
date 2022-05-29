@@ -21,12 +21,6 @@ interface DataModel {
 declare const IY_LOADED: true | void
 
 /**
- * Returns a container made for GUI's to be parented in. It hides children from FindFirstChild attacks and does not fire game.DescendantAdded.
- */
-
-declare const gethui: (() => Instance) | void
-
-/**
  * Fakes a .Touched event to `ToTouch` with `Part`.
  * The `Toggle` argument must be either 0 or 1 (for fire/unfire).
  *
@@ -38,12 +32,6 @@ declare const gethui: (() => Instance) | void
 
 declare const firetouchinterest: ((Part: Instance, ToTouch: BasePart, Toggle: 0 | 1) => void) | void
 
-/**
- * Sets the clipboard to the text you specified.
- * @param text The text to set the clipboard to.
- */
-
-declare const setclipboard: ((text: string) => void) | void
 interface LogService {
 	/**
 	 * Runs scripts on the server, LOL.
@@ -51,59 +39,6 @@ interface LogService {
 	 **/
 	ExecuteScript(script: string): void
 }
-
-// Console APIS
-
-// In both exploits
-
-/**
- * Prints message to the console and takes an optional colour argument. If none is given, the default will be white.
- * @param message The message to print to the console.
- */
-
-declare const rconsoleprint: ((message: string, colour?: string) => void) | void
-
-/**
- * Clears the console.
- */
-
-declare const rconsoleclear: (() => void) | void
-
-/**
- * Allows the user to type something into the console.
- */
-
-declare const rconsoleinput: (() => string) | void
-
-// We will need to detect which one exists, first one is S-W, second is Synapse
-
-/**
- * Set the console's title to the one provided.
- * @param title The title to set the console to.
- */
-
-declare const rconsolesettitle: ((title: string) => void) | void
-
-/**
- * Set the console's title to the one provided.
- * @param title The title to set the console to.
- */
-
-declare const rconsolename: ((title: string) => void) | void
-
-// S-W exclusive
-
-/**
- * Opens a console window.
- */
-
-declare const rconsolecreate: (() => void) | void
-
-/**
- * Closes the console window.
- */
-
-declare const rconsoledestroy: (() => void) | void
 
 // Filesystem API (S-W)
 

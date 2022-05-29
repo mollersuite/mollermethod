@@ -1,8 +1,8 @@
 import { Spring } from "@rbxts/flipper"
 import Roact from "@rbxts/roact"
-import { pure, useState } from "@rbxts/roact-hooked"
-import { useSingleMotor, useSpring } from "@rbxts/roact-hooked-plus"
-import colors from "colors"
+import { pure, useContext } from "@rbxts/roact-hooked"
+import { useSingleMotor } from "@rbxts/roact-hooked-plus"
+import { Colors } from "util"
 
 export = pure<{
 	Text: string | Roact.Binding<string>
@@ -13,9 +13,12 @@ export = pure<{
 }>(({ Text, Activated, Image, LayoutOrder, Accent }) => {
 	const [hovered, setHovered] = useSingleMotor(0)
 	const [scale, setScale] = useSingleMotor(1)
+	const [colors] = useContext(Colors)
 	return (
 		<textbutton
-			BackgroundColor3={Accent ? colors.ACCENT : colors.BLACK}
+			BackgroundColor3={
+				Accent ? colors.map(colors => colors.ACCENT) : colors.map(colors => colors.BLACK)
+			}
 			Text=""
 			LayoutOrder={LayoutOrder}
 			Event={{
@@ -39,14 +42,14 @@ export = pure<{
 				AnchorPoint={new Vector2(0, 0.5)}
 				Position={UDim2.fromScale(0, 0.5)}
 				Image={Image}
-				ImageColor3={colors.WHITE}
+				ImageColor3={colors.map(colors => colors.WHITE)}
 				ScaleType="Fit"
 			/>
 			<textlabel
 				AutomaticSize="X"
 				TextXAlignment="Left"
 				BackgroundTransparency={1}
-				TextColor3={colors.WHITE}
+				TextColor3={colors.map(colors => colors.WHITE)}
 				Position={hovered.map(n =>
 					UDim2.fromScale(0, 0.5).Lerp(new UDim2(0, 25, 0.5, 0), n)
 				)}

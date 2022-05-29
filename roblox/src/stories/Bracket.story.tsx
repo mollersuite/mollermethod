@@ -13,7 +13,8 @@ export = (target: Frame) => {
 					GUI: target,
 					Snapdragon,
 					notify: () => {},
-					colors,
+					colors: Roact.createBinding(colors)[0],
+					Roact,
 				}),
 			]}>
 			<textbutton

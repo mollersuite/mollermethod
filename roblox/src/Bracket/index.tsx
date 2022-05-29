@@ -1,5 +1,4 @@
-import colors from "colors"
-import { play, Plugins } from "util"
+import { Colors, play, Plugins } from "util"
 import { hooked, useContext, useEffect, useState, useBinding, useRef } from "@rbxts/roact-hooked"
 import { UserInputService } from "@rbxts/services"
 import execute from "./run"
@@ -29,6 +28,7 @@ export default hooked<{ button: Enum.KeyCode; test?: boolean }>(({ button, test 
 	const [shown, setShown] = useBinding(false)
 	const [text, setText] = useState("")
 	const plugins = useContext(Plugins)
+	const [colors] = useContext(Colors)
 	const box = useRef<TextBox>()
 
 	// handles toggle key
@@ -40,7 +40,7 @@ export default hooked<{ button: Enum.KeyCode; test?: boolean }>(({ button, test 
 				play("rbxassetid://8458409341") // windows 11 hardware connect
 				box.getValue()!.CaptureFocus()
 				task.wait()
-				box.getValue()!.Text = ''
+				box.getValue()!.Text = ""
 			}
 		})
 		return () => input_began.Disconnect()
@@ -64,7 +64,7 @@ export default hooked<{ button: Enum.KeyCode; test?: boolean }>(({ button, test 
 			AnchorPoint={new Vector2(0.5, 0)}
 			BackgroundTransparency={1}
 			ScrollBarThickness={3}
-			ScrollBarImageColor3={colors.ACCENT}
+			ScrollBarImageColor3={colors.map(colors => colors.WHITE)}
 			VerticalScrollBarInset="Always"
 			AutomaticCanvasSize="Y"
 			Visible={shown}
@@ -86,9 +86,9 @@ export default hooked<{ button: Enum.KeyCode; test?: boolean }>(({ button, test 
 				AutomaticSize="Y"
 				TextWrapped
 				TextYAlignment="Center"
-				TextColor3={colors.WHITE}
+				TextColor3={colors.map(colors => colors.WHITE)}
 				PlaceholderText="Type a command..."
-				BackgroundColor3={colors.BLACK}
+				BackgroundColor3={colors.map(colors => colors.BLACK)}
 				Event={{
 					FocusLost: (rbx, enter) => {
 						setShown(false)
@@ -126,14 +126,15 @@ export default hooked<{ button: Enum.KeyCode; test?: boolean }>(({ button, test 
 					LineJoinMode="Round">
 					<uigradient
 						Rotation={useSpring((utf8.len(text)[0] || 0) * 5, {})}
-						Color={
-							new ColorSequence([
-								new ColorSequenceKeypoint(0, colors.ACCENT),
-								new ColorSequenceKeypoint(0.499, colors.ACCENT),
-								new ColorSequenceKeypoint(0.5, colors.GRAY[4]),
-								new ColorSequenceKeypoint(1, colors.GRAY[4]),
-							])
-						}
+						Color={colors.map(
+							colors =>
+								new ColorSequence([
+									new ColorSequenceKeypoint(0, colors.ACCENT),
+									new ColorSequenceKeypoint(0.499, colors.ACCENT),
+									new ColorSequenceKeypoint(0.5, colors.GRAY[4]),
+									new ColorSequenceKeypoint(1, colors.GRAY[4]),
+								])
+						)}
 					/>
 				</uistroke>
 			</textbox>
