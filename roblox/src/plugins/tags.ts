@@ -113,6 +113,9 @@ export = (): Plugin => ({
 					5833102, // CodeProtogens
 					13802474, // Furry Den
 					5240855, // Furry Family
+					1214498, // Furries~
+					5437826, // -Furry Community-
+					9349774, // Floofi Beep Boopers
 				],
 			}),
 		])
