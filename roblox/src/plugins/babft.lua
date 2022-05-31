@@ -16,7 +16,7 @@ return function (util)
 			while Autofarm.value do
 				for i=1,10 do
 					task.wait(2)
-					client.Character.HumanoidRootPart.CFrame=Stages["CaveStage"..i].DarknessPart.CFrame
+					client.Character:PivotTo(Stages["CaveStage"..i].DarknessPart.CFrame)
 					task.wait(0.1)
 					workspace.ClaimRiverResultsGold:FireServer() end
 				task.wait(1)
