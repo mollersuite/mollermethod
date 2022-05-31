@@ -116,7 +116,8 @@ export = (): Plugin => ({
 					1214498, // Furries~
 					5437826, // -Furry Community-
 					9349774, // Floofi Beep Boopers
-				],
+					6834022, // ~ Protogen Army ~
+				]
 			}),
 		])
 	},
