@@ -89,6 +89,23 @@ export = (): Plugin => ({
 					7793343203, // Vampire
 					7793326170, // Hallowogen
 					4904727066, // Disk Friend
+					// Cyber Critter Fursuit (layered clothing was a mistake)
+					9459560833, // Red
+					9498470774, // Blue
+					9459531612, // Purple
+					9459544381, // Orange
+					9498439709, // Green
+					9498487939, // White/Black
+					9498527603, // Kawaii
+					9459519630, // Yellow
+					9459566425, // Blue (Light)
+					9498421318, // Purple (Light)
+					9733800874, // Blue (Black)
+					9733807738, // Full Black
+					9733793710, // Green (Black)
+					9459459632, // Green (Gray)
+					9498430469, // Orange (Light)
+					9498478298, // Red (Light)
 				],
 				"SB Player": [
 					8508134960, // A̶P̶T̶-̶2̶2̶8̶3̶-̶3̶ Jack Hase's pants
@@ -117,7 +134,7 @@ export = (): Plugin => ({
 					5437826, // -Furry Community-
 					9349774, // Floofi Beep Boopers
 					6834022, // ~ Protogen Army ~
-				]
+				],
 			}),
 		])
 	},
