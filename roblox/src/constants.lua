@@ -1,6 +1,7 @@
 local module = {}
 
 module.QUOTES = {
+	'"i Do Not Care" - Jack, 2022',
 	[["can't you just compile windows" - Creepdasheep, 2022]],
 	'"Ventoy my beloved" - Charlie, 2022',
 	'"lol i manged [sic] to run synapse x on chromebook" - coolkidkumd, 2022 (it did not work)',
