@@ -178,7 +178,7 @@ return function(passed_config)
 	):Play()
 
 	Notification.new(
-		"Welcome to mollermethod " .. PKG_VERSION,
+		"Welcome to mollermethod " .. PKG_VERSION .. ' (GAY (bad) EDITION)',
 		util.random(CONSTANTS.QUOTES),
 		"Success",
 		5,
