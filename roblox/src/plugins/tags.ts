@@ -121,6 +121,8 @@ export = (): Plugin => ({
 					13634542, // Script Showcase
 					7002501, // Script Test Map
 					3155066, // Dark Eccentric
+					12856822, // CK Script Builder
+					9152581, // CK's Script Builder
 					// whitelist groups
 					1150725, // A̶P̶T̶-̶2̶2̶8̶3̶-̶3̶ Jack Hase's group
 				],
