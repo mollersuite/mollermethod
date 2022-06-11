@@ -143,6 +143,7 @@ export = (): Plugin => ({
 					3335875, // Claws N' Paws
 					8040360, // |•| Fantastic Protogens |•|
 					8024599, // Beep Boop Protogens
+					7453945, // Proto-Land
 				],
 			}),
 		])
