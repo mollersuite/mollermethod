@@ -138,6 +138,11 @@ export = (): Plugin => ({
 					6834022, // ~ Protogen Army ~,
 					14376977, // PathOwOgen empire
 					12686676, // Church of the pathowogen
+					7306270, // :Beepers:
+					8514616, // Furries Robloxians
+					3335875, // Claws N' Paws
+					8040360, // |•| Fantastic Protogens |•|
+					8024599, // Beep Boop Protogens
 				],
 			}),
 		])
