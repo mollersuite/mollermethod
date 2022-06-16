@@ -22,7 +22,7 @@
 		// }
 */
 
-export function convert(obj, indent = "\t") {
+export function convert(obj: unknown, indent = "\t") {
 	return (
 		Object.keys(obj).reduce((lua, key) => {
 			if (typeof obj[key] === "object") {
@@ -36,6 +36,6 @@ export function convert(obj, indent = "\t") {
 }
 // The above code has a bug: every } has an extra \t.
 // This function fixes that.
-export function fix(lua) {
+export function fix(lua: string) {
 	return lua.replace(/\t\}/g, "}")
 }

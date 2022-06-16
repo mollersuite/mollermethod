@@ -15,5 +15,5 @@
 		"routes/**/*.js",
 		"routes/**/*.svelte",
 		"global.d.ts"
-	]
+, "lib/hooks.ts", "lib/lua.ts"	]
 }
