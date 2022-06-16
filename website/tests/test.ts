@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test"
 
 test("index page has expected h1", async ({ page }) => {
 	await page.goto("/")
-	expect(await page.textContent("h1")).toBe("mollermethod")
+	expect(await page.textContent("h1")).toBe("Scripting, unleashed.")
 })
 test("it doesn't fucking DELETE THE BODY", async ({ page }) => {
 	await page.goto("/config")
@@ -29,6 +29,7 @@ test.describe.parallel("config generator", async () => {
 		expect(await page.textContent("#output")).toBe(`loadstring(game:HttpGet '${baseURL}') {
 	bracket_toggle = Enum.KeyCode.RightParenthesis;
 	debug = false;
+	volume = 5;
 	bracket_external = false;
 	theme = {
 		accent = "#ff4539";
@@ -43,6 +44,7 @@ test.describe.parallel("config generator", async () => {
 		expect(await page.textContent("#output")).toBe(`loadstring(game:HttpGet '${baseURL}') {
 	bracket_toggle = Enum.KeyCode.LeftBracket;
 	debug = true;
+	volume = 5;
 	bracket_external = false;
 	theme = {
 		accent = "#ff4539";
