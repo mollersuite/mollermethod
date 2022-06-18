@@ -130,6 +130,20 @@ return function(passed_config)
 		end
 	end
 
+	local ids =
+		{
+			"rbxassetid://7037264869",
+			"rbxassetid://7037156897",
+			"rbxassetid://7043731194",
+			"rbxassetid://7037269561",
+			"rbxassetid://7037272153",
+			"rbxassetid://7037339934",
+			"rbxassetid://7037356929",
+			"rbxassetid://7044042331",
+			"rbxassetid://7044088926",
+			"rbxassetid://7046289590",
+		}
+
 	-- Mount UI
 	local tree
 	tree = Roact.mount(
@@ -143,7 +157,26 @@ return function(passed_config)
 					util.Kill.Provider,
 					{ value = function()
 						Roact.unmount(tree)
-						config.gui:Destroy()
+							for i = 0,50 do
+								local particle = Instance.new("ImageLabel", config.gui)
+								particle.Size = UDim2.new()
+								particle.Image = ids[math.random(#ids)]
+								particle.BackgroundTransparency = 1
+								particle.ScaleType = Enum.ScaleType.Fit
+								particle.ZIndex = 100
+								particle.AnchorPoint = Vector2.new(1,0.5)
+								particle.Position = UDim2.new(0,0,0.5,0)
+								TweenService:Create(particle, TweenInfo.new(.1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0,false,.7), {
+									ImageTransparency = 1
+								}):Play()
+								TweenService:Create(particle, TweenInfo.new(1, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {
+									Position = UDim2.new(math.random(), 0, math.random(), 0),
+									Size = UDim2.new(0,150,0,150)
+								}):Play()
+								Debris:AddItem(particle, 1.5)
+								game:GetService('RunService').Heartbeat:Wait()
+							end
+							game:GetService('Debris'):AddItem(config.gui, 1.5)
 					end },
 					{
 						Taskbar = Roact.createElement(Neo, {
@@ -162,20 +195,27 @@ return function(passed_config)
 		config.gui
 	)
 
-	local border = Instance.new("Frame", config.gui)
-	Debris:AddItem(border, 1)
-	border.Size = UDim2.fromScale(1, 1)
-	border.AnchorPoint = Vector2.new(0.5, 0.5)
-	border.Position = UDim2.fromScale(0.5, 0.5)
-	border.BackgroundTransparency = 1
-	local stroke = Instance.new("UIStroke", border)
-	stroke.Thickness = 15
-	stroke.Color = colors.ACCENT
-	TweenService:Create(
-		border,
-		TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, true),
-		{ Size = UDim2.new(1, -10, 1, -10) }
-	):Play()
+	for i=1, 5 do
+		local border = Instance.new("Frame", config.gui)
+		Debris:AddItem(border, .5)
+		border.Size = UDim2.fromScale(2, 2)
+		border.AnchorPoint = Vector2.new(0.5, 0.5)
+		border.Position = UDim2.fromScale(0.5, 0.5)
+		border.BackgroundTransparency = 1
+		Instance.new('UIAspectRatioConstraint', border)
+		local stroke = Instance.new("UIStroke", border)
+		stroke.Thickness = 5
+		stroke.Color = colors.ACCENT
+		TweenService:Create(
+			border,
+			TweenInfo.new(.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+			{ 
+				Size = UDim2.new(),
+				Position = UDim2.fromScale(math.random(), math.random()),
+			}
+		):Play()
+		task.wait(math.random() * .1)
+	end
 
 	Notification.new(
 		"Welcome to mollermethod " .. PKG_VERSION .. ' (GAY (bad) EDITION)',
