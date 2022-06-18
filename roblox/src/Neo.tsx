@@ -40,7 +40,7 @@ export = pure<{ container: Instance; notif: Frame }>(({ container, notif }) => {
 		<frame
 			BorderSizePixel={0}
 			BackgroundColor3={colors.map(colors => colors.BLACK)}
-			Position={closed.map(n => new UDim2(0, 60, 0.5, 0).Lerp(new UDim2(0, -210, 0.5, 0), n))}
+			Position={closed.map(n => new UDim2(0, 60, 0.5, 0).Lerp(new UDim2(0, -205, 0.5, 0), n))}
 			Rotation={closed.map(n => n * 90)}
 			Size={UDim2.fromOffset(50, 500)}
 			AnchorPoint={new Vector2(0.5, 0.5)}
