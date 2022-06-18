@@ -39,7 +39,7 @@ export = pure<{ container: Instance; notif: Frame }>(({ container, notif }) => {
 			BorderSizePixel={0}
 			BackgroundColor3={colors.map(colors => colors.BLACK)}
 			Position={closed.map(n => new UDim2(0.5, 0, 1, -50).Lerp(new UDim2(0.5, 0, 0, 50), n))}
-			Size={closed.map(n => UDim2.fromOffset(960, 50).Lerp(new UDim2(0, 50, 0, 50), n))}
+			Size={closed.map(n => UDim2.fromOffset(500, 50).Lerp(new UDim2(0, 50, 0, 50), n))}
 			AnchorPoint={new Vector2(0.5, 1)}
 			ClipsDescendants>
 			<uicorner CornerRadius={new UDim(0, 10)} />
