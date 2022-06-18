@@ -63,7 +63,7 @@ export = pure<{ container: Instance; notif: Frame }>(({ container, notif }) => {
 					Event={{
 						Activated: () => setOpen(spring(closed.getValue() === 1 ? 0 : 1)),
 					}}
-					Image="rbxassetid://9800219083"
+					Image="rbxassetid://9399201426"
 					Size={UDim2.fromOffset(30, 30)}
 					ScaleType="Fit"
 					BackgroundTransparency={1}>

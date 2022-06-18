@@ -205,7 +205,7 @@ return function(passed_config)
 	end
 
 	Notification.new(
-		"Welcome to mollermethod " .. PKG_VERSION .. ' (GAY (bad) EDITION)',
+		"Welcome to mollermethod " .. PKG_VERSION,
 		util.random(CONSTANTS.QUOTES),
 		"Success",
 		5,
