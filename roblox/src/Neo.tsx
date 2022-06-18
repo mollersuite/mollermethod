@@ -17,6 +17,11 @@ import Settings from "pages/Settings"
 import mollerpotence from "mollerpotence"
 import CloudScripts from "pages/CloudScripts"
 
+const Div: Roact.FunctionComponent = props => (
+	<frame BackgroundTransparency={1} AutomaticSize="XY">
+		{props[Roact.Children]}
+	</frame>
+)
 const spring = (n: number) => new Spring(n, { dampingRatio: 1, frequency: 2 })
 export = pure<{ container: Instance; notif: Frame }>(({ container, notif }) => {
 	const [closed, setOpen] = useSingleMotor(1)
@@ -31,17 +36,16 @@ export = pure<{ container: Instance; notif: Frame }>(({ container, notif }) => {
 		}
 	}
 
-	useEffect(() => setOpen(spring(0)), [])
-
 	return (
 		<frame
 			BorderSizePixel={0}
 			BackgroundColor3={colors.map(colors => colors.BLACK)}
-			Position={closed.map(n => new UDim2(0, 60, 0.5, 0).Lerp(new UDim2(0.5, 0, 0, 50), n))}
-			Size={closed.map(n => UDim2.fromOffset(50, 500).Lerp(new UDim2(0, 50, 0, 50), n))}
+			Position={closed.map(n => new UDim2(0, 60, 0.5, 0).Lerp(new UDim2(0, -210, 0.5, 0), n))}
+			Rotation={closed.map(n => n * 90)}
+			Size={UDim2.fromOffset(50, 500)}
 			AnchorPoint={new Vector2(0.5, 0.5)}
 			ZIndex={5}
-			ClipsDescendants={closed.map(val => val !== 0)}>
+			ClipsDescendants={false}>
 			<uicorner CornerRadius={new UDim(0, 10)} />
 			<uipadding PaddingTop={new UDim(0, 10)} PaddingBottom={new UDim(0, 10)} />
 			<uilistlayout
@@ -51,27 +55,30 @@ export = pure<{ container: Instance; notif: Frame }>(({ container, notif }) => {
 				SortOrder="LayoutOrder"
 				Padding={new UDim(0, 10)}
 			/>
-			<imagebutton
-				LayoutOrder={1}
-				BorderSizePixel={0}
-				Event={{
-					Activated: () => setOpen(spring(closed.getValue() === 1 ? 0 : 1)),
-				}}
-				Image="rbxassetid://9800219083"
-				Size={UDim2.fromOffset(30, 30)}
-				ScaleType="Fit"
-				BackgroundTransparency={1}>
-				<textlabel
-					TextScaled
-					Font="RobotoMono"
-					Text={PKG_VERSION}
-					TextColor3={colors.map(colors => colors.WHITE)}
-					BackgroundTransparency={1}
-					Size={UDim2.fromScale(1, 1)}
-					TextXAlignment="Right"
-					TextYAlignment="Bottom"
-				/>
-			</imagebutton>
+			<Div>
+				<imagebutton
+					LayoutOrder={1}
+					BorderSizePixel={0}
+					Rotation={closed.map(n => n * -90)}
+					Event={{
+						Activated: () => setOpen(spring(closed.getValue() === 1 ? 0 : 1)),
+					}}
+					Image="rbxassetid://9800219083"
+					Size={UDim2.fromOffset(30, 30)}
+					ScaleType="Fit"
+					BackgroundTransparency={1}>
+					<textlabel
+						TextScaled
+						Font="RobotoMono"
+						Text={PKG_VERSION}
+						TextColor3={colors.map(colors => colors.WHITE)}
+						BackgroundTransparency={1}
+						Size={UDim2.fromScale(1, 1)}
+						TextXAlignment="Right"
+						TextYAlignment="Bottom"
+					/>
+				</imagebutton>
+			</Div>
 			<imagelabel
 				Visible={mollerpotence.enabled}
 				Size={UDim2.fromOffset(20, 20)}
