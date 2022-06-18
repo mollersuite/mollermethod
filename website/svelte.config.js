@@ -31,7 +31,7 @@ const config = {
 			routes: "routes",
 			lib: "lib",
 			template: "lib/template.html",
-			hooks: "lib/hooks.js",
+			hooks: "lib/hooks.ts",
 		},
 		prerender: {
 			default: true,
