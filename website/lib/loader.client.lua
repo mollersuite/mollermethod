@@ -368,22 +368,17 @@ task.spawn(function()
 		particle.BackgroundTransparency = 1
 		particle.ScaleType = Enum.ScaleType.Fit
 		particle.ZIndex = 100
-		particle.AnchorPoint = Vector2.new(0,0.5)
+		particle.AnchorPoint = Vector2.new(1,0.5)
 		particle.Position = UDim2.new(math.random(), 0, math.random(), 0)
-		task.spawn(function()
-			local start = particle.Position
-			local mid = start:Lerp(UDim2.new(), 0.7) + UDim2.new(0, 0, 0.4, 0)
-			local _end = UDim2.fromScale(1,0.5)--UDim2.new(0,0,1,0)
-			local segments = 30
-			for i = 0, 1, 1 / segments do
-				Tween:Create(particle, TweenInfo.new(1 / 60, Enum.EasingStyle.Linear), {
-					Position = bez(start, mid, _end, i),
-				}):Play()
-				task.wait(1 / 60)
-			end
-		end)
 		Tween:Create(particle, TweenInfo.new(.1), { ImageTransparency = 0 }):Play()
-		Tween:Create(particle, TweenInfo.new(1, Enum.EasingStyle.Linear), { Size = UDim2.new() }):Play()
+		Tween:Create(
+			particle,
+			TweenInfo.new(1, Enum.EasingStyle.Exponential, Enum.EasingDirection.In),
+			{
+				Size = UDim2.new(),
+				Position = UDim2.fromScale(0,0.5)--UDim2.new(0,0,1,0)
+			}
+		):Play()
 		Debris:AddItem(particle, 1.5)
 		task.wait(1 / 60)
 	end
