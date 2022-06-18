@@ -73,20 +73,7 @@ return function(passed_config)
 	uIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 	uIListLayout.VerticalAlignment = Enum.VerticalAlignment.Bottom
 
-	-- Startup sound
-	if content then
-		task.defer(function() -- All exploits with getcustomasset or getsynasset also have isfile
-			if isfile("mollermethod_Blog-Sound-1.ogg") then
-				util.play(content("mollermethod_Blog-Sound-1.ogg"))
-			else
-				util.play(
-					util.asset("https://ubuntu.com/wp-content/uploads/2012/02/Blog-Sound-1.ogg")
-				)
-			end
-		end)
-	else
-		util.play("rbxassetid://9344041257")
-	end
+	util.play("rbxassetid://9064208547") -- Startup sound
 
 	local colorsBinding = { Roact.createBinding(colors) }
 	-- Load plugins
