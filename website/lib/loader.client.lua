@@ -317,6 +317,7 @@ if syn and syn.protect_gui then
 end
 GUI.Name = game:GetService("HttpService"):GenerateGUID()
 GUI.IgnoreGuiInset = true
+GUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 GUI.ResetOnSpawn = false
 GUI.DisplayOrder = 7
 if gethui then

@@ -265,9 +265,9 @@
 	let external = false
 	let volume = 5
 	// Colors
-	let accent = "#ff4539"
+	let accent = "#9339ff"
 	let background = "#1c1c1c"
-	let foreground = "#f0f6fc"
+	let foreground = "#ffffff"
 
 	$: config = fix(
 		convert({

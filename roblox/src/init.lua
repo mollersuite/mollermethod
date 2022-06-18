@@ -5,7 +5,7 @@ local TweenService = game:GetService("TweenService")
 local PKG_VERSION = require(script.version)
 local Roact = require(script.include.node_modules.roact.src)
 local Notification = require(script.Notification) -- From Lunar, we should do this ourselves
-local Expletive = require(script.Expletive)
+local Neo = require(script.Neo)
 local Bracket = require(script.Bracket).default
 local BracketExternal = require(script.services.bracket_external)
 
@@ -146,7 +146,7 @@ return function(passed_config)
 						config.gui:Destroy()
 					end },
 					{
-						Taskbar = Roact.createElement(Expletive, {
+						Taskbar = Roact.createElement(Neo, {
 							container = config.gui,
 							notif = notificationHolder,
 						}),

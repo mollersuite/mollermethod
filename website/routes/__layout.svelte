@@ -50,8 +50,8 @@
 
 <main id="main">
 	<slot />
+	<small>Dedicated to Molly the Beagle, 2009-2022 💔</small>
 </main>
-<small>Dedicated to Molly the Beagle, 2009-2022 💔</small>
 
 <style>
 	main {
@@ -63,6 +63,7 @@
 		width: 100%;
 		max-width: 1500px;
 		margin: 0 auto;
+		margin-left: 100px;
 		box-sizing: border-box;
 	}
 	@keyframes blink {

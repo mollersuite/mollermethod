@@ -1,7 +1,7 @@
 import Roact from "@rbxts/roact"
-import Expletive from "Expletive"
+import Neo from "Neo"
 
 export = (target: Frame) => {
-	const tree = Roact.mount(<Expletive container={target} notif={target} />, target)
+	const tree = Roact.mount(<Neo container={target} notif={target} />, target)
 	return () => Roact.unmount(tree)
 }

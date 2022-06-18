@@ -35,19 +35,19 @@ export = pure<{ container: Instance; notif: Frame }>(({ container, notif }) => {
 
 	return (
 		<frame
-			BackgroundTransparency={0.5}
 			BorderSizePixel={0}
 			BackgroundColor3={colors.map(colors => colors.BLACK)}
-			Position={closed.map(n => new UDim2(0.5, 0, 1, -50).Lerp(new UDim2(0.5, 0, 0, 50), n))}
-			Size={closed.map(n => UDim2.fromOffset(500, 50).Lerp(new UDim2(0, 50, 0, 50), n))}
-			AnchorPoint={new Vector2(0.5, 1)}
-			ClipsDescendants>
+			Position={closed.map(n => new UDim2(0, 60, 0.5, 0).Lerp(new UDim2(0.5, 0, 0, 50), n))}
+			Size={closed.map(n => UDim2.fromOffset(50, 500).Lerp(new UDim2(0, 50, 0, 50), n))}
+			AnchorPoint={new Vector2(0.5, 0.5)}
+			ZIndex={5}
+			ClipsDescendants={closed.map(val => val !== 0)}>
 			<uicorner CornerRadius={new UDim(0, 10)} />
-			<uipadding PaddingLeft={new UDim(0, 10)} PaddingRight={new UDim(0, 10)} />
+			<uipadding PaddingTop={new UDim(0, 10)} PaddingBottom={new UDim(0, 10)} />
 			<uilistlayout
-				FillDirection={Enum.FillDirection.Horizontal}
-				HorizontalAlignment={Enum.HorizontalAlignment.Left}
-				VerticalAlignment={Enum.VerticalAlignment.Center}
+				FillDirection={Enum.FillDirection.Vertical}
+				HorizontalAlignment={Enum.HorizontalAlignment.Center}
+				VerticalAlignment={Enum.VerticalAlignment.Top}
 				SortOrder="LayoutOrder"
 				Padding={new UDim(0, 10)}
 			/>
