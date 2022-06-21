@@ -1,6 +1,7 @@
 local module = {}
 
 module.QUOTES = {
+	'"get threapy :funnythumbsup:" - pixei, 2022',
 	'"did u see that discord ripoff? its called slack" - Vexaria, 2022',
 	'"i Do Not Care" - Jack, 2022',
 	[["can't you just compile windows" - Creepdasheep, 2022]],
