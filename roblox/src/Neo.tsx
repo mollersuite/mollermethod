@@ -126,7 +126,7 @@ export = pure<{ container: Instance; notif: Frame }>(({ container, notif }) => {
 				Accent={Page.component === Snippets}
 			/>
 			<Button
-				Text="Cloud Scripts"
+				Text="Luau.ml"
 				Image="rbxassetid://9369994718"
 				LayoutOrder={8}
 				Activated={() => page_to(<CloudScripts />)}
