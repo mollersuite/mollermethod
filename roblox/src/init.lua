@@ -113,7 +113,7 @@ return function(passed_config)
 	if isfile and isfile("IY_FE.iy") then
 		local iyConfig = HttpService:JSONDecode(readfile("IY_FE.iy")) -- All exploits with isfile also have readfile
 		for _, plugin_path in pairs(iyConfig.PluginsTable) do
-			iyToBracket(readfile(plugin_path), notificationHolder, plugins)
+			task.defer(iyToBracket, readfile(plugin_path), notificationHolder, plugins)
 		end
 	end
 
