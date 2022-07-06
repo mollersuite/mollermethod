@@ -64,7 +64,7 @@ export = (options: { container: Instance }) => ({
 	cargs: [],
 
 	// IY also exposes their UI, but this is not IY so let's just fake the ones that plugins use
-	cmdbar: new Instance('TextBox'),
+	Cmdbar: new Instance("TextBox"),
 
 	// IY also sets services as globals
 	UserInputService,
@@ -84,8 +84,8 @@ export = (options: { container: Instance }) => ({
 	StarterPlayer,
 	InsertService,
 	ProximityPromptService,
-	VirtualUser: game.GetService('VirtualUser' as keyof Services), // roblox-ts was created by a Roblox admin, so it doesn't have typings for internal services
-	NetworkClient: game.GetService('NetworkClient'), // For some reason, it has this though
+	VirtualUser: game.GetService("VirtualUser" as keyof Services), // roblox-ts was created by a Roblox admin, so it doesn't have typings for internal services
+	NetworkClient: game.GetService("NetworkClient"), // For some reason, it has this though
 	PathService: PathfindingService,
 	ChatService: Chat,
 	StatsService: Stats,
