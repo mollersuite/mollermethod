@@ -117,7 +117,7 @@ const Actions = hooked(({ player }: { player: Player }) => {
 export = hooked(({ selected }: { selected?: Player }) => {
 	if (!selected) {
 		return (
-			<frame Size={new UDim2(0, 660, 1, 0)} BackgroundTransparency={1} BorderSizePixel={0}>
+			<frame Size={new UDim2(0, 400, 1, 0)} BackgroundTransparency={1} BorderSizePixel={0}>
 				<Placeholder Text="No player selected" />
 			</frame>
 		)
@@ -134,7 +134,7 @@ export = hooked(({ selected }: { selected?: Player }) => {
 	}, [selected])
 	return (
 		<scrollingframe
-			Size={new UDim2(0, 660, 1, 0)}
+			Size={new UDim2(0, 400, 1, 0)}
 			BackgroundTransparency={1}
 			BorderSizePixel={0}
 			ClipsDescendants

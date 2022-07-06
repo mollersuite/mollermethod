@@ -6,7 +6,7 @@ const Page: Roact.FunctionComponent = ({ [Roact.Children]: children }) => (
 		render={([colors]) => (
 			<frame
 				Position={new UDim2(0, 100, 0.5, 0)}
-				Size={UDim2.fromOffset(960, 300)}
+				Size={UDim2.fromOffset(700, 300)}
 				AnchorPoint={new Vector2(0, 0.5)}
 				BackgroundColor3={colors.map(colors => colors.BLACK)}
 				BorderSizePixel={0}>
