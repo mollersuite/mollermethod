@@ -1,5 +1,5 @@
 import { HttpService, TeleportService, Players, Workspace, UserInputService } from "@rbxts/services"
-import { join_code, play } from "util"
+import { join_code } from "util"
 import type { Plugin, PluginUtil } from "types"
 import mollerpotence from "mollerpotence"
 
@@ -12,18 +12,6 @@ export = (util: PluginUtil): Plugin => {
 		Name: "Built-in commands",
 		Author: "mollersuite",
 		Commands: {
-			molly: {
-				description: "the dog",
-				execute: () => {
-					const molly = new Instance("ImageLabel", util.GUI)
-					molly.Image = "rbxassetid://7037156897"
-					molly.Size = UDim2.fromScale(1, 1)
-					molly.BackgroundTransparency = 1
-					molly.ZIndex = -1
-					molly.BorderSizePixel = 0
-				},
-			},
-
 			exit: {
 				description: "Closes the game.",
 				execute: () => game.Shutdown(),
@@ -110,14 +98,6 @@ export = (util: PluginUtil): Plugin => {
 						Root.FindFirstChildWhichIsA("BodyVelocity")?.Destroy()
 						Humanoid.PlatformStand = false
 					}
-				},
-			},
-
-			trollsmile: {
-				description: "trollsmile winning [trollsmile",
-				execute: () => {
-					play("rbxassetid://6345755361")
-					return Promise.delay(1.5)
 				},
 			},
 

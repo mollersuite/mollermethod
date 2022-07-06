@@ -1,5 +1,6 @@
 import { Players, Workspace } from "@rbxts/services"
 import { Plugin, PluginUtil } from "types"
+import { play } from "util"
 
 export = (util: PluginUtil): Plugin => {
 	const female = Players.CreateHumanoidModelFromUserId(3)
@@ -25,6 +26,26 @@ export = (util: PluginUtil): Plugin => {
 						clone.Parent = Workspace
 						clone.FindFirstChildOfClass("Humanoid")!.MoveTo(pos.Position)
 					}
+				},
+			},
+
+			molly: {
+				description: "the dog",
+				execute: () => {
+					const molly = new Instance("ImageLabel", util.GUI)
+					molly.Image = "rbxassetid://7037156897"
+					molly.Size = UDim2.fromScale(1, 1)
+					molly.BackgroundTransparency = 1
+					molly.ZIndex = -1
+					molly.BorderSizePixel = 0
+				},
+			},
+
+			trollsmile: {
+				description: "trollsmile winning [trollsmile",
+				execute: () => {
+					play("rbxassetid://6345755361")
+					return Promise.delay(1.5)
 				},
 			},
 		},
