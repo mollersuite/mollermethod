@@ -319,7 +319,7 @@ GUI.Name = game:GetService("HttpService"):GenerateGUID()
 GUI.IgnoreGuiInset = true
 GUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 GUI.ResetOnSpawn = false
-GUI.DisplayOrder = 7
+GUI.DisplayOrder = 2 ^ 31 - 1
 if gethui then
 	GUI.Parent = gethui()
 else
