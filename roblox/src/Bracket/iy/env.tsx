@@ -1,5 +1,5 @@
 // Mocks IY's core functions
-import { Chat, ContextActionService, GroupService, GuiService, HttpService, InsertService, Lighting, MarketplaceService, PathfindingService, ProximityPromptService, ReplicatedStorage, RunService, SoundService, StarterGui, StarterPlayer, Stats, Teams, TeleportService, TweenService, UserInputService, Workspace } from "@rbxts/services"
+import { Chat, ContextActionService, GroupService, GuiService, HttpService, InsertService, Lighting, MarketplaceService, PathfindingService, Players, ProximityPromptService, ReplicatedStorage, RunService, SoundService, StarterGui, StarterPlayer, Stats, Teams, TeleportService, TweenService, UserInputService, Workspace } from "@rbxts/services"
 import { get_players } from "../run"
 import Notification from "Notification"
 
@@ -67,6 +67,7 @@ export = (options: { container: Instance }) => ({
 	Cmdbar: new Instance("TextBox"),
 
 	// IY also sets services as globals
+	Players,
 	UserInputService,
 	TweenService,
 	HttpService,
