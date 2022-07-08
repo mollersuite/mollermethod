@@ -17,6 +17,7 @@ import Settings from "pages/Settings"
 import mollerpotence from "mollerpotence"
 import CloudScripts from "pages/CloudScripts"
 
+// `display: contents` for Roblox, use to workaround things like not being able to change Rotation in a UIListLayout
 const Div: Roact.FunctionComponent = props => (
 	<frame BackgroundTransparency={1} AutomaticSize="XY">
 		{props[Roact.Children]}
