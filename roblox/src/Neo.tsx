@@ -1,8 +1,8 @@
 import Roact from "@rbxts/roact"
-import { pure, useContext, useEffect, useState } from "@rbxts/roact-hooked"
+import { pure, useState } from "@rbxts/roact-hooked"
 import { useSingleMotor } from "@rbxts/roact-hooked-plus"
 import { toggle as bracket_shown } from "Bracket"
-import { Colors, Kill } from "util"
+import { Kill } from "util"
 import { Spring } from "@rbxts/flipper"
 // import { rejoin, respawn } from "Bracket/commands"
 
@@ -11,11 +11,11 @@ import { Spring } from "@rbxts/flipper"
 import Mollybdos from "Mollybdos"
 import Button from "components/Button"
 import LocalBar from "pages/LocalPlayer"
-import PlaceholderPage from "components/PlaceholderPage"
 import Snippets from "pages/Snippets"
 import Settings from "pages/Settings"
 import mollerpotence from "mollerpotence"
 import CloudScripts from "pages/CloudScripts"
+import useColor from "hooks/useColor"
 
 // `display: contents` for Roblox, use to workaround things like not being able to change Rotation in a UIListLayout
 const Div: Roact.FunctionComponent = props => (
@@ -23,11 +23,13 @@ const Div: Roact.FunctionComponent = props => (
 		{props[Roact.Children]}
 	</frame>
 )
+
 const spring = (n: number) => new Spring(n, { dampingRatio: 1, frequency: 2 })
 export = pure<{ container: Instance; notif: Frame }>(({ container, notif }) => {
 	const [closed, setOpen] = useSingleMotor(1)
 	const [Page, setPage] = useState<Roact.Element>(<></>)
-	const [colors] = useContext(Colors)
+	const white = useColor('WHITE')
+	const black = useColor('BLACK')
 
 	function page_to(component: typeof Page) {
 		if (Page.component === component.component) {
@@ -40,7 +42,7 @@ export = pure<{ container: Instance; notif: Frame }>(({ container, notif }) => {
 	return (
 		<frame
 			BorderSizePixel={0}
-			BackgroundColor3={colors.map(colors => colors.BLACK)}
+			BackgroundColor3={black}
 			Position={closed.map(n => new UDim2(0, 60, 0.5, 0).Lerp(new UDim2(0, -205, 0.5, 0), n))}
 			Rotation={closed.map(n => n * 90)}
 			Size={UDim2.fromOffset(50, 500)}
@@ -72,7 +74,7 @@ export = pure<{ container: Instance; notif: Frame }>(({ container, notif }) => {
 						TextScaled
 						Font="RobotoMono"
 						Text={PKG_VERSION}
-						TextColor3={colors.map(colors => colors.WHITE)}
+						TextColor3={white}
 						BackgroundTransparency={1}
 						Size={UDim2.fromScale(1, 1)}
 						TextXAlignment="Right"
@@ -85,7 +87,7 @@ export = pure<{ container: Instance; notif: Frame }>(({ container, notif }) => {
 				Size={UDim2.fromOffset(20, 20)}
 				BackgroundTransparency={1}
 				ScaleType="Fit"
-				ImageColor3={colors.map(colors => colors.WHITE)}
+				ImageColor3={white}
 				Image="rbxassetid://9693083838"
 				LayoutOrder={2}
 			/>

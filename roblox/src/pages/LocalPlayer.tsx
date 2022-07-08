@@ -1,9 +1,10 @@
 import Roact from "@rbxts/roact"
-import { pure, useContext } from "@rbxts/roact-hooked"
+import { pure } from "@rbxts/roact-hooked"
 import { Players, TeleportService, Workspace } from "@rbxts/services"
 import Page from "components/Page"
+import useColor from "hooks/useColor"
 import mollerpotence from "mollerpotence"
-import { Colors, join_code } from "util"
+import { join_code } from "util"
 
 const IconButton = pure<
 	Partial<Pick<ImageLabel, "Image" | "ImageRectSize" | "ImageRectOffset" | "Position">> & {
@@ -11,12 +12,13 @@ const IconButton = pure<
 		CornerRadius?: UDim
 	}
 >(Props => {
-	const [colors] = useContext(Colors)
+	const black = useColor('BLACK')
+	const white = useColor('WHITE')
 	return (
 		<textbutton
 			Size={UDim2.fromOffset(32, 32)}
 			Text=""
-			BackgroundColor3={colors.map(colors => colors.BLACK)}
+			BackgroundColor3={black}
 			Position={Props.Position}
 			Event={{
 				Activated: Props.Clicked,
@@ -30,7 +32,7 @@ const IconButton = pure<
 				BackgroundTransparency={1}
 				BorderSizePixel={0}
 				ScaleType="Fit"
-				ImageColor3={colors.map(colors => colors.WHITE)}
+				ImageColor3={white}
 			/>
 			<uicorner CornerRadius={Props.CornerRadius ?? new UDim(0, 4)} />
 		</textbutton>
@@ -38,7 +40,7 @@ const IconButton = pure<
 })
 
 export = pure(() => {
-	const [colors] = useContext(Colors)
+	const white = useColor('WHITE')
 	return (
 		<Page>
 			<uipadding
@@ -70,7 +72,7 @@ export = pure(() => {
 				</imagelabel>
 				<textlabel
 					Text={Players.LocalPlayer?.DisplayName ?? "moller"}
-					TextColor3={colors.map(colors => colors.WHITE)}
+					TextColor3={white}
 					Font={Enum.Font.GothamBlack}
 					TextSize={24}
 					AutomaticSize="X"

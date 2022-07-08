@@ -1,8 +1,9 @@
 import Roact from "@rbxts/roact"
 import Object from "@rbxts/object-utils"
-import { Colors, escape_lua_pattern, flat, merge, Plugins, title_case } from "util"
+import { escape_lua_pattern, flat, merge, Plugins, title_case } from "util"
 import { pure, useContext } from "@rbxts/roact-hooked"
 import type { Plugin } from "types"
+import useColor from "hooks/useColor"
 
 function autocompleted(plugins: Plugin[]) {
 	return [
@@ -52,7 +53,8 @@ function autocompleted(plugins: Plugin[]) {
 
 export = pure(({ Text: text }: { Text: string }) => {
 	const plugins = useContext(Plugins)
-	const [colors] = useContext(Colors)
+	const black = useColor('BLACK')
+	const white = useColor('WHITE')
 	return (
 		<>
 			{autocompleted(plugins)
@@ -64,7 +66,7 @@ export = pure(({ Text: text }: { Text: string }) => {
 						<frame
 							Key={name}
 							BackgroundTransparency={0.4}
-							BackgroundColor3={colors.map(colors => colors.BLACK)}
+							BackgroundColor3={black}
 							Size={new UDim2(0.7, 0, 0, 25)}
 							AutomaticSize="Y">
 							<uipadding
@@ -81,7 +83,7 @@ export = pure(({ Text: text }: { Text: string }) => {
 								Size={new UDim2(1, 0, 0, 11)}
 								TextXAlignment="Left"
 								TextYAlignment="Center"
-								TextColor3={colors.map(colors => colors.WHITE)}
+								TextColor3={white}
 								TextTransparency={enabled() ? 0 : 0.5}
 								BackgroundTransparency={1}
 							/>
@@ -93,7 +95,7 @@ export = pure(({ Text: text }: { Text: string }) => {
 								Font="GothamBlack"
 								TextXAlignment="Left"
 								TextYAlignment="Center"
-								TextColor3={colors.map(colors => colors.WHITE)}
+								TextColor3={white}
 								TextTransparency={enabled() ? 0 : 0.5}
 								BackgroundTransparency={1}
 							/>
@@ -105,7 +107,7 @@ export = pure(({ Text: text }: { Text: string }) => {
 								TextXAlignment="Left"
 								TextYAlignment="Center"
 								TextWrapped
-								TextColor3={colors.map(colors => colors.WHITE)}
+								TextColor3={white}
 								TextTransparency={enabled() ? 0 : 0.5}
 								Size={UDim2.fromScale(1, 0)}
 								AutomaticSize="Y"
@@ -118,7 +120,7 @@ export = pure(({ Text: text }: { Text: string }) => {
 									ImageRectSize={new Vector2(36, 36)}
 									Size={UDim2.fromOffset(16, 16)}
 									BackgroundTransparency={1}
-									ImageColor3={colors.map(colors => colors.WHITE)}
+									ImageColor3={white}
 									ImageTransparency={enabled() ? 0 : 0.5}
 									AnchorPoint={new Vector2(1, 0.5)}
 									Position={UDim2.fromScale(1, 0.5)}

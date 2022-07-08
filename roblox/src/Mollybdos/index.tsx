@@ -1,8 +1,8 @@
 import Roact from "@rbxts/roact"
-import { useEffect, useState, pure, Dispatch, useContext } from "@rbxts/roact-hooked"
+import { useEffect, useState, pure, Dispatch } from "@rbxts/roact-hooked"
 import { Players } from "@rbxts/services"
 import Page from "components/Page"
-import { Colors } from "util"
+import useColor from "hooks/useColor"
 import Details from "./Details"
 
 const PlayerList = pure(
@@ -15,7 +15,8 @@ const PlayerList = pure(
 	}) => {
 		// handling players leaving and joining
 		const [players, setPlayers] = useState<Player[]>(Players.GetPlayers())
-		const [colors] = useContext(Colors)
+		const white = useColor('WHITE')
+		const accent = useColor("ACCENT")
 		useEffect(() => {
 			const adding = Players.ChildAdded.Connect(child => {
 				if (child.IsA("Player")) setPlayers(Players.GetPlayers())
@@ -64,9 +65,9 @@ const PlayerList = pure(
 						Event={{
 							Activated: () => setSelected(player),
 						}}
-						BackgroundColor3={colors.map(colors => colors.ACCENT)}
+						BackgroundColor3={accent}
 						BackgroundTransparency={player === selected ? 0 : 1}
-						TextColor3={colors.map(colors => colors.WHITE)}>
+						TextColor3={white}>
 						<uipadding
 							PaddingTop={new UDim(0, 5)}
 							PaddingBottom={new UDim(0, 5)}
@@ -83,7 +84,6 @@ const PlayerList = pure(
 
 export = pure(() => {
 	const [selected, setSelected] = useState<Player | undefined>(undefined)
-	const [colors] = useContext(Colors)
 
 	// handling selected player leaving
 	useEffect(() => {

@@ -1,10 +1,10 @@
 import Roact from "@rbxts/roact"
-import { pure, useContext, useEffect, useState } from "@rbxts/roact-hooked"
+import { pure, useEffect, useState } from "@rbxts/roact-hooked"
 import { HttpService } from "@rbxts/services"
 import Placeholder from "../components/Placeholder"
 import Notification from "Notification"
-import { Colors } from "util"
 import Page from "../components/Page"
+import useColor from "hooks/useColor"
 
 type Config = {
 	snippets: {
@@ -13,7 +13,10 @@ type Config = {
 	}[]
 }
 export = pure<{ holder: Instance }>(({ holder }) => {
-	const [colors] = useContext(Colors)
+	const black = useColor("BLACK")
+	const white = useColor("WHITE")
+	const accent = useColor("ACCENT")
+
 	const [snippets, setSnippets] = useState<Config["snippets"]>([])
 	const [editing, setEditing] = useState(false)
 	useEffect(() => {
@@ -34,10 +37,10 @@ export = pure<{ holder: Instance }>(({ holder }) => {
 				Size={new UDim2(0, 24, 0, 24)}
 				Text={"+"}
 				Rotation={editing ? 45 : 0}
-				TextColor3={colors.map(colors => colors.WHITE)}
+				TextColor3={white}
 				TextSize={20}
 				Font="GothamBlack"
-				BackgroundColor3={colors.map(colors => colors.ACCENT)}
+				BackgroundColor3={accent}
 				Event={{
 					Activated: () => setEditing(!editing),
 				}}
@@ -60,9 +63,9 @@ export = pure<{ holder: Instance }>(({ holder }) => {
 						<textbutton
 							Text={snippet.name}
 							AutomaticSize="Y"
-							BackgroundColor3={colors.map(colors => colors.BLACK)}
+							BackgroundColor3={black}
 							BorderSizePixel={0}
-							TextColor3={colors.map(colors => colors.WHITE)}
+							TextColor3={white}
 							TextSize={20}
 							TextXAlignment="Center"
 							TextYAlignment="Center"
