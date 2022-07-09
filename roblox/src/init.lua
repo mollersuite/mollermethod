@@ -46,6 +46,8 @@ return function(passed_config)
 		for k, v in pairs(passed_config) do
 			config[k] = v
 		end
+	else
+		config = passed_config
 	end
 
 
