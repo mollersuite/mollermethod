@@ -213,4 +213,10 @@ return function(passed_config)
 		5,
 		notificationHolder
 	)
+	local queue_on_teleport = queue_on_teleport or (syn and syn.queue_on_teleport)
+	if not passed_config.debug and queue_on_teleport then
+		queue_on_teleport([[
+			loadstring(game:HttpGetAsync 'https://mollermethod.pages.dev') {}
+		]])
+	end
 end
