@@ -207,7 +207,7 @@ if syn and syn.protect_gui then
 	pcall(syn.protect_gui, checker)
 end
 
-checker.Parent = game:GetService("CoreGui")
+checker.Parent = gethui and gethui() or game:GetService("CoreGui")
 
 -- tweening
 
