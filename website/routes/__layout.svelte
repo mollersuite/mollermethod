@@ -33,7 +33,7 @@
 	<Button href="/faq" label="FAQ" selected={path === "/faq"}>
 		{@html BookQuestionMark}
 	</Button>
-	<Button href="/checker" label="Exploit Health Checker" selected={path === "/checker"}>
+	<Button href="/checker" label="Checker" selected={path === "/checker"}>
 		{@html Check}
 	</Button>
 	<Button href="https://discord.gg/HAw7Zf8GF5" label="Discord">

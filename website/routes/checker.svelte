@@ -1,23 +1,15 @@
 <script>
 	import { page } from "$app/stores"
+	import url from '$lib/checker.png'
 </script>
 
 <svelte:head>
-	<title>Exploit Health Checker</title>
+	<title>Compat Checker</title>
 	<meta name="description" content="Make sure your exploit works with mollermethod." />
 </svelte:head>
 
-<h1>Exploit Health Checker</h1>
-
-<p>Make sure your exploit works with mollermethod. (check console for results)</p>
-<p />
-<pre>loadstring(game:HttpGetAsync "{$page.url
-		.origin}/checker.client.lua", "Exploit Health Checker")()</pre>
-
-<style>
-	h1,
-	p,
-	pre {
-		text-align: center;
-	}
-</style>
+<h1>Compat Checker</h1>
+<p>Make sure your exploit works with mollermethod.</p>
+<img src={url} alt="Screenshot of the compat checker" width="384" height="125"/>
+<code>loadstring(game:HttpGetAsync "{$page.url
+		.origin}/checker.client.lua", "Compat Checker")()</code>
