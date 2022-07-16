@@ -3,8 +3,6 @@
 	import CloudScript from "@fluentui/svg-icons/icons/cloud_flow_20_filled.svg?raw"
 	import External from "@fluentui/svg-icons/icons/window_new_20_filled.svg?raw"
 	import AppsList from "@fluentui/svg-icons/icons/apps_list_20_filled.svg?raw"
-	import Error from "@fluentui/svg-icons/icons/error_circle_20_filled.svg?raw"
-	let version = 7
 </script>
 
 <svelte:head>
@@ -87,13 +85,3 @@
 	</svelte:fragment>
 </Expander>
 
-<Expander on:click={() => (version += 0.5)}>
-	<svelte:fragment slot="icon">
-		{@html CloudScript}
-	</svelte:fragment>
-	How do I use cloud scripts?
-	<svelte:fragment slot="content">
-		First pause Roblox, then look at the bottom left.
-		<br /><small>FUCK WE LEAKED MOLLERMETHOD V{Math.floor(version)}</small>
-	</svelte:fragment>
-</Expander>
