@@ -1,8 +1,6 @@
 <script context="module">
-	import { dev } from "$app/env"
-	export const router = dev
 	/** @type {import('@sveltejs/kit').Load} */
-	export const load =  () => ({
+	export const load = () => ({
 		stuff: {
 			center: true
 		}
