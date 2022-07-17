@@ -1,8 +1,9 @@
 <script>
 	import { Expander, InfoBar } from "fluent-svelte"
-	import CloudScript from "@fluentui/svg-icons/icons/cloud_flow_20_filled.svg?raw"
 	import External from "@fluentui/svg-icons/icons/window_new_20_filled.svg?raw"
+	import Why from "@fluentui/svg-icons/icons/document_question_mark_20_filled.svg?raw"
 	import AppsList from "@fluentui/svg-icons/icons/apps_list_20_filled.svg?raw"
+	import Store from "@fluentui/svg-icons/icons/arrow_download_20_filled.svg?raw"
 </script>
 
 <svelte:head>
@@ -11,7 +12,16 @@
 </svelte:head>
 
 <h1>FAQ</h1>
-
+<p>nobody actually asked me these i'm just guessing lol</p>
+<Expander>
+	<svelte:fragment slot="icon">
+	{@html Why}
+	</svelte:fragment>
+	What is mollermethod?
+	<svelte:fragment slot="content">
+		<p>We're not sure either. It's like if Infinite Yield and DomainX had a baby.</p>
+	</svelte:fragment>
+</Expander>
 <Expander>
 	<svelte:fragment slot="icon">
 	{@html AppsList}
@@ -27,11 +37,7 @@
 	</svelte:fragment>
 </Expander>
 <Expander>
-	<svelte:fragment slot="icon"
-		><svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-			><path
-				d="M13 2a2.47 2.47 0 0 1 2.47 2.47l-.001.53H19a1 1 0 0 1 1 1l-.001 3.499-1.53.001a2.47 2.47 0 0 0-2.464 2.307L16 11.97v.06a2.47 2.47 0 0 0 2.307 2.465l.163.005 1.529-.001.001 3.504a1 1 0 0 1-1 1l-3.531-.001v.528a2.47 2.47 0 1 1-4.939 0v-.528H7a1 1 0 0 1-1-1l-.001-3.531h-.53a2.47 2.47 0 0 1 0-4.94H6L6 6a1 1 0 0 1 1-1h3.53v-.53A2.47 2.47 0 0 1 13 2Z" /></svg
-		></svelte:fragment>
+	<svelte:fragment slot="icon">{@html Store}</svelte:fragment>
 	Where can I find plugins for mollermethod?
 	<svelte:fragment slot="content">
 		<p>
@@ -46,7 +52,6 @@
 			to make custom actions (shows in both Bracket & Mollybdos), commands (shows in Bracket), and
 			tags (shows in Mollybdos).
 		</p>
-		<p>In the future this site will have a dedicated section for plugins.</p>
 	</svelte:fragment>
 </Expander>
 <Expander>
@@ -84,4 +89,3 @@
 			closable={false} />
 	</svelte:fragment>
 </Expander>
-

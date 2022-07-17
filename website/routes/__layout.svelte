@@ -48,10 +48,10 @@
 	</Button>
 </Header>
 
-<main id="main">
+<main id="main" class:center={$page.stuff.center}>
 	<slot />
-	<small>Dedicated to Molly the Beagle, 2009-2022 💔</small>
 </main>
+<small>Dedicated to Molly the Beagle, 2009-2022 💔</small>
 
 <style>
 	main {
@@ -60,11 +60,14 @@
 		display: flex;
 		flex-direction: column;
 		padding: 1rem;
-		width: 100%;
+		width: calc(100% - 100px);
 		max-width: 1500px;
 		margin: 0 auto;
 		margin-left: 100px;
 		box-sizing: border-box;
+	}
+	.center {
+		justify-content: center;
 	}
 	@keyframes blink {
 		0% {
