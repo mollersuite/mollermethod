@@ -308,7 +308,7 @@
 	External Bracket?
 	<small>Bracket will open in a console window.</small>
 </ToggleSwitch>
-<nav>{@html volume === 0 ? Mute : volume < 5 ? Speaker0 : volume === 10 ? Speaker2 : Speaker1}<Slider bind:value={volume} min={0} max={10} step={0}/></nav>
+<nav>{@html volume === 0 ? Mute : volume < 5 ? Speaker0 : volume === 10 ? Speaker2 : Speaker1}<Slider bind:value={volume} min={0} max={10} step={0.01}/></nav>
 <Expander>
 	<svelte:fragment slot="icon">
 		{@html ColorIcon}
