@@ -255,11 +255,16 @@
 		"Thumbstick1",
 		"Thumbstick2",
 	]
-	import { ToggleSwitch, ComboBox, Expander, NumberBox } from "fluent-svelte"
+	import { ToggleSwitch, ComboBox, Expander, Slider } from "fluent-svelte"
 	import { page } from "$app/stores"
 	import { convert, fix } from "$lib/lua"
 	import Preview from "@fluentui/svg-icons/icons/eye_20_regular.svg?raw"
 	import ColorIcon from "@fluentui/svg-icons/icons/color_20_regular.svg?raw"
+	import Speaker0 from "@fluentui/svg-icons/icons/speaker_0_20_filled.svg?raw"
+	import Speaker1 from "@fluentui/svg-icons/icons/speaker_1_20_filled.svg?raw"
+	import Speaker2 from "@fluentui/svg-icons/icons/speaker_2_20_filled.svg?raw"
+	import Mute from "@fluentui/svg-icons/icons/speaker_mute_20_filled.svg?raw"
+
 	let toggle = "LeftBracket"
 	let debug = false
 	let external = false
@@ -303,7 +308,7 @@
 	External Bracket?
 	<small>Bracket will open in a console window.</small>
 </ToggleSwitch>
-<NumberBox bind:value={volume} min={0} max={10} inline required>Volume</NumberBox>
+<nav>{@html volume === 0 ? Mute : volume < 5 ? Speaker0 : volume === 10 ? Speaker2 : Speaker1}<Slider bind:value={volume} min={0} max={10} /></nav>
 <Expander>
 	<svelte:fragment slot="icon">
 		{@html ColorIcon}
@@ -391,5 +396,13 @@
 		grid-gap: 1.5rem;
 		justify-items: center;
 		text-align: center;
+	}
+	nav {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 1ch;
+		flex-direction: row;
+		fill: currentColor;
 	}
 </style>
