@@ -41,8 +41,8 @@ export function play(id: string, volume = default_volume) {
 	SoundService.PlayLocalSound(sound)
 }
 
-export function set_volume(volume: number) {
-	default_volume = volume
+export function vol(new_volume: number = default_volume) {
+	return (default_volume = new_volume)
 }
 /**
  * fuck lua fuck lua

@@ -23,10 +23,6 @@
 			class:navigating={$navigating}
 			class="logo" />
 	</Button>
-
-	<Button href="/config" label="Settings" selected={path === "/config"}>
-		{@html Settings}
-	</Button>
 	<Button href="/api" label="API" selected={path === "/api"}>
 		{@html Cube}
 	</Button>

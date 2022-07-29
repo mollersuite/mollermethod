@@ -7,13 +7,11 @@ local Roact = require(script.include.node_modules.roact.src)
 local Notification = require(script.Notification) -- From Lunar, we should do this ourselves
 local Neo = require(script.Neo)
 local Bracket = require(script.Bracket).default
-local BracketExternal = require(script.services.bracket_external)
 
 local CONSTANTS = require(script.constants)
 local colors = require(script.colors).default
 local util = require(script.util)
 local iyToBracket = require(script.Bracket.iy)
-local content = getcustomasset or getsynasset
 
 ---@class Theme
 ---@field background string
@@ -27,18 +25,27 @@ local content = getcustomasset or getsynasset
 ---@field theme		 		Theme | nil Background, foreground and accent colors.
 ---@field volume			number | nil
 ---@field bracket_toggle	Enum.KeyCode | nil
----@field bracket_external	boolean | nil
 
 ---mollermethod's loader
 ---@param passed_config Config
 return function(passed_config)
 	local config = passed_config or {}
-	if isfile and not isfile("mollermethod.json") then
+
+	if writefile and not isfile("mollermethod.json") then
 		writefile(
 			"mollermethod.json",
 			HttpService:JSONEncode({
 				snippets = {},
-				config = config,
+				config = {
+					bracket_toggle = Enum.KeyCode.LeftBracket;
+					debug = false;
+					volume = 5;
+					theme = {
+						accent = "#9339ff";
+						background = "#1c1c1c";
+						foreground = "#ffffff";
+					};
+				},
 			})
 		)
 	elseif isfile and isfile('mollermethod.json') then
@@ -56,7 +63,8 @@ return function(passed_config)
 		colors.WHITE = Color3.fromHex(config.theme.foreground)
 		colors.BLACK = Color3.fromHex(config.theme.background)
 	end
-	util.set_volume(config.volume or 5)
+
+	util.vol(config.volume or 5)
 
 	local notificationHolder = Instance.new("Frame", config.gui)
 	notificationHolder.AnchorPoint = Vector2.new(1, 0)
@@ -174,9 +182,7 @@ return function(passed_config)
 							container = config.gui,
 							notif = notificationHolder,
 						}),
-						Bracket = config.bracket_external and Roact.createElement(
-							BracketExternal
-						) or Roact.createElement(Bracket, {
+						Bracket = Roact.createElement(Bracket, {
 							button = config.bracket_toggle or Enum.KeyCode.LeftBracket,
 						}),
 					}
