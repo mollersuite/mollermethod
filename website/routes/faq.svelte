@@ -1,6 +1,5 @@
 <script>
-	import { Expander, InfoBar } from "fluent-svelte"
-	import External from "@fluentui/svg-icons/icons/window_new_20_filled.svg?raw"
+	import { Expander } from "fluent-svelte"
 	import Why from "@fluentui/svg-icons/icons/document_question_mark_20_filled.svg?raw"
 	import AppsList from "@fluentui/svg-icons/icons/apps_list_20_filled.svg?raw"
 	import Store from "@fluentui/svg-icons/icons/arrow_download_20_filled.svg?raw"
@@ -72,20 +71,4 @@
 	}
 }`}</pre>
 		</svelte:fragment>
-</Expander>
-<Expander>
-	<svelte:fragment slot="icon">{@html External}</svelte:fragment>
-	How do I use Bracket in an external window?
-	<svelte:fragment slot="content">
-		<ol>
-			<li>Go to <a href="/config">the config generator</a></li>
-			<li>Enable "External Bracket"</li>
-			<li>Use the outputted script in your exploit</li>
-		</ol>
-		<InfoBar
-			title="Note"
-			severity="caution"
-			message="There is currently no autocomplete in Bracket's external mode. Also, you shouldn't use a prefix."
-			closable={false} />
-	</svelte:fragment>
 </Expander>
