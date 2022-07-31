@@ -5,15 +5,13 @@ local TweenService = game:GetService("TweenService")
 local PKG_VERSION = require(script.version)
 local Roact = require(script.include.node_modules.roact.src)
 local Notification = require(script.Notification) -- From Lunar, we should do this ourselves
-local Expletive = require(script.Expletive)
+local Neo = require(script.Neo)
 local Bracket = require(script.Bracket).default
-local BracketExternal = require(script.services.bracket_external)
 
 local CONSTANTS = require(script.constants)
 local colors = require(script.colors).default
 local util = require(script.util)
 local iyToBracket = require(script.Bracket.iy)
-local content = getcustomasset or getsynasset
 
 ---@class Theme
 ---@field background string
@@ -27,18 +25,26 @@ local content = getcustomasset or getsynasset
 ---@field theme		 		Theme | nil Background, foreground and accent colors.
 ---@field volume			number | nil
 ---@field bracket_toggle	Enum.KeyCode | nil
----@field bracket_external	boolean | nil
 
 ---mollermethod's loader
 ---@param passed_config Config
 return function(passed_config)
 	local config = passed_config or {}
-	if isfile and not isfile("mollermethod.json") then
+
+	if writefile and not isfile("mollermethod.json") then
 		writefile(
 			"mollermethod.json",
 			HttpService:JSONEncode({
-				snippets = {},
-				config = config,
+				config = {
+					bracket_toggle = Enum.KeyCode.LeftBracket;
+					debug = false;
+					volume = 5;
+					theme = {
+						accent = "#9339ff";
+						background = "#1c1c1c";
+						foreground = "#ffffff";
+					};
+				},
 			})
 		)
 	elseif isfile and isfile('mollermethod.json') then
@@ -46,6 +52,8 @@ return function(passed_config)
 		for k, v in pairs(passed_config) do
 			config[k] = v
 		end
+	else
+		config = passed_config
 	end
 
 
@@ -54,7 +62,8 @@ return function(passed_config)
 		colors.WHITE = Color3.fromHex(config.theme.foreground)
 		colors.BLACK = Color3.fromHex(config.theme.background)
 	end
-	util.set_volume(config.volume or 5)
+
+	util.vol(config.volume or 5)
 
 	local notificationHolder = Instance.new("Frame", config.gui)
 	notificationHolder.AnchorPoint = Vector2.new(1, 0)
@@ -73,20 +82,7 @@ return function(passed_config)
 	uIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 	uIListLayout.VerticalAlignment = Enum.VerticalAlignment.Bottom
 
-	-- Startup sound
-	if content then
-		task.defer(function() -- All exploits with getcustomasset or getsynasset also have isfile
-			if isfile("mollermethod_Blog-Sound-1.ogg") then
-				util.play(content("mollermethod_Blog-Sound-1.ogg"))
-			else
-				util.play(
-					util.asset("https://ubuntu.com/wp-content/uploads/2012/02/Blog-Sound-1.ogg")
-				)
-			end
-		end)
-	else
-		util.play("rbxassetid://9344041257")
-	end
+	util.play("rbxassetid://9064208547") -- Startup sound
 
 	local colorsBinding = { Roact.createBinding(colors) }
 	-- Load plugins
@@ -126,9 +122,25 @@ return function(passed_config)
 	if isfile and isfile("IY_FE.iy") then
 		local iyConfig = HttpService:JSONDecode(readfile("IY_FE.iy")) -- All exploits with isfile also have readfile
 		for _, plugin_path in pairs(iyConfig.PluginsTable) do
-			iyToBracket(readfile(plugin_path), notificationHolder, plugins)
+			task.defer(iyToBracket, readfile(plugin_path), notificationHolder, plugins)
 		end
 	end
+
+	local ids =
+		{
+			"rbxassetid://7037264869",
+			"rbxassetid://7037156897",
+			"rbxassetid://7043731194",
+			"rbxassetid://7037269561",
+			"rbxassetid://7037272153",
+			"rbxassetid://7037339934",
+			"rbxassetid://7037356929",
+			"rbxassetid://7044042331",
+			"rbxassetid://7044088926",
+			"rbxassetid://7046289590",
+			"rbxassetid://10131036449",
+			"rbxassetid://10131153286"
+		}
 
 	-- Mount UI
 	local tree
@@ -143,16 +155,33 @@ return function(passed_config)
 					util.Kill.Provider,
 					{ value = function()
 						Roact.unmount(tree)
-						config.gui:Destroy()
+							for i = 0,50 do
+								local particle = Instance.new("ImageLabel", config.gui)
+								particle.Size = UDim2.new()
+								particle.Image = ids[math.random(#ids)]
+								particle.BackgroundTransparency = 1
+								particle.ScaleType = Enum.ScaleType.Fit
+								particle.ZIndex = 100
+								particle.AnchorPoint = Vector2.new(1,0.5)
+								particle.Position = UDim2.new(0,0,0.5,0)
+								TweenService:Create(particle, TweenInfo.new(.1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0,false,.7), {
+									ImageTransparency = 1
+								}):Play()
+								TweenService:Create(particle, TweenInfo.new(1, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {
+									Position = UDim2.new(math.random(), 0, math.random(), 0),
+									Size = UDim2.new(0,150,0,150)
+								}):Play()
+								Debris:AddItem(particle, 1.5)
+								game:GetService('RunService').Heartbeat:Wait()
+							end
+							game:GetService('Debris'):AddItem(config.gui, 1.5)
 					end },
 					{
-						Taskbar = Roact.createElement(Expletive, {
+						Taskbar = Roact.createElement(Neo, {
 							container = config.gui,
 							notif = notificationHolder,
 						}),
-						Bracket = config.bracket_external and Roact.createElement(
-							BracketExternal
-						) or Roact.createElement(Bracket, {
+						Bracket = Roact.createElement(Bracket, {
 							button = config.bracket_toggle or Enum.KeyCode.LeftBracket,
 						}),
 					}
@@ -162,26 +191,39 @@ return function(passed_config)
 		config.gui
 	)
 
-	local border = Instance.new("Frame", config.gui)
-	Debris:AddItem(border, 1)
-	border.Size = UDim2.fromScale(1, 1)
-	border.AnchorPoint = Vector2.new(0.5, 0.5)
-	border.Position = UDim2.fromScale(0.5, 0.5)
-	border.BackgroundTransparency = 1
-	local stroke = Instance.new("UIStroke", border)
-	stroke.Thickness = 15
-	stroke.Color = colors.ACCENT
-	TweenService:Create(
-		border,
-		TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, true),
-		{ Size = UDim2.new(1, -10, 1, -10) }
-	):Play()
+	for i=1, 5 do
+		local border = Instance.new("Frame", config.gui)
+		Debris:AddItem(border, .5)
+		border.Size = UDim2.fromScale(2, 2)
+		border.AnchorPoint = Vector2.new(0.5, 0.5)
+		border.Position = UDim2.fromScale(0.5, 0.5)
+		border.BackgroundTransparency = 1
+		Instance.new('UIAspectRatioConstraint', border)
+		local stroke = Instance.new("UIStroke", border)
+		stroke.Thickness = 5
+		stroke.Color = colors.ACCENT
+		TweenService:Create(
+			border,
+			TweenInfo.new(.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+			{ 
+				Size = UDim2.new(),
+				Position = UDim2.fromScale(math.random(), math.random()),
+			}
+		):Play()
+		task.wait(math.random() * .1)
+	end
 
 	Notification.new(
-		"Welcome to mollermethod " .. PKG_VERSION .. ' (GAY (bad) EDITION)',
+		"Welcome to mollermethod " .. PKG_VERSION,
 		util.random(CONSTANTS.QUOTES),
 		"Success",
 		5,
 		notificationHolder
 	)
+	local queue_on_teleport = queue_on_teleport or (syn and syn.queue_on_teleport)
+	if not passed_config.debug and queue_on_teleport then
+		queue_on_teleport([[
+			loadstring(game:HttpGetAsync 'https://mollermethod.pages.dev') {}
+		]])
+	end
 end

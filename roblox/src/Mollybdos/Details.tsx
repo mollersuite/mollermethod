@@ -2,8 +2,9 @@ import Roact from "@rbxts/roact"
 import Object from "@rbxts/object-utils"
 import { hooked, useContext, useEffect, useState } from "@rbxts/roact-hooked"
 import tags_of, { Tags } from "./tags"
-import { Colors, merge, Plugins } from "util"
+import { merge, Plugins } from "util"
 import Placeholder from "components/Placeholder"
+import useColor from "hooks/useColor"
 
 /*
 /------------------------------\
@@ -27,7 +28,8 @@ const TagList = hooked(({ tags }: { tags: Tags }) => {
 			<frame BackgroundTransparency={1} BorderSizePixel={0} Size={UDim2.fromOffset(0, 15)} />
 		)
 
-	const [colors] = useContext(Colors)
+	const white = useColor('WHITE')
+	const accent = useColor('ACCENT')
 	return (
 		<scrollingframe
 			AutomaticCanvasSize="X"
@@ -55,8 +57,8 @@ const TagList = hooked(({ tags }: { tags: Tags }) => {
 						AutomaticSize="X"
 						BorderSizePixel={0}
 						BackgroundTransparency={0.5}
-						TextColor3={colors.map(colors => colors.WHITE)}
-						BackgroundColor3={colors.map(colors => colors.ACCENT)}>
+						TextColor3={white}
+						BackgroundColor3={accent}>
 						<uicorner CornerRadius={new UDim(0, 16)} />
 						<uipadding PaddingLeft={new UDim(0, 8)} PaddingRight={new UDim(0, 8)} />
 					</textlabel>
@@ -67,7 +69,8 @@ const TagList = hooked(({ tags }: { tags: Tags }) => {
 
 const Actions = hooked(({ player }: { player: Player }) => {
 	const plugins = useContext(Plugins)
-	const [colors] = useContext(Colors)
+	const accent = useColor("ACCENT")
+	const white = useColor("WHITE")
 
 	return (
 		<scrollingframe
@@ -90,11 +93,11 @@ const Actions = hooked(({ player }: { player: Player }) => {
 						Size={new UDim2(0, 0, 0, 32)}
 						AutomaticSize="X"
 						TextSize={11}
-						BackgroundColor3={colors.map(colors => colors.ACCENT)}
+						BackgroundColor3={accent}
 						BorderSizePixel={0}
 						BackgroundTransparency={0}
 						Font="Gotham"
-						TextColor3={colors.map(colors => colors.WHITE)}
+						TextColor3={white}
 						Visible={action.enabled?.() ?? true}
 						Text={action.display || `${name.sub(1, 1).upper()}${name.sub(2)}`}
 						Event={{
@@ -117,13 +120,13 @@ const Actions = hooked(({ player }: { player: Player }) => {
 export = hooked(({ selected }: { selected?: Player }) => {
 	if (!selected) {
 		return (
-			<frame Size={new UDim2(0, 660, 1, 0)} BackgroundTransparency={1} BorderSizePixel={0}>
+			<frame Size={new UDim2(0, 400, 1, 0)} BackgroundTransparency={1} BorderSizePixel={0}>
 				<Placeholder Text="No player selected" />
 			</frame>
 		)
 	}
 	const plugins = useContext(Plugins)
-	const [colors] = useContext(Colors)
+	const white = useColor("WHITE")
 	const [tags, setTags] = useState<Tags>([])
 	useEffect(() => {
 		setTags([])
@@ -134,7 +137,7 @@ export = hooked(({ selected }: { selected?: Player }) => {
 	}, [selected])
 	return (
 		<scrollingframe
-			Size={new UDim2(0, 660, 1, 0)}
+			Size={new UDim2(0, 400, 1, 0)}
 			BackgroundTransparency={1}
 			BorderSizePixel={0}
 			ClipsDescendants
@@ -161,7 +164,7 @@ export = hooked(({ selected }: { selected?: Player }) => {
 				AutomaticSize="Y"
 				BackgroundTransparency={1}
 				BorderSizePixel={0}
-				TextColor3={colors.map(colors => colors.WHITE)}
+				TextColor3={white}
 			/>
 			<TagList tags={tags} />
 			<Actions player={selected} />

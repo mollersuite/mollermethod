@@ -1,8 +1,9 @@
 import Roact from "@rbxts/roact"
-import { useEffect, useState, pure, Dispatch, useContext } from "@rbxts/roact-hooked"
+import { useEffect, useState, pure, Dispatch, useContext, useBinding } from "@rbxts/roact-hooked"
 import { Players } from "@rbxts/services"
 import Page from "components/Page"
-import { Colors } from "util"
+import useColor from "hooks/useColor"
+import { Colors, escape_lua_pattern } from "util"
 import Details from "./Details"
 
 const PlayerList = pure(
@@ -13,9 +14,14 @@ const PlayerList = pure(
 		selected?: Player
 		setSelected: Dispatch<Player | undefined>
 	}) => {
-		// handling players leaving and joining
+		const white = useColor("WHITE")
+		const accent = useColor("ACCENT")
 		const [players, setPlayers] = useState<Player[]>(Players.GetPlayers())
+
+		const [query, setQuery] = useBinding("")
+		const [focused, setFocused] = useBinding(false)
 		const [colors] = useContext(Colors)
+
 		useEffect(() => {
 			const adding = Players.ChildAdded.Connect(child => {
 				if (child.IsA("Player")) setPlayers(Players.GetPlayers())
@@ -45,6 +51,30 @@ const PlayerList = pure(
 					PaddingBottom={new UDim(0, 10)}
 					PaddingLeft={new UDim(0, 5)}
 				/>
+				<textbox
+					Text={query}
+					ClearTextOnFocus={false}
+					Change={{
+						Text: rbx => setQuery(rbx.Text),
+					}}
+					Event={{
+						FocusLost: () => setFocused(false),
+						Focused: () => setFocused(true),
+					}}
+					Font="RobotoMono"
+					TextSize={20}
+					TextColor3={white}
+					PlaceholderText="Search for a player"
+					PlaceholderColor3={colors.map(colors => colors.WHITE.Lerp(colors.BLACK, 0.5))}
+					BackgroundColor3={white}
+					BackgroundTransparency={focused.map(focused => (focused ? 0.5 : 1))}
+					TextXAlignment="Left"
+					BorderSizePixel={0}
+					TextWrapped
+					Key="!"
+					Size={new UDim2(1, 0, 0, 30)}>
+					<uipadding PaddingLeft={new UDim(0, 10)} PaddingRight={new UDim(0, 10)} />
+				</textbox>
 				{players.map(player => (
 					<textbutton
 						Size={new UDim2(1, 0, 0, 0)}
@@ -64,9 +94,17 @@ const PlayerList = pure(
 						Event={{
 							Activated: () => setSelected(player),
 						}}
-						BackgroundColor3={colors.map(colors => colors.ACCENT)}
+						BackgroundColor3={accent}
 						BackgroundTransparency={player === selected ? 0 : 1}
-						TextColor3={colors.map(colors => colors.WHITE)}>
+						TextColor3={white}
+						Visible={query.map(query => {
+							if (query === "") return true
+							const pattern = escape_lua_pattern(query)
+
+							return (query.find("^@")
+								? player.Name.match(pattern.sub(2))
+								: player.DisplayName.lower().match(pattern.lower()))[0] !== undefined 
+						})}>
 						<uipadding
 							PaddingTop={new UDim(0, 5)}
 							PaddingBottom={new UDim(0, 5)}
@@ -83,7 +121,6 @@ const PlayerList = pure(
 
 export = pure(() => {
 	const [selected, setSelected] = useState<Player | undefined>(undefined)
-	const [colors] = useContext(Colors)
 
 	// handling selected player leaving
 	useEffect(() => {

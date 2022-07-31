@@ -5,6 +5,7 @@ import execute from "./run"
 import Roact from "@rbxts/roact"
 import Suggestions from "./Suggestions"
 import { useSpring } from "@rbxts/roact-hooked-plus"
+import useColor from "hooks/useColor"
 
 export const toggle: BindableEvent<(state: boolean) => unknown> = new Instance("BindableEvent")
 
@@ -29,6 +30,9 @@ export default hooked<{ button: Enum.KeyCode; test?: boolean }>(({ button, test 
 	const [text, setText] = useState("")
 	const plugins = useContext(Plugins)
 	const [colors] = useContext(Colors)
+	const white = useColor("WHITE")
+	const black = useColor("BLACK")
+
 	const box = useRef<TextBox>()
 
 	// handles toggle key
@@ -45,6 +49,7 @@ export default hooked<{ button: Enum.KeyCode; test?: boolean }>(({ button, test 
 		})
 		return () => input_began.Disconnect()
 	}, [])
+
 	useEffect(() => {
 		const event = toggle.Event.Connect(state => {
 			setShown(state)
@@ -60,11 +65,11 @@ export default hooked<{ button: Enum.KeyCode; test?: boolean }>(({ button, test 
 			ClipsDescendants={false}
 			BorderSizePixel={0}
 			CanvasSize={new UDim2()}
-			Size={new UDim2(0.7, 0, 1, -(25 + 110))}
+			Size={new UDim2(0.7, 0, 1, 0)}
 			AnchorPoint={new Vector2(0.5, 0)}
 			BackgroundTransparency={1}
 			ScrollBarThickness={3}
-			ScrollBarImageColor3={colors.map(colors => colors.WHITE)}
+			ScrollBarImageColor3={white}
 			VerticalScrollBarInset="Always"
 			AutomaticCanvasSize="Y"
 			Visible={shown}
@@ -86,9 +91,9 @@ export default hooked<{ button: Enum.KeyCode; test?: boolean }>(({ button, test 
 				AutomaticSize="Y"
 				TextWrapped
 				TextYAlignment="Center"
-				TextColor3={colors.map(colors => colors.WHITE)}
+				TextColor3={white}
 				PlaceholderText="Type a command..."
-				BackgroundColor3={colors.map(colors => colors.BLACK)}
+				BackgroundColor3={black}
 				Event={{
 					FocusLost: (rbx, enter) => {
 						setShown(false)

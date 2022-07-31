@@ -23,17 +23,13 @@
 			class:navigating={$navigating}
 			class="logo" />
 	</Button>
-
-	<Button href="/config" label="Settings" selected={path === "/config"}>
-		{@html Settings}
-	</Button>
 	<Button href="/api" label="API" selected={path === "/api"}>
 		{@html Cube}
 	</Button>
 	<Button href="/faq" label="FAQ" selected={path === "/faq"}>
 		{@html BookQuestionMark}
 	</Button>
-	<Button href="/checker" label="Exploit Health Checker" selected={path === "/checker"}>
+	<Button href="/checker" label="Checker" selected={path === "/checker"}>
 		{@html Check}
 	</Button>
 	<Button href="https://discord.gg/HAw7Zf8GF5" label="Discord">
@@ -48,7 +44,7 @@
 	</Button>
 </Header>
 
-<main id="main">
+<main id="main" class:center={$page.stuff.center}>
 	<slot />
 </main>
 <small>Dedicated to Molly the Beagle, 2009-2022 💔</small>
@@ -60,10 +56,14 @@
 		display: flex;
 		flex-direction: column;
 		padding: 1rem;
-		width: 100%;
+		width: calc(100% - 100px);
 		max-width: 1500px;
 		margin: 0 auto;
+		margin-left: 100px;
 		box-sizing: border-box;
+	}
+	.center {
+		justify-content: center;
 	}
 	@keyframes blink {
 		0% {

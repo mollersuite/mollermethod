@@ -6,7 +6,7 @@ import {
 	ProximityPromptService,
 	RunService,
 } from "@rbxts/services"
-const [binding, setBinding] = Roact.createBinding(false)
+const [enabled, setEnabled] = Roact.createBinding(false)
 function run_script(code: string) {
 	const games: Record<number, (() => void) | void> = {
 		// Script Showcase
@@ -39,7 +39,7 @@ const state: {
 	remote?: RemoteFunction<(action: string, detail?: string) => unknown>
 	enabled: Roact.Binding<boolean>
 } = {
-	enabled: binding,
+	enabled,
 }
 
 async function activate() {
@@ -78,7 +78,7 @@ remote.OnServerInvoke = func`,
 
 	if (state.remote) {
 		print("mollerpotence enabled")
-		setBinding(true)
+		setEnabled(true)
 	}
 }
 

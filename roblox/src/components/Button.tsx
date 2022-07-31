@@ -16,9 +16,7 @@ export = pure<{
 	const [colors] = useContext(Colors)
 	return (
 		<textbutton
-			BackgroundColor3={
-				Accent ? colors.map(colors => colors.ACCENT) : colors.map(colors => colors.BLACK)
-			}
+			BackgroundColor3={colors.map(colors => colors.BLACK)}
 			Text=""
 			LayoutOrder={LayoutOrder}
 			Event={{
@@ -34,6 +32,12 @@ export = pure<{
 			AutomaticSize="X"
 			Size={UDim2.fromOffset(30, 30)}>
 			<uiscale Scale={scale} />
+			<uistroke
+				Color={colors.map(colors => colors.WHITE.Lerp(colors.BLACK, 0.5))}
+				Thickness={1}
+				Enabled={Accent === true}
+				ApplyStrokeMode={Enum.ApplyStrokeMode.Border}
+			/>
 			<uipadding PaddingLeft={new UDim(0, 10)} PaddingRight={new UDim(0, 10)} />
 			<uicorner CornerRadius={new UDim(0, 10)} />
 			<imagelabel

@@ -41,8 +41,8 @@ export function play(id: string, volume = default_volume) {
 	SoundService.PlayLocalSound(sound)
 }
 
-export function set_volume(volume: number) {
-	default_volume = volume
+export function vol(new_volume: number = default_volume) {
+	return (default_volume = new_volume)
 }
 /**
  * fuck lua fuck lua
@@ -115,7 +115,7 @@ export function merge<T>(list: T[]): T {
 export const title_case = (name: string) => name.sub(1, 1).upper() + name.sub(2)
 
 
-export const flat = <T> (list: readonly T[][]): T[] => {
+export const flat = <T extends defined> (list: readonly T[][]): T[] => {
 	const result: T[] = []
 	for (const sublist of list) {
 		for (const item of sublist) {
