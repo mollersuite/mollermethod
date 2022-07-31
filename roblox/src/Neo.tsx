@@ -27,8 +27,8 @@ const spring = (n: number) => new Spring(n, { dampingRatio: 1, frequency: 2 })
 export = pure<{ container: Instance; notif: Frame }>(({ container, notif }) => {
 	const [closed, setOpen] = useSingleMotor(1)
 	const [Page, setPage] = useState<Roact.Element>(<></>)
-	const white = useColor('WHITE')
-	const black = useColor('BLACK')
+	const white = useColor("WHITE")
+	const black = useColor("BLACK")
 
 	function page_to(component: typeof Page) {
 		if (Page.component === component.component) {
@@ -57,30 +57,27 @@ export = pure<{ container: Instance; notif: Frame }>(({ container, notif }) => {
 				SortOrder="LayoutOrder"
 				Padding={new UDim(0, 10)}
 			/>
-			<Div>
-				<imagebutton
-					LayoutOrder={1}
-					BorderSizePixel={0}
-					Rotation={closed.map(n => n * -90)}
-					Event={{
-						Activated: () => setOpen(spring(closed.getValue() === 1 ? 0 : 1)),
-					}}
-					Image="rbxassetid://9399201426"
-					Size={UDim2.fromOffset(30, 30)}
-					ScaleType="Fit"
-					BackgroundTransparency={1}>
-					<textlabel
-						TextScaled
-						Font="RobotoMono"
-						Text={PKG_VERSION}
-						TextColor3={white}
-						BackgroundTransparency={1}
-						Size={UDim2.fromScale(1, 1)}
-						TextXAlignment="Right"
-						TextYAlignment="Bottom"
-					/>
-				</imagebutton>
-			</Div>
+			<imagebutton
+				LayoutOrder={1}
+				BorderSizePixel={0}
+				Event={{
+					Activated: () => setOpen(spring(closed.getValue() === 1 ? 0 : 1)),
+				}}
+				Image="rbxassetid://9399201426"
+				Size={UDim2.fromOffset(30, 30)}
+				ScaleType="Fit"
+				BackgroundTransparency={1}>
+				<textlabel
+					TextScaled
+					Font="RobotoMono"
+					Text={PKG_VERSION}
+					TextColor3={white}
+					BackgroundTransparency={1}
+					Size={UDim2.fromScale(1, 1)}
+					TextXAlignment="Right"
+					TextYAlignment="Bottom"
+				/>
+			</imagebutton>
 			<imagelabel
 				Visible={mollerpotence.enabled}
 				Size={UDim2.fromOffset(20, 20)}
