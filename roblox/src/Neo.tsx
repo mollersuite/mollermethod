@@ -11,7 +11,6 @@ import { Spring } from "@rbxts/flipper"
 import Mollybdos from "Mollybdos"
 import Button from "components/Button"
 import LocalBar from "pages/LocalPlayer"
-import Snippets from "pages/Snippets"
 import Settings from "pages/Settings"
 import mollerpotence from "mollerpotence"
 import CloudScripts from "pages/CloudScripts"
@@ -120,13 +119,6 @@ export = pure<{ container: Instance; notif: Frame }>(({ container, notif }) => {
 				LayoutOrder={6}
 				Activated={() => page_to(<Mollybdos />)}
 				Accent={Page.component === Mollybdos}
-			/>
-			<Button
-				Text="Snippets"
-				Image="rbxassetid://9620224527"
-				LayoutOrder={7}
-				Activated={() => page_to(<Snippets holder={notif} />)}
-				Accent={Page.component === Snippets}
 			/>
 			<Button
 				Text="Luau.ml"

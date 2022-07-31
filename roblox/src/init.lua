@@ -35,7 +35,6 @@ return function(passed_config)
 		writefile(
 			"mollermethod.json",
 			HttpService:JSONEncode({
-				snippets = {},
 				config = {
 					bracket_toggle = Enum.KeyCode.LeftBracket;
 					debug = false;
