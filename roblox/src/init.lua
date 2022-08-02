@@ -48,7 +48,7 @@ return function(passed_config)
 			})
 		)
 	elseif isfile and isfile('mollermethod.json') then
-		config = HttpService:JSONDecode(readfile('mollermethod.json')).config
+		config = HttpService:JSONDecode(readfile('mollermethod.json')).config or {}
 		for k, v in pairs(passed_config) do
 			config[k] = v
 		end
@@ -65,7 +65,7 @@ return function(passed_config)
 
 	util.vol(config.volume or 5)
 
-	local notificationHolder = Instance.new("Frame", config.gui)
+	local notificationHolder = Instance.new("Frame", passed_config.gui)
 	notificationHolder.AnchorPoint = Vector2.new(1, 0)
 	notificationHolder.BackgroundColor3 = Color3.new(1, 1, 1)
 	notificationHolder.BackgroundTransparency = 1
