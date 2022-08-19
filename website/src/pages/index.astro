@@ -2,7 +2,6 @@
 import Layout from '../layouts/Layout.astro'
 import { Button } from 'fluent-svelte'
 import hero from '../assets/hero.png'
-import { Code } from 'astro/components'
 ---
 
 <Layout title="mollermethod" description="Scripting, unleashed." center>
@@ -13,7 +12,7 @@ import { Code } from 'astro/components'
 </h4>
 <h1>Truly unleashed.</h1>
 <nav>
-	<Code code={`loadstring(game:HttpGetAsync 'https://mthd.ml') {}`} lang="lua" theme="github-dark" />
+	<code>{`loadstring(game:HttpGetAsync 'https://mthd.ml') {}`}</code>
 	<Button variant="hyperlink" href="/api">Read API docs</Button> <Button variant="hyperlink" href="/faq">FAQ</Button>
 </nav>
 	
@@ -24,11 +23,14 @@ import { Code } from 'astro/components'
 
 
 <style>
-	:global(.astro-code) {
-		max-width: max-content;
+	code {
+		font-size: 13px;
+		font-family: "JetBrains Mono", ui-monospace, "Input Mono", "Cascadia Mono", "Segoe UI Mono",
+			"Ubuntu Mono", "Roboto Mono", "Fira Code", Menlo, Monaco, Consolas, monospace;
+		background-color: var(--fds-solid-background-secondary);
 		border-radius: 3px;
-		padding: 1em;
-		box-sizing: border-box;
+		overflow-x: auto;
+		color: var(--fds-text-primary);
 	}
 
 	article {
