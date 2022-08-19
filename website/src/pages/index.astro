@@ -1,49 +1,36 @@
-<script context="module">
-	import { dev } from "$app/env"
-	export const router = dev
-	/** @type {import('@sveltejs/kit').Load} */
-	export const load =  () => ({
-		stuff: {
-			center: true
-		}
-	})
-</script>
+---
+import Layout from '../layouts/Layout.astro'
+import { Button } from 'fluent-svelte'
+import hero from '../assets/hero.png'
+import { Code } from 'astro/components'
+---
 
-<script>
-	import { browser } from "$app/env"
-	import { Button, TextBlock } from "fluent-svelte"
-	import { page } from "$app/stores"
-	import hero from '$lib/hero.png'
+<Layout title="mollermethod" description="Scripting, unleashed." center>
 	
-	if (browser) {
-		const first_node = document.body.childNodes[0]
-		if (first_node.TEXT_NODE) first_node.remove()
-	}
-</script>
-
-<svelte:head>
-	<title>mollermethod</title>
-	<meta name="description" content="Scripting, unleashed." />
-</svelte:head>
-
 <h4>
 	<img src="/icon.png" alt="mollermethod" aria-hidden width="20"/>
 	mollermethod
 </h4>
 <h1>Truly unleashed.</h1>
 <nav>
-	<code>{`loadstring(game:HttpGetAsync '${$page.url.origin}') {}`}</code> <Button variant="hyperlink" href="/api">Read API docs</Button> <Button variant="hyperlink" href="/faq">FAQ</Button>
+	<Code code={`loadstring(game:HttpGetAsync 'https://mthd.ml') {}`} lang="lua" theme="github-dark" />
+	<Button variant="hyperlink" href="/api">Read API docs</Button> <Button variant="hyperlink" href="/faq">FAQ</Button>
 </nav>
 	
 <img src={hero} alt="mollermethod" aria-hidden class="giant" width="700"/>
 <img src="/icon.png" alt="mollermethod" aria-hidden class="giant2" width="1000"/>
 
+</Layout>
+
+
 <style>
-	code {
+	:global(.astro-code) {
 		max-width: max-content;
+		border-radius: 3px;
 		padding: 1em;
 		box-sizing: border-box;
 	}
+
 	article {
 		display: flex;
 		justify-content: center;
@@ -51,6 +38,7 @@
 		flex-direction: column;
 		min-height: 100%;
 	}
+
 	.giant {
 		position: absolute;
 		right: 32px;
