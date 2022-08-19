@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@fluentui/svg-icons": "^1.1.178",
+    "@fontsource/jetbrains-mono": "^4.5.10",
     "fluent-svelte": "^1.6.0"
   }
 }

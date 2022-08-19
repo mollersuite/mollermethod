@@ -48,11 +48,13 @@ importers:
     specifiers:
       '@astrojs/svelte': ^1.0.0
       '@fluentui/svg-icons': ^1.1.178
+      '@fontsource/jetbrains-mono': ^4.5.10
       astro: ^1.0.6
       fluent-svelte: ^1.6.0
       svelte: ^3.46.4
     dependencies:
       '@fluentui/svg-icons': 1.1.178
+      '@fontsource/jetbrains-mono': 4.5.10
       fluent-svelte: 1.6.0
     devDependencies:
       '@astrojs/svelte': 1.0.0_svelte@3.48.0
@@ -445,6 +447,10 @@ packages:
 
   /@fluentui/svg-icons/1.1.178:
     resolution: {integrity: sha512-1JVPbZokI2QucDze2xcDXr/LJ/bnrhPvmBXj1urqzAcp7k1nmzJdFX4U9Xd+7HT91LkCWiTGBgj7sSUKt6FLTw==}
+    dev: false
+
+  /@fontsource/jetbrains-mono/4.5.10:
+    resolution: {integrity: sha512-dylbkBmAWL0fkjDpDoDbQCwTQ/W3DzLtVXmwGyAyttfKliPGSP2WpAmmMFYp9NpqFMF7CLprFyzppe8u39Orkw==}
     dev: false
 
   /@jridgewell/gen-mapping/0.1.1:
