@@ -10,4 +10,4 @@ npm run build
 cd ../website
 echo "[moller] Building website"
 npm run build
-node overwrite.js # to get polylgot
+node overwrite.mjs # to get polylgot
