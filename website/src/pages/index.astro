@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro'
 import { Button } from 'fluent-svelte'
 import hero from '../assets/hero.png'
 ---
-
+<script is:inline>document.body.childNodes[0].TEXT_NODE&&document.body.childNodes[0].remove()</script>
 <Layout title="mollermethod" description="Scripting, unleashed." center>
 	
 <h4>
