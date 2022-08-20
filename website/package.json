@@ -1,28 +1,22 @@
 {
-	"name": "mollermethod-website",
-	"version": "1.0.0",
-	"private": true,
-	"scripts": {
-		"dev": "svelte-kit dev",
-		"build": "svelte-kit build",
-		"package": "svelte-kit package",
-		"preview": "svelte-kit preview",
-		"test": "playwright test"
-	},
-	"devDependencies": {
-		"@fluentui/svg-icons": "^1.1.162",
-		"@playwright/test": "^1.19.2",
-		"@sveltejs/adapter-static": "^1.0.0-next.29",
-		"@sveltejs/kit": "next",
-		"fluent-svelte": "^1.5.1",
-		"mdsvex": "^0.10.5",
-		"rehype-autolink-headings": "^6.1.1",
-		"rehype-slug": "^5.0.1",
-		"remark-toc": "^8.0.1",
-		"svelte": "^3.46.4"
-	},
-	"type": "module",
-	"dependencies": {
-		"@fontsource/jetbrains-mono": "^4.5.3"
-	}
+  "name": "@example/basics",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "devDependencies": {
+    "@astrojs/svelte": "^1.0.0",
+    "astro": "^1.0.6",
+    "svelte": "^3.46.4"
+  },
+  "dependencies": {
+    "@fluentui/svg-icons": "^1.1.178",
+    "@fontsource/jetbrains-mono": "^4.5.10",
+    "fluent-svelte": "^1.6.0"
+  }
 }

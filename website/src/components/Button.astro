@@ -1,37 +1,13 @@
-<!-- 
-  @component
-  
-  moller button
+---
+const { pathname } = Astro.url
+const { label, href } = Astro.props;
+---
 
-  The signature Etcetera header button.
-  
- -->
-<script>
-	/**
-	 * @type {string | (() => {})}
-	 */
-	export let href = "#"
-	/**
-	 * @type {string}
-	 */
-	export let label
-	/**
-	 * @type {boolean}
-	 */
-	export let selected = false
-</script>
 <div>
-	{#if typeof href === "string"}
-		<a sveltekit:prefetch class:selected {href} title={label}>
-			<slot />
-			<b>{label}</b>
-		</a>
-	{:else}
-		<button on:click={href} title={label}>
-			<slot />
-			<b>{label}</b>
-		</button>
-	{/if}
+	<a class:list={{selected: pathname === href}} {href} title={label}>
+		<slot />
+		<b>{label}</b>
+	</a>
 </div>
 <style>
 	div {
@@ -68,6 +44,7 @@
 		border-radius: 10px;
 		gap: 0;
 		fill: currentColor;
+		text-decoration: none;
 		/* border-bottom-right-radius: 16px; */
 		/* border-top-left-radius: 16px; */
 		transition: background 0.3s, gap 0.3s, font-size 0.3s;

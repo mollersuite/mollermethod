@@ -1,12 +1,8 @@
 ---
 title: "mollermethod API docs"
 description: "Make mollermethod plugins."
+layout: ../layouts/Layout.astro
 ---
-
-<script>
-	import image from "$lib/notif.png"
-	import example from "$lib/example.lua?raw"
-</script>
 
 ## `util` table
 
@@ -29,8 +25,6 @@ util.notify(
 ```
 
 Displays a notification.
-
-<img src={image} alt="a mollermethod notif" width={500} />
 
 ### `util.GUI`
 
