@@ -7,7 +7,7 @@ import hero from '../assets/hero.png'
 <Layout title="mollermethod" description="Scripting, unleashed." center>
 	
 <h4>
-	<img src="/icon.png" alt="mollermethod" aria-hidden width="20"/>
+	<img src="/icon.png" alt="mollermethod" aria-hidden width="20" class="logo"/>
 	mollermethod
 </h4>
 <h1>Truly unleashed.</h1>
@@ -85,5 +85,10 @@ import hero from '../assets/hero.png'
 		gap: 0;
 		flex-direction: row;
 		flex-wrap: wrap;
+	}
+	@media (prefers-color-scheme: light) {
+		.logo {
+			filter: invert(100%);
+		}
 	}
 </style>
