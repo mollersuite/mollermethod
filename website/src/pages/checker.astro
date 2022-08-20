@@ -1,0 +1,49 @@
+---
+import HeartPulse from "@fluentui/svg-icons/icons/heart_pulse_20_filled.svg?raw"
+import Layout from "../layouts/Layout.astro"
+import checker from '../assets/checker.png'
+---
+
+<Layout center title="Compat Checker" description="Make sure your exploit works with mollermethod.">
+	<h4><Fragment set:html={HeartPulse} /> Compat Checker</h4>
+	<p>Make sure your exploit works with mollermethod.</p>
+	<code>loadstring(game:HttpGetAsync "{Astro.url.origin}/checker.client.lua")()</code>
+	<img src={checker} alt="Screenshot of the compat checker" width="500px"/>
+</Layout>
+
+<style>
+	h4 {
+		fill: currentColor;
+		margin: 0;
+		display: flex;
+		align-items: center;
+		gap: 1ch;
+		flex-direction: row;
+	}
+	code {
+		max-width: max-content;
+		padding: 1em;
+		box-sizing: border-box;
+		font-size: 13px;
+		font-family: "JetBrains Mono", ui-monospace, "Input Mono", "Cascadia Mono", "Segoe UI Mono",
+			"Ubuntu Mono", "Roboto Mono", "Fira Code", Menlo, Monaco, Consolas, monospace;
+		background-color: var(--fds-solid-background-secondary);
+		border-radius: 3px;
+		overflow-x: auto;
+		color: var(--fds-text-primary);
+	}
+	img {
+		position: absolute;
+		right: 32px;
+		max-width: 500px;
+		width: 100%;
+		border-radius: var(--fds-control-corner-radius);
+		box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
+	}
+	@media (max-width: 1400px) {
+		img {
+			position: static;
+			margin-top: 32px;
+		}
+	}
+</style>
