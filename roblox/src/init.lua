@@ -1,3 +1,4 @@
+if not game:IsLoaded() then game.Loaded:Wait() end
 local Debris = game:GetService("Debris")
 local HttpService = game:GetService("HttpService")
 local TweenService = game:GetService("TweenService")
