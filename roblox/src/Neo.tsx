@@ -73,7 +73,7 @@ export = pure<{ container: Instance; notif: Frame }>(({ container, notif }) => {
 						TextScaled
 						Font="RobotoMono"
 						Text={PKG_VERSION}
-						TextColor3={white}
+						TextColor3={black}
 						BackgroundTransparency={1}
 						Size={UDim2.fromScale(1, 1)}
 						TextXAlignment="Right"
