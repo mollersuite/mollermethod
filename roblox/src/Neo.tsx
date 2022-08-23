@@ -66,20 +66,10 @@ export = pure<{ container: Instance; notif: Frame }>(({ container, notif }) => {
 						Activated: () => setOpen(spring(closed.getValue() === 1 ? 0 : 1)),
 					}}
 					Image="rbxassetid://10694413123"
-					Size={UDim2.fromOffset(30, 30)}
+					Size={UDim2.fromOffset(25, 25)}
 					ScaleType="Fit"
-					BackgroundTransparency={1}>
-					<textlabel
-						TextScaled
-						Font="RobotoMono"
-						Text={PKG_VERSION}
-						TextColor3={black}
-						BackgroundTransparency={1}
-						Size={UDim2.fromScale(1, 1)}
-						TextXAlignment="Right"
-						TextYAlignment="Bottom"
-					/>
-				</imagebutton>
+					BackgroundTransparency={1}
+				/>
 			</Div>
 			<imagelabel
 				Visible={mollerpotence.enabled}
@@ -133,6 +123,17 @@ export = pure<{ container: Instance; notif: Frame }>(({ container, notif }) => {
 				LayoutOrder={9}
 				Activated={() => page_to(<Settings />)}
 				Accent={Page.component === Settings}
+			/>
+			<textlabel
+				AutomaticSize="XY"
+				Font="RobotoMono"
+				Text={PKG_VERSION}
+				TextSize={12}
+				TextColor3={white}
+				BackgroundTransparency={1}
+				LayoutOrder={10}
+				TextXAlignment="Center"
+				TextYAlignment="Top"
 			/>
 			{/* <textlabel
 				Text={`Rendered ${++count} times`}
