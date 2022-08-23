@@ -127,22 +127,6 @@ return function(passed_config)
 		end
 	end
 
-	local ids =
-		{
-			"rbxassetid://7037264869",
-			"rbxassetid://7037156897",
-			"rbxassetid://7043731194",
-			"rbxassetid://7037269561",
-			"rbxassetid://7037272153",
-			"rbxassetid://7037339934",
-			"rbxassetid://7037356929",
-			"rbxassetid://7044042331",
-			"rbxassetid://7044088926",
-			"rbxassetid://7046289590",
-			"rbxassetid://10131036449",
-			"rbxassetid://10131153286"
-		}
-
 	-- Mount UI
 	local tree
 	tree = Roact.mount(
@@ -156,26 +140,7 @@ return function(passed_config)
 					util.Kill.Provider,
 					{ value = function()
 						Roact.unmount(tree)
-							for i = 0,50 do
-								local particle = Instance.new("ImageLabel", config.gui)
-								particle.Size = UDim2.new()
-								particle.Image = ids[math.random(#ids)]
-								particle.BackgroundTransparency = 1
-								particle.ScaleType = Enum.ScaleType.Fit
-								particle.ZIndex = 100
-								particle.AnchorPoint = Vector2.new(1,0.5)
-								particle.Position = UDim2.new(0,0,0.5,0)
-								TweenService:Create(particle, TweenInfo.new(.1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0,false,.7), {
-									ImageTransparency = 1
-								}):Play()
-								TweenService:Create(particle, TweenInfo.new(1, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {
-									Position = UDim2.new(math.random(), 0, math.random(), 0),
-									Size = UDim2.new(0,150,0,150)
-								}):Play()
-								Debris:AddItem(particle, 1.5)
-								game:GetService('RunService').Heartbeat:Wait()
-							end
-							game:GetService('Debris'):AddItem(config.gui, 1.5)
+						game:GetService('Debris'):AddItem(config.gui, 0)
 					end },
 					{
 						Taskbar = Roact.createElement(Neo, {

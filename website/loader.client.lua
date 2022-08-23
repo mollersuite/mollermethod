@@ -293,22 +293,6 @@ local CONFIG = ... or { debug = true }
 local Tween = game:GetService("TweenService")
 local Debris = game:GetService("Debris")
 
-local ids =
-	{
-		"rbxassetid://7037264869",
-		"rbxassetid://7037156897",
-		"rbxassetid://7043731194",
-		"rbxassetid://7037269561",
-		"rbxassetid://7037272153",
-		"rbxassetid://7037339934",
-		"rbxassetid://7037356929",
-		"rbxassetid://7044042331",
-		"rbxassetid://7044088926",
-		"rbxassetid://7046289590",
-		"rbxassetid://10131036449",
-		"rbxassetid://10131153286"
-	}
-
 local GUI = Instance.new("ScreenGui")
 CONFIG.gui = GUI
 if sethiddenproperty then
@@ -334,66 +318,6 @@ else
 		end
 	)
 end
-local loading = true
-function bez(a, b, c, t)
-	return a.lerp(a:lerp(b, t), b:lerp(c, t), t)
-end
-task.spawn(function()
-	local text = Instance.new("TextLabel", GUI)
-	text.TextTransparency = 1
-	text.BackgroundTransparency = 1
-	Instance.new("UICorner", text).CornerRadius = UDim.new(0, 10)
-	text.BackgroundColor3 = Color3.new(1, 1, 1)
-	text.TextColor3 = Color3.new(0, 0, 0)
-	text.Size = UDim2.new(0, 200, 0, 20)
-	text.Position = UDim2.new(0.5, 0, 0.5, 0)
-	text.Font = Enum.Font.Gotham
-	text.ZIndex = 120
-	text.AnchorPoint = Vector2.new(0.5, 0.5)
-	text.Text = "catay is loading..."
-	text.TextSize = 14
-	text.TextWrapped = true
-	game:GetService("TweenService"):Create(
-		text,
-		TweenInfo.new(.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, true),
-		{
-			TextTransparency = 0,
-			BackgroundTransparency = 0,
-		}
-	):Play()
-
-	while loading do
-		local particle = Instance.new("ImageLabel", GUI)
-		particle.ImageTransparency = 1
-		particle.Size = UDim2.new(0, 150, 0, 150)
-		particle.Image = ids[math.random(#ids)]
-		particle.BackgroundTransparency = 1
-		particle.ScaleType = Enum.ScaleType.Fit
-		particle.ZIndex = 100
-		particle.AnchorPoint = Vector2.new(1,0.5)
-		particle.Position = UDim2.new(math.random(), 0, math.random(), 0)
-		Tween:Create(particle, TweenInfo.new(.1), { ImageTransparency = 0 }):Play()
-		Tween:Create(
-			particle,
-			TweenInfo.new(1, Enum.EasingStyle.Exponential, Enum.EasingDirection.In),
-			{
-				Size = UDim2.new(),
-				Position = UDim2.fromScale(0,0.5)--UDim2.new(0,0,1,0)
-			}
-		):Play()
-		Debris:AddItem(particle, 1.5)
-		task.wait(1 / 60)
-	end
-	game:GetService("Debris"):AddItem(text, .5)
-	game:GetService("TweenService"):Create(
-		text,
-		TweenInfo.new(.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out, 0, true),
-		{
-			TextTransparency = 1,
-			BackgroundTransparency = 1,
-		}
-	):Play()
-end)
 xpcall(
 	function()
 		if not CONFIG.debug then
@@ -414,7 +338,6 @@ xpcall(
 			warn("requiring rbxm")
 		end
 		rbxmSuite.require(project)(CONFIG)
-		loading = false
 	end,
 	function(err)
 		local text = Instance.new("TextButton", GUI)
@@ -432,7 +355,6 @@ xpcall(
 		text.Activated:Connect(function()
 			GUI:Destroy()
 		end)
-		loading = false
 		warn(err)
 	end
 )
