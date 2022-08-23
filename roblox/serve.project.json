@@ -1,5 +1,5 @@
 {
-	"name": "7960",
+	"name": "catay",
 	"globIgnorePaths": [
 		"**/package.json",
 		"**/tsconfig.json",
@@ -16,7 +16,7 @@
 		},
 		"ReplicatedStorage": {
 			"$className": "ReplicatedStorage",
-			"mollermethod": {
+			"catay": {
 				"$path": "out",
 				"include": {
 					"$path": "include",

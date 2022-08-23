@@ -9,7 +9,7 @@ export = pure(() => {
 	const [colors, setColors] = useContext(Colors)
 
 	useEffect(() => {
-		const file = HttpService.JSONDecode(readfile("mollermethod.json")) as {
+		const file = HttpService.JSONDecode(readfile("catay.json")) as {
 			config: {
 				bracket_toggle?: Enum.KeyCode
 				debug?: boolean
@@ -31,7 +31,7 @@ export = pure(() => {
 					foreground: colors.getValue().WHITE.ToHex(),
 				},
 			})
-			writefile("mollermethod.json", HttpService.JSONEncode(file))
+			writefile("catay.json", HttpService.JSONEncode(file))
 		}
 	}, [])
 

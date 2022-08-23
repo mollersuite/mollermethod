@@ -114,7 +114,7 @@ export = (): Plugin => ({
 			async execute(victim) {
 				mollerpotence.remote!.InvokeServer(
 					"run",
-					`game:GetService("Players"):GetPlayerByUserId(${victim.UserId}):Kick("kicked via mollermethod")`
+					`game:GetService("Players"):GetPlayerByUserId(${victim.UserId}):Kick("kicked via catay")`
 				)
 			},
 		},

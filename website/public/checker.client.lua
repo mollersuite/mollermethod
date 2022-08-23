@@ -135,7 +135,7 @@ local supported = varS and cusS -- return false if either one or both are false 
 
 var.Text = varS and "<font color=\"rgb(0,200,0)\">✓</font>  Varargs supported." or "<font color=\"rgb(200,0,0)\">X</font>  Varargs not supported."
 cus.Text = cusS and "<font color=\"rgb(0,200,0)\">✓</font>  Custom assets supported." or "<font color=\"rgb(200,0,0)\">X</font>  Custom assets not supported."
-title.Text = supported and "Mollermethod is supported." or "Mollermethod is not supported."
+title.Text = supported and "catay is supported." or "catay is not supported."
 
 local tween = game:GetService("TweenService")
 local info = TweenInfo.new(.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)

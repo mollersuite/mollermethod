@@ -4,7 +4,7 @@ GUI.IgnoreGuiInset = true
 GUI.ResetOnSpawn = false
 GUI.DisplayOrder = 7
 
-require(game:GetService('ReplicatedStorage').mollermethod) {
+require(game:GetService('ReplicatedStorage').catay) {
 	debug = true,
 	gui = GUI
 }

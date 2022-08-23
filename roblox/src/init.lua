@@ -21,20 +21,20 @@ local iyToBracket = require(script.Bracket.iy)
 
 ---@class Config
 ---@field debug				boolean | nil Enable debug mode. Defaults to false.
----@field gui     			ScreenGui The UI to parent mollermethod to.
+---@field gui     			ScreenGui The UI to parent catay to.
 ---@field plugins			string[] | nil Source code of plugins to load.
 ---@field theme		 		Theme | nil Background, foreground and accent colors.
 ---@field volume			number | nil
 ---@field bracket_toggle	Enum.KeyCode | nil
 
----mollermethod's loader
+---catay's loader
 ---@param passed_config Config
 return function(passed_config)
 	local config = passed_config or {}
 
-	if writefile and not isfile("mollermethod.json") then
+	if writefile and not isfile("catay.json") then
 		writefile(
-			"mollermethod.json",
+			"catay.json",
 			HttpService:JSONEncode({
 				config = {
 					bracket_toggle = Enum.KeyCode.LeftBracket;
@@ -48,8 +48,8 @@ return function(passed_config)
 				},
 			})
 		)
-	elseif isfile and isfile('mollermethod.json') then
-		config = HttpService:JSONDecode(readfile('mollermethod.json')).config or {}
+	elseif isfile and isfile('catay.json') then
+		config = HttpService:JSONDecode(readfile('catay.json')).config or {}
 		for k, v in pairs(passed_config) do
 			config[k] = v
 		end
@@ -215,7 +215,7 @@ return function(passed_config)
 	end
 
 	Notification.new(
-		"Welcome to mollermethod " .. PKG_VERSION,
+		"Welcome to catay " .. PKG_VERSION,
 		util.random(CONSTANTS.QUOTES),
 		"Success",
 		5,

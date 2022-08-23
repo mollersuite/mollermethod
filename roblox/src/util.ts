@@ -23,8 +23,8 @@ export function asset(url: string): string {
 	// otherwise, we need to download it
 	const [name] = url.match("([^/]+)$")
 	const [data] = game.HttpGetAsync(url)
-	writefile("mollermethod_" + name, data)
-	return (getcustomasset || getsynasset)("mollermethod_" + name)
+	writefile("catay_" + name, data)
+	return (getcustomasset || getsynasset)("catay_" + name)
 }
 
 let default_volume = 5

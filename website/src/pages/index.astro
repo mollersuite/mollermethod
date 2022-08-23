@@ -4,11 +4,11 @@ import { Button } from 'fluent-svelte'
 import hero from '../assets/hero.png'
 ---
 <script is:inline>document.body.childNodes[0].TEXT_NODE&&document.body.childNodes[0].remove()</script>
-<Layout title="mollermethod" description="Scripting, unleashed." center>
+<Layout title="Catay" description="Scripting, unleashed." center>
 	
 <h4>
-	<img src="/icon.png" alt="mollermethod" aria-hidden width="20" class="logo"/>
-	mollermethod
+	<img src="/icon.png" alt="Catay" aria-hidden width="20" class="logo"/>
+	Catay
 </h4>
 <h1>Scripting, unleashed.</h1>
 <nav>
@@ -16,8 +16,8 @@ import hero from '../assets/hero.png'
 	<Button variant="hyperlink" href="/api">Read API docs</Button> <Button variant="hyperlink" href="/faq">FAQ</Button>
 </nav>
 	
-<img src={hero} alt="mollermethod" aria-hidden class="giant" width="700"/>
-<img src="/icon.png" alt="mollermethod" aria-hidden class="giant2" width="1000"/>
+<img src={hero} alt="Catay" aria-hidden class="giant" width="700"/>
+<img src="/icon.png" alt="Catay" aria-hidden class="giant2" width="1000"/>
 
 </Layout>
 
@@ -70,6 +70,7 @@ import hero from '../assets/hero.png'
 	@media (prefers-color-scheme: light) {
 		.giant2 {
 			filter: invert(100%);
+			opacity: 2%;
 		}
 	}
 	h4 {

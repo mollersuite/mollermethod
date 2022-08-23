@@ -12,7 +12,7 @@ return function(util)
 
 	return {
 		Name = "Chat Logger",
-		Description = "Adds a chat logger command to mollermethod",
+		Description = "Adds a chat logger command to catay",
 		Author = "trollar",
 		Commands = {
 			chatlogger = {

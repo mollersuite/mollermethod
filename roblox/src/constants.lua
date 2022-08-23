@@ -20,7 +20,7 @@ module.QUOTES = {
 	'"Is that a dinosaur in the readme btw" - 0866, 2022',
 	'"can i send him your home address" - tact, 2022',
 	'"how do you unplug ethernet cables?" - Charlie, 2022',
-	'"why does it say 14 hours on mollermethod" - tact, 2022',
+	'"why does it say 14 hours on catay" - tact, 2022',
 	'"I guess my favourite concept of money laundering is just money to gold bars to money" - Charlie, 2022',
 	'"i wrote a whole ass lua bytecode builder in a day" - Mlemix, 2022',
 	'"jack if you start a civil war with the uk I dont want no part in it" - Charlie, 2022',
