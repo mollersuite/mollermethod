@@ -179,13 +179,15 @@ return function(passed_config)
 		task.wait(math.random() * .1)
 	end
 
+	local quote = util.random(CONSTANTS.QUOTES)
 	Notification.new(
 		"Welcome to catay " .. PKG_VERSION,
-		util.random(CONSTANTS.QUOTES),
+		quote.type == "quote" and string.format("%s - %s, %d", quote.text, quote.author, quote.year) or (quote.text .."™️"),
 		"Success",
 		5,
 		notificationHolder
 	)
+	
 	local queue_on_teleport = queue_on_teleport or (syn and syn.queue_on_teleport)
 	if not passed_config.debug and queue_on_teleport then
 		queue_on_teleport([[
