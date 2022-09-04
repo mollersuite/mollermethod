@@ -34,7 +34,7 @@ export = pure<{
 			<uiscale Scale={scale} />
 			<uistroke
 				Color={colors.map(colors => colors.WHITE.Lerp(colors.BLACK, 0.5))}
-				Thickness={1}
+				Thickness={3}
 				Enabled={Accent === true}
 				ApplyStrokeMode={Enum.ApplyStrokeMode.Border}
 			/>
