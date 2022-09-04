@@ -83,7 +83,7 @@ return function(passed_config)
 	uIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 	uIListLayout.VerticalAlignment = Enum.VerticalAlignment.Bottom
 
-	util.play("rbxassetid://9064208547") -- Startup sound
+	util.play("rbxassetid://6366788549") -- Startup sound
 
 	local colorsBinding = { Roact.createBinding(colors) }
 	-- Load plugins
