@@ -157,28 +157,6 @@ return function(passed_config)
 		config.gui
 	)
 
-	for i=1, 5 do
-		local border = Instance.new("Frame", config.gui)
-		Debris:AddItem(border, .5)
-		border.Size = UDim2.fromScale(2, 2)
-		border.AnchorPoint = Vector2.new(0.5, 0.5)
-		border.Position = UDim2.fromScale(0.5, 0.5)
-		border.BackgroundTransparency = 1
-		Instance.new('UIAspectRatioConstraint', border)
-		local stroke = Instance.new("UIStroke", border)
-		stroke.Thickness = 5
-		stroke.Color = colors.ACCENT
-		TweenService:Create(
-			border,
-			TweenInfo.new(.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-			{ 
-				Size = UDim2.new(),
-				Position = UDim2.fromScale(math.random(), math.random()),
-			}
-		):Play()
-		task.wait(math.random() * .1)
-	end
-
 	local quote = util.random(CONSTANTS.QUOTES)
 	Notification.new(
 		"Welcome to catay " .. PKG_VERSION,
@@ -187,7 +165,7 @@ return function(passed_config)
 		5,
 		notificationHolder
 	)
-	
+
 	local queue_on_teleport = queue_on_teleport or (syn and syn.queue_on_teleport)
 	if not passed_config.debug and queue_on_teleport then
 		queue_on_teleport([[
