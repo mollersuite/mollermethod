@@ -84,21 +84,21 @@ export = pure<{ container: Instance; notif: Frame }>(({ container, notif }) => {
 				Image="rbxassetid://9693083838"
 				LayoutOrder={2}
 			/>
+			<Button
+				Text="Bracket"
+				LayoutOrder={3}
+				Image="rbxassetid://10821975942"
+				Activated={() => bracket_shown.Fire(true)}
+			/>
 			<Kill.Consumer
 				render={kill => (
 					<Button
-						LayoutOrder={3}
+						LayoutOrder={4}
 						Text="Close"
-						Image="rbxassetid://10821974701"
+						Image="rbxassetid://10822002501"
 						Activated={kill}
 					/>
 				)}
-			/>
-			<Button
-				Text="Bracket"
-				LayoutOrder={4}
-				Image="rbxassetid://10821975942"
-				Activated={() => bracket_shown.Fire(true)}
 			/>
 			<Button
 				Text="You"
