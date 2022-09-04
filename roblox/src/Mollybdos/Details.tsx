@@ -122,7 +122,11 @@ const Actions = withHooks(({ player }: { player: Player }) => {
 export = withHooks(({ selected }: { selected?: Player }) => {
 	if (!selected) {
 		return (
-			<frame Size={new UDim2(0, 400, 1, 0)} BackgroundTransparency={1} BorderSizePixel={0}>
+			<frame
+				Position={UDim2.fromOffset(300, 0)}
+				Size={new UDim2(0, 400, 1, 0)}
+				BackgroundTransparency={1}
+				BorderSizePixel={0}>
 				<Placeholder Text="No player selected" />
 			</frame>
 		)
@@ -140,6 +144,7 @@ export = withHooks(({ selected }: { selected?: Player }) => {
 	return (
 		<scrollingframe
 			Size={new UDim2(0, 400, 1, 0)}
+			Position={UDim2.fromOffset(300, 0)}
 			BackgroundTransparency={1}
 			BorderSizePixel={0}
 			ClipsDescendants

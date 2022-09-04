@@ -137,10 +137,10 @@ const PlayerList = withHooksPure(
 	}
 )
 
-export = withHooksPure(() => {
+function main() {
 	const [selected, setSelected] = useState<Player | undefined>(undefined)
 	const [Adornee, setAdornee] = useBinding(undefined as Model | undefined)
-
+	const [dropping, setDropping] = useBinding(false) // Eye dropper active
 	// handling selected player leaving
 	useEffect(() => {
 		const connection = selected?.AncestryChanged.Connect(() => {
@@ -163,9 +163,27 @@ export = withHooksPure(() => {
 	}, [selected])
 	return (
 		<Page>
-			<uilistlayout FillDirection="Horizontal" />
 			<PlayerList selected={selected} setSelected={setSelected} />
 			<Details selected={selected} />
+			<imagebutton
+				Size={UDim2.fromOffset(16, 16)}
+				Position={new UDim2(1, -10, 1, -10)}
+				AnchorPoint={new Vector2(1, 1)}
+				Image="rbxassetid://10822705513"
+				BackgroundTransparency={1}
+				BorderSizePixel={0}
+				ImageColor3={useColor("fg")}
+				Event={{
+					Activated: () => {
+						setDropping(true)
+						Players.LocalPlayer.GetMouse().Button1Down.Wait()
+						setDropping(false)
+						const player = Players.GetPlayerFromCharacter(
+							Players.LocalPlayer.GetMouse().Target?.FindFirstAncestorOfClass("Model")
+						)
+						if (player) setSelected(player)
+					},
+				}} />
 			{Roact.createElement("Highlight", {
 				Adornee,
 				FillColor: useColor("accent"),
@@ -174,4 +192,6 @@ export = withHooksPure(() => {
 			})}
 		</Page>
 	)
-})
+}
+
+export = withHooksPure(main)
