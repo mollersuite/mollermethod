@@ -30,7 +30,7 @@ export = pure<{
 				MouseButton1Up: () => setScale(new Spring(1)),
 			}}
 			AutomaticSize="X"
-			Size={UDim2.fromOffset(30, 30)}>
+			Size={UDim2.fromOffset(26, 26)}>
 			<uiscale Scale={scale} />
 			<uistroke
 				Color={colors.map(colors => colors.WHITE.Lerp(colors.BLACK, 0.5))}
@@ -41,7 +41,7 @@ export = pure<{
 			<uipadding PaddingLeft={new UDim(0, 10)} PaddingRight={new UDim(0, 10)} />
 			<uicorner CornerRadius={new UDim(0, 10)} />
 			<imagelabel
-				Size={UDim2.fromOffset(20, 20)}
+				Size={UDim2.fromOffset(16, 16)}
 				BackgroundTransparency={1}
 				AnchorPoint={new Vector2(0, 0.5)}
 				Position={UDim2.fromScale(0, 0.5)}

@@ -84,46 +84,46 @@ export = pure<{ container: Instance; notif: Frame }>(({ container, notif }) => {
 				Image="rbxassetid://9693083838"
 				LayoutOrder={2}
 			/>
-			<Button
-				Text="Bracket"
-				LayoutOrder={3}
-				Image="rbxassetid://9370028870"
-				Activated={() => bracket_shown.Fire(true)}
-			/>
 			<Kill.Consumer
 				render={kill => (
 					<Button
-						LayoutOrder={4}
+						LayoutOrder={3}
 						Text="Close"
-						Image="rbxassetid://9370045727"
+						Image="rbxassetid://10821974701"
 						Activated={kill}
 					/>
 				)}
 			/>
 			<Button
+				Text="Bracket"
+				LayoutOrder={4}
+				Image="rbxassetid://10821975942"
+				Activated={() => bracket_shown.Fire(true)}
+			/>
+			<Button
 				Text="You"
-				Image="rbxassetid://9417608010"
+				Image="rbxassetid://10821933493"
 				LayoutOrder={5}
 				Activated={() => page_to(<LocalBar />)}
 				Accent={Page.component === LocalBar}
 			/>
 			<Button
 				Text="Players"
-				Image="rbxassetid://9370016791"
+				Image="rbxassetid://10821933655"
 				LayoutOrder={6}
 				Activated={() => page_to(<Mollybdos />)}
 				Accent={Page.component === Mollybdos}
 			/>
 			<Button
 				Text="Luau.ml"
-				Image="rbxassetid://9369994718"
+				Image="rbxassetid://10821933254"
 				LayoutOrder={8}
 				Activated={() => page_to(<CloudScripts />)}
 				Accent={Page.component === CloudScripts}
 			/>
 			<Button
 				Text="Settings"
-				Image="rbxassetid://9369994833"
+				Image="rbxassetid://10821933004"
 				LayoutOrder={9}
 				Activated={() => page_to(<Settings />)}
 				Accent={Page.component === Settings}
