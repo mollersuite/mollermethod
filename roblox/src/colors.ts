@@ -1,7 +1,7 @@
 const colors = {
-	ACCENT: Color3.fromHex("#9339ff"),
-	BLACK: Color3.fromHex("#1c1c1c"),
-	WHITE: new Color3(1, 1, 1),
+	ACCENT: Color3.fromHex("#1b6acb"),
+	BLACK: Color3.fromHex("#242424"),
+	WHITE: Color3.fromHex("#f4f4f4"),
 
 	GRAY: [
 		Color3.fromRGB(240, 246, 252),
