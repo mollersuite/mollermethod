@@ -41,9 +41,9 @@ return function(passed_config)
 					debug = false;
 					volume = 5;
 					theme = {
-						accent = "#9339ff";
-						background = "#1c1c1c";
-						foreground = "#ffffff";
+						accent = "#1b6acb";
+						background = "#242424";
+						foreground = "#f4f4f4";
 					};
 				},
 			})
