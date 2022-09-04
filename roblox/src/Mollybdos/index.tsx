@@ -183,13 +183,14 @@ function main() {
 						)
 						if (player) setSelected(player)
 					},
-				}} />
-			{Roact.createElement("Highlight", {
-				Adornee,
-				FillColor: useColor("accent"),
-				OutlineTransparency: 1,
-				FillTransparency: 0,
-			})}
+				}}
+			/>
+			<highlight
+				Adornee={Adornee}
+				FillColor={useColor("accent")}
+				OutlineTransparency={1}
+				FillTransparency={0}
+			/>
 		</Page>
 	)
 }

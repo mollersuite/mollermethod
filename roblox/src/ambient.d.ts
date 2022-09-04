@@ -1,4 +1,12 @@
 /// <reference types="@rbxts/types/plugin" />
+
+declare namespace JSX {
+	interface IntrinsicElements {
+		// Your instances into here
+		highlight: JSX.IntrinsicElement<Highlight>
+	}
+}
+
 interface DataModel {
 	/**
 	 * This function shuts down the current game instance.
