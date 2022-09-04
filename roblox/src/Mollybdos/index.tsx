@@ -139,10 +139,7 @@ const PlayerList = withHooksPure(
 
 export = withHooksPure(() => {
 	const [selected, setSelected] = useState<Player | undefined>(undefined)
-
-	const highlight = useMutable(
-		new Instance("Highlight", gethui?.() ?? game.GetService("CoreGui"))
-	)
+	const [Adornee, setAdornee] = useBinding(undefined as Model | undefined)
 
 	// handling selected player leaving
 	useEffect(() => {
@@ -150,39 +147,31 @@ export = withHooksPure(() => {
 			setSelected(undefined)
 		})
 
-		return () => {
-			print("player switch, cleaning up")
-			connection?.Disconnect()
-		}
+		return () => connection?.Disconnect()
 	}, [selected])
 
 	// handling highlight
 	useEffect(() => {
 		let event: RBXScriptConnection
 		if (selected) {
-			highlight.current.Adornee = selected.Character
-			event = selected.CharacterAdded.Connect(character => {
-				highlight.current.Adornee = character
-			})
+			setAdornee(selected.Character)
+			event = selected.CharacterAdded.Connect(setAdornee)
 		} else {
-			highlight.current.Adornee = undefined
+			setAdornee(undefined)
 		}
-		return () => {
-			event?.Disconnect()
-		}
+		return () => event?.Disconnect()
 	}, [selected])
-
-	// Remove highlight when unmounting
-	useEffect(() => {
-		return () => {
-			highlight.current.Destroy()
-		}
-	}, [])
 	return (
 		<Page>
 			<uilistlayout FillDirection="Horizontal" />
 			<PlayerList selected={selected} setSelected={setSelected} />
 			<Details selected={selected} />
+			{Roact.createElement("Highlight", {
+				Adornee,
+				FillColor: useColor("accent"),
+				OutlineTransparency: 1,
+				FillTransparency: 0,
+			})}
 		</Page>
 	)
 })
