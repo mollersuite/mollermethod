@@ -30,39 +30,7 @@ local iyToBracket = require(script.Bracket.iy)
 ---catay's loader
 ---@param passed_config Config
 return function(passed_config)
-	local config = passed_config or {}
-
-	if writefile and not isfile("catay.json") then
-		writefile(
-			"catay.json",
-			HttpService:JSONEncode({
-				config = {
-					bracket_toggle = Enum.KeyCode.LeftBracket;
-					debug = false;
-					volume = 5;
-					theme = {
-						accent = "#1b6acb";
-						background = "#242424";
-						foreground = "#f4f4f4";
-					};
-				},
-			})
-		)
-	elseif isfile and isfile('catay.json') then
-		config = HttpService:JSONDecode(readfile('catay.json')).config or {}
-		for k, v in pairs(passed_config) do
-			config[k] = v
-		end
-	else
-		config = passed_config
-	end
-
-
-	if config.theme then
-		colors.ACCENT = Color3.fromHex(config.theme.accent)
-		colors.WHITE = Color3.fromHex(config.theme.foreground)
-		colors.BLACK = Color3.fromHex(config.theme.background)
-	end
+	local config = passed_config
 
 	util.vol(config.volume or 5)
 

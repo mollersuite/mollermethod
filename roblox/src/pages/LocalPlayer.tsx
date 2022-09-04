@@ -1,19 +1,19 @@
 import Roact from "@rbxts/roact"
-import { pure } from "@rbxts/roact-hooked"
+import { withHooksPure } from "@rbxts/roact-hooked"
 import { Players, TeleportService, Workspace } from "@rbxts/services"
 import Page from "components/Page"
 import useColor from "hooks/useColor"
 import mollerpotence from "mollerpotence"
 import { join_code } from "util"
 
-const IconButton = pure<
+const IconButton = withHooksPure<
 	Partial<Pick<ImageLabel, "Image" | "ImageRectSize" | "ImageRectOffset" | "Position">> & {
 		Clicked?: Roact.JsxInstanceEvents<TextButton>["Activated"]
 		CornerRadius?: UDim
 	}
 >(Props => {
-	const black = useColor('BLACK')
-	const white = useColor('WHITE')
+	const black = useColor("content_bg")
+	const white = useColor("fg")
 	return (
 		<textbutton
 			Size={UDim2.fromOffset(32, 32)}
@@ -39,8 +39,8 @@ const IconButton = pure<
 	)
 })
 
-export = pure(() => {
-	const white = useColor('WHITE')
+export = withHooksPure(() => {
+	const white = useColor("fg")
 	return (
 		<Page>
 			<uipadding
@@ -73,7 +73,9 @@ export = pure(() => {
 				<textlabel
 					Text={Players.LocalPlayer?.DisplayName ?? "moller"}
 					TextColor3={white}
-					Font={Enum.Font.GothamBlack}
+					FontFace={
+						new Font("rbxasset://fonts/families/Ubuntu.json", Enum.FontWeight.ExtraBold)
+					}
 					TextSize={24}
 					AutomaticSize="X"
 					BackgroundTransparency={1}

@@ -10,8 +10,8 @@ export interface Command {
 export interface Toggle {
 	readonly description: string
 	readonly localbar?: boolean
-	on (this: void, args?: string[]): unknown
-	off (this: void): unknown
+	on(this: void, args?: string[]): unknown
+	off(this: void): unknown
 	un?: string
 	value?: boolean
 }
@@ -41,7 +41,7 @@ export interface PluginUtil {
 		callback?: Callback
 	) => unknown
 	GUI: Instance
-	colors: Binding<typeof import("colors")['default']>
+	colors: Binding<typeof import("colors")["default"]>
 	Snapdragon: typeof import("@rbxts/snapdragon")
 	Roact: typeof import("@rbxts/roact")
 }

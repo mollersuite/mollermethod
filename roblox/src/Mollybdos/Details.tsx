@@ -1,6 +1,6 @@
 import Roact from "@rbxts/roact"
 import Object from "@rbxts/object-utils"
-import { hooked, useContext, useEffect, useState } from "@rbxts/roact-hooked"
+import { withHooks, useContext, useEffect, useState } from "@rbxts/roact-hooked"
 import tags_of, { Tags } from "./tags"
 import { merge, Plugins } from "util"
 import Placeholder from "components/Placeholder"
@@ -22,14 +22,14 @@ import useColor from "hooks/useColor"
 that part of mollybdos
 */
 
-const TagList = hooked(({ tags }: { tags: Tags }) => {
+const TagList = withHooks(({ tags }: { tags: Tags }) => {
 	if (tags.filter(tag => tag.score !== 0).isEmpty())
 		return (
 			<frame BackgroundTransparency={1} BorderSizePixel={0} Size={UDim2.fromOffset(0, 15)} />
 		)
 
-	const white = useColor('WHITE')
-	const accent = useColor('ACCENT')
+	const white = useColor("fg")
+	const accent = useColor("accent")
 	return (
 		<scrollingframe
 			AutomaticCanvasSize="X"
@@ -51,7 +51,9 @@ const TagList = hooked(({ tags }: { tags: Tags }) => {
 					<textlabel
 						LayoutOrder={-tag.score}
 						Text={`${tag.name}${tag.score > 1 ? ` (${tag.score})` : ""}`}
-						Font="GothamBold"
+						FontFace={
+							new Font("rbxasset://fonts/families/Ubuntu.json", Enum.FontWeight.Bold)
+						}
 						TextSize={10}
 						Size={new UDim2(0, 0, 0, 15)}
 						AutomaticSize="X"
@@ -67,10 +69,10 @@ const TagList = hooked(({ tags }: { tags: Tags }) => {
 	)
 })
 
-const Actions = hooked(({ player }: { player: Player }) => {
+const Actions = withHooks(({ player }: { player: Player }) => {
 	const plugins = useContext(Plugins)
-	const accent = useColor("ACCENT")
-	const white = useColor("WHITE")
+	const accent = useColor("accent")
+	const white = useColor("fg")
 
 	return (
 		<scrollingframe
@@ -96,7 +98,7 @@ const Actions = hooked(({ player }: { player: Player }) => {
 						BackgroundColor3={accent}
 						BorderSizePixel={0}
 						BackgroundTransparency={0}
-						Font="Gotham"
+						FontFace={new Font("rbxasset://fonts/families/Ubuntu.json")}
 						TextColor3={white}
 						Visible={action.enabled?.() ?? true}
 						Text={action.display || `${name.sub(1, 1).upper()}${name.sub(2)}`}
@@ -117,7 +119,7 @@ const Actions = hooked(({ player }: { player: Player }) => {
 	)
 })
 
-export = hooked(({ selected }: { selected?: Player }) => {
+export = withHooks(({ selected }: { selected?: Player }) => {
 	if (!selected) {
 		return (
 			<frame Size={new UDim2(0, 400, 1, 0)} BackgroundTransparency={1} BorderSizePixel={0}>
@@ -126,7 +128,7 @@ export = hooked(({ selected }: { selected?: Player }) => {
 		)
 	}
 	const plugins = useContext(Plugins)
-	const white = useColor("WHITE")
+	const white = useColor("fg")
 	const [tags, setTags] = useState<Tags>([])
 	useEffect(() => {
 		setTags([])
@@ -157,7 +159,9 @@ export = hooked(({ selected }: { selected?: Player }) => {
 						? `${selected.DisplayName} (@${selected.Name})`
 						: selected.Name
 				}
-				Font="GothamBlack"
+				FontFace={
+					new Font("rbxasset://fonts/families/Ubuntu.json", Enum.FontWeight.ExtraBold)
+				}
 				TextSize={15}
 				TextXAlignment="Left"
 				Size={UDim2.fromScale(1, 0)}

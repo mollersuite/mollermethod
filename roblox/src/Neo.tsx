@@ -1,5 +1,5 @@
 import Roact from "@rbxts/roact"
-import { pure, useEffect, useState } from "@rbxts/roact-hooked"
+import { withHooksPure, useEffect, useState } from "@rbxts/roact-hooked"
 import { useSingleMotor } from "@rbxts/roact-hooked-plus"
 import { toggle as bracket_shown } from "Bracket"
 import { Kill } from "util"
@@ -24,11 +24,10 @@ const Div: Roact.FunctionComponent = props => (
 )
 
 const spring = (n: number) => new Spring(n, { dampingRatio: 1, frequency: 2 })
-export = pure<{ container: Instance; notif: Frame }>(({ container, notif }) => {
+export = withHooksPure<{ container: Instance; notif: Frame }>(({ container, notif }) => {
 	const [closed, setOpen] = useSingleMotor(1)
 	const [Page, setPage] = useState<Roact.Element>(<></>)
-	const white = useColor("WHITE")
-	const black = useColor("BLACK")
+	const white = useColor("fg")
 
 	function page_to(component: typeof Page) {
 		if (Page.component === component.component) {
@@ -45,7 +44,7 @@ export = pure<{ container: Instance; notif: Frame }>(({ container, notif }) => {
 	return (
 		<frame
 			BorderSizePixel={0}
-			BackgroundColor3={black}
+			BackgroundColor3={useColor("header_bg")}
 			Position={closed.map(n => new UDim2(0, 60, 0.5, 0).Lerp(new UDim2(0, -125, 1, -50), n))}
 			Rotation={closed.map(n => n * 90)}
 			Size={UDim2.fromOffset(50, 350)}
@@ -146,7 +145,7 @@ export = pure<{ container: Instance; notif: Frame }>(({ container, notif }) => {
 				AutomaticSize="XY"
 				TextSize={15}
 				Font="RobotoMono"
-				TextColor3={colors.map(colors => colors.WHITE)}
+				TextColor3={colors.map(colors => colors.fg)}
 			/> */}
 			<Roact.Portal target={container}>{Page}</Roact.Portal>
 		</frame>

@@ -4,7 +4,7 @@ import { Colors as ColorsBinding } from "util"
 
 type Colors = typeof import("colors").default
 
-function useColor<T extends keyof Colors> (name: T): Roact.Binding<Colors[T]> {
+function useColor<T extends keyof Colors>(name: T): Roact.Binding<Colors[T]> {
 	return useContext(ColorsBinding)[0].map(colors => colors[name])
 }
 

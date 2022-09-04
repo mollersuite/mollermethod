@@ -18,7 +18,7 @@ export = (source: string, container: Instance, plugins: Plugin[]) => {
 	setfenv(load, functions)
 	const plugin: IYPlugin | void = load()
 	if (plugin === undefined) {
-		return functions.notify('Warning', 'You are infected with the ligma.wtf worm!')
+		return functions.notify("Warning", "You are infected with the ligma.wtf worm!")
 	}
 	const Commands: Record<string, Command> = {}
 	for (const [key, value] of pairs(plugin.Commands)) {
@@ -26,7 +26,8 @@ export = (source: string, container: Instance, plugins: Plugin[]) => {
 			description: value.Description,
 			execute: async args => {
 				// Fuck you, Edge.
-				functions.getstring = (index: number) => args.filter((_, i) => i + 1 >= index).join(" ")
+				functions.getstring = (index: number) =>
+					args.filter((_, i) => i + 1 >= index).join(" ")
 				return value.Function(args, Players.LocalPlayer)
 			},
 		}

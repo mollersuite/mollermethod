@@ -65,17 +65,17 @@ type, and a boolean saying if it's required.
 
 Here's a quick map of our type names to Luau types:
 
-- **players**: `{Player}`
-  - The user will be able to access an autocomplete where they can select players and tags. For
+-   **players**: `{Player}`
+    -   The user will be able to access an autocomplete where they can select players and tags. For
         example, the user could invoke a `kill` method with the Furries tag, and a player named
         SunRaysEffect. Catay handles all of this for you, so you will simply get the list of
         players.
-- **player**: `Player`
-  - Like previous, but the user can only select one player. They will be able to select a tag,
+-   **player**: `Player`
+    -   Like previous, but the user can only select one player. They will be able to select a tag,
         but it will pick the player in the tag with the most score.
-- **string**: `string`
-  - Unlike other command systems, this can contain spaces.
-- **number**: `number`
+-   **string**: `string`
+    -   Unlike other command systems, this can contain spaces.
+-   **number**: `number`
 
 ### Run
 
@@ -131,8 +131,8 @@ Replicated = false, -- Optional
 With the power of Catay's serverside integration, you can use `Replicated` to effectively disable FE
 for your Methods.
 
-Of course, the user will need to be in a backdoored game; you can use [Providers.Serverside](#providersserverside) to add
-support for your backdoor.
+Of course, the user will need to be in a backdoored game; you can use
+[Providers.Serverside](#providersserverside) to add support for your backdoor.
 
 ```lua
 Disabled = false, -- Optional
@@ -241,4 +241,5 @@ return {
 
 This is where you can provide game stats for Autofarm Mode.
 
-It's a table where keys are the name of the stat, and the value is a function where you return that stat's value. If you return `nil`, Catay will not display it.
+It's a table where keys are the name of the stat, and the value is a function where you return that
+stat's value. If you return `nil`, Catay will not display it.

@@ -13,7 +13,6 @@ export default async function tags_of(Player: Player, plugins: Plugin[]): Promis
 		}
 	)
 
-	
 	await Promise.all(
 		plugins
 			.mapFiltered(plugin => plugin.Tags)

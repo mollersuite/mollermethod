@@ -3,3 +3,4 @@ node_modules
 include
 website/.svelte-kit
 website/build
+pnpm-lock.yaml

@@ -1,5 +1,28 @@
 // Mocks IY's core functions
-import { Chat, ContextActionService, GroupService, GuiService, HttpService, InsertService, Lighting, MarketplaceService, PathfindingService, Players, ProximityPromptService, ReplicatedStorage, RunService, SoundService, StarterGui, StarterPlayer, Stats, Teams, TeleportService, TweenService, UserInputService, Workspace } from "@rbxts/services"
+import {
+	Chat,
+	ContextActionService,
+	GroupService,
+	GuiService,
+	HttpService,
+	InsertService,
+	Lighting,
+	MarketplaceService,
+	PathfindingService,
+	Players,
+	ProximityPromptService,
+	ReplicatedStorage,
+	RunService,
+	SoundService,
+	StarterGui,
+	StarterPlayer,
+	Stats,
+	Teams,
+	TeleportService,
+	TweenService,
+	UserInputService,
+	Workspace,
+} from "@rbxts/services"
 import { get_players } from "../run"
 import Notification from "Notification"
 
@@ -43,7 +66,6 @@ const respawn = (player: Player) => {
 	player.Character = char
 	newchar.Destroy()
 }
-
 
 // should probably put `container` in a context later
 export = (options: { container: Instance }) => ({

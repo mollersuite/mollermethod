@@ -1,10 +1,10 @@
 import { Spring } from "@rbxts/flipper"
 import Roact from "@rbxts/roact"
-import { pure, useContext } from "@rbxts/roact-hooked"
+import { withHooksPure, useContext } from "@rbxts/roact-hooked"
 import { useSingleMotor } from "@rbxts/roact-hooked-plus"
 import { Colors } from "util"
 
-export = pure<{
+export = withHooksPure<{
 	Text: string | Roact.Binding<string>
 	Image: string | Roact.Binding<string>
 	LayoutOrder?: number | Roact.Binding<number>
@@ -16,7 +16,9 @@ export = pure<{
 	const [colors] = useContext(Colors)
 	return (
 		<textbutton
-			BackgroundColor3={colors.map(colors => colors.BLACK)}
+			BackgroundColor3={colors.map(colors =>
+				Accent === true ? colors.header_bg_selected : colors.header_bg
+			)}
 			Text=""
 			LayoutOrder={LayoutOrder}
 			Event={{
@@ -32,12 +34,6 @@ export = pure<{
 			AutomaticSize="X"
 			Size={UDim2.fromOffset(26, 26)}>
 			<uiscale Scale={scale} />
-			<uistroke
-				Color={colors.map(colors => colors.WHITE.Lerp(colors.BLACK, 0.5))}
-				Thickness={3}
-				Enabled={Accent === true}
-				ApplyStrokeMode={Enum.ApplyStrokeMode.Border}
-			/>
 			<uipadding PaddingLeft={new UDim(0, 10)} PaddingRight={new UDim(0, 10)} />
 			<uicorner CornerRadius={new UDim(0, 10)} />
 			<imagelabel
@@ -46,19 +42,21 @@ export = pure<{
 				AnchorPoint={new Vector2(0, 0.5)}
 				Position={UDim2.fromScale(0, 0.5)}
 				Image={Image}
-				ImageColor3={colors.map(colors => colors.WHITE)}
+				ImageColor3={colors.map(colors => colors.fg)}
 				ScaleType="Fit"
 			/>
 			<textlabel
 				AutomaticSize="X"
 				TextXAlignment="Left"
 				BackgroundTransparency={1}
-				TextColor3={colors.map(colors => colors.WHITE)}
+				TextColor3={colors.map(colors => colors.fg)}
 				Position={hovered.map(n =>
 					UDim2.fromScale(0, 0.5).Lerp(new UDim2(0, 25, 0.5, 0), n)
 				)}
 				AnchorPoint={new Vector2(0, 0.5)}
-				Font="GothamBlack"
+				FontFace={
+					new Font("rbxasset://fonts/families/Ubuntu.json", Enum.FontWeight.ExtraBold)
+				}
 				Text={Text}
 				// for hover
 				TextSize={hovered.map(n => math.max(n * 11.99, 1))}

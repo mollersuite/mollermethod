@@ -8,9 +8,11 @@ export = ({ Text }: { Text: string }) => (
 				AnchorPoint={new Vector2(0.5, 0.5)}
 				Position={UDim2.fromScale(0.5, 0.5)}
 				Text={Text}
-				TextColor3={colors.map(colors => colors.WHITE)}
+				TextColor3={colors.map(colors => colors.fg)}
 				TextTransparency={0.5}
-				Font="GothamBlack"
+				FontFace={
+					new Font("rbxasset://fonts/families/Ubuntu.json", Enum.FontWeight.ExtraBold)
+				}
 				TextSize={20}
 				AutomaticSize="XY"
 				BackgroundTransparency={1}
