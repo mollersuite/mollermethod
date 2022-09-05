@@ -46,8 +46,8 @@ export = withHooksPure<{ container: Instance; notif: Frame }>(({ container, noti
 		<frame
 			BorderSizePixel={0}
 			BackgroundColor3={useColor("header_bg")}
-			Position={closed.map(n => new UDim2(0, 60, 0.5, 0).Lerp(new UDim2(0, -120, 1, -50), n))}
-			Rotation={closed.map(n => n * 90)}
+			Position={closed.map(n => new UDim2(0, 60, 0.5, 0).Lerp(new UDim2(0.5, 0, 0, -100), n))}
+			Rotation={closed.map(n => n * 180)}
 			Size={UDim2.fromOffset(50, 300)}
 			AnchorPoint={new Vector2(0.5, 0.5)}
 			ZIndex={5}
@@ -65,7 +65,7 @@ export = withHooksPure<{ container: Instance; notif: Frame }>(({ container, noti
 				<imagebutton
 					LayoutOrder={1}
 					BorderSizePixel={0}
-					Rotation={closed.map(n => n * -90)}
+					Rotation={closed.map(n => n * -180)}
 					Event={{
 						Activated: () => setOpen(spring(closed.getValue() === 1 ? 0 : 1)),
 					}}
