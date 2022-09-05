@@ -1,10 +1,12 @@
 import Roact from "@rbxts/roact"
-import { useBinding, useEffect, withHooksPure } from "@rbxts/roact-hooked"
+import { useBinding, useContext, useEffect, useState, withHooksPure } from "@rbxts/roact-hooked"
 import { Players, TeleportService, Workspace } from "@rbxts/services"
 import Page from "components/Page"
 import useColor from "hooks/useColor"
 import mollerpotence from "mollerpotence"
-import { join_code } from "util"
+import TagList from "Mollybdos/TagList"
+import tags_of, { Tags } from "Mollybdos/tags"
+import { join_code, Plugins } from "util"
 
 const IconButton = withHooksPure<
 	Partial<Pick<ImageLabel, "Image" | "ImageRectSize" | "ImageRectOffset" | "Position">> & {
@@ -42,7 +44,10 @@ const IconButton = withHooksPure<
 export = withHooksPure(() => {
 	const white = useColor("fg")
 	const [avatar, setAvatar] = useBinding("rbxassetid://10821933493")
+	const [tags, setTags] = useState<Tags>([])
+	const plugins = useContext(Plugins)
 	useEffect(() => {
+		const tag_promise = tags_of(Players.LocalPlayer, plugins).then(setTags)
 		setAvatar(
 			Players.GetUserThumbnailAsync(
 				Players.LocalPlayer?.UserId ?? 2326492785,
@@ -50,7 +55,8 @@ export = withHooksPure(() => {
 				Enum.ThumbnailSize.Size48x48
 			)[0]
 		)
-	})
+		return () => tag_promise.cancel()
+	}, [])
 	return (
 		<Page>
 			<uipadding
@@ -86,6 +92,8 @@ export = withHooksPure(() => {
 					Size={UDim2.fromScale(0, 1)}
 				/>
 			</frame>
+
+			<TagList tags={tags} />
 
 			{/* Buttons */}
 			<frame Size={UDim2.fromScale(1, 0)} AutomaticSize="Y" BackgroundTransparency={1}>
