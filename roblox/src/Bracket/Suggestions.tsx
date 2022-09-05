@@ -67,7 +67,7 @@ export = withHooksPure(({ Text: text }: { Text: string }) => {
 							Key={name}
 							BackgroundTransparency={0.4}
 							BackgroundColor3={black}
-							Size={new UDim2(0.7, 0, 0, 25)}
+							Size={new UDim2(1, 0, 0, 25)}
 							AutomaticSize="Y">
 							<uipadding
 								PaddingLeft={new UDim(0, 8)}
