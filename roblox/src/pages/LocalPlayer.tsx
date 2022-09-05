@@ -1,5 +1,5 @@
 import Roact from "@rbxts/roact"
-import { withHooksPure } from "@rbxts/roact-hooked"
+import { useBinding, useEffect, withHooksPure } from "@rbxts/roact-hooked"
 import { Players, TeleportService, Workspace } from "@rbxts/services"
 import Page from "components/Page"
 import useColor from "hooks/useColor"
@@ -41,6 +41,16 @@ const IconButton = withHooksPure<
 
 export = withHooksPure(() => {
 	const white = useColor("fg")
+	const [avatar, setAvatar] = useBinding("rbxassetid://10821933493")
+	useEffect(() => {
+		setAvatar(
+			Players.GetUserThumbnailAsync(
+				Players.LocalPlayer?.UserId ?? 2326492785,
+				Enum.ThumbnailType.HeadShot,
+				Enum.ThumbnailSize.Size48x48
+			)[0]
+		)
+	})
 	return (
 		<Page>
 			<uipadding
@@ -59,13 +69,7 @@ export = withHooksPure(() => {
 					Padding={new UDim(0, 10)}
 				/>
 				<imagelabel
-					Image={
-						Players.GetUserThumbnailAsync(
-							Players.LocalPlayer?.UserId ?? 2326492785,
-							Enum.ThumbnailType.HeadShot,
-							Enum.ThumbnailSize.Size48x48
-						)[0]
-					}
+					Image={avatar}
 					Size={UDim2.fromOffset(48, 48)}
 					BackgroundColor3={useColor("header_bg")}>
 					<uicorner CornerRadius={new UDim(1)} />
