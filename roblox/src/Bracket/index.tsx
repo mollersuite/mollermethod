@@ -65,7 +65,7 @@ export default withHooks<{ button: Enum.KeyCode; test?: boolean }>(({ button, te
 			ClipsDescendants={false}
 			BorderSizePixel={0}
 			CanvasSize={new UDim2()}
-			Size={new UDim2(0.7, 0, 1, 0)}
+			Size={new UDim2(0.7, 0, 1, -55)}
 			AnchorPoint={new Vector2(0.5, 0)}
 			BackgroundTransparency={1}
 			ScrollBarThickness={3}
@@ -73,7 +73,7 @@ export default withHooks<{ button: Enum.KeyCode; test?: boolean }>(({ button, te
 			VerticalScrollBarInset="Always"
 			AutomaticCanvasSize="Y"
 			Visible={shown}
-			Position={new UDim2(0.5, 0, 0, 25)}>
+			Position={new UDim2(0.5, 0, 0, 55)}>
 			<uilistlayout
 				SortOrder="Name"
 				HorizontalAlignment="Center"
