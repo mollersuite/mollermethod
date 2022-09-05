@@ -3,9 +3,7 @@ import {
 	HttpService,
 	LogService,
 	Players,
-	ProximityPromptService,
-	ReplicatedStorage,
-	RunService,
+	ProximityPromptService
 } from "@rbxts/services"
 const [enabled, setEnabled] = Roact.createBinding(false)
 function run_script(code: string) {
