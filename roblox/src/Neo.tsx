@@ -15,6 +15,7 @@ import Settings from "pages/Settings"
 import mollerpotence from "mollerpotence"
 import CloudScripts from "pages/CloudScripts"
 import useColor from "hooks/useColor"
+import About from "pages/About"
 
 // `display: contents` for Roblox, use to workaround things like not being able to change Rotation in a UIListLayout
 const Div: Roact.FunctionComponent = props => (
@@ -127,26 +128,13 @@ export = withHooksPure<{ container: Instance; notif: Frame }>(({ container, noti
 				Activated={() => page_to(<Settings />)}
 				Accent={Page.component === Settings}
 			/>
-			<textlabel
-				AutomaticSize="XY"
-				Font="RobotoMono"
-				Text={PKG_VERSION}
-				TextSize={12}
-				TextColor3={white}
-				BackgroundTransparency={1}
+			<Button
+				Text="About"
+				Image="rbxassetid://10832217708"
 				LayoutOrder={10}
-				TextXAlignment="Center"
-				TextYAlignment="Top"
+				Activated={() => page_to(<About />)}
+				Accent={Page.component === About}
 			/>
-			{/* <textlabel
-				Text={`Rendered ${++count} times`}
-				LayoutOrder={100}
-				BackgroundTransparency={1}
-				AutomaticSize="XY"
-				TextSize={15}
-				Font="RobotoMono"
-				TextColor3={colors.map(colors => colors.fg)}
-			/> */}
 			<Roact.Portal target={container}>{Page}</Roact.Portal>
 		</frame>
 	)
