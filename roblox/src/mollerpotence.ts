@@ -4,6 +4,7 @@ import {
 	LogService,
 	Players,
 	ProximityPromptService,
+	ReplicatedStorage,
 	RunService,
 } from "@rbxts/services"
 const [enabled, setEnabled] = Roact.createBinding(false)
@@ -21,13 +22,34 @@ function run_script(code: string) {
 			remote?.FireServer("Server", code)
 		},
 		// require script
-		[6948453065]: () => {
-			const remote = Players.LocalPlayer.FindFirstChild("SS Executor")
-				?.FindFirstChild("Frame")
-				?.FindFirstChild("Exe")
-				?.FindFirstChild("RemoteEvent") as RemoteEvent<(code: string) => unknown> | void
+		[7205570742]: () => {
+			// They do a great deal of obfuscation; so let's go through the UI instead
+			const playergui = Players.LocalPlayer.FindFirstChildOfClass("PlayerGui")
+			let image: ImageButton | void
 
-			remote?.FireServer(code)
+			if (playergui) {
+				for (const child of playergui.GetDescendants()) {
+					if (child.IsA("ImageButton") && child.Image === "rbxassetid://20665340") {
+						// The script logo at the bottom right
+						image = child
+					}
+				}
+			}
+
+			if (image) {
+				for (const child of image.Parent!.GetDescendants()) {
+					if (child.IsA("TextBox")) {
+						child.Text = code
+						break
+					}
+				}
+				for (const child of image.Parent!.GetDescendants()) {
+					if (child.IsA("TextButton") && child.Text === "Execute") {
+						getconnections(child.MouseButton1Click)[0].Fire()
+						break
+					}
+				}
+			}
 		},
 	}
 
