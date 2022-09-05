@@ -147,6 +147,8 @@ export = (): Plugin => ({
 					8040360, // |•| Fantastic Protogens |•|
 					8024599, // Beep Boop Protogens
 					7453945, // Proto-Land
+					5156378, // Fun Furs
+					5283624, // developFurs
 				],
 			}),
 		])
