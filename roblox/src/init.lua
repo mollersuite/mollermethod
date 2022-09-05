@@ -128,7 +128,7 @@ return function(passed_config)
 	local quote = util.random(CONSTANTS.QUOTES)
 	Notification.new(
 		"Welcome to catay " .. PKG_VERSION,
-		quote.type == "quote" and string.format("%s - %s, %d", quote.text, quote.author, quote.year) or (quote.text .."™️"),
+		quote.type == "quote" and string.format("\"%s\" - %s, %d", quote.text, quote.author, quote.year) or (quote.text .."™️"),
 		"Success",
 		5,
 		notificationHolder
