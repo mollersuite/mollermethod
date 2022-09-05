@@ -38,6 +38,12 @@ module.QUOTES = {
 		text = "impterative [sic] looks nicer; i dont code",
 		author = "ver (Sirius PR)",
 		year = 2022
+	},
+	{
+		type = "quote",
+		text = "i own infinite yield",
+		author = "Shlex (Sirius founder)",
+		year = 2021
 	}
 }
 
