@@ -30,7 +30,7 @@ const { label, href } = Astro.props;
 		padding-bottom: 0;
 		font-family: "moller", "Segoe UI", sans-serif;
 		margin: 0;
-		cursor: default;
+		/* cursor: default; */
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -40,14 +40,13 @@ const { label, href } = Astro.props;
 		box-sizing: border-box;
 		background: none;
 		border: none;
-		color: var(--fds-text-primary);
 		border-radius: 10px;
 		gap: 0;
 		fill: currentColor;
 		text-decoration: none;
-		/* border-bottom-right-radius: 16px; */
-		/* border-top-left-radius: 16px; */
-		transition: background 0.3s, gap 0.3s, font-size 0.3s;
+		background: #303030;
+		color: #f4f4f4;
+		transition: background 0.3s, gap 0.3s, font-size 0.3s, transform 0.2s;
 	}
 	
 	a:not(:last-of-type), button:not(:last-of-type) {
@@ -80,11 +79,11 @@ const { label, href } = Astro.props;
 		border: solid 1px var(--fds-text-primary);
 	}
 	a.selected {
-		border: solid 1px gray;
+		background: #454545;
 	}
 	a:active,
 	button:active {
-		background: rgba(255, 255, 255, 0.7);
+		transform: scale(1.2);
 	}
 
 	@media (prefers-color-scheme: light) {
@@ -93,10 +92,6 @@ const { label, href } = Astro.props;
 		a:focus-visible,
 		button:focus-visible {
 			background: rgba(0, 0, 0, 0.1);
-		}
-		a:active,
-		button:active {
-			background: rgba(0, 0, 0, 0.3);
 		}
 	}
 	@media (max-width: 659px) {
