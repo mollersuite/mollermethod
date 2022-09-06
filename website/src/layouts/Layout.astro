@@ -10,9 +10,9 @@ export interface Props {
 	unlisted?: boolean
 }
 
-import Cube from "@fluentui/svg-icons/icons/cube_20_filled.svg?raw"
-import BookQuestionMark from "@fluentui/svg-icons/icons/book_question_mark_20_filled.svg?raw"
-import Check from "@fluentui/svg-icons/icons/heart_pulse_20_filled.svg?raw"
+import Code from "../assets/code-symbolic.svg?raw"
+import Question from "../assets/question-round-symbolic.svg?raw"
+import TestPass from "../assets/test-pass-symbolic.svg?raw"
 
 const { center, title, description, unlisted } = Astro.props as Props
 ---
@@ -34,9 +34,9 @@ const { center, title, description, unlisted } = Astro.props as Props
 			<Button label="Catay" href="/">
 				<img src="/icon.png" alt="Catay" height="20" class="logo" />
 			</Button>
-			<Button label="API" href="/api" set:html={Cube} />
-			<Button label="FAQ" href="/faq" set:html={BookQuestionMark} />
-			<Button label="Checker" href="/checker" set:html={Check} />
+			<Button label="API" href="/api" set:html={Code} />
+			<Button label="FAQ" href="/faq" set:html={Question} />
+			<Button label="Checker" href="/checker" set:html={TestPass} />
 			<Button href="https://discord.gg/HAw7Zf8GF5" label="Discord">
 				<svg
 					role="img"

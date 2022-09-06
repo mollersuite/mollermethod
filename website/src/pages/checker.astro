@@ -1,11 +1,11 @@
 ---
-import HeartPulse from "@fluentui/svg-icons/icons/heart_pulse_20_filled.svg?raw"
+import TestPass from "../assets/test-pass-symbolic.svg?raw"
 import Layout from "../layouts/Layout.astro"
 import checker from '../assets/checker.png'
 ---
 
 <Layout center title="Compat Checker" description="Make sure your exploit works with catay.">
-	<h4><Fragment set:html={HeartPulse} /> Compat Checker</h4>
+	<h4><Fragment set:html={TestPass} /> Compat Checker</h4>
 	<p>Make sure your exploit works with catay.</p>
 	<code>loadstring(game:HttpGetAsync "{Astro.url.origin}/checker.client.lua")()</code>
 	<img src={checker} alt="Screenshot of the compat checker" width="500px"/>
