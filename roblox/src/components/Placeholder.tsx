@@ -1,7 +1,7 @@
 import Roact from "@rbxts/roact"
 import { Colors } from "util"
 
-export = ({ Text }: { Text: string }) => (
+export = ({ Text }: { Text: string | Roact.Binding<string> }) => (
 	<Colors.Consumer
 		render={([colors]) => (
 			<textlabel
