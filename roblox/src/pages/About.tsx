@@ -1,6 +1,7 @@
 import Roact from "@rbxts/roact"
 import Page from "components/Page"
 import Placeholder from "components/Placeholder"
+import { enabled as mollerpotence } from "mollerpotence"
 
 export = () => (
 	<Page>
@@ -17,7 +18,11 @@ export = () => (
 			ScaleType="Fit"
 			BackgroundTransparency={1}
 		/>
-		<Placeholder Text={`Catay ${PKG_VERSION}`} />
+		<Placeholder
+			Text={mollerpotence.map(
+				mollerpotence => `Catay ${PKG_VERSION}${mollerpotence ? " with mollerpotence" : ""}`
+			)}
+		/>
 		<Placeholder Text="Designed by Etcetera in the United States, United Kingdom, and Chile" />
 		<Placeholder
 			Text={`Made with roblox-ts, @rbxts/roact,\n@rbxts/roact-hooked, @rbxts/roact-hooked-plus,\n@rbxts/flipper, @rbxts/object-utils,\n@rbxts/snapdragon, @rbxts/services,\n@rbxts/types, @rbxts/compiler-types, and @rbxts/hax`}

@@ -75,25 +75,16 @@ export = withHooksPure<{ container: Instance; notif: Frame }>(({ container, noti
 					BackgroundTransparency={1}
 				/>
 			</Div>
-			<imagelabel
-				Visible={mollerpotence.enabled}
-				Size={UDim2.fromOffset(20, 20)}
-				BackgroundTransparency={1}
-				ScaleType="Fit"
-				ImageColor3={white}
-				Image="rbxassetid://9693083838"
-				LayoutOrder={2}
-			/>
 			<Button
 				Text="Bracket"
-				LayoutOrder={3}
+				LayoutOrder={2}
 				Image="rbxassetid://10821975942"
 				Activated={() => bracket_shown.Fire(true)}
 			/>
 			<Kill.Consumer
 				render={kill => (
 					<Button
-						LayoutOrder={4}
+						LayoutOrder={3}
 						Text="Close"
 						Image="rbxassetid://10822002501"
 						Activated={kill}
@@ -103,35 +94,35 @@ export = withHooksPure<{ container: Instance; notif: Frame }>(({ container, noti
 			<Button
 				Text="You"
 				Image="rbxassetid://10821933493"
-				LayoutOrder={5}
+				LayoutOrder={4}
 				Activated={() => page_to(<LocalBar />)}
 				Accent={Page.component === LocalBar}
 			/>
 			<Button
 				Text="Players"
 				Image="rbxassetid://10821933655"
-				LayoutOrder={6}
+				LayoutOrder={5}
 				Activated={() => page_to(<Mollybdos />)}
 				Accent={Page.component === Mollybdos}
 			/>
 			<Button
 				Text="Luau.ml"
 				Image="rbxassetid://10821933254"
-				LayoutOrder={8}
+				LayoutOrder={6}
 				Activated={() => page_to(<CloudScripts />)}
 				Accent={Page.component === CloudScripts}
 			/>
 			<Button
 				Text="Settings"
 				Image="rbxassetid://10821933004"
-				LayoutOrder={9}
+				LayoutOrder={7}
 				Activated={() => page_to(<Settings />)}
 				Accent={Page.component === Settings}
 			/>
 			<Button
 				Text="About"
 				Image="rbxassetid://10832217708"
-				LayoutOrder={10}
+				LayoutOrder={8}
 				Activated={() => page_to(<About />)}
 				Accent={Page.component === About}
 			/>
