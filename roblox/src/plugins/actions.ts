@@ -119,6 +119,17 @@ export = (): Plugin => ({
 			},
 		},
 
+		nil: {
+			description: "Nil a player",
+			enabled: () => !!mollerpotence.remote,
+			async execute (victim) {
+				mollerpotence.remote!.InvokeServer(
+					"run",
+					`game:GetService("Players"):GetPlayerByUserId(${victim.UserId}):Destroy()`
+				)
+			}
+		},
+		
 		inspect: {
 			description: "open the roblox inspect menu on a player",
 			execute(victim) {
