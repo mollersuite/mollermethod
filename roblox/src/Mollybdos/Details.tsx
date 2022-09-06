@@ -2,7 +2,7 @@ import Roact from "@rbxts/roact"
 import Object from "@rbxts/object-utils"
 import { withHooks, useContext, useEffect, useState } from "@rbxts/roact-hooked"
 import tags_of, { Tags } from "./tags"
-import { merge, Plugins } from "util"
+import { merge, play, Plugins } from "util"
 import Placeholder from "components/Placeholder"
 import useColor from "hooks/useColor"
 import TagList from "./TagList"
@@ -41,7 +41,14 @@ const Actions = withHooks(({ player }: { player: Player }) => {
 						Visible={action.enabled?.() ?? true}
 						Text={action.display || `${name.sub(1, 1).upper()}${name.sub(2)}`}
 						Event={{
-							Activated: () => action.execute(player),
+							Activated: async () => {
+								try {
+									await action.execute(player)
+									play("rbxassetid://8503529139")
+								} catch {
+									play("rbxassetid://8458408918")
+								}
+							},
 						}}>
 						<uicorner CornerRadius={new UDim(0, 4)} />
 						<uipadding
