@@ -46,6 +46,7 @@ export = withHooksPure(() => {
 	const [avatar, setAvatar] = useBinding("rbxassetid://10821933493")
 	const [tags, setTags] = useState<Tags>([])
 	const plugins = useContext(Plugins)
+
 	useEffect(() => {
 		const tag_promise = tags_of(Players.LocalPlayer, plugins).then(setTags)
 		setAvatar(
@@ -57,6 +58,7 @@ export = withHooksPure(() => {
 		)
 		return () => tag_promise.cancel()
 	}, [])
+	
 	return (
 		<Page>
 			<uipadding
