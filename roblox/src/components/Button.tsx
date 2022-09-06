@@ -28,7 +28,7 @@ export = withHooksPure<{
 					setScale(new Spring(1))
 				},
 				Activated,
-				MouseButton1Down: () => setScale(new Spring(1.1)),
+				MouseButton1Down: () => setScale(new Spring(1.2)),
 				MouseButton1Up: () => setScale(new Spring(1)),
 			}}
 			AutomaticSize="X"
