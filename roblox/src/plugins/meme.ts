@@ -48,6 +48,13 @@ export = (util: PluginUtil): Plugin => {
 					return Promise.delay(1.5)
 				},
 			},
+			amongus: {
+				description: "A MOOG US",
+				execute() {
+					play("rbxassetid://5914845884")
+					return Promise.delay(4)
+				},
+			},
 		},
 	}
 }
