@@ -21,6 +21,10 @@ interface DataModel {
 	Shutdown(): void
 }
 
+interface RunService {
+	Set3dRenderingEnabled(enabled: boolean): void
+}
+
 /**
  * Did Infinite Yield load?
  * @author Edge <https://github.com/EdgeIY>

@@ -1,10 +1,10 @@
 ---
-title: "catay API docs"
-description: "Make catay plugins."
+title: "mollermethod API docs"
+description: "Make mollermethod plugins."
 layout: ../layouts/Layout.astro
 ---
 
-Catay has three types of exports: **Methods**, **Tags**, and **Providers.**
+mollermethod has three types of exports: **Methods**, **Tags**, and **Providers.**
 
 ## Methods
 
@@ -14,7 +14,7 @@ Methods are the main type of export you will use. They are best compared to Disc
 Let's take a look at a simple plugin with one method:
 
 ```lua
-local api = ... -- Every plugin should have this line at the top - it's how you access Catay's API.
+local api = ... -- Every plugin should have this line at the top - it's how you access mollermethod's API.
 local Method = api.Method
 
 -- This is a Method!
@@ -68,7 +68,7 @@ Here's a quick map of our type names to Luau types:
 -   **players**: `{Player}`
     -   The user will be able to access an autocomplete where they can select players and tags. For
         example, the user could invoke a `kill` method with the Furries tag, and a player named
-        SunRaysEffect. Catay handles all of this for you, so you will simply get the list of
+        SunRaysEffect. mollermethod handles all of this for you, so you will simply get the list of
         players.
 -   **player**: `Player`
     -   Like previous, but the user can only select one player. They will be able to select a tag,
@@ -110,7 +110,7 @@ spawn_part{
 }
 ```
 
-If you yield for more than 5 seconds, Catay will display a notification to the user when your Method
+If you yield for more than 5 seconds, mollermethod will display a notification to the user when your Method
 completes.
 
 ### Properties
@@ -128,7 +128,7 @@ spaces! Autocomplete is not case sensitive.
 Replicated = false, -- Optional
 ```
 
-With the power of Catay's serverside integration, you can use `Replicated` to effectively disable FE
+With the power of mollermethod's serverside integration, you can use `Replicated` to effectively disable FE
 for your Methods.
 
 Of course, the user will need to be in a backdoored game; you can use
@@ -157,7 +157,7 @@ scored based on how many accessories and groups a player is in.
 Let's amend the previous plugin to add a Tag:
 
 ```lua
-local api = ... -- Every plugin should have this line at the top - it's how you access Catay's API.
+local api = ... -- Every plugin should have this line at the top - it's how you access mollermethod's API.
 local Method = api.Method
 local Tag = api.Tag
 
@@ -207,8 +207,8 @@ If it's 2 or larger, your tag will be displayed along with your score.
 
 Providers allow you to do two things:
 
-1. Give Catay game statistics for use in Autofarm Mode, and webhooks.
-2. Tell Catay how to run serverside code in a backdoored game.
+1. Give mollermethod game statistics for use in Autofarm Mode, and webhooks.
+2. Tell mollermethod how to run serverside code in a backdoored game.
 
 The API is currently quite a bit different from the previous two:
 
@@ -235,11 +235,11 @@ return {
 
 ### Providers.Serverside
 
-...is where Catay gives you code and you run it on the server.
+...is where mollermethod gives you code and you run it on the server.
 
 ### Providers.Screensaver
 
 This is where you can provide game stats for Autofarm Mode.
 
 It's a table where keys are the name of the stat, and the value is a function where you return that
-stat's value. If you return `nil`, Catay will not display it.
+stat's value. If you return `nil`, mollermethod will not display it.

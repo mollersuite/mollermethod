@@ -1,5 +1,5 @@
 {
-	"name": "catay",
+	"name": "mollermethod",
 	"globIgnorePaths": ["**/package.json", "**/tsconfig.json", "**/LICENSE.txt"],
 	"tree": {
 		"$className": "DataModel",
@@ -12,7 +12,7 @@
 		},
 		"ReplicatedStorage": {
 			"$className": "ReplicatedStorage",
-			"catay": {
+			"mollermethod": {
 				"$path": "out",
 				"include": {
 					"$path": "include",

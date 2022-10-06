@@ -21,13 +21,13 @@ local iyToBracket = require(script.Bracket.iy)
 
 ---@class Config
 ---@field debug				boolean | nil Enable debug mode. Defaults to false.
----@field gui     			ScreenGui The UI to parent catay to.
+---@field gui     			ScreenGui The UI to parent mollermethod to.
 ---@field plugins			string[] | nil Source code of plugins to load.
 ---@field theme		 		Theme | nil Background, foreground and accent colors.
 ---@field volume			number | nil
 ---@field bracket_toggle	Enum.KeyCode | nil
 
----catay's loader
+---mollermethod's loader
 ---@param passed_config Config
 return function(passed_config)
 	local config = passed_config
@@ -127,7 +127,7 @@ return function(passed_config)
 
 	local quote = util.random(CONSTANTS.QUOTES)
 	Notification.new(
-		"Welcome to catay " .. PKG_VERSION,
+		"Welcome to mollermethod " .. PKG_VERSION,
 		quote.type == "quote" and string.format("\"%s\" - %s, %d", quote.text, quote.author, quote.year) or (quote.text .."™️"),
 		"Success",
 		5,

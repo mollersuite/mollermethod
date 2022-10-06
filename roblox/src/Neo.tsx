@@ -69,7 +69,7 @@ export = withHooksPure<{ container: Instance; notif: Frame }>(({ container, noti
 					Event={{
 						Activated: () => setOpen(spring(closed.getValue() === 1 ? 0 : 1)),
 					}}
-					Image="rbxassetid://10694413123"
+					Image="rbxassetid://11183425047"
 					Size={UDim2.fromOffset(25, 25)}
 					ScaleType="Fit"
 					BackgroundTransparency={1}

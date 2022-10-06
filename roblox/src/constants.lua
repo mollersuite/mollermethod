@@ -11,7 +11,7 @@ module.QUOTES = {
 	},
 	{
 		type = "splash",
-		text = "cat -> cta -> ca tay -> Catay"
+		text = "cat -> cta -> ca tay -> mollermethod"
 	},
 	{
 		type = "splash",

@@ -7,36 +7,36 @@ import Online from "../assets/online-symbolic.svg?raw"
 import PuzzlePiece from "../assets/puzzle-piece-symbolic.svg?raw"
 ---
 
-<Layout title="catay FAQ" description="some questions you may have, answered.">
+<Layout title="mollermethod FAQ" description="some questions you may have, answered.">
 	<h1>FAQ</h1>
 	<p>nobody actually asked me these i'm just guessing lol</p>
 	<Expander client:load>
 		<Fragment slot="icon" set:html={Why} />
-		What is catay?
+		What is mollermethod?
 		<p slot="content">
 			We're not sure either. It's like if Infinite Yield and DomainX had a baby.
 		</p>
 	</Expander>
 	<Expander client:load>
 		<Fragment slot="icon" set:html={AppsList} />
-		What exploits does catay work with?
+		What exploits does mollermethod work with?
 		<ul slot="content">
-			<li>Script-Ware (exploit catay's maintainer uses)</li>
+			<li>Script-Ware (exploit mollermethod's maintainer uses)</li>
 			<li>Synapse X (friends tested it)</li>
 			<li>Krnl (I saw it working once on it)</li>
 			<li>
-				Fluxus (You might need to <a href="/catay.rbxm" download rel="external"
+				Fluxus (You might need to <a href="/mollermethod.rbxm" download rel="external"
 					>download the .rbxm and save it to your workspace
-				</a>, then run catay with debug on)
+				</a>, then run mollermethod with debug on)
 			</li>
 		</ul>
 	</Expander>
 	<Expander client:load>
 		<Fragment slot="icon" set:html={Online} />
-		Where can I find plugins for catay?
+		Where can I find plugins for mollermethod?
 		<Fragment slot="content">
 			<p>
-				catay has a compatibility layer for <a
+				mollermethod has a compatibility layer for <a
 					href="https://github.com/EdgeIY/infiniteyield"
 					>Infinite Yield
 				</a>
@@ -45,7 +45,7 @@ import PuzzlePiece from "../assets/puzzle-piece-symbolic.svg?raw"
 				<a href="https://github.com/Infinite-Store/Infinite-Store">Infinite Store.</a>
 			</p>
 			<p>
-				catay also has its <a href="/api" sveltekit:prefetch>own plugin API</a>,
+				mollermethod also has its <a href="/api" sveltekit:prefetch>own plugin API</a>,
 				allowing you to make custom actions (shows in both Bracket & Mollybdos), commands
 				(shows in Bracket), and tags (shows in Mollybdos).
 			</p>
@@ -53,11 +53,11 @@ import PuzzlePiece from "../assets/puzzle-piece-symbolic.svg?raw"
 	</Expander>
 	<Expander client:load>
 		<Fragment slot="icon" set:html={PuzzlePiece} />
-		How do I load in catay plugins?
+		How do I load in mollermethod plugins?
 		<Fragment slot="content">
 			<p>Put it in the <code>plugins</code> array, like this:</p>
 			<pre>{`loadstring(game:HttpGet 'https://mthd.ml') {
-	-- \`plugins\` is an array of scripts as strings that will get loadstring'd by catay.
+	-- \`plugins\` is an array of scripts as strings that will get loadstring'd by mollermethod.
 	plugins = {
 		-- These are examples.
 		readfile 'path-to-file-in-workspace.lua',

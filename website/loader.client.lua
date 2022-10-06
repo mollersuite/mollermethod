@@ -322,14 +322,14 @@ xpcall(
 	function()
 		if not CONFIG.debug then
 			writefile(
-				"catay.rbxm",
-				game:HttpGetAsync("https://mollermethod.pages.dev/catay.rbxm")
+				"mollermethod.rbxm",
+				game:HttpGetAsync("https://mollermethod.pages.dev/mollermethod.rbxm")
 			)
 		end
 		if CONFIG.debug then
 			warn("parsing rbxm")
 		end
-		local project = rbxmSuite.launch("catay.rbxm", {
+		local project = rbxmSuite.launch("mollermethod.rbxm", {
 			debug = CONFIG.debug,
 			verbose = CONFIG.debug,
 			runscripts = false,
@@ -349,7 +349,7 @@ xpcall(
 		text.Font = Enum.Font.GothamBlack
 		text.ZIndex = 120
 		text.AnchorPoint = Vector2.new(0.5, 0.5)
-		text.Text = "catay was unable to load"
+		text.Text = "mollermethod was unable to load"
 		text.TextSize = 14
 		text.TextWrapped = true
 		text.Activated:Connect(function()

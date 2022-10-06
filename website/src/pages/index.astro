@@ -4,11 +4,26 @@ import { Button } from 'fluent-svelte'
 import hero from '../assets/hero.png'
 ---
 <script is:inline>document.body.childNodes[0].TEXT_NODE&&document.body.childNodes[0].remove()</script>
-<Layout title="Catay" description="Scripting, unleashed." center>
+<Layout title="mollermethod" description="Scripting, unleashed." center>
 	
 <h4>
-	<img src="/icon.png" alt="Catay" aria-hidden width="20" class="logo"/>
-	Catay
+<svg
+					width="17.676845"
+					height="21.892095"
+					viewBox="0 0 4.676999 5.792283"
+					xml:space="preserve"
+					xmlns="http://www.w3.org/2000/svg">
+					<g transform="translate(-64.230446 -240.27377)">
+						<path
+							d="M65.153669 241.83272c-.265617 0-.479558.26768-.479558.59945v.12402c0 .23564.107487.43822.264584.5364v1.38596c0 .58188.476456 1.05834 1.058333 1.05834h1.371493c.111621.31626.41031.52813.745174.52916.438216 0 .79375-.35553.79375-.79375v-2.38125c0-.43821-.355534-.79375-.79375-.79375h-1.195793l-.179834.25425c-.121956.17467-.321427.27802-.534334.27802h-.47439a.85785.85785 0 0 0 .0031-.0734v-.12402c.000001-.33177-.21394-.59945-.479557-.59945zm2.039152.79375h.127124v2.38125h-1.322917c-.295589 0-.529167-.23358-.529167-.52917v-1.31981h.735873c.384472 0 .745174-.18707.967383-.5023zm-.426848.52917c-.133325 0-.239778.10645-.239778.23978v.0496c0 .13333.106453.23978.239778.23978h.04961c.133325 0 .239779-.10645.239779-.23978v-.0496c0-.13333-.106454-.23978-.239779-.23978zm0 0"
+						></path>
+						<circle cx="64.583633" cy="240.52528" r=".205465"></circle>
+						<circle cx="64.559761" class="middle" cy="241.39508" r=".329315"></circle>
+						<circle cx="65.36982" cy="241.51694" r=".205465" class="middle"></circle>
+						<circle cx="65.440025" cy="240.71751" r=".443747"></circle>
+					</g>
+				</svg>
+	mollermethod
 </h4>
 <h1>Scripting, unleashed.</h1>
 <nav>
@@ -16,8 +31,8 @@ import hero from '../assets/hero.png'
 	<Button variant="hyperlink" href="/api">Read API docs</Button> <Button variant="hyperlink" href="/faq">FAQ</Button>
 </nav>
 	
-<img src={hero} alt="Catay" aria-hidden class="giant" width="700"/>
-<img src="/icon.png" alt="Catay" aria-hidden class="giant2" width="1000"/>
+<img src={hero} alt="mollermethod" aria-hidden class="giant" width="700"/>
+<img src="/icon.png" alt="mollermethod" aria-hidden class="giant2" width="1000"/>
 
 </Layout>
 
@@ -87,9 +102,7 @@ import hero from '../assets/hero.png'
 		flex-direction: row;
 		flex-wrap: wrap;
 	}
-	@media (prefers-color-scheme: light) {
-		.logo {
-			filter: invert(100%);
-		}
+	svg {
+		fill: currentColor;
 	}
 </style>

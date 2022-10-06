@@ -20,7 +20,8 @@ export = () => (
 		/>
 		<Placeholder
 			Text={mollerpotence.map(
-				mollerpotence => `Catay ${PKG_VERSION}${mollerpotence ? " with mollerpotence" : ""}`
+				mollerpotence =>
+					`mollermethod ${PKG_VERSION}${mollerpotence ? " with mollerpotence" : ""}`
 			)}
 		/>
 		<Placeholder Text="Designed by Etcetera in the United States, United Kingdom, and Chile" />
