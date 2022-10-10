@@ -5,7 +5,7 @@ import svelte from "@astrojs/svelte"
 // https://astro.build/config
 export default defineConfig({
 	integrations: [svelte()],
-	site: "https://mthd.ml",
+	site: "https://mollermethod.pages.dev",
 	vite: {
 		plugins: [
 			{
