@@ -1,5 +1,5 @@
 set -euo pipefail
-cd ../website
+cd website
 echo "[moller] Building website"
 npm run build
 node overwrite.mjs # to get polylgot
