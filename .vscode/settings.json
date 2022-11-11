@@ -24,7 +24,7 @@
 	],
 	"robloxLsp.typeChecking.mode": "Disabled",
 	"typescript.preferences.quoteStyle": "double",
-	"conventionalCommits.scopes": ["bracket", "mollybdos", "neo", "mollerpotence", "subsystem-iy"],
+	"conventionalCommits.scopes": [],
 	"npm.packageManager": "pnpm",
 	"[svelte]": {
 		"editor.defaultFormatter": "svelte.svelte-vscode"
