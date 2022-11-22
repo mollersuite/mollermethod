@@ -15,7 +15,7 @@ export = (util: PluginUtil): Plugin => {
 				execute(args) {
 					assert(Players.LocalPlayer.Character, "Player needs a character")
 					const pos = Players.LocalPlayer.Character.GetPivot()
-					const amount = (args && tonumber(args)) || 10
+					const amount = (args[0] && tonumber(args[0])) || 10
 					for (let i = 0; i < amount; i++) {
 						const clone = female.Clone()
 						clone.PivotTo(
