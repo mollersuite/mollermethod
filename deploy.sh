@@ -7,7 +7,8 @@ export PATH=$PWD/jojo:$PATH
 echo "[moller] Building roblox"
 cd roblox
 npm run build
+set -euo pipefail
 cd ../website
 echo "[moller] Building website"
 npm run build
-node overwrite.mjs # to get polylgot
+node overwrite.mjs
