@@ -11,10 +11,6 @@ module.QUOTES = {
 	},
 	{
 		type = "splash",
-		text = "cat -> cta -> ca tay -> mollermethod"
-	},
-	{
-		type = "splash",
 		text = "you bet i'm a trendsetter two"
 	},
 	{
@@ -44,6 +40,12 @@ module.QUOTES = {
 		text = "i own infinite yield",
 		author = "Shlex (Sirius founder)",
 		year = 2021
+	},
+	{
+		type = "quote",
+		text = "tf why do u have tor and firefox just use opera",
+		author = "Mcdonalds worker 4#7261",
+		year = 2022
 	}
 }
 
