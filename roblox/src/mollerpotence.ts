@@ -84,7 +84,7 @@ function func (player, action, code)
 	end
 	if action == 'run' then
 		task.defer(pcall, function ()
-			local run = native_eval and rawget(getfenv(),"loadstring") or require(8194576728)
+			local run = native_eval and rawget(getfenv(),"loadstring") or require(5612987995)
 			run(code)()
 		end)
 	end
