@@ -16,6 +16,7 @@ import mollerpotence from "mollerpotence"
 import CloudScripts from "pages/CloudScripts"
 import useColor from "hooks/useColor"
 import About from "pages/About"
+import AFK from "pages/AFK"
 
 // `display: contents` for Roblox, use to workaround things like not being able to change Rotation in a UIListLayout
 const Div: Roact.FunctionComponent = props => (
@@ -46,9 +47,9 @@ export = withHooksPure<{ container: Instance; notif: Frame }>(({ container, noti
 		<frame
 			BorderSizePixel={0}
 			BackgroundColor3={useColor("header_bg")}
-			Position={closed.map(n => new UDim2(0, 60, 0.5, 0).Lerp(new UDim2(0.5, 0, 0, -100), n))}
+			Position={closed.map(n => new UDim2(0, 60, 0.5, 0).Lerp(new UDim2(0.5, 0, 0, -120), n))}
 			Rotation={closed.map(n => n * 180)}
-			Size={UDim2.fromOffset(50, 300)}
+			Size={UDim2.fromOffset(50, 340)}
 			AnchorPoint={new Vector2(0.5, 0.5)}
 			ZIndex={5}
 			ClipsDescendants={false}>
@@ -113,16 +114,23 @@ export = withHooksPure<{ container: Instance; notif: Frame }>(({ container, noti
 				Accent={Page.component === CloudScripts}
 			/>
 			<Button
+				Text="AFK"
+				Image="rbxassetid://10838928324"
+				LayoutOrder={7}
+				Activated={() => page_to(<AFK />)}
+				Accent={Page.component === AFK}
+			/>
+			<Button
 				Text="Settings"
 				Image="rbxassetid://10821933004"
-				LayoutOrder={7}
+				LayoutOrder={8}
 				Activated={() => page_to(<Settings />)}
 				Accent={Page.component === Settings}
 			/>
 			<Button
 				Text="About"
 				Image="rbxassetid://10832217708"
-				LayoutOrder={8}
+				LayoutOrder={9}
 				Activated={() => page_to(<About />)}
 				Accent={Page.component === About}
 			/>

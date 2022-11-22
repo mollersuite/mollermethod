@@ -13,7 +13,7 @@ export = () => (
 		<uipadding PaddingTop={new UDim(0, 20)} />
 		<imagebutton
 			LayoutOrder={1}
-			Image="rbxassetid://10694413123"
+			Image="rbxassetid://11183425047"
 			Size={UDim2.fromOffset(50, 50)}
 			ScaleType="Fit"
 			BackgroundTransparency={1}
