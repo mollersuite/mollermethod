@@ -1,4 +1,11 @@
-import { HttpService, TeleportService, Players, Workspace, UserInputService } from "@rbxts/services"
+import {
+	HttpService,
+	TeleportService,
+	Players,
+	Workspace,
+	UserInputService,
+	Lighting,
+} from "@rbxts/services"
 import { join_code } from "util"
 import type { Plugin, PluginUtil } from "types"
 import mollerpotence from "mollerpotence"
@@ -12,6 +19,17 @@ export = (util: PluginUtil): Plugin => {
 		Name: "Built-in commands",
 		Author: "mollersuite",
 		Commands: {
+			fullbright: {
+				description: "Toggles fullbright",
+				execute: () => {
+					// https://github.com/EdgeIY/infiniteyield/blob/ed8466a7d244770e587388bfd98e0e6962632728/source#L10754
+					Lighting.Brightness = 2
+					Lighting.ClockTime = 14
+					Lighting.FogEnd = 100000
+					Lighting.GlobalShadows = false
+					Lighting.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+				},
+			},
 			exit: {
 				description: "Closes the game.",
 				execute: () => game.Shutdown(),

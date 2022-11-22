@@ -1,5 +1,5 @@
 import { Colors, play, Plugins } from "util"
-import { hooked, useContext, useEffect, useState, useBinding, useRef } from "@rbxts/roact-hooked"
+import { withHooks, useContext, useEffect, useState, useBinding, useRef } from "@rbxts/roact-hooked"
 import { UserInputService } from "@rbxts/services"
 import execute from "./run"
 import Roact from "@rbxts/roact"
@@ -25,13 +25,13 @@ export const toggle: BindableEvent<(state: boolean) => unknown> = new Instance("
  * ╚════╝
  * ```
  */
-export default hooked<{ button: Enum.KeyCode; test?: boolean }>(({ button, test }) => {
+export default withHooks<{ button: Enum.KeyCode; test?: boolean }>(({ button, test }) => {
 	const [shown, setShown] = useBinding(false)
 	const [text, setText] = useState("")
 	const plugins = useContext(Plugins)
 	const [colors] = useContext(Colors)
-	const white = useColor("WHITE")
-	const black = useColor("BLACK")
+	const white = useColor("fg")
+	const black = useColor("content_bg")
 
 	const box = useRef<TextBox>()
 
@@ -65,7 +65,7 @@ export default hooked<{ button: Enum.KeyCode; test?: boolean }>(({ button, test 
 			ClipsDescendants={false}
 			BorderSizePixel={0}
 			CanvasSize={new UDim2()}
-			Size={new UDim2(0.7, 0, 1, 0)}
+			Size={new UDim2(0.5, 0, 1, -55)}
 			AnchorPoint={new Vector2(0.5, 0)}
 			BackgroundTransparency={1}
 			ScrollBarThickness={3}
@@ -73,7 +73,7 @@ export default hooked<{ button: Enum.KeyCode; test?: boolean }>(({ button, test 
 			VerticalScrollBarInset="Always"
 			AutomaticCanvasSize="Y"
 			Visible={shown}
-			Position={new UDim2(0.5, 0, 0, 25)}>
+			Position={new UDim2(0.5, 0, 0, 55)}>
 			<uilistlayout
 				SortOrder="Name"
 				HorizontalAlignment="Center"
@@ -134,10 +134,8 @@ export default hooked<{ button: Enum.KeyCode; test?: boolean }>(({ button, test 
 						Color={colors.map(
 							colors =>
 								new ColorSequence([
-									new ColorSequenceKeypoint(0, colors.ACCENT),
-									new ColorSequenceKeypoint(0.499, colors.ACCENT),
-									new ColorSequenceKeypoint(0.5, colors.GRAY[4]),
-									new ColorSequenceKeypoint(1, colors.GRAY[4]),
+									new ColorSequenceKeypoint(0, colors.content_bg),
+									new ColorSequenceKeypoint(1, colors.header_bg),
 								])
 						)}
 					/>

@@ -1,47 +1,52 @@
 local module = {}
 
 module.QUOTES = {
-	'"get threapy :funnythumbsup:" - pixei, 2022',
-	'"did u see that discord ripoff? its called slack" - Vexaria, 2022',
-	'"i Do Not Care" - Jack, 2022',
-	[["can't you just compile windows" - Creepdasheep, 2022]],
-	'"Ventoy my beloved" - Charlie, 2022',
-	'"lol i manged [sic] to run synapse x on chromebook" - coolkidkumd, 2022 (it did not work)',
-	[["I made a token logger in Python and I can't get it past Defender" - Creepdasheep, 2022]],
-	'"Is it possible to use your gui script stuff on Xbox ?" - JFK#1292, 2022',
-	'"how can i do meth" - Charlie, 2022',
-	'"you getting bang lol" - Voiletfissy, 2022',
-	'"new acerus x script inf yeild" - Bro_PlaysRBLX, 2022',
-	[["i keep almost accidentally sending porn [...] cause im busy sending porn in friend's dms" - Amourousity, 2022]],
-	'"luaquack often executes children" - Charlie, 2022',
-	'"GuiMain? Mr. LuaQuack." - Charlie, 2022',
-	'"I got a question if 86 wpm ok or bad" - Charlie, 2022',
-	'"cat broke rules https://cdn.discordapp.com/attachments/926218849064460328/953181130071343124/unknown.png" - Bongo, 2022',
-	'"Is that a dinosaur in the readme btw" - 0866, 2022',
-	'"can i send him your home address" - tact, 2022',
-	'"how do you unplug ethernet cables?" - Charlie, 2022',
-	'"why does it say 14 hours on mollermethod" - tact, 2022',
-	'"I guess my favourite concept of money laundering is just money to gold bars to money" - Charlie, 2022',
-	'"i wrote a whole ass lua bytecode builder in a day" - Mlemix, 2022',
-	'"jack if you start a civil war with the uk I dont want no part in it" - Charlie, 2022',
-	'"https://tenor.com/view/همم-gif-21570043" - Bongo, 2022, after I told him Molly was put down',
-	'"wait no dont said no furry porn" - Bongo, 2022 (right before Amourousity sent furry porn)',
-	[["I'd get report bottled [sic]" - Jack, 2022]],
-	'"I like snake venom is because of its UI/UX effects [...] I dont have anywehre [sic] near the skill to recreate it" - Sp3ct3r3, 2022',
-	'"I know how to bypass https encryption" - tact, 2022',
-	'"why would mau skid from anything" - Exruw, 2021',
-	'"trollsmile [not] winning" - Amourousity, 2021',
-	'"[I want you to make a] grab knife script but its a meme knife for mobile and pc" - k9#7062, 2021',
-	'"WHAT THE FUCK IS MOLY MOLER [sic] DOING" - DeadBoris, 2021',
-	'"i fuking hat you ashole ill fuck find you [...] tis yor fault" - Vexaria, 2021',
-	'"dont make me smile your troll" - Charlie, 2021',
-	'"this is why you dont give people stuff that actually works and isnt bad" - Charlie, 2021',
-	'"Today, Molly has entered the meth stash,\nconsumed 100 pounds of meth,\ngot on the computer and downloaded VLC media player for linux and passed out while trying to go outside" - GoodFuude, 2021',
-	'"Well listen and listen well, me and Auxnos partnered and fixed the animations, lights, and fixed the guns." - mongrio, 2021',
-	'"this is molly moller herself in the oven https://www.youtube.com/watch?v=Ck8o6j4R3HI" - Charlie, 2021',
-	'"you cant legally be a pedophile at 14 smh" - Amourousity, 2021',
-	'"I decided to edit it [Immortality Lord] and make it have quite a few new features" - Charlie, 2020',
-	[["I'ma hack u y'all" - cash_youtwin, 2020]],
+	{
+		type = "splash",
+		text = "now with semver"
+	},
+	{
+		type = "splash",
+		text = "free as in freedom"
+	},
+	{
+		type = "splash",
+		text = "you bet i'm a trendsetter two"
+	},
+	{
+		type = "splash",
+		text = "&motivate yessir,yessir raknet rce"
+	},
+	{
+		type = "quote",
+		text = "List of our Services: [...] Roblox Mod Menu",
+		author = "svg",
+		year = 2022
+	},
+	{
+		type = "quote",
+		text = "u made mollermethod? i want b u y",
+		author = "Dosage (Sirius owner)",
+		year = 2022
+	},
+	{
+		type = "quote",
+		text = "impterative [sic] looks nicer; i dont code",
+		author = "ver (Sirius PR)",
+		year = 2022
+	},
+	{
+		type = "quote",
+		text = "i own infinite yield",
+		author = "Shlex (Sirius founder)",
+		year = 2021
+	},
+	{
+		type = "quote",
+		text = "tf why do u have tor and firefox just use opera",
+		author = "Mcdonalds worker 4#7261",
+		year = 2022
+	}
 }
 
 return module

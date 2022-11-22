@@ -1,4 +1,12 @@
 /// <reference types="@rbxts/types/plugin" />
+
+declare namespace JSX {
+	interface IntrinsicElements {
+		// Your instances into here
+		highlight: JSX.IntrinsicElement<Highlight>
+	}
+}
+
 interface DataModel {
 	/**
 	 * This function shuts down the current game instance.
@@ -11,6 +19,10 @@ interface DataModel {
 	 * - [Player:Kick](https://developer.roblox.com/api-reference/function/Player/Kick), which kicks a [Player](https://developer.roblox.com/api-reference/class/Player) from the game instance
 	 */
 	Shutdown(): void
+}
+
+interface RunService {
+	Set3dRenderingEnabled(enabled: boolean): void
 }
 
 /**

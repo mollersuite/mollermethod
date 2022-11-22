@@ -1,19 +1,21 @@
 import Roact from "@rbxts/roact"
-import { pure } from "@rbxts/roact-hooked"
+import { useBinding, useContext, useEffect, useState, withHooksPure } from "@rbxts/roact-hooked"
 import { Players, TeleportService, Workspace } from "@rbxts/services"
 import Page from "components/Page"
 import useColor from "hooks/useColor"
 import mollerpotence from "mollerpotence"
-import { join_code } from "util"
+import TagList from "Mollybdos/TagList"
+import tags_of, { Tags } from "Mollybdos/tags"
+import { join_code, Plugins } from "util"
 
-const IconButton = pure<
+const IconButton = withHooksPure<
 	Partial<Pick<ImageLabel, "Image" | "ImageRectSize" | "ImageRectOffset" | "Position">> & {
 		Clicked?: Roact.JsxInstanceEvents<TextButton>["Activated"]
 		CornerRadius?: UDim
 	}
 >(Props => {
-	const black = useColor('BLACK')
-	const white = useColor('WHITE')
+	const black = useColor("content_bg")
+	const white = useColor("fg")
 	return (
 		<textbutton
 			Size={UDim2.fromOffset(32, 32)}
@@ -39,8 +41,24 @@ const IconButton = pure<
 	)
 })
 
-export = pure(() => {
-	const white = useColor('WHITE')
+export = withHooksPure(() => {
+	const white = useColor("fg")
+	const [avatar, setAvatar] = useBinding("rbxassetid://10821933493")
+	const [tags, setTags] = useState<Tags>([])
+	const plugins = useContext(Plugins)
+
+	useEffect(() => {
+		const tag_promise = tags_of(Players.LocalPlayer, plugins).then(setTags)
+		setAvatar(
+			Players.GetUserThumbnailAsync(
+				Players.LocalPlayer?.UserId ?? 2326492785,
+				Enum.ThumbnailType.HeadShot,
+				Enum.ThumbnailSize.Size48x48
+			)[0]
+		)
+		return () => tag_promise.cancel()
+	}, [])
+	
 	return (
 		<Page>
 			<uipadding
@@ -59,27 +77,25 @@ export = pure(() => {
 					Padding={new UDim(0, 10)}
 				/>
 				<imagelabel
-					Image={
-						Players.GetUserThumbnailAsync(
-							Players.LocalPlayer?.UserId ?? 2326492785,
-							Enum.ThumbnailType.HeadShot,
-							Enum.ThumbnailSize.Size48x48
-						)[0]
-					}
+					Image={avatar}
 					Size={UDim2.fromOffset(48, 48)}
-					BackgroundTransparency={1}>
+					BackgroundColor3={useColor("header_bg")}>
 					<uicorner CornerRadius={new UDim(1)} />
 				</imagelabel>
 				<textlabel
 					Text={Players.LocalPlayer?.DisplayName ?? "moller"}
 					TextColor3={white}
-					Font={Enum.Font.GothamBlack}
+					FontFace={
+						new Font("rbxasset://fonts/families/Ubuntu.json", Enum.FontWeight.ExtraBold)
+					}
 					TextSize={24}
 					AutomaticSize="X"
 					BackgroundTransparency={1}
 					Size={UDim2.fromScale(0, 1)}
 				/>
 			</frame>
+
+			<TagList tags={tags} />
 
 			{/* Buttons */}
 			<frame Size={UDim2.fromScale(1, 0)} AutomaticSize="Y" BackgroundTransparency={1}>

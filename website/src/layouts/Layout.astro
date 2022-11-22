@@ -10,9 +10,9 @@ export interface Props {
 	unlisted?: boolean
 }
 
-import Cube from "@fluentui/svg-icons/icons/cube_20_filled.svg?raw"
-import BookQuestionMark from "@fluentui/svg-icons/icons/book_question_mark_20_filled.svg?raw"
-import Check from "@fluentui/svg-icons/icons/heart_pulse_20_filled.svg?raw"
+import Code from "../assets/code-symbolic.svg?raw"
+import Question from "../assets/question-round-symbolic.svg?raw"
+import TestPass from "../assets/test-pass-symbolic.svg?raw"
 
 const { center, title, description, unlisted } = Astro.props as Props
 ---
@@ -22,7 +22,7 @@ const { center, title, description, unlisted } = Astro.props as Props
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<meta name="theme-color" content="#9339ff" />
+		<meta name="theme-color" content="#3584e4" />
 		<meta name="color-scheme" content="dark light" />
 		<link rel="icon" href="/icon.png" />
 		<title>{title}</title>
@@ -32,11 +32,26 @@ const { center, title, description, unlisted } = Astro.props as Props
 	<body>
 		<Header>
 			<Button label="mollermethod" href="/">
-				<img src="/icon.png" alt="mollermethod" height="20" class="logo" />
+				<svg
+					width="17.676845"
+					height="21.892095"
+					viewBox="0 0 4.676999 5.792283"
+					xml:space="preserve"
+					xmlns="http://www.w3.org/2000/svg">
+					<g transform="translate(-64.230446 -240.27377)">
+						<path
+							d="M65.153669 241.83272c-.265617 0-.479558.26768-.479558.59945v.12402c0 .23564.107487.43822.264584.5364v1.38596c0 .58188.476456 1.05834 1.058333 1.05834h1.371493c.111621.31626.41031.52813.745174.52916.438216 0 .79375-.35553.79375-.79375v-2.38125c0-.43821-.355534-.79375-.79375-.79375h-1.195793l-.179834.25425c-.121956.17467-.321427.27802-.534334.27802h-.47439a.85785.85785 0 0 0 .0031-.0734v-.12402c.000001-.33177-.21394-.59945-.479557-.59945zm2.039152.79375h.127124v2.38125h-1.322917c-.295589 0-.529167-.23358-.529167-.52917v-1.31981h.735873c.384472 0 .745174-.18707.967383-.5023zm-.426848.52917c-.133325 0-.239778.10645-.239778.23978v.0496c0 .13333.106453.23978.239778.23978h.04961c.133325 0 .239779-.10645.239779-.23978v-.0496c0-.13333-.106454-.23978-.239779-.23978zm0 0"
+						></path>
+						<circle cx="64.583633" cy="240.52528" r=".205465"></circle>
+						<circle cx="64.559761" class="middle" cy="241.39508" r=".329315"></circle>
+						<circle cx="65.36982" cy="241.51694" r=".205465" class="middle"></circle>
+						<circle cx="65.440025" cy="240.71751" r=".443747"></circle>
+					</g>
+				</svg>
 			</Button>
-			<Button label="API" href="/api" set:html={Cube} />
-			<Button label="FAQ" href="/faq" set:html={BookQuestionMark} />
-			<Button label="Checker" href="/checker" set:html={Check} />
+			<Button label="API" href="/api" set:html={Code} />
+			<Button label="FAQ" href="/faq" set:html={Question} />
+			<Button label="Checker" href="/checker" set:html={TestPass} />
 			<Button href="https://discord.gg/HAw7Zf8GF5" label="Discord">
 				<svg
 					role="img"
@@ -90,12 +105,6 @@ const { center, title, description, unlisted } = Astro.props as Props
 				display: block;
 				font-family: var(--fds-font-family-small);
 				margin-bottom: 0.8rem;
-			}
-
-			@media (prefers-color-scheme: light) {
-				.logo {
-					filter: invert(100%);
-				}
 			}
 		</style>
 	</body>

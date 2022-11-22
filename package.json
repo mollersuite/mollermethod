@@ -14,27 +14,6 @@
 		"deploy": "bash ./deploy.sh",
 		"format": "pnpx prettier . --write --plugin-search-dir=."
 	},
-	"prettier": {
-		"arrowParens": "avoid",
-		"bracketSpacing": true,
-		"embeddedLanguageFormatting": "auto",
-		"endOfLine": "lf",
-		"htmlWhitespaceSensitivity": "css",
-		"insertPragma": false,
-		"bracketSameLine": true,
-		"jsxSingleQuote": false,
-		"printWidth": 100,
-		"proseWrap": "always",
-		"quoteProps": "as-needed",
-		"requirePragma": false,
-		"semi": false,
-		"singleQuote": false,
-		"tabWidth": 4,
-		"trailingComma": "es5",
-		"useTabs": true,
-		"vueIndentScriptAndStyle": false,
-		"pluginSearchDirs": ["."]
-	},
 	"dependencies": {
 		"@milahu/patch-package": "^6.4.11"
 	}

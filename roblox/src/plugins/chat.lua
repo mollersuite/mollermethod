@@ -31,7 +31,7 @@ return function(util)
 					frame.Size = UDim2.new(0.3, 0, 0.3, 0)
 					frame.Position = UDim2.new(0.5, 0, 0.5, 0)
 					frame.AnchorPoint = Vector2.new(0.5, 0.5)
-					frame.BackgroundColor3 = util.colors:getValue().BLACK
+					frame.BackgroundColor3 = util.colors:getValue().header_bg
 					events["Controller"] = util.Snapdragon.createDragController(frame, { SnapEnabled = true })
 					events["Controller"]:Connect()
 					local UICorner = Instance.new("UICorner", frame)
@@ -39,7 +39,7 @@ return function(util)
 					local chat = Instance.new("ScrollingFrame", frame)
 					chat.Name = "Chat"
 					chat.Size = UDim2.new(1, 0, 0.9, 0)
-					chat.BackgroundColor3 = util.colors:getValue().GRAY[9]
+					chat.BackgroundColor3 = util.colors:getValue().content_bg
 					chat.BackgroundTransparency = 0
 					chat.BorderSizePixel = 0
 					chat.AutomaticCanvasSize = Enum.AutomaticSize.Y
@@ -52,7 +52,7 @@ return function(util)
 					WriteLogsToFile.Size = UDim2.new(1, 0, 0.1, 0)
 					WriteLogsToFile.Position = UDim2.new(0, 0, 1, 0)
 					WriteLogsToFile.AnchorPoint = Vector2.new(0, 1)
-					WriteLogsToFile.TextColor3 = util.colors:getValue().WHITE
+					WriteLogsToFile.TextColor3 = util.colors:getValue().fg
 					WriteLogsToFile.BackgroundTransparency = 1
 					WriteLogsToFile.Font = Enum.Font.Gotham
 					WriteLogsToFile.Text = "Write Logs To File"
@@ -79,14 +79,14 @@ return function(util)
 					local ChatMessageTemplate = Instance.new("TextLabel")
 					ChatMessageTemplate.Name = "ChatMessageTemplate"
 					ChatMessageTemplate.Size = UDim2.new(1, 0, 0.05, 0)
-					ChatMessageTemplate.BackgroundColor3 = util.colors:getValue().WHITE
+					ChatMessageTemplate.BackgroundColor3 = util.colors:getValue().fg
 					ChatMessageTemplate.BackgroundTransparency = 0.9
 					ChatMessageTemplate.Text = "[trollar] this is an example message wow!!!"
 					ChatMessageTemplate.TextSize = 12
 					ChatMessageTemplate.Font = Enum.Font.Gotham
 					ChatMessageTemplate.TextWrapped = true
 					ChatMessageTemplate.TextXAlignment = Enum.TextXAlignment.Left
-					ChatMessageTemplate.TextColor3 = util.colors:getValue().WHITE
+					ChatMessageTemplate.TextColor3 = util.colors:getValue().fg
 					local function chatted(player, message)
 						local formatted
 						if player.Name ~= player.DisplayName then

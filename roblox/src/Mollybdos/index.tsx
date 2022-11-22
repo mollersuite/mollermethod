@@ -1,12 +1,20 @@
 import Roact from "@rbxts/roact"
-import { useEffect, useState, pure, Dispatch, useContext, useBinding } from "@rbxts/roact-hooked"
+import {
+	useEffect,
+	useState,
+	withHooksPure,
+	Dispatch,
+	useContext,
+	useBinding,
+	useMutable,
+} from "@rbxts/roact-hooked"
 import { Players } from "@rbxts/services"
 import Page from "components/Page"
 import useColor from "hooks/useColor"
 import { Colors, escape_lua_pattern } from "util"
 import Details from "./Details"
 
-const PlayerList = pure(
+const PlayerList = withHooksPure(
 	({
 		selected,
 		setSelected,
@@ -14,8 +22,8 @@ const PlayerList = pure(
 		selected?: Player
 		setSelected: Dispatch<Player | undefined>
 	}) => {
-		const white = useColor("WHITE")
-		const accent = useColor("ACCENT")
+		const white = useColor("fg")
+		const accent = useColor("accent")
 		const [players, setPlayers] = useState<Player[]>(Players.GetPlayers())
 
 		const [query, setQuery] = useBinding("")
@@ -65,7 +73,7 @@ const PlayerList = pure(
 					TextSize={20}
 					TextColor3={white}
 					PlaceholderText="Search for a player"
-					PlaceholderColor3={colors.map(colors => colors.WHITE.Lerp(colors.BLACK, 0.5))}
+					PlaceholderColor3={colors.map(colors => colors.fg.Lerp(colors.content_bg, 0.5))}
 					BackgroundColor3={white}
 					BackgroundTransparency={focused.map(focused => (focused ? 0.5 : 1))}
 					TextXAlignment="Left"
@@ -88,7 +96,14 @@ const PlayerList = pure(
 						BorderSizePixel={0}
 						TextXAlignment="Left"
 						TextYAlignment="Center"
-						Font={player === selected ? "GothamBold" : "Gotham"}
+						FontFace={
+							new Font(
+								"rbxasset://fonts/families/Ubuntu.json",
+								player === selected
+									? Enum.FontWeight.ExtraBold
+									: Enum.FontWeight.Regular
+							)
+						}
 						Key={player.DisplayName}
 						TextSize={11}
 						Event={{
@@ -101,9 +116,12 @@ const PlayerList = pure(
 							if (query === "") return true
 							const pattern = escape_lua_pattern(query)
 
-							return (query.find("^@")
-								? player.Name.match(pattern.sub(2))
-								: player.DisplayName.lower().match(pattern.lower()))[0] !== undefined 
+							return (
+								(query.find("^@")
+									? player.Name.match(pattern.sub(2))
+									: player.DisplayName.lower().match(pattern.lower()))[0] !==
+								undefined
+							)
 						})}>
 						<uipadding
 							PaddingTop={new UDim(0, 5)}
@@ -119,9 +137,10 @@ const PlayerList = pure(
 	}
 )
 
-export = pure(() => {
+function main() {
 	const [selected, setSelected] = useState<Player | undefined>(undefined)
-
+	const [Adornee, setAdornee] = useBinding(undefined as Model | undefined)
+	const [dropping, setDropping] = useBinding(false) // Eye dropper active
 	// handling selected player leaving
 	useEffect(() => {
 		const connection = selected?.AncestryChanged.Connect(() => {
@@ -131,11 +150,49 @@ export = pure(() => {
 		return () => connection?.Disconnect()
 	}, [selected])
 
+	// handling highlight
+	useEffect(() => {
+		let event: RBXScriptConnection
+		if (selected) {
+			setAdornee(selected.Character)
+			event = selected.CharacterAdded.Connect(setAdornee)
+		} else {
+			setAdornee(undefined)
+		}
+		return () => event?.Disconnect()
+	}, [selected])
 	return (
 		<Page>
-			<uilistlayout FillDirection="Horizontal" />
 			<PlayerList selected={selected} setSelected={setSelected} />
 			<Details selected={selected} />
+			<imagebutton
+				Size={UDim2.fromOffset(16, 16)}
+				Position={new UDim2(1, -10, 1, -10)}
+				AnchorPoint={new Vector2(1, 1)}
+				Image="rbxassetid://10822705513"
+				BackgroundTransparency={1}
+				BorderSizePixel={0}
+				ImageColor3={useColor("fg")}
+				Event={{
+					Activated: () => {
+						setDropping(true)
+						Players.LocalPlayer.GetMouse().Button1Down.Wait()
+						setDropping(false)
+						const player = Players.GetPlayerFromCharacter(
+							Players.LocalPlayer.GetMouse().Target?.FindFirstAncestorOfClass("Model")
+						)
+						if (player) setSelected(player)
+					},
+				}}
+			/>
+			<highlight
+				Adornee={Adornee}
+				FillColor={useColor("accent")}
+				OutlineTransparency={1}
+				FillTransparency={0}
+			/>
 		</Page>
 	)
-})
+}
+
+export = withHooksPure(main)

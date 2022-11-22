@@ -3,8 +3,7 @@ import {
 	HttpService,
 	LogService,
 	Players,
-	ProximityPromptService,
-	RunService,
+	ProximityPromptService
 } from "@rbxts/services"
 const [enabled, setEnabled] = Roact.createBinding(false)
 function run_script(code: string) {
@@ -21,13 +20,34 @@ function run_script(code: string) {
 			remote?.FireServer("Server", code)
 		},
 		// require script
-		[6948453065]: () => {
-			const remote = Players.LocalPlayer.FindFirstChild("SS Executor")
-				?.FindFirstChild("Frame")
-				?.FindFirstChild("Exe")
-				?.FindFirstChild("RemoteEvent") as RemoteEvent<(code: string) => unknown> | void
+		[7205570742]: () => {
+			// They do a great deal of obfuscation; so let's go through the UI instead
+			const playergui = Players.LocalPlayer.FindFirstChildOfClass("PlayerGui")
+			let image: ImageButton | void
 
-			remote?.FireServer(code)
+			if (playergui) {
+				for (const child of playergui.GetDescendants()) {
+					if (child.IsA("ImageButton") && child.Image === "rbxassetid://20665340") {
+						// The script logo at the bottom right
+						image = child
+					}
+				}
+			}
+
+			if (image) {
+				for (const child of image.Parent!.GetDescendants()) {
+					if (child.IsA("TextBox")) {
+						child.Text = code
+						break
+					}
+				}
+				for (const child of image.Parent!.GetDescendants()) {
+					if (child.IsA("TextButton") && child.Text === "Execute") {
+						getconnections(child.MouseButton1Click)[0].Fire()
+						break
+					}
+				}
+			}
 		},
 	}
 
@@ -50,7 +70,7 @@ async function activate() {
 pcall(function ()
 	script.Parent = nil
 end)
-local nativeloadstring = pcall(loadstring, '--')
+local native_eval = pcall(rawget(getfenv(),"loadstring"), '--')
 local remote = Instance.new('RemoteFunction', game:GetService('ProximityPromptService'))
 remote.Name = %q
 local user = %i
@@ -64,7 +84,7 @@ function func (player, action, code)
 	end
 	if action == 'run' then
 		task.defer(pcall, function ()
-			local run = nativeloadstring and loadstring or require(8194576728)
+			local run = native_eval and rawget(getfenv(),"loadstring") or require(5612987995)
 			run(code)()
 		end)
 	end

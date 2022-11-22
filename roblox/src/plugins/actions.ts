@@ -29,54 +29,54 @@ export = (): Plugin => ({
 			description: "Make 'em fly. Requires CanCollide",
 			enabled: () => {
 				const torso =
-						LocalPlayer.Character?.FindFirstChild("UpperTorso") ??
-						LocalPlayer.Character?.FindFirstChild("Torso")
-					return (torso?.IsA("BasePart") && torso?.CanCollide) ?? false
+					LocalPlayer.Character?.FindFirstChild("UpperTorso") ??
+					LocalPlayer.Character?.FindFirstChild("Torso")
+				return (torso?.IsA("BasePart") && torso?.CanCollide) ?? false
 			},
 			async execute(victim) {
-					const victim_char = victim.Character
-					assert(victim_char, "Victim has no character")
-					const victim_humanoid = victim_char.FindFirstChildWhichIsA("Humanoid")
-					assert(victim_humanoid, "Victim has no humanoid")
-					const victim_root = victim_humanoid.RootPart
-					assert(victim_root, "Victim has no root")
-					const char = LocalPlayer.Character
-					assert(char, "You have no character")
-					const humanoid = char.FindFirstChildWhichIsA("Humanoid")
-					assert(humanoid, "You have no humanoid")
-					const root = humanoid.RootPart
-					assert(root, "You have no root")
-					const bv = new Instance("BodyAngularVelocity")
-					bv.MaxTorque = Vector3.one.mul(math.huge)
-					bv.P = math.huge
-					bv.AngularVelocity = Vector3.yAxis.mul(9e5)
-					bv.Parent = root
-					const parts = char.GetChildren()
+				const victim_char = victim.Character
+				assert(victim_char, "Victim has no character")
+				const victim_humanoid = victim_char.FindFirstChildWhichIsA("Humanoid")
+				assert(victim_humanoid, "Victim has no humanoid")
+				const victim_root = victim_humanoid.RootPart
+				assert(victim_root, "Victim has no root")
+				const char = LocalPlayer.Character
+				assert(char, "You have no character")
+				const humanoid = char.FindFirstChildWhichIsA("Humanoid")
+				assert(humanoid, "You have no humanoid")
+				const root = humanoid.RootPart
+				assert(root, "You have no root")
+				const bv = new Instance("BodyAngularVelocity")
+				bv.MaxTorque = Vector3.one.mul(math.huge)
+				bv.P = math.huge
+				bv.AngularVelocity = Vector3.yAxis.mul(9e5)
+				bv.Parent = root
+				const parts = char.GetChildren()
+				for (const part of parts) {
+					if (part.IsA("BasePart")) {
+						part.CanCollide = false
+						part.Massless = true
+						part.Velocity = Vector3.zero
+					}
+				}
+				const RunServiceConnection = RunService.Stepped.Connect(() => {
+					root.Position = victim_root.Position
 					for (const part of parts) {
 						if (part.IsA("BasePart")) {
 							part.CanCollide = false
-							part.Massless = true
-							part.Velocity = Vector3.zero
 						}
 					}
-					const RunServiceConnection = RunService.Stepped.Connect(() => {
-						root.Position = victim_root.Position
-						for (const part of parts) {
-							if (part.IsA("BasePart")) {
-								part.CanCollide = false
-							}
-						}
-					})
-					const HumanoidConnection = humanoid.Died.Connect(() => {
-						RunServiceConnection.Disconnect()
-						HumanoidConnection.Disconnect()
-						VictimConnection.Disconnect()
-					})
-					const VictimConnection = victim_humanoid.Died.Connect(() => {
-						RunServiceConnection.Disconnect()
-						HumanoidConnection.Disconnect()
-						VictimConnection.Disconnect()
-					})
+				})
+				const HumanoidConnection = humanoid.Died.Connect(() => {
+					RunServiceConnection.Disconnect()
+					HumanoidConnection.Disconnect()
+					VictimConnection.Disconnect()
+				})
+				const VictimConnection = victim_humanoid.Died.Connect(() => {
+					RunServiceConnection.Disconnect()
+					HumanoidConnection.Disconnect()
+					VictimConnection.Disconnect()
+				})
 			},
 		},
 
@@ -119,6 +119,17 @@ export = (): Plugin => ({
 			},
 		},
 
+		nil: {
+			description: "Nil a player",
+			enabled: () => !!mollerpotence.remote,
+			async execute (victim) {
+				mollerpotence.remote!.InvokeServer(
+					"run",
+					`game:GetService("Players"):GetPlayerByUserId(${victim.UserId}):Destroy()`
+				)
+			}
+		},
+		
 		inspect: {
 			description: "open the roblox inspect menu on a player",
 			execute(victim) {

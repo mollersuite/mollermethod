@@ -67,6 +67,9 @@ export = (): Plugin => ({
 					8087490807, // Blue
 					8087502591, // Purple
 					8087499688, // Red
+					8087495311, // Yellow
+					8087490807, // White
+					8087507481, // Green
 					// Budget protogen (Shadow Dog Head)
 					6991973236, // normal
 					7063128361, // Blue
@@ -144,6 +147,8 @@ export = (): Plugin => ({
 					8040360, // |•| Fantastic Protogens |•|
 					8024599, // Beep Boop Protogens
 					7453945, // Proto-Land
+					5156378, // Fun Furs
+					5283624, // developFurs
 				],
 			}),
 		])

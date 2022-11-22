@@ -1,7 +1,7 @@
 import Roact from "@rbxts/roact"
 import Object from "@rbxts/object-utils"
 import { escape_lua_pattern, flat, merge, Plugins, title_case } from "util"
-import { pure, useContext } from "@rbxts/roact-hooked"
+import { withHooksPure, useContext } from "@rbxts/roact-hooked"
 import type { Plugin } from "types"
 import useColor from "hooks/useColor"
 
@@ -51,10 +51,10 @@ function autocompleted(plugins: Plugin[]) {
 	]
 }
 
-export = pure(({ Text: text }: { Text: string }) => {
+export = withHooksPure(({ Text: text }: { Text: string }) => {
 	const plugins = useContext(Plugins)
-	const black = useColor('BLACK')
-	const white = useColor('WHITE')
+	const black = useColor("content_bg")
+	const white = useColor("fg")
 	return (
 		<>
 			{autocompleted(plugins)
@@ -67,7 +67,7 @@ export = pure(({ Text: text }: { Text: string }) => {
 							Key={name}
 							BackgroundTransparency={0.4}
 							BackgroundColor3={black}
-							Size={new UDim2(0.7, 0, 0, 25)}
+							Size={new UDim2(1, 0, 0, 25)}
 							AutomaticSize="Y">
 							<uipadding
 								PaddingLeft={new UDim(0, 8)}
@@ -78,7 +78,7 @@ export = pure(({ Text: text }: { Text: string }) => {
 							<textlabel
 								Text={`<b>${text}</b>${name.sub(text.size() + 1)}`}
 								TextSize={11}
-								Font="Gotham"
+								FontFace={new Font("rbxasset://fonts/families/Ubuntu.json")}
 								RichText
 								Size={new UDim2(1, 0, 0, 11)}
 								TextXAlignment="Left"
@@ -92,7 +92,12 @@ export = pure(({ Text: text }: { Text: string }) => {
 								TextSize={14}
 								Size={new UDim2(1, 0, 0, 14)}
 								Position={UDim2.fromOffset(0, 11)}
-								Font="GothamBlack"
+								FontFace={
+									new Font(
+										"rbxasset://fonts/families/Ubuntu.json",
+										Enum.FontWeight.ExtraBold
+									)
+								}
 								TextXAlignment="Left"
 								TextYAlignment="Center"
 								TextColor3={white}
@@ -103,7 +108,7 @@ export = pure(({ Text: text }: { Text: string }) => {
 								Position={UDim2.fromOffset(0, 25)}
 								Text={description}
 								TextSize={12}
-								Font="Gotham"
+								FontFace={new Font("rbxasset://fonts/families/Ubuntu.json")}
 								TextXAlignment="Left"
 								TextYAlignment="Center"
 								TextWrapped

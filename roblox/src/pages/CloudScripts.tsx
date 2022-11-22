@@ -1,12 +1,12 @@
 import Roact from "@rbxts/roact"
-import { pure, useBinding, useContext, useEffect, useState } from "@rbxts/roact-hooked"
+import { withHooksPure, useBinding, useContext, useEffect, useState } from "@rbxts/roact-hooked"
 import { HttpService } from "@rbxts/services"
 import { Colors } from "util"
 import Page from "../components/Page"
 import Placeholder from "../components/Placeholder"
 const req = syn?.request ?? request
 
-export = pure(() => {
+export = withHooksPure(() => {
 	const [scripts, setScripts] = useState<
 		| {
 				id: string
@@ -63,10 +63,10 @@ export = pure(() => {
 				}}
 				Font="RobotoMono"
 				TextSize={20}
-				TextColor3={colors.map(colors => colors.WHITE)}
+				TextColor3={colors.map(colors => colors.fg)}
 				PlaceholderText="Search for scripts"
-				PlaceholderColor3={colors.map(colors => colors.WHITE.Lerp(colors.BLACK, 0.5))}
-				BackgroundColor3={colors.map(colors => colors.WHITE)}
+				PlaceholderColor3={colors.map(colors => colors.fg.Lerp(colors.content_bg, 0.5))}
+				BackgroundColor3={colors.map(colors => colors.fg)}
 				BackgroundTransparency={focused.map(focused => (focused ? 0.5 : 1))}
 				TextXAlignment="Left"
 				BorderSizePixel={0}
@@ -88,15 +88,15 @@ export = pure(() => {
 						<textbutton
 							Text={scr.name}
 							AutomaticSize="Y"
-							BackgroundColor3={colors.map(colors => colors.BLACK)}
+							BackgroundColor3={colors.map(colors => colors.content_bg)}
 							BorderSizePixel={0}
-							TextColor3={colors.map(colors => colors.WHITE)}
+							TextColor3={colors.map(colors => colors.fg)}
 							TextSize={20}
 							Key={scr.name}
 							TextXAlignment="Center"
 							TextYAlignment="Center"
 							Size={UDim2.fromScale(1, 0)}
-							Font="Gotham"
+							FontFace={new Font("rbxasset://fonts/families/Ubuntu.json")}
 							Event={{
 								Activated: () => {
 									const [source] = game.HttpGetAsync(

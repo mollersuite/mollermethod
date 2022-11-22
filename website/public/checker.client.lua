@@ -81,7 +81,8 @@ logo.BackgroundTransparency = 1
 logo.Position = UDim2.new(0, 10, 0, 10)
 logo.Size = UDim2.new(0, 20, 0, 20)
 logo.ZIndex = 2
-logo.Image = "rbxassetid://9399201426"
+logo.Image = "rbxassetid://11183425047"
+logo.ScaleType = Enum.ScaleType.Fit
 div.Name = "div"
 div.Parent = main
 div.BackgroundColor3 = Color3.new(1, 1, 1)
@@ -135,7 +136,7 @@ local supported = varS and cusS -- return false if either one or both are false 
 
 var.Text = varS and "<font color=\"rgb(0,200,0)\">✓</font>  Varargs supported." or "<font color=\"rgb(200,0,0)\">X</font>  Varargs not supported."
 cus.Text = cusS and "<font color=\"rgb(0,200,0)\">✓</font>  Custom assets supported." or "<font color=\"rgb(200,0,0)\">X</font>  Custom assets not supported."
-title.Text = supported and "Mollermethod is supported." or "Mollermethod is not supported."
+title.Text = supported and "mollermethod is supported." or "mollermethod is not supported."
 
 local tween = game:GetService("TweenService")
 local info = TweenInfo.new(.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)

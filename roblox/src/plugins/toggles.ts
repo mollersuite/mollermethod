@@ -9,14 +9,14 @@ export = (util: PluginUtil): Plugin => {
 	const block = util.Roact.createRef<ConeHandleAdornment>()
 	let TracersLoop: RBXScriptConnection
 	const TracerLines: Record<string, DrawingLine> = {}
-	
+
 	util.Roact.mount(
 		util.Roact.createElement("ConeHandleAdornment", {
 			Adornee: Workspace.Terrain,
 			Name: HttpService.GenerateGUID(),
 			Visible: false,
-			Color3: colors.map(colors => colors.ACCENT),
-			[util.Roact.Ref]: block
+			Color3: colors.map(colors => colors.accent),
+			[util.Roact.Ref]: block,
 		}),
 		util.GUI.Parent
 	)
@@ -59,7 +59,7 @@ export = (util: PluginUtil): Plugin => {
 				un: "visible",
 				description: "turns you into a cone [invisible speed?:number",
 				localbar: true, // Defaults to true but who cares
-				on (args) {
+				on(args) {
 					const cone = block.getValue()!
 					const speed = args ? tonumber(args[0]) : 100
 					if (cone.Visible) {
@@ -86,7 +86,7 @@ export = (util: PluginUtil): Plugin => {
 					task.delay(1, () => (root.Anchored = true))
 					Workspace.CurrentCamera!.CameraSubject = fake
 				},
-				off () {
+				off() {
 					const cone = block.getValue()!
 					const Character = Player.Character
 					assert(Character, "you need a character")
@@ -162,7 +162,7 @@ export = (util: PluginUtil): Plugin => {
 					})
 
 					let CONFIG = {
-						ShowTeam: false
+						ShowTeam: false,
 					}
 
 					// Wrap things up
@@ -199,7 +199,8 @@ export = (util: PluginUtil): Plugin => {
 										TracerLines[char.Name] = new Drawing("Line")
 										TracerLines[char.Name].Thickness = 2
 										TracerLines[char.Name].Transparency = 0.7
-										TracerLines[char.Name].Color = plr.TeamColor.Color || Color3.fromRGB(255, 255, 255)
+										TracerLines[char.Name].Color =
+											plr.TeamColor.Color || Color3.fromRGB(255, 255, 255)
 									}
 
 									if (CONFIG.ShowTeam === false) {
